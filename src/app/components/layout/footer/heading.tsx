@@ -3,11 +3,9 @@ import { TITLE } from '@/app/constants/global';
 
 const date = `2023-${new Date().getFullYear()}`;
 const FooterHeading = () => (
-	<header className='text-lg font-bold'>
+	<header className='text-lg font-extrabold'>
 		<span>&copy; </span>
-		<Link to='.' className='font-extrabold hover:text-indigo-700'>
-			{TITLE}
-		</Link>
+		<Link to='.'>{TITLE}</Link>
 		<span> - {date}</span>
 	</header>
 );

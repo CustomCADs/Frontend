@@ -1,12 +1,16 @@
+import { Link, LinkProps } from '@tanstack/react-router';
 import { IconProp } from '@/types/icon';
 
-type HeaderIconProps = { text: string; Icon: IconProp };
-const HeaderIcon = ({ text, Icon }: HeaderIconProps) => {
+type HeaderIconProps = LinkProps & { text: string; Icon: IconProp };
+const HeaderIcon = ({ text, Icon, ...props }: HeaderIconProps) => {
 	return (
-		<span className='flex justify-center items-center gap-1'>
+		<Link
+			{...props}
+			className='flex justify-center items-center gap-1 hover:text-muted-foreground ease-in duration-200'
+		>
 			{<Icon />}
 			{text}
-		</span>
+		</Link>
 	);
 };
 
