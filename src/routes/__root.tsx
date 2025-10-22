@@ -8,6 +8,8 @@ import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { RouterContext } from '@/router';
 import '@/app/config/env';
+import Layout from '@/app/components/layout';
+import cssUrl from '@/index.css?url';
 
 export const Route = createRootRouteWithContext<RouterContext>()({
 	head: () => ({
@@ -23,6 +25,12 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				title: 'CustomCADs',
 			},
 		],
+		links: [
+			{
+				rel: 'stylesheet',
+				href: cssUrl,
+			},
+		],
 	}),
 	shellComponent: ({ children }: { children: React.ReactNode }) => (
 		<html lang='en'>
@@ -30,7 +38,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				<HeadContent />
 			</head>
 			<body>
-				{children}
+				<Layout>{children}</Layout>
 				<TanStackDevtools
 					config={{
 						defaultOpen: false,
