@@ -1,3 +1,4 @@
+import { isAxiosError } from 'axios';
 import {
 	HeadContent,
 	Scripts,
@@ -6,9 +7,11 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
+import { AppError } from '@/types/errors';
 import { RouterContext } from '@/router';
 import '@/app/config/env';
 import Layout from '@/app/components/layout';
+import ErrorPage from '@/app/components/state/error';
 import cssUrl from '@/index.css?url';
 
 export const Route = createRootRouteWithContext<RouterContext>()({
@@ -65,4 +68,27 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			</body>
 		</html>
 	),
+	errorComponent: ({ error }) => {
+		if (isAxiosError(error)) {
+			switch (error.response?.status) {
+				case 400:
+					return <ErrorPage status={400} />;
+				case 401:
+					return <ErrorPage status={401} />;
+				case 403:
+					return <ErrorPage status={403} />;
+				case 404:
+					return <ErrorPage status={404} />;
+				case undefined:
+				default:
+					return <ErrorPage status={null} />;
+			}
+		}
+
+		if (error instanceof AppError) {
+			return <ErrorPage status={null} error={error} />;
+		}
+		return <ErrorPage status={null} />;
+	},
+	notFoundComponent: () => <ErrorPage status={404} />,
 });
