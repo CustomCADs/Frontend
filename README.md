@@ -37,9 +37,6 @@ npm run dev
 
 Your frontend should now be accessible at [https://localhost:5173](https://localhost:5173) with HTTPS enabled.
 
-## Setup
-Run `npm i`, then generate an HTTPS certificate (e.g. via `openssl req -x509 -newkey rsa:4096 -nodes -keyout certs/key.pem -out certs/cert.pem -days 365 -subj "/CN=localhost"`), then import that certificate to your browser (e.g. at `chrome://certificate-manager/` for Chrome, and finally run `npm run dev`)
-
 ---
 
 ## 🏗️ Architecture & Design

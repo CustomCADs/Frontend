@@ -2,6 +2,7 @@ import { createRouter } from '@tanstack/react-router';
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query';
 import * as TanstackQuery from '@/app/integrations/tanstack-query';
 import { routeTree } from '@/routeTree.gen';
+import '@/app/locales/i18n';
 
 export type RouterContext = ReturnType<typeof TanstackQuery.getContext>;
 
