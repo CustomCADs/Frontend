@@ -8,7 +8,7 @@ const HeaderIcon = ({ text, Icon, ...props }: HeaderIconProps) => {
 			{...props}
 			className='flex justify-center items-center gap-1 hover:text-muted-foreground ease-in duration-200'
 		>
-			{<Icon />}
+			<Icon />
 			{text}
 		</Link>
 	);
