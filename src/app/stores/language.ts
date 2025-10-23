@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
 import { Language } from '@/types/locale';
-import { getUserDefaultLanguage } from '@/lib/locale/language';
+import { getUserDefaultLanguage } from '@/app/utils/language';
 
 const LOCAL_STORAGE_KEY = 'language-store';
 const defaultBrowserLanguage = getUserDefaultLanguage();
