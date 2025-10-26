@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "serve": "vite preview",
     "test": "vitest",
+    "test:unit": "vitest src",
     "lint": "eslint",
     "format": "prettier --write ."
   },

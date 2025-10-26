@@ -1,0 +1,32 @@
+name: Continuous Integration pipeline
+
+on:
+  push:
+    branches:
+      - feature/*
+      - hotfix/*
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.x"
+
+      - name: Install packages
+        run: npm install
+
+      - name: Lint project
+        run: npm run lint
+
+      - name: Build source code
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm run test:unit
