@@ -54,7 +54,7 @@ code {
     --header-border: oklch(0.92 0.004 286.32);
     --header-ring: oklch(0.871 0.006 286.286);
     --footer: oklch(18.745% 0.00829 274.449);
-    --footer-foreground: oklch(90.078% 0.015 286.002);
+    --footer-foreground: oklch(90.078% 0.015 286.002 / 0.75);
     --footer-primary: oklch(0.21 0.006 285.885);
     --footer-primary-foreground: oklch(0.985 0 0);
     --footer-accent: oklch(32.147% 0.00178 286);

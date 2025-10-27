@@ -3,14 +3,19 @@ import { IconProp } from '@/types/icon';
 
 type HeaderIconProps = LinkProps & { text: string; Icon: IconProp };
 const HeaderIcon = ({ text, Icon, ...props }: HeaderIconProps) => {
-	return (
-		<Link
-			{...props}
-			className='flex justify-center items-center gap-1 hover:text-muted-foreground ease-in duration-200'
-		>
+	const className =
+		'flex justify-center items-center gap-1 cursor-pointer ease-in duration-200 hover:text-muted-foreground ';
+
+	return props.to ? (
+		<Link {...props} className={className}>
 			<Icon />
 			{text}
 		</Link>
+	) : (
+		<span className={className}>
+			<Icon />
+			{text}
+		</span>
 	);
 };
 

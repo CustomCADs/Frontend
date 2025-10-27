@@ -10,7 +10,7 @@ const Header = () => {
 		<header className='bg-header text-header-foreground py-3'>
 			<ul className='flex justify-between items-center text-lg mx-5'>
 				<li className='basis-1/3 flex justify-start items-center gap-x-6'>
-					<HeaderIcon Icon={Home} to='.' text={tHeader('home')} />
+					<HeaderIcon Icon={Home} to='/' text={tHeader('home')} />
 					<HeaderIcon Icon={Store} to='.' text={tHeader('gallery')} />
 					<HeaderIcon
 						Icon={ShoppingCart}

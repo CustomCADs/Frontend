@@ -26,14 +26,9 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 				title: 'CustomCADs',
 			},
 		],
-		links: [
-			{
-				rel: 'stylesheet',
-				href: cssUrl,
-			},
-		],
+		links: [{ rel: 'stylesheet', href: cssUrl }],
 	}),
-	shellComponent: ({ children }: { children: React.ReactNode }) => (
+	shellComponent: ({ children }) => (
 		<html lang='en'>
 			<head>
 				<HeadContent />
