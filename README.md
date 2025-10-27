@@ -23,6 +23,7 @@ openssl req -x509 -newkey rsa:4096 -nodes \
   -subj "/CN=localhost" \
   -addext "subjectAltName = DNS:localhost, IP:127.0.0.1"
 ```
+Or try to let the default `vite.config.ts` behavior do it for you (using the command above)
 
 3. **Trust the certificate in your browser**
 
