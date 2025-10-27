@@ -1,7 +1,6 @@
 import * as axios from 'axios';
 import Cookies from 'js-cookie';
 import * as customcads from '@customcads/react-sdk';
-import * as authStore from '@/app/stores/auth';
 
 customcads.setBaseUrl(
 	`${import.meta.env.VITE_API_URL}/api/${import.meta.env.VITE_API_VERSION ?? 'v1'}`,
@@ -26,8 +25,6 @@ customcads.axios.interceptors.response.use(
 
 		try {
 			await customcads.identityApi.refresh();
-			const { data: role } = await customcads.identityApi.authz();
-			authStore.login(role);
 
 			const config = refreshCsrf(error.config);
 			return await axios.default(config);
