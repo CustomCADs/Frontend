@@ -4,8 +4,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite';
-import fs from 'fs';
-import path from 'path';
+import { ensureCertsExist } from './vite.helper';
 
 const config = defineConfig({
 	plugins: [
@@ -22,10 +21,7 @@ const config = defineConfig({
 	],
 	server: {
 		port: 5173,
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'certs/key.pem')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'certs/cert.pem')),
-		},
+		https: ensureCertsExist(),
 	},
 	build: {
 		assetsInlineLimit: 0,
