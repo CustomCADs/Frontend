@@ -2,6 +2,7 @@ import { Home, Languages, LogIn, ShoppingCart, Store } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { TITLE } from '@/app/constants/global';
 import HeaderIcon from './icon';
+import ThemeToggle from './theme';
 
 const Header = () => {
 	const tHeader = useLayoutTranslations('header');
@@ -28,6 +29,7 @@ const Header = () => {
 						to='.'
 						text={tHeader('language')}
 					/>
+					<ThemeToggle />
 				</li>
 			</ul>
 		</header>

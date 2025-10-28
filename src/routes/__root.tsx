@@ -6,6 +6,8 @@ import {
 } from '@tanstack/react-router';
 import { AppError } from '@/types/errors';
 import { RouterContext } from '@/router';
+import { cn } from '@/lib/utils/tailwindcss';
+import { isDarkThemeCookie } from '@/lib/isomorphic/theme';
 import '@/app/config/env';
 import Layout from '@/app/components/layout';
 import ErrorPage from '@/app/components/state/error';
@@ -29,7 +31,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 		links: [{ rel: 'stylesheet', href: cssUrl }],
 	}),
 	shellComponent: ({ children }) => (
-		<html lang='en'>
+		<html lang='en' className={cn({ dark: isDarkThemeCookie() })}>
 			<head>
 				<HeadContent />
 			</head>
