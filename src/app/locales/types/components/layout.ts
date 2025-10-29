@@ -11,5 +11,4 @@ export type Header = {
 	cart: string;
 	login: string;
 	language: string;
-	theme: string;
 };

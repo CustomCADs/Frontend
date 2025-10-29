@@ -17,7 +17,10 @@ const defaultState = (): ThemeState => {
 		return JSON.parse(persistedState);
 	}
 
-	return { theme: getSystemThemePreference() };
+	const state: ThemeState = { theme: getSystemThemePreference() };
+	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+	Cookies.set(COOKIE_STORAGE_KEY, state.theme);
+	return state;
 };
 
 export const store = new Store<ThemeState>(defaultState());

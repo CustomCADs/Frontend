@@ -54,6 +54,7 @@ const LanguageMenu = () => {
 				value: lang,
 				flag: flags[lang],
 			}))}
+			placeholder={tHeader('language-placeholder')}
 			trigger={<HeaderIcon Icon={Languages} text={tHeader('language')} />}
 			onSelect={(curr) => languageStore.setCurrent(curr)}
 		/>

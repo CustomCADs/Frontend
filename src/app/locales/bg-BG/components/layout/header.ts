@@ -6,5 +6,4 @@ export default {
 	cart: 'Количка',
 	login: 'Влез',
 	language: 'Език',
-	theme: 'Тема',
 } satisfies Header;

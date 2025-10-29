@@ -6,5 +6,4 @@ export default {
 	cart: 'Cart',
 	login: 'Login',
 	language: 'Language',
-	theme: 'Theme',
 } satisfies Header;

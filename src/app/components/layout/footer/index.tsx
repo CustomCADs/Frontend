@@ -13,7 +13,7 @@ const Footer = () => {
 	const tFooter = useLayoutTranslations('footer');
 
 	return (
-		<footer className='flex flex-col bg-footer text-footer-foreground rounded-t-sm'>
+		<footer className='flex flex-col bg-footer text-footer-foreground rounded-t-sm transition-colors duration-400'>
 			<ul className='flex justify-between items-center mx-5 py-10'>
 				<li className='basis-1/3 flex justify-center items-center gap-x-6'>
 					<FooterLink to='.' text={tFooter('privacy-policy')} />
@@ -42,7 +42,7 @@ const Footer = () => {
 					<FooterLink to='.' text={tFooter('apply-designer')} />
 				</li>
 			</ul>
-			<div className='flex justify-center items-center bg-footer-accent text-footer-accent-foreground py-2 rounded-t-lg'>
+			<div className='flex justify-center items-center bg-footer-accent text-footer-accent-foreground py-2 rounded-t-lg transition-colors duration-400'>
 				<FooterHeading />
 			</div>
 		</footer>

@@ -9,7 +9,7 @@ const Header = () => {
 	const tHeader = useLayoutTranslations('header');
 
 	return (
-		<header className='bg-header text-header-foreground py-3'>
+		<header className='bg-header text-header-foreground py-3 transition-colors duration-400'>
 			<ul className='flex justify-between items-center text-lg mx-5'>
 				<li className='basis-1/3 flex justify-start items-center gap-x-6'>
 					<HeaderIcon Icon={Home} to='/' text={tHeader('home')} />
@@ -20,7 +20,7 @@ const Header = () => {
 						text={tHeader('cart')}
 					/>
 				</li>
-				<li className='basis-1/3 flex justify-center ease-in duration-200 hover:text-primary-foreground'>
+				<li className='basis-1/3 flex justify-center'>
 					<h1 className='text-2xl font-extrabold'>{TITLE}</h1>
 				</li>
 				<li className='basis-1/3 flex justify-end items-center gap-x-6'>
