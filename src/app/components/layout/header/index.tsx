@@ -1,7 +1,8 @@
-import { Home, Languages, LogIn, ShoppingCart, Store } from 'lucide-react';
+import { Home, LogIn, ShoppingCart, Store } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { TITLE } from '@/app/constants/global';
 import HeaderIcon from './icon';
+import LanguageMenu from './language';
 import ThemeToggle from './theme';
 
 const Header = () => {
@@ -24,11 +25,7 @@ const Header = () => {
 				</li>
 				<li className='basis-1/3 flex justify-end items-center gap-x-6'>
 					<HeaderIcon Icon={LogIn} to='.' text={tHeader('login')} />
-					<HeaderIcon
-						Icon={Languages}
-						to='.'
-						text={tHeader('language')}
-					/>
+					<LanguageMenu />
 					<ThemeToggle />
 				</li>
 			</ul>
