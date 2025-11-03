@@ -21,7 +21,7 @@ const LanguageCombobox = ({ current, options, ...props }: Props) => {
 	return (
 		<popover.Popover open={open} onOpenChange={setOpen}>
 			<popover.PopoverTrigger>{props.trigger}</popover.PopoverTrigger>
-			<popover.PopoverContent className='w-[200px] p-0'>
+			<popover.PopoverContent className='w-[250px] p-0'>
 				<command.Command className='bg-header-accent text-header-accent-foreground'>
 					<command.CommandInput placeholder={props.placeholder} />
 					<command.CommandList>
@@ -44,8 +44,9 @@ const LanguageCombobox = ({ current, options, ...props }: Props) => {
 									}}
 									className={cn(
 										'flex justify-between items-center',
-										current !== option.value &&
-											'opacity-70 ease-in duration-200 hover:opacity-90',
+										current === option.value
+											? 'bg-accent opacity-80'
+											: 'bg-header-accent hover:bg-accent hover:text-accent-foreground',
 									)}
 								>
 									<div className='flex items-center'>
@@ -57,7 +58,7 @@ const LanguageCombobox = ({ current, options, ...props }: Props) => {
 													: 'opacity-0',
 											)}
 										/>
-										<span className={cn('wrap-anywhere')}>
+										<span className='wrap-anywhere'>
 											{option.label}
 										</span>
 									</div>

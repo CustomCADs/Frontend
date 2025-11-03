@@ -6,6 +6,7 @@ type HeaderIconProps = LinkProps & {
 	Icon: IconProp;
 	text?: string;
 	clickable?: boolean;
+	onClick?: VoidFunction;
 };
 const HeaderIcon = ({
 	Icon,
@@ -24,7 +25,7 @@ const HeaderIcon = ({
 			{text}
 		</Link>
 	) : (
-		<span className={className}>
+		<span {...props} className={className}>
 			<Icon />
 			{text}
 		</span>

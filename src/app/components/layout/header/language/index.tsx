@@ -1,4 +1,4 @@
-import { Languages } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { ALLOWED_LANGUAGES, Language } from '@/types/locale';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { useLocalesTranslations } from '@/app/hooks/locales/translations/common';
@@ -55,7 +55,7 @@ const LanguageMenu = () => {
 				flag: flags[lang],
 			}))}
 			placeholder={tHeader('language-placeholder')}
-			trigger={<HeaderIcon Icon={Languages} text={tHeader('language')} />}
+			trigger={<HeaderIcon Icon={Globe} />}
 			onSelect={(curr) => languageStore.setCurrent(curr)}
 		/>
 	);

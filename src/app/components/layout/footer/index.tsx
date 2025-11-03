@@ -39,7 +39,7 @@ const Footer = () => {
 				</li>
 				<li className='basis-1/3 flex justify-center items-center gap-x-4'>
 					<FooterLink to='.' text={tFooter('about-us')} />
-					<FooterLink to='.' text={tFooter('apply-designer')} />
+					<FooterLink to='.' text={tFooter('customer-support')} />
 				</li>
 			</ul>
 			<div className='flex justify-center items-center bg-footer-accent text-footer-accent-foreground py-2 rounded-t-lg transition-colors duration-400'>

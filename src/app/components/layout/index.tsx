@@ -13,7 +13,9 @@ const Layout = ({ children }: Children) => {
 	return (
 		<div className='flex flex-col min-h-screen bg-background transition-colors duration-400'>
 			<Header />
-			<main className='basis-full grow self-stretch'>{children}</main>
+			<main className='basis-full grow self-stretch flex flex-col'>
+				{children}
+			</main>
 			<Footer />
 		</div>
 	);
