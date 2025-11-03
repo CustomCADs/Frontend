@@ -1,7 +1,7 @@
 import { Store } from '@tanstack/store';
-import Cookies from 'js-cookie';
+import { getRoleCookie } from '@/lib/isomorphic/api';
 
-const role = Cookies.get('role');
+const role = getRoleCookie();
 
 type AuthState = {
 	authn: boolean;

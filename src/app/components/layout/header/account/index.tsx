@@ -4,7 +4,7 @@ import { useLayoutTranslations } from '@/app/hooks/locales/translations/componen
 import HeaderIcon from '../icon';
 import Logout from './logout';
 
-const Account = () => {
+const AccountDropdown = () => {
 	const { is } = useAuthStore();
 	const tHeader = useLayoutTranslations('header');
 
@@ -15,4 +15,4 @@ const Account = () => {
 	);
 };
 
-export default Account;
+export default AccountDropdown;

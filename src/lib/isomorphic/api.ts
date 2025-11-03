@@ -5,3 +5,7 @@ import Cookies from 'js-cookie';
 export const getCsrfCookie = createIsomorphicFn()
 	.client(() => Cookies.get('csrf'))
 	.server(() => getCookie('csrf'));
+
+export const getRoleCookie = createIsomorphicFn()
+	.client(() => Cookies.get('role'))
+	.server(() => getCookie('role'));
