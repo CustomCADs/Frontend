@@ -1,11 +1,13 @@
 import { Children } from '@/types/react';
 import { useThemeStore } from '@/app/hooks/stores/useThemeStore';
+import { useAuthSync } from '@/app/hooks/stores/useAuthSync';
 import { useLanguagesSync } from '@/app/hooks/stores/useLanguagesSync';
 import Header from './header';
 import Footer from './footer';
 
 const Layout = ({ children }: Children) => {
 	useThemeStore({ render: true });
+	useAuthSync();
 	useLanguagesSync();
 
 	return (
