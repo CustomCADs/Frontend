@@ -4,6 +4,7 @@ import { useLayoutTranslations } from '@/app/hooks/locales/translations/componen
 import { TITLE } from '@/app/constants/global';
 import HeaderIcon from './icon';
 import Sidebar from './menu';
+import NotificationsTab from './notifications';
 import AccountDropdown from './account';
 import LanguageMenu from './language';
 import ThemeToggle from './theme';
@@ -33,9 +34,10 @@ const Header = () => {
 					</Link>
 				</li>
 				<li className='basis-1/3 flex justify-end items-center gap-x-6'>
-					<AccountDropdown />
-					<LanguageMenu />
 					<ThemeToggle />
+					<LanguageMenu />
+					<NotificationsTab />
+					<AccountDropdown />
 				</li>
 			</ul>
 		</header>
