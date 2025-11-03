@@ -36,3 +36,12 @@ export const doFieldsHaveErrors = <TValues, TKeys = keyof TValues>(
 			fields.map(hasError).some((result) => result === true),
 	};
 };
+
+export const handleSubmit = async (
+	e: React.FormEvent<HTMLFormElement>,
+	onSubmit: () => Promise<void>,
+) => {
+	e.preventDefault();
+	e.stopPropagation();
+	await onSubmit();
+};

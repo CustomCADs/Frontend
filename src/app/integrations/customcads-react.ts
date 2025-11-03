@@ -1,13 +1,14 @@
 import * as axios from 'axios';
-import Cookies from 'js-cookie';
 import * as customcads from '@customcads/react-sdk';
+import { getCsrfCookie } from '@/lib/isomorphic/api';
+import * as authStore from '@/app/stores/auth';
 
 customcads.setBaseUrl(
 	`${import.meta.env.VITE_API_URL}/api/${import.meta.env.VITE_API_VERSION ?? 'v1'}`,
 );
 
 const refreshCsrf = (cfg: axios.InternalAxiosRequestConfig) => {
-	cfg.headers['Csrf-Token'] = Cookies.get('csrf');
+	cfg.headers['Csrf-Token'] = getCsrfCookie();
 	return cfg;
 };
 
@@ -25,6 +26,8 @@ customcads.axios.interceptors.response.use(
 
 		try {
 			await customcads.identityApi.refresh();
+			const { data: role } = await customcads.identityApi.authz();
+			authStore.login(role);
 
 			const config = refreshCsrf(error.config);
 			return await axios.default(config);
