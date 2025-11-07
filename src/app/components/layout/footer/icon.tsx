@@ -7,7 +7,7 @@ const FooterIcon = ({ link, Icon }: FooterProps) => {
 		<Link
 			to={link}
 			target='new'
-			className='text-primary-foreground hover:text-muted-foreground ease-in duration-200'
+			className='text-footer-primary-foreground hover:text-muted-foreground ease-in duration-200'
 		>
 			<Icon />
 		</Link>

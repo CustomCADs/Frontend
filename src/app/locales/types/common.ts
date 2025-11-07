@@ -1,3 +1,7 @@
+import { Language } from '@/types/locale';
+
+export type Locales = Record<Language, string>;
+
 export type Errors = {
 	login_link: string;
 	contact_support_link: string;

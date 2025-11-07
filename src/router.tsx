@@ -16,10 +16,10 @@ export const getRouter = () => {
 		defaultPreload: 'intent',
 		scrollRestoration: true,
 		scrollRestorationBehavior: 'smooth',
-		Wrap: (props: { children: React.ReactNode }) => {
+		Wrap: ({ children }) => {
 			return (
 				<TanstackQuery.Provider {...queryContext}>
-					{props.children}
+					{children}
 				</TanstackQuery.Provider>
 			);
 		},

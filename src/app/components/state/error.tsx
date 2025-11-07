@@ -1,12 +1,13 @@
 import { Link } from '@tanstack/react-router';
-import { useErrorsTranslations } from '@/app/hooks/locales/translations/common';
 import { AppErrorFields } from '@/types/errors';
+import { cn } from '@/lib/utils/tailwindcss';
+import { useErrorsTranslations } from '@/app/hooks/locales/translations/common';
+import * as page from '@/app/utils/page';
 
 type ErrorPageProps = {
 	status: 400 | 401 | 403 | 404 | null;
 	error?: AppErrorFields;
 };
-
 const ErrorPage = ({ status, error }: ErrorPageProps) => {
 	const tError = useErrorsTranslations();
 	const { title, message, tip } = error ?? {
@@ -16,18 +17,18 @@ const ErrorPage = ({ status, error }: ErrorPageProps) => {
 	};
 
 	return (
-		<div className='flex flex-col justify-center items-center h-screen text-white'>
-			<h1 className='text-[3.5rem] font-bold text-gray-300 mb-4'>
+		<div className={cn(page.className, 'gap-8')}>
+			<h1 className='text-6xl font-bold text-secondary-foreground'>
 				{title}
 			</h1>
-			<h3 className='text-[1.5rem] text-gray-400 mb-[1rem]'>{message}</h3>
-			<p className='text-[1rem] text-gray-500 mb-[1.5rem]'>{tip}</p>
+			<h3 className='text-2xl text-secondary-foreground'>{message}</h3>
+			<p className='text-md text-secondary-foreground'>{tip}</p>
 
 			{status === 401 && (
 				<div className='text-lg'>
 					<Link
 						to='.'
-						className='text-indigo-300 hover:text-white transition-colors duration-200'
+						className='text-accent-foreground font-bold transition-colors duration-200'
 					>
 						{tError('login_link')}
 					</Link>
@@ -37,7 +38,7 @@ const ErrorPage = ({ status, error }: ErrorPageProps) => {
 			<div className='text-lg'>
 				<Link
 					to='/'
-					className='text-indigo-300 hover:text-white transition-colors duration-200'
+					className='text-accent-foreground font-bold transition-colors duration-200'
 				>
 					{tError('contact_support_link')}
 				</Link>

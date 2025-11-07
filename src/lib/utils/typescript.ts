@@ -12,3 +12,5 @@ export const invertBy = <
 		]),
 	) as Record<T[keyof T][K], keyof T>;
 };
+
+export type OnlyParam<T> = T extends (args: infer P) => unknown ? P : never;

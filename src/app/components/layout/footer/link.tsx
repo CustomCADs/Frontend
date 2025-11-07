@@ -4,13 +4,8 @@ type FooterLinkProps = LinkProps & { text: string };
 
 const FooterLink = ({ text, ...props }: FooterLinkProps) => {
 	return (
-		<span className='text-md font-bold underline'>
-			<Link
-				{...props}
-				className={
-					'text-muted-foreground hover:text-primary-foreground ease-in duration-100'
-				}
-			>
+		<span className='text-footer-foreground text-md font-bold underline hover:text-footer-accent-foreground'>
+			<Link {...props} className='ease-in duration-100'>
 				{text}
 			</Link>
 		</span>

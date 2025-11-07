@@ -1,16 +1,34 @@
 import { Link, LinkProps } from '@tanstack/react-router';
 import { IconProp } from '@/types/icon';
+import { cn } from '@/lib/utils/tailwindcss';
 
-type HeaderIconProps = LinkProps & { text: string; Icon: IconProp };
-const HeaderIcon = ({ text, Icon, ...props }: HeaderIconProps) => {
-	return (
-		<Link
-			{...props}
-			className='flex justify-center items-center gap-1 hover:text-muted-foreground ease-in duration-200'
-		>
+type HeaderIconProps = LinkProps & {
+	Icon: IconProp;
+	text?: string;
+	clickable?: boolean;
+	onClick?: VoidFunction;
+};
+const HeaderIcon = ({
+	Icon,
+	text,
+	clickable = true,
+	...props
+}: HeaderIconProps) => {
+	const className = cn(
+		'flex justify-center items-center gap-1 ease-in duration-200',
+		clickable && 'cursor-pointer hover:text-muted-foreground',
+	);
+
+	return props.to ? (
+		<Link {...props} className={className}>
 			<Icon />
 			{text}
 		</Link>
+	) : (
+		<span {...props} className={className}>
+			<Icon />
+			{text}
+		</span>
 	);
 };
 
