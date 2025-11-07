@@ -28,6 +28,7 @@ export type Header = {
 	home: string;
 	gallery: string;
 	cart: string;
+	notifications: string;
 	account: string;
 	login: string;
 	logout: string;

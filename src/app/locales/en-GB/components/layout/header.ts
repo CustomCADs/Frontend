@@ -23,6 +23,7 @@ export default {
 	home: 'Home',
 	gallery: 'Gallery',
 	cart: 'Cart',
+	notifications: 'Notifications',
 	account: 'Account',
 	login: 'Login',
 	logout: 'Logout',

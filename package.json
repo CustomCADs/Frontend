@@ -13,7 +13,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@customcads/react-sdk": "^0.1.2",
+    "@customcads/react-sdk": "^0.1.4",
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@lobehub/icons": "^2.43.1",
     "@microsoft/signalr": "^9.0.6",

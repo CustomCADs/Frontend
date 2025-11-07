@@ -23,6 +23,7 @@ export default {
 	home: 'Начало',
 	gallery: 'Галерия',
 	cart: 'Количка',
+	notifications: 'Известия',
 	account: 'Акаунт',
 	login: 'Влез',
 	logout: 'Излез',
