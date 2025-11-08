@@ -8,13 +8,12 @@ import Content from './content';
 
 const ALL_PARAMS = { limit: 10 };
 const NotificationsTab = () => {
-	const query = useInfiniteQuery(({ notifications }) =>
-		notifications.all(ALL_PARAMS),
+	const { is } = useAuthStore();
+	const query = useInfiniteQuery(
+		({ notifications }) => notifications.all(ALL_PARAMS),
+		!is.guest,
 	);
 	useNotificationRealTime({ allParams: ALL_PARAMS });
-
-	const { is } = useAuthStore();
-	if (is.guest) return;
 
 	if (!query.data) return <HeaderIcon Icon={Bell} />;
 	const { pages } = query.data;

@@ -8,14 +8,18 @@ export const useNotificationsHub = (
 	methodName: 'ReceiveNew',
 	onSingleReceived: (payload: Notification) => void | Promise<void>,
 ) => {
-	const { data: account } = useQuery(({ identity }) => identity.myAccount);
+	const { data: authn } = useQuery(({ identity }) => identity.authn);
+	const { data: account } = useQuery(
+		({ identity }) => identity.myAccount,
+		!!authn,
+	);
+
 	useHub({
 		hub: {
 			connectionName: 'Notifications',
-			methodName: methodName,
-			onReceived: onSingleReceived,
+			methods: [{ name: methodName, onReceived: onSingleReceived }],
 		},
-		condition: account !== undefined,
+		condition: authn,
 		deps: [account?.id],
 	});
 };

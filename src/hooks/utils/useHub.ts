@@ -4,8 +4,10 @@ import * as signalR from '@/lib//hubs/signalr';
 type UseHubProps = {
 	hub: {
 		connectionName: 'Notifications';
-		methodName: string;
-		onReceived: (payload: never) => void | Promise<void>;
+		methods: Array<{
+			name: string;
+			onReceived: (payload: never) => void | Promise<void>;
+		}>;
 	};
 	condition?: boolean;
 	deps?: DependencyList;
@@ -16,7 +18,9 @@ export const useHub = ({ hub, condition, deps }: UseHubProps) =>
 			const connection = signalR.buildConnection(hub.connectionName);
 
 			const init = async () => {
-				connection.on(hub.methodName, hub.onReceived);
+				for (const method of hub.methods) {
+					connection.on(method.name, method.onReceived);
+				}
 				await signalR.start(connection);
 			};
 			init();
