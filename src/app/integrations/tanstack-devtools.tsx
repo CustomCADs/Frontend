@@ -1,6 +1,7 @@
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackDevtools as TanStackReactDevtools } from '@tanstack/react-devtools';
+import CustomCADsUserToolsPanel from './user-preferences';
 
 export const TanStackDevtools = () => (
 	<TanStackReactDevtools
@@ -15,6 +16,10 @@ export const TanStackDevtools = () => (
 				'https://tanstack.com/images/logos/logo-color-100.png',
 		}}
 		plugins={[
+			{
+				name: 'User Preferences',
+				render: <CustomCADsUserToolsPanel />,
+			},
 			{
 				name: 'Tanstack Router',
 				render: <TanStackRouterDevtoolsPanel />,

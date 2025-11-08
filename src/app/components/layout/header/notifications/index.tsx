@@ -3,7 +3,7 @@ import { useInfiniteQuery } from '@customcads/react-sdk';
 import { useNotificationRealTime } from '@/app/hooks/features/notifications/useNotificationRealTime';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import { Popover, PopoverTrigger } from '@/app/components/ui/popover';
-import HeaderIcon from '../icon';
+import CustomIcon from '@/app/components/icon';
 import Content from './content';
 
 const ALL_PARAMS = { limit: 10 };
@@ -15,13 +15,13 @@ const NotificationsTab = () => {
 	);
 	useNotificationRealTime({ allParams: ALL_PARAMS });
 
-	if (!query.data) return <HeaderIcon Icon={Bell} />;
+	if (!query.data) return <CustomIcon Icon={Bell} />;
 	const { pages } = query.data;
 
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<HeaderIcon Icon={Bell} />
+				<CustomIcon Icon={Bell} />
 			</PopoverTrigger>
 			<Content
 				notifications={pages.flatMap(({ items }) => items)}

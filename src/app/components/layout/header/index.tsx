@@ -2,12 +2,10 @@ import { Link } from '@tanstack/react-router';
 import { Home, ShoppingCart, Store } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { TITLE } from '@/app/constants/global';
-import HeaderIcon from './icon';
+import CustomIcon from '@/app/components/icon';
 import Sidebar from './menu';
 import NotificationsTab from './notifications';
-import AccountDropdown from './account';
-import LanguageMenu from './language';
-import ThemeToggle from './theme';
+import AccountMenu from './account';
 
 const Header = () => {
 	const tHeader = useLayoutTranslations('header');
@@ -17,9 +15,9 @@ const Header = () => {
 			<ul className='flex justify-between items-center text-lg mx-5'>
 				<li className='basis-1/3 flex justify-start items-center gap-x-5'>
 					<Sidebar />
-					<HeaderIcon Icon={Home} to='/' text={tHeader('home')} />
-					<HeaderIcon Icon={Store} to='.' text={tHeader('gallery')} />
-					<HeaderIcon
+					<CustomIcon Icon={Home} to='/' text={tHeader('home')} />
+					<CustomIcon Icon={Store} to='.' text={tHeader('gallery')} />
+					<CustomIcon
 						Icon={ShoppingCart}
 						to='.'
 						text={tHeader('cart')}
@@ -34,10 +32,8 @@ const Header = () => {
 					</Link>
 				</li>
 				<li className='basis-1/3 flex justify-end items-center gap-x-6'>
-					<ThemeToggle />
-					<LanguageMenu />
 					<NotificationsTab />
-					<AccountDropdown />
+					<AccountMenu />
 				</li>
 			</ul>
 		</header>

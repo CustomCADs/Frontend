@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils/tailwindcss';
 import { isDarkThemeCookie } from '@/lib/isomorphic/theme';
 import '@/app/config/env';
 import Layout from '@/app/components/layout';
-import ErrorPage from '@/app/components/state/error';
+import ErrorPage from '@/app/components/error';
 import { TanStackDevtools } from '@/app/integrations/tanstack-devtools';
 import cssUrl from '@/index.css?url';
 

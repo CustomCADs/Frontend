@@ -3,7 +3,7 @@ import { LogOut } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import * as authStore from '@/app/stores/auth';
 import * as languageStore from '@/app/stores/language';
-import HeaderIcon from '../icon';
+import CustomIcon from '@/app/components/icon';
 
 const Logout = () => {
 	const { mutateAsync: logout } = useMutation(
@@ -18,7 +18,7 @@ const Logout = () => {
 	};
 
 	return (
-		<HeaderIcon
+		<CustomIcon
 			Icon={LogOut}
 			onClick={handleLogout}
 			text={tHeader('logout')}

@@ -4,7 +4,7 @@ import { useLayoutTranslations } from '@/app/hooks/locales/translations/componen
 import { useLocalesTranslations } from '@/app/hooks/locales/translations/common';
 import { useLanguageStore } from '@/app/hooks/stores/useLanguageStore';
 import * as languageStore from '@/app/stores/language';
-import HeaderIcon from '../icon';
+import CustomIcon from '@/app/components/icon';
 import Compobox from './compobox';
 
 const LanguageMenu = () => {
@@ -21,7 +21,7 @@ const LanguageMenu = () => {
 				flag: FLAGS[lang],
 			}))}
 			placeholder={tHeader('language-placeholder')}
-			trigger={<HeaderIcon Icon={Globe} />}
+			trigger={<CustomIcon Icon={Globe} />}
 			onSelect={languageStore.setCurrent}
 		/>
 	);
