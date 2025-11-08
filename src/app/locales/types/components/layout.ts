@@ -31,6 +31,7 @@ export type Header = {
 	notifications: string;
 	account: string;
 	login: string;
+	register: string;
 	logout: string;
 	language: string;
 	'language-placeholder': string;

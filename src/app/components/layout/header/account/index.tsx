@@ -1,4 +1,4 @@
-import { LogIn } from 'lucide-react';
+import { LogIn, UserCog, UserPen } from 'lucide-react';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import CustomIcon from '@/app/components/icon';
@@ -8,11 +8,20 @@ const Account = () => {
 	const { is } = useAuthStore();
 	const tHeader = useLayoutTranslations('header');
 
-	return is.guest ? (
-		<CustomIcon Icon={LogIn} to='/login' text={tHeader('login')} />
-	) : (
-		<Logout />
+	const authenticated = (
+		<>
+			<CustomIcon Icon={UserCog} />
+			<Logout />
+		</>
 	);
+	const unauthenticated = (
+		<>
+			<CustomIcon Icon={LogIn} to='/login' text={tHeader('login')} />
+			<CustomIcon Icon={UserPen} to='.' text={tHeader('register')} />
+		</>
+	);
+
+	return is.guest ? unauthenticated : authenticated;
 };
 
 export default Account;

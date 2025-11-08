@@ -15,6 +15,7 @@ const NotificationsTab = () => {
 	);
 	useNotificationRealTime({ allParams: ALL_PARAMS });
 
+	if (is.guest) return;
 	if (!query.data) return <CustomIcon Icon={Bell} />;
 	const { pages } = query.data;
 
