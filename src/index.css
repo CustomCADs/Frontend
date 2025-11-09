@@ -66,6 +66,22 @@ code {
     --footer-accent-foreground: oklch(97.913% 0.00011 271.152);
     --footer-border: oklch(0.92 0.004 286.32);
     --footer-ring: oklch(0.871 0.006 286.286);
+    --sidebar:
+        hsl(0 0% 98%);
+    --sidebar-foreground:
+        hsl(240 5.3% 26.1%);
+    --sidebar-primary:
+        hsl(240 5.9% 10%);
+    --sidebar-primary-foreground:
+        hsl(0 0% 98%);
+    --sidebar-accent:
+        hsl(240 4.8% 95.9%);
+    --sidebar-accent-foreground:
+        hsl(240 5.9% 10%);
+    --sidebar-border:
+        hsl(220 13% 91%);
+    --sidebar-ring:
+        hsl(217.2 91.2% 59.8%);
 }
 
 .dark {
@@ -111,9 +127,25 @@ code {
     --footer-primary: oklch(0.488 0.243 264.376);
     --footer-primary-foreground: oklch(0.985 0 0);
     --footer-accent: oklch(97.913% 0.00011 271.152);
-    --footer-accent-foreground: oklch(32.147% 0.00178 286);
+    --footer-accent-foreground: oklch(60% 0.00178 286);
     --footer-border: oklch(0.274 0.006 286.033);
     --footer-ring: oklch(0.442 0.017 285.786);
+    --sidebar:
+        hsl(240 5.9% 10%);
+    --sidebar-foreground:
+        hsl(240 4.8% 95.9%);
+    --sidebar-primary:
+        hsl(224.3 76.3% 48%);
+    --sidebar-primary-foreground:
+        hsl(0 0% 100%);
+    --sidebar-accent:
+        hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground:
+        hsl(240 4.8% 95.9%);
+    --sidebar-border:
+        hsl(240 3.7% 15.9%);
+    --sidebar-ring:
+        hsl(217.2 91.2% 59.8%);
 }
 
 @theme inline {
@@ -166,6 +198,22 @@ code {
     --color-footer-accent-foreground: var(--footer-accent-foreground);
     --color-footer-border: var(--footer-border);
     --color-footer-ring: var(--footer-ring);
+    --color-sidebar-ring:
+        var(--sidebar-ring);
+    --color-sidebar-border:
+        var(--sidebar-border);
+    --color-sidebar-accent-foreground:
+        var(--sidebar-accent-foreground);
+    --color-sidebar-accent:
+        var(--sidebar-accent);
+    --color-sidebar-primary-foreground:
+        var(--sidebar-primary-foreground);
+    --color-sidebar-primary:
+        var(--sidebar-primary);
+    --color-sidebar-foreground:
+        var(--sidebar-foreground);
+    --color-sidebar:
+        var(--sidebar);
 }
 
 @layer base {

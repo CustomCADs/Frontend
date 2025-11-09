@@ -1,43 +1,11 @@
-import { Link } from '@tanstack/react-router';
-import { Home, ShoppingCart, Store } from 'lucide-react';
-import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import { TITLE } from '@/app/constants/global';
-import CustomIcon from '@/app/components/icon';
-import Sidebar from './menu';
-import NotificationsTab from './notifications';
-import AccountMenu from './account';
+import Navbar from './navbar';
+import Sidebar from './sidebar';
+import { useIsMobile } from '@/hooks/utils/useIsMobile';
 
 const Header = () => {
-	const tHeader = useLayoutTranslations('header');
+	const isMobile = useIsMobile();
 
-	return (
-		<header className='bg-header text-header-foreground py-3 transition-colors duration-400'>
-			<ul className='flex justify-between items-center text-lg mx-5'>
-				<li className='basis-1/3 flex justify-start items-center gap-x-5'>
-					<Sidebar />
-					<CustomIcon Icon={Home} to='/' text={tHeader('home')} />
-					<CustomIcon Icon={Store} to='.' text={tHeader('gallery')} />
-					<CustomIcon
-						Icon={ShoppingCart}
-						to='.'
-						text={tHeader('cart')}
-					/>
-				</li>
-				<li className='basis-1/3 flex justify-center'>
-					<Link
-						to='/'
-						className='leading-none text-2xl font-extrabold'
-					>
-						{TITLE}
-					</Link>
-				</li>
-				<li className='basis-1/3 flex justify-end items-center gap-x-6'>
-					<NotificationsTab />
-					<AccountMenu />
-				</li>
-			</ul>
-		</header>
-	);
+	return isMobile ? <Sidebar /> : <Navbar />;
 };
 
 export default Header;
