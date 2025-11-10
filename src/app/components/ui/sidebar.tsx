@@ -1,3 +1,4 @@
+/* eslint-disable i18next/no-literal-string */
 /* eslint-disable max-lines */
 'use client';
 
@@ -39,7 +40,7 @@ type SidebarContextProps = {
 	setOpen: (open: boolean) => void;
 	openMobile: boolean;
 	setOpenMobile: (open: boolean) => void;
-	isMobile: boolean;
+	isMobile?: boolean;
 	toggleSidebar: () => void;
 };
 
@@ -150,7 +151,7 @@ const SidebarProvider = ({
 						} as React.CSSProperties
 					}
 					className={cn(
-						'group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full',
+						'group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex w-full',
 						className,
 					)}
 					{...props}
@@ -212,7 +213,7 @@ const Sidebar = ({
 							Displays the mobile sidebar.
 						</SheetDescription>
 					</SheetHeader>
-					<div className='flex h-full w-full flex-col'>
+					<div className='flex h-full w-full flex-col pt-4 pb-2 px-2'>
 						{children}
 					</div>
 				</SheetContent>
@@ -288,7 +289,7 @@ const SidebarTrigger = ({
 			}}
 			{...props}
 		>
-			<Menu />
+			<Menu style={{ height: '24px', width: '24px' }} />
 			<span className='sr-only'>Toggle Sidebar</span>
 		</Button>
 	);
@@ -546,7 +547,7 @@ const SidebarMenuButton = ({
 	tooltip?: string | React.ComponentProps<typeof TooltipContent>;
 } & VariantProps<typeof sidebarMenuButtonVariants>) => {
 	const Comp = asChild ? Slot : 'button';
-	const { isMobile, state } = useSidebar();
+	const { isMobile, state, setOpenMobile } = useSidebar();
 
 	const button = (
 		<Comp
@@ -558,6 +559,10 @@ const SidebarMenuButton = ({
 				sidebarMenuButtonVariants({ variant, size }),
 				className,
 			)}
+			onClick={(e) => {
+				setOpenMobile(false);
+				return props.onClick?.(e);
+			}}
 			{...props}
 		/>
 	);

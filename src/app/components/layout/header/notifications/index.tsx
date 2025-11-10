@@ -7,6 +7,8 @@ import CustomIcon from '@/app/components/icon';
 import Content from './content';
 
 const ALL_PARAMS = { limit: 10 };
+const bell = <CustomIcon Icon={Bell} />;
+
 const NotificationsTab = () => {
 	const { is } = useAuthStore();
 	const query = useInfiniteQuery(
@@ -16,14 +18,12 @@ const NotificationsTab = () => {
 	useNotificationRealTime({ allParams: ALL_PARAMS });
 
 	if (is.guest) return;
-	if (!query.data) return <CustomIcon Icon={Bell} />;
+	if (!query.data) return bell;
 	const { pages } = query.data;
 
 	return (
 		<Popover>
-			<PopoverTrigger>
-				<CustomIcon Icon={Bell} />
-			</PopoverTrigger>
+			<PopoverTrigger>{bell}</PopoverTrigger>
 			<Content
 				notifications={pages.flatMap(({ items }) => items)}
 				nextPage={{

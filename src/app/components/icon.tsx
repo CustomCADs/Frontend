@@ -1,29 +1,34 @@
 import { Link, LinkProps } from '@tanstack/react-router';
-import { IconProp } from '@/types/icon';
+import { type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils/tailwindcss';
 
 type Props = LinkProps & {
-	Icon: IconProp;
+	Icon: LucideIcon;
 	text?: string;
 	clickable?: boolean;
 	onClick?: VoidFunction;
+	size?: number;
+	className?: string;
 };
-const CustomIcon = ({ Icon, text, clickable = true, ...props }: Props) => {
+const CustomIcon = ({
+	Icon,
+	text,
+	clickable = true,
+	size,
+	...props
+}: Props) => {
 	const className = cn(
 		'flex justify-center items-center gap-1 ease-in duration-200',
 		clickable && 'cursor-pointer hover:text-muted-foreground',
+		props.className,
 	);
+	const Wrapper = props.to ? Link : 'span';
 
-	return props.to ? (
-		<Link {...props} className={className}>
-			<Icon />
+	return (
+		<Wrapper {...props} className={className}>
+			<Icon size={size} />
 			{text}
-		</Link>
-	) : (
-		<span {...props} className={className}>
-			<Icon />
-			{text}
-		</span>
+		</Wrapper>
 	);
 };
 
