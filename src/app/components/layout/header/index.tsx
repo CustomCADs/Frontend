@@ -1,24 +1,13 @@
 import Navbar from './navbar';
-import Sidebar from './sidebar';
-import { useIsMobile } from '@/hooks/utils/useIsMobile';
+import Mobile from './mobile';
 
-const Header = () => {
-	const isMobile = useIsMobile();
-
-	if (isMobile === undefined) {
-		return (
-			<>
-				<div className='block md:hidden'>
-					<Sidebar />
-				</div>
-				<div className='hidden md:block'>
-					<Navbar />
-				</div>
-			</>
-		);
-	}
-
-	return isMobile ? <Sidebar /> : <Navbar />;
-};
+const Header = () => [
+	<div key='mobile' className='block md:hidden'>
+		<Mobile />
+	</div>,
+	<div key='navbar' className='hidden md:block'>
+		<Navbar />
+	</div>,
+];
 
 export default Header;

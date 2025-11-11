@@ -18,7 +18,7 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from '@/app/components/ui/sidebar';
-import { Item } from './content';
+import { Item } from '.';
 
 type NavWorkspacesProps = {
 	items: Array<{ name: Item['name']; pages: Item[] }>;
@@ -45,7 +45,7 @@ const NavWorkspaces = ({ items }: NavWorkspacesProps) => {
 										<ChevronRight />
 									</SidebarMenuAction>
 								</CollapsibleTrigger>
-								<CollapsibleTrigger>
+								<CollapsibleTrigger asChild>
 									<SidebarMenuButton>
 										<span className='ms-8 text-lg'>
 											{tHeader(item.name)}

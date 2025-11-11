@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { Settings2 } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import CustomIcon from '@/app/components/icon';
-import Account from '@/app/components/layout/header/account';
+import Account from '../account';
 import {
 	SidebarGroup,
 	SidebarGroupContent,
@@ -11,7 +11,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from '@/app/components/ui/sidebar';
-import { Item } from './content';
+import { Item } from '.';
 
 type NavSecondaryProps = { items: Array<Item & { badge?: string }> };
 const NavSecondary = ({

@@ -7,7 +7,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from '@/app/components/ui/sidebar';
-import { Item } from './content';
+import { Item } from '.';
 
 type NavCollectionsProps = { items: Item[] };
 const NavCollections = ({ items }: NavCollectionsProps) => {

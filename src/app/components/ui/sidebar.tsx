@@ -7,7 +7,6 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Menu } from 'lucide-react';
 
-import { useIsMobile } from '@/hooks/utils/useIsMobile';
 import { cn } from '@/lib/utils/tailwindcss';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
@@ -33,6 +32,27 @@ const SIDEBAR_WIDTH = '16rem';
 const SIDEBAR_WIDTH_MOBILE = '18rem';
 const SIDEBAR_WIDTH_ICON = '3rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
+const MOBILE_BREAKPOINT = 768;
+
+const useIsMobile = () => {
+	const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
+		undefined,
+	);
+
+	React.useEffect(() => {
+		const mql = window.matchMedia(
+			`(max-width: ${MOBILE_BREAKPOINT - 1}px)`,
+		);
+		const onChange = () => {
+			setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+		};
+		mql.addEventListener('change', onChange);
+		setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+		return () => mql.removeEventListener('change', onChange);
+	}, []);
+
+	return isMobile;
+};
 
 type SidebarContextProps = {
 	state: 'expanded' | 'collapsed';

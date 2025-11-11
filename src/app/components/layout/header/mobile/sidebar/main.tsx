@@ -5,7 +5,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from '@/app/components/ui/sidebar';
-import { Item } from './content';
+import { Item } from '.';
 
 type NavMainProps = {
 	items: Array<Item & { isActive?: boolean; badge?: string }>;

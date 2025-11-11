@@ -4,7 +4,7 @@ import { OnlyParam } from '@/lib/utils/typescript';
 import { TITLE } from '@/app/constants/global';
 import { Header } from '@/app/locales/types/components/layout';
 import {
-	Sidebar,
+	Sidebar as SidebarUI,
 	SidebarContent,
 	SidebarHeader,
 	SidebarRail,
@@ -20,13 +20,13 @@ export type Item = {
 	icon: LucideIcon;
 };
 
-export type ContentProps = {
+export type SidebarProps = {
 	main: OnlyParam<typeof NavMain>['items'];
 	collections: OnlyParam<typeof NavCollections>['items'];
 	workspaces: OnlyParam<typeof NavWorkspaces>['items'];
 };
-const Content = ({ main, collections, workspaces }: ContentProps) => (
-	<Sidebar className='border-r-0'>
+const Sidebar = ({ main, collections, workspaces }: SidebarProps) => (
+	<SidebarUI className='border-r-0'>
 		<SidebarHeader>
 			<div className='flex flex-col items-center pb-10'>
 				<img src='/public/logo.png' className='w-30 h-30' />
@@ -40,7 +40,7 @@ const Content = ({ main, collections, workspaces }: ContentProps) => (
 			<NavSecondary items={[]} className='mt-auto' />
 		</SidebarContent>
 		<SidebarRail />
-	</Sidebar>
+	</SidebarUI>
 );
 
-export default Content;
+export default Sidebar;
