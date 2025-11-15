@@ -18,6 +18,7 @@ export const getRouter = () => {
 		defaultPreload: 'intent',
 		scrollRestoration: true,
 		scrollRestorationBehavior: 'smooth',
+		defaultViewTransition: true,
 		Wrap: ({ children }) => {
 			return (
 				<TanstackQuery.Provider {...queryContext}>
