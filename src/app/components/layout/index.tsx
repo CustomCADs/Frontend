@@ -11,11 +11,13 @@ const Layout = ({ children }: Children) => {
 	useLanguagesSync();
 
 	return (
-		<div className='flex flex-col min-h-screen bg-background transition-colors duration-400'>
-			<Header />
-			<main className='basis-full grow self-stretch flex flex-col'>
-				{children}
-			</main>
+		<div className='flex flex-col bg-background transition-colors duration-400'>
+			<div className='flex flex-col min-h-screen'>
+				<Header />
+				<main className='basis-full grow self-stretch flex flex-col'>
+					{children}
+				</main>
+			</div>
 			<Footer />
 		</div>
 	);
