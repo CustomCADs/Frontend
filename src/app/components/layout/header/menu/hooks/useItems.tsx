@@ -45,8 +45,8 @@ export const useItems = (): Result => {
 					{ link: '.', textKey: 'uploaded-products' },
 				],
 				[
-					{ link: '.', textKey: 'sell-product' },
-					{ link: '.', textKey: 'sold-products' },
+					{ link: '.', textKey: 'sell-cad' },
+					{ link: '.', textKey: 'sold-cads' },
 				],
 			],
 		};
