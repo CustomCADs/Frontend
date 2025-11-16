@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
 
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/_public/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicGalleryRoute = PublicGalleryRouteImport.update({
+  id: '/_public/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuestLoginRoute = GuestLoginRouteImport.update({
@@ -25,27 +31,31 @@ const GuestLoginRoute = GuestLoginRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/login': typeof GuestLoginRoute
+  '/gallery': typeof PublicGalleryRoute
   '/': typeof PublicIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof GuestLoginRoute
+  '/gallery': typeof PublicGalleryRoute
   '/': typeof PublicIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_guest/login': typeof GuestLoginRoute
+  '/_public/gallery': typeof PublicGalleryRoute
   '/_public/': typeof PublicIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/'
+  fullPaths: '/login' | '/gallery' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/'
-  id: '__root__' | '/_guest/login' | '/_public/'
+  to: '/login' | '/gallery' | '/'
+  id: '__root__' | '/_guest/login' | '/_public/gallery' | '/_public/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   GuestLoginRoute: typeof GuestLoginRoute
+  PublicGalleryRoute: typeof PublicGalleryRoute
   PublicIndexRoute: typeof PublicIndexRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/gallery': {
+      id: '/_public/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof PublicGalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_guest/login': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   GuestLoginRoute: GuestLoginRoute,
+  PublicGalleryRoute: PublicGalleryRoute,
   PublicIndexRoute: PublicIndexRoute,
 }
 export const routeTree = rootRouteImport

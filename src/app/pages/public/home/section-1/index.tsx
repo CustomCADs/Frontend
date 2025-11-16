@@ -19,7 +19,7 @@ const Section1 = ({ tSection1 }: Props) => (
 			</h3>
 			<p className='px-4 text-xl text-center'>{tSection1('subtitle')}</p>
 			<div className='flex justify-evenly gap-x-8 animate-fade-in delay-1000'>
-				<Button to='.' text={tSection1('buy')} />
+				<Button to='/gallery' text={tSection1('buy')} />
 				<Button to='.' text={tSection1('sell')} />
 			</div>
 		</article>

@@ -2,6 +2,10 @@ import { Language } from '@/types/locale';
 
 export type Locales = Record<Language, string>;
 
+export type Empty = {
+	products: string;
+};
+
 export type Devtools = {
 	theme: string;
 	language: string;

@@ -2,6 +2,8 @@ import { useTranslation } from '../useTranslation';
 
 export const useLocalesTranslations = () => useTranslation('common.locales').t;
 
+export const useEmptyTranslations = () => useTranslation('common.empty').t;
+
 export const useErrorsTranslations = () => useTranslation('common.errors').t;
 
 export const useDevtoolsTranslations = () =>

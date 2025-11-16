@@ -1,0 +1,48 @@
+import { useState } from 'react';
+import { Search, X } from 'lucide-react';
+import { Input } from '@/app/components/ui/input';
+
+type SearchbarProps = {
+	placeholder: string;
+	getSearch: () => string | undefined;
+	updateSearch: (searchTerm: string | undefined) => void;
+};
+
+const Searchbar = ({
+	placeholder,
+	getSearch,
+	updateSearch,
+}: SearchbarProps) => {
+	const [search, setSearch] = useState(getSearch());
+
+	return (
+		<div className='flex items-center gap-x-3'>
+			{search && (
+				<X
+					onClick={() => {
+						setSearch(undefined);
+						updateSearch(undefined);
+					}}
+					className='cursor-pointer'
+				/>
+			)}
+			<Input
+				id='searchbar'
+				type='search'
+				placeholder={placeholder}
+				value={search}
+				onChange={({ target }) => setSearch(target.value)}
+				onBlur={() => updateSearch(search)}
+				onKeyDown={({ key }) => key === 'Enter' && updateSearch(search)}
+				className='bg-secondary border-2 rounded-xl min-h-11 md:min-h-14 md:px-6 text-ellipsis text-xs md:text-lg'
+				autoComplete='off'
+			/>
+			<Search
+				onClick={() => updateSearch(search)}
+				className='cursor-pointer'
+			/>
+		</div>
+	);
+};
+
+export default Searchbar;

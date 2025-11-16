@@ -6,7 +6,7 @@ type Is = ReturnType<typeof auth.is>;
 export default {
 	main: [
 		{ name: 'home', url: '/', icon: Home },
-		{ name: 'gallery', url: '.', icon: Store },
+		{ name: 'gallery', url: '/gallery', icon: Store },
 	],
 	getCollections: (is): SidebarProps['collections'] => {
 		if (is.guest)

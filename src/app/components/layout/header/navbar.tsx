@@ -18,7 +18,11 @@ const Navbar = () => {
 				<li className='flex justify-start items-center gap-x-5 animate-fade-in duration-200 delay-400'>
 					<Menu />
 					<CustomIcon Icon={Home} to='/' text={tHeader('home')} />
-					<CustomIcon Icon={Store} to='.' text={tHeader('gallery')} />
+					<CustomIcon
+						Icon={Store}
+						to='/gallery'
+						text={tHeader('gallery')}
+					/>
 					<CustomIcon
 						Icon={ShoppingCart}
 						to='.'
