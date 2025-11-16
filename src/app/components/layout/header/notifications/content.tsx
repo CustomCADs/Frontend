@@ -64,7 +64,7 @@ const Content = ({ notifications, nextPage }: ContentProps) => {
 		<PopoverContent className='px-2' asChild>
 			<ScrollArea
 				viewportRef={virtualizer.setContainer}
-				className='bg-header-popover h-80 w-60 top-8 rounded-sm'
+				className='bg-header-popover h-80 w-60 top-8 rounded-sm mx-4'
 			>
 				<Triangle />
 				<div className='flex flex-col gap-3'>

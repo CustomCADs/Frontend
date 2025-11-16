@@ -7,10 +7,10 @@ import {
 import { AppError } from '@/types/errors';
 import { RouterContext } from '@/router';
 import { cn } from '@/lib/utils/tailwindcss';
-import { isDarkThemeCookie } from '@/lib/isomorphic/theme';
+import { getThemeCookie } from '@/lib/isomorphic/theme';
 import '@/app/config/env';
 import Layout from '@/app/components/layout';
-import ErrorPage from '@/app/components/state/error';
+import ErrorPage from '@/app/components/error';
 import { TanStackDevtools } from '@/app/integrations/tanstack-devtools';
 import cssUrl from '@/index.css?url';
 
@@ -31,7 +31,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 		links: [{ rel: 'stylesheet', href: cssUrl }],
 	}),
 	shellComponent: ({ children }) => (
-		<html lang='en' className={cn({ dark: isDarkThemeCookie() })}>
+		<html lang='en' className={cn({ dark: getThemeCookie() !== 'light' })}>
 			<head>
 				<HeadContent />
 			</head>

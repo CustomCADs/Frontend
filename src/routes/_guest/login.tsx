@@ -3,4 +3,5 @@ import Login from '@/app/pages/guest/signin/login';
 
 export const Route = createFileRoute('/_guest/login')({
 	component: Login,
+	head: () => ({ meta: [{ title: 'CustomCADs | Login' }] }),
 });

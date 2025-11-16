@@ -15,4 +15,4 @@ export const start = async (connection: signalR.HubConnection) => {
 };
 
 export const stop = async (connection: signalR.HubConnection) =>
-	connection.stop();
+	await connection.stop();

@@ -1,19 +1,19 @@
 'use client';
 import { useState } from 'react';
 import { CheckIcon } from 'lucide-react';
-import { Language } from '@/types/locale';
+import { AllowedLanguage } from '@/types/locale';
 import { cn } from '@/lib/utils/tailwindcss';
 import * as command from '@/app/components/ui/command';
 import * as popover from '@/app/components/ui/popover';
 
-type Option = { value: Language; label: string; flag: string };
+type Option = { value: AllowedLanguage; label: string; flag: string };
 type Props = {
-	current: Language;
+	current: AllowedLanguage;
 	options: Option[];
 	placeholder?: string;
 	trigger?: React.ReactNode;
 	empty?: string;
-	onSelect?: (curr: Language) => void;
+	onSelect?: (curr: AllowedLanguage) => void;
 };
 const LanguageCombobox = ({ current, options, ...props }: Props) => {
 	const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ const LanguageCombobox = ({ current, options, ...props }: Props) => {
 	return (
 		<popover.Popover open={open} onOpenChange={setOpen}>
 			<popover.PopoverTrigger>{props.trigger}</popover.PopoverTrigger>
-			<popover.PopoverContent className='w-[250px] p-0'>
+			<popover.PopoverContent className='w-[250px] p-0 z-[100000]'>
 				<command.Command className='bg-header-accent text-header-accent-foreground'>
 					<command.CommandInput placeholder={props.placeholder} />
 					<command.CommandList>
@@ -39,7 +39,7 @@ const LanguageCombobox = ({ current, options, ...props }: Props) => {
 											(x) => x.label === label,
 										)?.value;
 										props.onSelect?.(
-											value ?? (label as Language),
+											value ?? (label as AllowedLanguage),
 										);
 									}}
 									className={cn(

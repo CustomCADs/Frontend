@@ -14,3 +14,14 @@ export const invertBy = <
 };
 
 export type OnlyParam<T> = T extends (args: infer P) => unknown ? P : never;
+
+export type SuffixOf<T, Prefix extends string> = {
+	[K in keyof T]: K extends `${Prefix}${infer S}` ? S : never;
+}[keyof T];
+export const buildPrefixedGetter = <T extends object, Prefix extends string>(
+	prefix: Prefix,
+	fetcher: (key: keyof T) => string,
+) => {
+	return <Suffix extends SuffixOf<T, Prefix>>(suffix: Suffix) =>
+		fetcher(`${prefix}${suffix}` as keyof T);
+};

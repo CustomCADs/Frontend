@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Language } from '@/types/locale';
+import { AllowedLanguage } from '@/types/locale';
 import { getLanguageCookie } from '@/lib/isomorphic/language';
 import { useLanguageStore } from '@/app/hooks/stores/useLanguageStore';
 import * as languageStore from '@/app/stores/language';
@@ -20,7 +20,7 @@ export const useLanguagesSync = () => {
 
 	useEffect(() => {
 		if (i18n.language !== language) {
-			languageStore.setCurrent(i18n.language as Language);
+			languageStore.setCurrent(i18n.language as AllowedLanguage);
 		}
 	}, [i18n.language]);
 };

@@ -2,10 +2,11 @@ import { useNavigate } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation, useQuery } from '@customcads/react-sdk';
 import * as form from '@/lib/utils/form';
+import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
+import { useNotificationQueryData } from '@/app/hooks/features/notifications/useNotificationQueryData';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
 import { schema } from '@/app/validators/login';
-import * as authStore from '@/app/stores/auth';
 
 type Fields = {
 	username: string;
@@ -26,10 +27,14 @@ export const useForm = () => {
 		({ identity }) => identity.authz,
 		false,
 	);
+	const notifications = useNotificationQueryData({
+		params: { all: { limit: 10 } },
+	});
 
 	const tErrors = useFormTranslations('errors');
 	const tLabels = useFormTranslations('labels');
 
+	const authStore = useAuthStore();
 	const formApi = useTanStackForm({
 		defaultValues,
 		onSubmit: async ({ value }) => {
@@ -38,6 +43,7 @@ export const useForm = () => {
 			if (role) {
 				authStore.login(role);
 			}
+			notifications.invalidate();
 		},
 		validators: {
 			onChange: schema({ tErrors, tLabels }),

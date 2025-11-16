@@ -10,27 +10,46 @@ export type Header = {
 	'services-info': string;
 	'printer-info': string;
 	'apply-designer': string;
+
 	collections: string;
-	shipments: string;
-	cads: string;
+
+	resources: string;
 	customs: string;
 	carts: string;
+
+	rewards: string;
+	shipments: string;
+	cads: string;
+
+	'your-products': string;
+	'gallery-products': string;
 	'upload-product': string;
 	'uploaded-products': string;
-	'sell-product': string;
-	'sold-products': string;
+
+	'market-cads': string;
+	'sell-cad': string;
+	'sold-cads': string;
+
+	'contributor-cads': string;
 	'buy-cad': string;
 	'bought-cads': string;
+
+	'contributor-products': string;
 	'check-product': string;
+	'customer-orders': string;
+
 	'checked-products': string;
 	'accept-custom': string;
 	'accepted-customs': string;
+
 	home: string;
 	gallery: string;
 	cart: string;
 	notifications: string;
+	settings: string;
 	account: string;
 	login: string;
+	register: string;
 	logout: string;
 	language: string;
 	'language-placeholder': string;

@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import { useQuery, useMutation } from '@customcads/react-sdk';
-import * as authStore from '@/app/stores/auth';
 import { useAuthStore } from './useAuthStore';
 
 export const useAuthSync = () => {
-	const state = useAuthStore();
 	const { mutateAsync: refreshAuth } = useMutation(
 		({ identity }) => identity.refresh,
 	);
@@ -18,6 +16,7 @@ export const useAuthSync = () => {
 		false,
 	);
 
+	const authStore = useAuthStore();
 	useEffect(() => {
 		const sync = async () => {
 			const { data: authn } = await refetchAuthn();
@@ -36,7 +35,5 @@ export const useAuthSync = () => {
 			}
 		};
 		sync();
-	}, [state.authn, state.authz]);
-
-	return state;
+	}, [authStore.authz]);
 };

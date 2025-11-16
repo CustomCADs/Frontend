@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
 import Cookies from 'js-cookie';
-import { Language } from '@/types/locale';
+import { AllowedLanguage } from '@/types/locale';
 import { getEnv } from '@/lib/isomorphic/env';
 import { getUserDefaultLanguage } from '@/lib/isomorphic/language';
 
@@ -8,8 +8,8 @@ const LOCAL_STORAGE_KEY = 'language-store';
 const COOKIE_STORAGE_KEY = 'language';
 
 type LanguageState = {
-	default: Language;
-	current: Language;
+	default: AllowedLanguage;
+	current: AllowedLanguage;
 };
 const defaultState = () => ({
 	default: getUserDefaultLanguage(),
@@ -43,13 +43,13 @@ store.subscribe(({ currentVal: state }) => {
 
 export const resetStore = () => store.setState(defaultState());
 
-export const setDefault = (defaultLang: Language) =>
+export const setDefault = (defaultLang: AllowedLanguage) =>
 	store.setState((prev) => ({
 		...prev,
 		default: defaultLang,
 	}));
 
-export const setCurrent = (currentLang: Language) =>
+export const setCurrent = (currentLang: AllowedLanguage) =>
 	store.setState((prev) => ({
 		...prev,
 		current: currentLang,
