@@ -51,6 +51,4 @@ export type Header = {
 	login: string;
 	register: string;
 	logout: string;
-	language: string;
-	'language-placeholder': string;
 };

@@ -1,7 +1,9 @@
 import { Globe } from 'lucide-react';
 import { ALLOWED_LANGUAGES, FLAGS } from '@/types/locale';
-import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import { useLocalesTranslations } from '@/app/hooks/locales/translations/common';
+import {
+	useDevtoolsTranslations,
+	useLocalesTranslations,
+} from '@/app/hooks/locales/translations/common';
 import { useLanguageStore } from '@/app/hooks/stores/useLanguageStore';
 import * as languageStore from '@/app/stores/language';
 import CustomIcon from '@/app/components/icon';
@@ -9,7 +11,7 @@ import Compobox from './compobox';
 
 const LanguageMenu = () => {
 	const { current } = useLanguageStore();
-	const tHeader = useLayoutTranslations('header');
+	const tDevtools = useDevtoolsTranslations();
 	const tLocales = useLocalesTranslations();
 
 	return (
@@ -20,8 +22,14 @@ const LanguageMenu = () => {
 				value: lang,
 				flag: FLAGS[lang],
 			}))}
-			placeholder={tHeader('language-placeholder')}
-			trigger={<CustomIcon Icon={Globe} />}
+			placeholder={tDevtools('language-placeholder')}
+			trigger={
+				<CustomIcon
+					Icon={Globe}
+					text={tLocales(current)}
+					className='gap-x-2'
+				/>
+			}
 			onSelect={languageStore.setCurrent}
 		/>
 	);

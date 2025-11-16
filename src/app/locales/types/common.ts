@@ -9,6 +9,9 @@ export type Empty = {
 export type Devtools = {
 	theme: string;
 	language: string;
+	'language-placeholder': string;
+	currency: string;
+	'currency-placeholder': string;
 };
 
 export type Errors = {

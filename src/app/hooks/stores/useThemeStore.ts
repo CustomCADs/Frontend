@@ -3,17 +3,8 @@ import { useStore } from '@tanstack/react-store';
 import { isDarkThemeCookie } from '@/lib/isomorphic/theme';
 import { store } from '@/app/stores/theme';
 
-export const useThemeStore = (props?: { render?: boolean }) => {
+export const useThemeStore = () => {
 	const state = useStore(store);
-
-	useEffect(() => {
-		if (props?.render) {
-			document.documentElement.classList.toggle(
-				'dark',
-				state.theme === 'dark',
-			);
-		}
-	}, [state.theme]);
 
 	const [isDarkMode, setIsDarkMode] = useState(isDarkThemeCookie());
 	useEffect(() => {

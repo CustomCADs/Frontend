@@ -37,6 +37,4 @@ export default {
 	login: 'Login',
 	register: 'Register',
 	logout: 'Logout',
-	language: 'Language',
-	'language-placeholder': 'Search language...',
 } satisfies Header;
