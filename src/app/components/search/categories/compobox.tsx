@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { CheckIcon, Loader } from 'lucide-react';
+import { CheckIcon } from 'lucide-react';
 import { cn } from '@/lib/utils/tailwindcss';
+import Loader from '@/app/components/loading';
 import * as command from '@/app/components/ui/command';
 import * as popover from '@/app/components/ui/popover';
 
