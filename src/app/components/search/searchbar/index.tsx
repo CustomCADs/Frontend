@@ -34,7 +34,7 @@ const Searchbar = ({
 				onChange={({ target }) => setSearch(target.value)}
 				onBlur={() => updateSearch(search)}
 				onKeyDown={({ key }) => key === 'Enter' && updateSearch(search)}
-				className='bg-secondary border-2 rounded-xl min-h-11 md:min-h-14 md:px-6 text-ellipsis text-xs md:text-lg'
+				className='bg-secondary border-2 rounded-xl min-h-11 md:min-h-14 md:min-w-75 md:px-6 text-ellipsis text-xs md:text-lg'
 				autoComplete='off'
 			/>
 			<Search

@@ -95,7 +95,7 @@ const update = {
 		camera: THREE.PerspectiveCamera,
 		root: HTMLDivElement,
 	) => {
-		const { clientHeight: width, clientWidth: height } = root;
+		const { clientHeight: height, clientWidth: width } = root;
 		renderer.setSize(width, height);
 
 		camera.aspect = width / height;

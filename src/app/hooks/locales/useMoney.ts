@@ -7,5 +7,5 @@ export const useMoney = (sum: number) => {
 	const { current: currency } = useCurrencyStore();
 
 	const { money, symbol } = fromBase({ money: sum, to: currency, rates });
-	return `${money.toFixed(2)} ${symbol}`;
+	return `${money.toFixed(2)}${symbol}`;
 };
