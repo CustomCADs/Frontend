@@ -5,7 +5,7 @@ import { OnlyParam } from '@/lib/utils/typescript';
 import * as limits from '@/app/constants/limits';
 import Gallery from '@/app/pages/public/gallery';
 
-export const Route = createFileRoute('/_public/gallery')({
+export const Route = createFileRoute('/_public/gallery/')({
 	validateSearch: z.object({
 		name: z.string().optional(),
 		categoryName: z.string().optional(),
@@ -31,7 +31,7 @@ export const Route = createFileRoute('/_public/gallery')({
 			const { data } = await categoriesApi.single({
 				type: 'by-name',
 				name: deps.categoryName,
-			});
+			})
 			category = data;
 		}
 
@@ -43,7 +43,7 @@ export const Route = createFileRoute('/_public/gallery')({
 			sortingDirection: deps.sortingDirection,
 			page: deps.page,
 			limit: deps.limit,
-		};
+		}
 		await queryClient.prefetchQuery(gallery.all(galleryQueryArgs));
 
 		await queryClient.prefetchQuery(queries.categories.all);

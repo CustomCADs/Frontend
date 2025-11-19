@@ -7,7 +7,7 @@ import Searchbar from '@/app/components/search/searchbar';
 import Sortings from '@/app/components/search/sortings';
 import Pagination from '@/app/components/search/pagination';
 
-const Route = getRouteApi('/_public/gallery');
+const Route = getRouteApi('/_public/gallery/');
 
 export const useDropdowns = (count?: number) => {
 	const tPlaceholders = useFormTranslations('placeholders');

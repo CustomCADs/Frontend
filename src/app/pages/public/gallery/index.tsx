@@ -6,7 +6,7 @@ import * as page from '@/app/utils/page';
 import { useDropdowns } from './hooks/useDropdowns';
 import Item from './item';
 
-const Route = getRouteApi('/_public/gallery');
+const Route = getRouteApi('/_public/gallery/');
 
 const Gallery = () => {
 	const { galleryQueryArgs } = Route.useLoaderData();

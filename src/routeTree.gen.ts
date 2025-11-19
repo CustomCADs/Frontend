@@ -10,17 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
-import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
+import { Route as PublicGalleryIndexRouteImport } from './routes/_public/gallery/index'
+import { Route as PublicGalleryIdRouteImport } from './routes/_public/gallery/$id'
 
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/_public/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PublicGalleryRoute = PublicGalleryRouteImport.update({
-  id: '/_public/gallery',
-  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuestLoginRoute = GuestLoginRouteImport.update({
@@ -28,35 +24,54 @@ const GuestLoginRoute = GuestLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicGalleryIndexRoute = PublicGalleryIndexRouteImport.update({
+  id: '/_public/gallery/',
+  path: '/gallery/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicGalleryIdRoute = PublicGalleryIdRouteImport.update({
+  id: '/_public/gallery/$id',
+  path: '/gallery/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof GuestLoginRoute
-  '/gallery': typeof PublicGalleryRoute
   '/': typeof PublicIndexRoute
+  '/gallery/$id': typeof PublicGalleryIdRoute
+  '/gallery': typeof PublicGalleryIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof GuestLoginRoute
-  '/gallery': typeof PublicGalleryRoute
   '/': typeof PublicIndexRoute
+  '/gallery/$id': typeof PublicGalleryIdRoute
+  '/gallery': typeof PublicGalleryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_guest/login': typeof GuestLoginRoute
-  '/_public/gallery': typeof PublicGalleryRoute
   '/_public/': typeof PublicIndexRoute
+  '/_public/gallery/$id': typeof PublicGalleryIdRoute
+  '/_public/gallery/': typeof PublicGalleryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/gallery' | '/'
+  fullPaths: '/login' | '/' | '/gallery/$id' | '/gallery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/gallery' | '/'
-  id: '__root__' | '/_guest/login' | '/_public/gallery' | '/_public/'
+  to: '/login' | '/' | '/gallery/$id' | '/gallery'
+  id:
+    | '__root__'
+    | '/_guest/login'
+    | '/_public/'
+    | '/_public/gallery/$id'
+    | '/_public/gallery/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   GuestLoginRoute: typeof GuestLoginRoute
-  PublicGalleryRoute: typeof PublicGalleryRoute
   PublicIndexRoute: typeof PublicIndexRoute
+  PublicGalleryIdRoute: typeof PublicGalleryIdRoute
+  PublicGalleryIndexRoute: typeof PublicGalleryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,13 +83,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_public/gallery': {
-      id: '/_public/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof PublicGalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_guest/login': {
       id: '/_guest/login'
       path: '/login'
@@ -82,13 +90,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_public/gallery/': {
+      id: '/_public/gallery/'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof PublicGalleryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/gallery/$id': {
+      id: '/_public/gallery/$id'
+      path: '/gallery/$id'
+      fullPath: '/gallery/$id'
+      preLoaderRoute: typeof PublicGalleryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   GuestLoginRoute: GuestLoginRoute,
-  PublicGalleryRoute: PublicGalleryRoute,
   PublicIndexRoute: PublicIndexRoute,
+  PublicGalleryIdRoute: PublicGalleryIdRoute,
+  PublicGalleryIndexRoute: PublicGalleryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
