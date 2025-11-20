@@ -1,84 +1,13 @@
 import { Link } from '@tanstack/react-router';
 import { GallerySingleProductResponse } from '@customcads/react-sdk';
-import { Heart, ListPlus } from 'lucide-react';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import * as dateTime from '@/app/utils/date-time';
-import { Button } from '@/app/components/ui/button';
+import useButtons from './hooks/useButtons';
 
 type Props = { product: GallerySingleProductResponse };
-const Info = ({ product: { creatorName, uploadedAt } }: Props) => {
+const Info = ({ product: { id, creatorName, uploadedAt } }: Props) => {
 	const tProduct = useGalleryTranslations('product');
-
-	const buttons = (
-		<div className='hidden order-2 col-span-4 md:flex justify-between gap-x-4 px-2'>
-			<div className='flex items-center gap-x-2'>
-				<Button
-					variant='secondary'
-					size='icon-lg'
-					className='shadow-shadow shadow-md cursor-pointer'
-				>
-					<Heart className='scale-125' />
-				</Button>
-				<Button
-					variant='secondary'
-					size='lg'
-					className='text-lg shadow-shadow shadow-md cursor-pointer'
-				>
-					{tProduct('like')}
-				</Button>
-			</div>
-			<div className='flex items-center gap-x-2'>
-				<Button
-					variant='secondary'
-					size='icon-lg'
-					className='shadow-shadow shadow-md cursor-pointer'
-				>
-					<ListPlus className='scale-125' />
-				</Button>
-				<Button
-					variant='secondary'
-					size='lg'
-					className='text-lg shadow-shadow shadow-md cursor-pointer'
-				>
-					{tProduct('add')}
-				</Button>
-			</div>
-		</div>
-	);
-	const mobileButtons = (
-		<div className='md:hidden col-span-8 flex justify-between gap-x-4 px-2'>
-			<div className='flex items-center gap-x-2 cursor-pointer'>
-				<Button
-					variant='secondary'
-					size='icon-lg'
-					className='shadow-shadow shadow-md cursor-pointer'
-				>
-					<Heart />
-				</Button>
-				<Button
-					variant='secondary'
-					className='min-h-10 px-6 shadow-shadow shadow-md cursor-pointer'
-				>
-					{tProduct('like-short')}
-				</Button>
-			</div>
-			<div className='flex items-center gap-x-2 cursor-pointer'>
-				<Button
-					variant='secondary'
-					size='icon-lg'
-					className='shadow-shadow shadow-md cursor-pointer'
-				>
-					<ListPlus />
-				</Button>
-				<Button
-					variant='secondary'
-					className='min-h-10 px-6 shadow-shadow shadow-md cursor-pointer'
-				>
-					{tProduct('add-short')}
-				</Button>
-			</div>
-		</div>
-	);
+	const { add, like } = useButtons({ id });
 
 	return (
 		<div className='w-full grid grid-cols-8 justify-between items-center gap-x-2 gap-y-6 px-4'>
@@ -93,8 +22,14 @@ const Info = ({ product: { creatorName, uploadedAt } }: Props) => {
 					{dateTime.format({ date: uploadedAt })}
 				</span>
 			</p>
-			{buttons}
-			{mobileButtons}
+			<div className='hidden order-2 col-span-4 md:flex justify-between gap-x-4 px-2'>
+				{like.desktop}
+				{add.desktop}
+			</div>
+			<div className='md:hidden col-span-8 flex justify-between gap-x-4 px-2'>
+				{like.mobile}
+				{add.mobile}
+			</div>
 		</div>
 	);
 };

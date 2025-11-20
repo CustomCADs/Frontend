@@ -4,6 +4,6 @@ type Info = 'home';
 export const useInfoTranslations = <N extends Info>(ns: N) =>
 	useTranslation(`pages.public.info.${ns}`).t;
 
-type Gallery = 'product';
+type Gallery = 'product' | 'cart';
 export const useGalleryTranslations = <N extends Gallery>(ns: N) =>
 	useTranslation(`pages.public.gallery.${ns}`).t;

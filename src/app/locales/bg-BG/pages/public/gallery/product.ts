@@ -6,6 +6,10 @@ export default {
 	creator: 'От',
 	like: 'Харесай този Продукт',
 	'like-short': 'Харесай',
+	liked: 'Отхаресай Продукт',
+	'liked-short': 'Отхаресай',
 	add: 'Добави към Количката',
 	'add-short': 'Добави',
+	added: 'Добавено към Количката',
+	'added-short': 'Добавено',
 } satisfies Product;
