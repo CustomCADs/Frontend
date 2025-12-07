@@ -20,8 +20,8 @@ const mapItems = (items: ActiveCartItem[]) =>
 	);
 
 export const useCartSync = () => {
-	const { items, actions } = useCartStore();
 	const { is } = useAuthStore();
+	const { items, actions } = useCartStore();
 
 	const activeCart = useQuery(({ activeCarts }) => activeCarts.all, false);
 

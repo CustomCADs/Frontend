@@ -98,7 +98,7 @@ export const actions = {
 					if (prev.items.find((item) => item.productId === id)) {
 						return {
 							items: prev.items.map((item) => {
-								if (item.productId === id && item.forDelivery)
+								if (item.productId === id && !item.forDelivery)
 									return {
 										...item,
 										forDelivery: true,

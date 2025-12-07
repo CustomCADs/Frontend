@@ -12,4 +12,8 @@ export default {
 	'add-short': 'Добави',
 	added: 'Добавено към Количката',
 	'added-short': 'Добавено',
+	'add_delivery-question':
+		'Бихте ли желали 3D Моделът да бъде доставен до Вас?',
+	'add_no-delivery': 'Не, нуждая се само от файла.',
+	'add_for-delivery': 'Да, искам принтирана пратка.',
 } satisfies Product;

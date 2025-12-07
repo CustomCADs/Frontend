@@ -10,24 +10,20 @@ export type Product = {
 	'add-short': string;
 	added: string;
 	'added-short': string;
+	'add_delivery-question': string;
+	'add_no-delivery': string;
+	'add_for-delivery': string;
 };
 
 export type Cart = {
 	title: string;
-	by: string;
 	view: string;
 	customize: string;
 	delivery: string;
+	undeliverable: string;
 	'product-price': string;
-	'customization-cost': string;
-	remove: string;
-	total?: undefined;
-	total_zero: string;
-	total_one: string;
-	total_other: string;
-	'total-delivery'?: undefined;
-	'total-delivery_zero': string;
-	'total-delivery_one': string;
-	'total-delivery_other': string;
+	'print-cost': string;
+	'total-sum': string;
 	buy: string;
+	'no-items': string;
 };

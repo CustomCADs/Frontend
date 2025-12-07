@@ -4,7 +4,7 @@ import { useIdempotencyKeys } from '@/app/hooks/features/idempotency-keys/useIde
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 
-export const useCartUpdates = (): typeof actions => {
+export const useCartUpdates = () => {
 	const { is } = useAuthStore();
 	const { idempotencyKeys } = useIdempotencyKeys(['add']);
 
@@ -26,7 +26,6 @@ export const useCartUpdates = (): typeof actions => {
 	);
 
 	return {
-		...actions,
 		cart: {
 			fill: actions.cart.fill,
 			clear: actions.cart.clear,

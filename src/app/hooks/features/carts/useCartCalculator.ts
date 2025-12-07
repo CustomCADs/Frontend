@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useCartTotalCalculator = () => {
+export const useCartCalculator = () => {
 	const [money, setMoney] = useState<Record<string, number>>({});
 
 	return [

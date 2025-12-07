@@ -5,9 +5,9 @@ export type CartItemForDelivery = {
 	customizationId: string;
 };
 
-export type CartItemWithoutDelivery = {
+export type CartItemNoDelivery = {
 	forDelivery: false;
 	productId: string;
 };
 
-export type CartItem = CartItemForDelivery | CartItemWithoutDelivery;
+export type CartItem = CartItemForDelivery | CartItemNoDelivery;

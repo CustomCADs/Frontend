@@ -1,9 +1,10 @@
 import { Link } from '@tanstack/react-router';
-import { ShoppingCart, UserCircle } from 'lucide-react';
+import { UserCircle } from 'lucide-react';
 import * as auth from '@/lib/utils/auth';
 import { TITLE } from '@/app/constants/global';
 import CustomIcon from '@/app/components/icon';
 import NotificationsTab from '@/app/components/layout/header/notifications';
+import CartIndicator from '@/app/components/layout/header/cart';
 import { SidebarInset, SidebarTrigger } from '@/app/components/ui/sidebar';
 
 const Header = ({ is }: { is: ReturnType<typeof auth.is> }) => (
@@ -19,7 +20,7 @@ const Header = ({ is }: { is: ReturnType<typeof auth.is> }) => (
 				</li>
 				<li className='flex gap-x-4 animate-fade-in duration-200 delay-400'>
 					<NotificationsTab />
-					<CustomIcon Icon={ShoppingCart} to='.' />
+					<CartIndicator />
 				</li>
 			</ul>
 		</header>
