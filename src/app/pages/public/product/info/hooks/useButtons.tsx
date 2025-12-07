@@ -1,19 +1,21 @@
+import { useState } from 'react';
 import { HeartMinus, HeartPlus, ListCheck, ListPlus } from 'lucide-react';
 import { cn } from '@/lib/utils/tailwindcss';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import { useCartUpdates } from '@/app/hooks/features/carts/useCartUpdates';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { Button } from '@/app/components/ui/button';
+import * as productTags from '@/app/utils/product-tags';
+import AddToCartButton from '../add';
 
-const useButtons = ({ id }: { id: string }) => {
+type Props = { id: string; is: ReturnType<typeof productTags.is> };
+const useButtons = (product: Props) => {
 	const tProduct = useGalleryTranslations('product');
 	const { items } = useCartStore();
 
-	const cartUpdates = useCartUpdates();
-	const addToCart = () =>
-		cartUpdates.cart.add({ productId: id, forDelivery: false });
+	const [isLiked, setIsLiked] = useState(false); // TODO: implement real Like mechanism
+	const toggleIsLiked = () => setIsLiked((prev) => !prev);
 
-	const isAlreadyLiked = false; // TODO: implement Like mechanism
+	const isAlreadyLiked = isLiked;
 	const like = {
 		Icon: isAlreadyLiked ? HeartMinus : HeartPlus,
 		text: ({ isShort }: { isShort: boolean }) => {
@@ -22,10 +24,13 @@ const useButtons = ({ id }: { id: string }) => {
 			}
 			return isShort ? tProduct('like-short') : tProduct('like');
 		},
-		className: 'shadow-shadow shadow-md cursor-pointer',
+		className: cn(
+			'shadow-shadow shadow-md cursor-pointer',
+			isLiked && 'bg-pink-700 hover:bg-pink-800',
+		),
 	};
 
-	const isAlreadyAdded = items?.find((i) => i.productId === id);
+	const isAlreadyAdded = !!items?.find((i) => i.productId === product.id);
 	const add = {
 		Icon: isAlreadyAdded ? ListCheck : ListPlus,
 		text: ({ isShort }: { isShort: boolean }) => {
@@ -45,6 +50,7 @@ const useButtons = ({ id }: { id: string }) => {
 			mobile: (
 				<div className='flex items-center gap-x-2 cursor-pointer'>
 					<Button
+						onClick={toggleIsLiked}
 						variant='secondary'
 						size='icon-lg'
 						className={like.className}
@@ -52,8 +58,9 @@ const useButtons = ({ id }: { id: string }) => {
 						<like.Icon />
 					</Button>
 					<Button
+						onClick={toggleIsLiked}
 						variant='secondary'
-						className={cn('min-h-10 px-6', like.className)}
+						className={cn('min-h-10 px-4', like.className)}
 					>
 						{like.text({ isShort: true })}
 					</Button>
@@ -62,6 +69,7 @@ const useButtons = ({ id }: { id: string }) => {
 			desktop: (
 				<div className='flex items-center gap-x-2'>
 					<Button
+						onClick={toggleIsLiked}
 						variant='secondary'
 						size='icon-lg'
 						className={like.className}
@@ -69,6 +77,7 @@ const useButtons = ({ id }: { id: string }) => {
 						<like.Icon className='scale-125' />
 					</Button>
 					<Button
+						onClick={toggleIsLiked}
 						variant='secondary'
 						size='lg'
 						className={cn('text-lg', like.className)}
@@ -80,43 +89,22 @@ const useButtons = ({ id }: { id: string }) => {
 		},
 		add: {
 			mobile: (
-				<div className='flex items-center gap-x-2 cursor-pointer'>
-					<Button
-						variant='secondary'
-						size='icon-lg'
-						className={add.className}
-						onClick={addToCart}
-					>
-						<add.Icon />
-					</Button>
-					<Button
-						variant='secondary'
-						className={cn('min-h-10 px-6', add.className)}
-						onClick={addToCart}
-					>
-						{add.text({ isShort: true })}
-					</Button>
-				</div>
+				<AddToCartButton
+					Icon={add.Icon}
+					product={product}
+					isAdded={isAlreadyAdded}
+					text={add.text({ isShort: true })}
+					className={add.className}
+				/>
 			),
 			desktop: (
-				<div className='flex items-center gap-x-2'>
-					<Button
-						variant='secondary'
-						size='icon-lg'
-						className={add.className}
-						onClick={addToCart}
-					>
-						<add.Icon className='scale-125' />
-					</Button>
-					<Button
-						variant='secondary'
-						size='lg'
-						className={cn('text-lg', add.className)}
-						onClick={addToCart}
-					>
-						{add.text({ isShort: false })}
-					</Button>
-				</div>
+				<AddToCartButton
+					Icon={add.Icon}
+					product={product}
+					isAdded={isAlreadyAdded}
+					text={add.text({ isShort: false })}
+					className={add.className}
+				/>
 			),
 		},
 	};
