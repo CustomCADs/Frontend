@@ -9,4 +9,7 @@ export const Route = createFileRoute('/_public/gallery/$id')({
 		);
 	},
 	component: Product,
+	head: ({ params }) => ({
+		meta: [{ title: `CustomCADs | Product ${params.id}` }],
+	}),
 });

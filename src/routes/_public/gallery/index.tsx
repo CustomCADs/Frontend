@@ -31,7 +31,7 @@ export const Route = createFileRoute('/_public/gallery/')({
 			const { data } = await categoriesApi.single({
 				type: 'by-name',
 				name: deps.categoryName,
-			})
+			});
 			category = data;
 		}
 
@@ -43,7 +43,7 @@ export const Route = createFileRoute('/_public/gallery/')({
 			sortingDirection: deps.sortingDirection,
 			page: deps.page,
 			limit: deps.limit,
-		}
+		};
 		await queryClient.prefetchQuery(gallery.all(galleryQueryArgs));
 
 		await queryClient.prefetchQuery(queries.categories.all);
@@ -51,4 +51,5 @@ export const Route = createFileRoute('/_public/gallery/')({
 
 		return { galleryQueryArgs };
 	},
+	head: () => ({ meta: [{ title: 'CustomCADs | Gallery' }] }),
 });

@@ -7,7 +7,7 @@ import NotificationsTab from '@/app/components/layout/header/notifications';
 import CartIndicator from '@/app/components/layout/header/cart';
 import { SidebarInset, SidebarTrigger } from '@/app/components/ui/sidebar';
 
-const Header = ({ is }: { is: ReturnType<typeof auth.is> }) => (
+const Header = ({ is }: { is: auth.Returns }) => (
 	<SidebarInset>
 		<header className='flex bg-header text-header-foreground sticky top-0 h-14 shrink-0 items-center gap-2 py-3 transition-colors duration-400'>
 			<ul className='h-full w-full flex justify-between items-center px-6'>
