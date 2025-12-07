@@ -1,22 +1,20 @@
 import { Store } from '@tanstack/store';
-import Cookies from 'js-cookie';
+import * as persistence from '@/lib/isomorphic/persistence';
 import { getEnv } from '@/lib/isomorphic/env';
 import { getRoleCookie } from '@/lib/isomorphic/api';
 import { is } from '@/lib/utils/auth';
 import { CartItem } from '@/app/types/cart-item';
+import { CART } from '@/app/constants/stores';
 
 const { customer: isCustomer } = is({
 	authn: !!getRoleCookie(),
 	authz: getRoleCookie() ?? null,
 });
 
-const LOCAL_STORAGE_KEY = 'cart-store';
-const COOKIE_STORAGE_KEY = 'cart';
-
-export const persistLocally = (state: CartState) => {
-	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-	Cookies.set(COOKIE_STORAGE_KEY, JSON.stringify(state.items));
-};
+export const persist = persistence.create<CartState>(CART.store, (state) => ({
+	data: state.items,
+	key: CART.cookie,
+}));
 
 type CartState = {
 	items: CartItem[] | null;
@@ -25,18 +23,16 @@ const defaultState = (): CartState => {
 	if (getEnv().isServer) return { items: null };
 	if (isCustomer) return { items: null };
 
-	const persistedState = localStorage.getItem(LOCAL_STORAGE_KEY);
-	if (persistedState) {
-		return JSON.parse(persistedState);
-	}
+	const persistedState = persistence.get(CART.store);
+	if (persistedState) return JSON.parse(persistedState);
 
 	const state = { items: [] };
-	persistLocally(state);
+	persist(state);
 	return state;
 };
 
 export const store = new Store(defaultState());
-store.subscribe(({ currentVal }) => persistLocally(currentVal));
+store.subscribe(({ currentVal }) => persist(currentVal));
 
 export const actions = {
 	cart: {

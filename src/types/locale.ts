@@ -15,3 +15,5 @@ export const FLAGS: Record<AllowedLanguage, string> = {
 	'bg-BG': '/flags/bg.svg',
 	'en-GB': '/flags/gb.svg',
 };
+
+export type Theme = 'light' | 'dark';

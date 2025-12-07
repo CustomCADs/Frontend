@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { type ActiveCartItem, useQuery } from '@customcads/react-sdk';
+import { getCartCookie } from '@/lib/isomorphic/cart';
 import { CartItem } from '@/app/types/cart-item';
+import * as cartStore from '@/app/stores/cart';
 import { useAuthStore } from './useAuthStore';
 import { useCartStore } from './useCartStore';
-import { persistLocally } from '@/app/stores/cart';
 
 const mapItems = (items: ActiveCartItem[]) =>
 	items.map<CartItem>(
@@ -19,15 +20,24 @@ const mapItems = (items: ActiveCartItem[]) =>
 		},
 	);
 
+const cookieSync = (
+	items: CartItem[] | null,
+	fill: (items: CartItem[]) => void,
+) => {
+	const cookie = getCartCookie();
+	if (cookie !== null && items?.length !== cookie.length) fill(cookie);
+};
+
 export const useCartSync = () => {
 	const { is } = useAuthStore();
 	const { items, actions } = useCartStore();
 
+	cookieSync(items, actions.cart.fill);
 	const activeCart = useQuery(({ activeCarts }) => activeCarts.all, false);
 
 	useEffect(() => {
 		if (is.guest) {
-			persistLocally({ items });
+			cartStore.persist({ items });
 		}
 	}, [items]);
 
