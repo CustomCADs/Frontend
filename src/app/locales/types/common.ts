@@ -14,6 +14,13 @@ export type Devtools = {
 	'currency-placeholder': string;
 };
 
+export type Metrics = {
+	width: string;
+	height: string;
+	length: string;
+	volume: string;
+};
+
 export type Errors = {
 	login_link: string;
 	contact_support_link: string;

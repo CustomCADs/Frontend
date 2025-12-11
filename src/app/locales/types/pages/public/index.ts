@@ -5,4 +5,5 @@ export type Translations = {
 	'pages.public.info.home': info.Home;
 	'pages.public.gallery.product': gallery.Product;
 	'pages.public.gallery.cart': gallery.Cart;
+	'pages.public.gallery.editor': gallery.Editor;
 };

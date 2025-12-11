@@ -27,3 +27,21 @@ export type Cart = {
 	buy: string;
 	'no-items': string;
 };
+
+export type Editor = {
+	weight: string;
+	cost: string;
+	mass: string;
+	distance: string;
+	composition: string;
+	color: string;
+	'clear-color': string;
+	material: string;
+	infill: string;
+	'infill-description': string;
+	unrecommended: string;
+	dimensions: string;
+	scale: string;
+	reset: string;
+	next: string;
+};
