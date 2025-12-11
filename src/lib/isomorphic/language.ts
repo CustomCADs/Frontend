@@ -1,12 +1,14 @@
-import { createClientOnlyFn, createIsomorphicFn } from '@tanstack/react-start';
-import { getCookie } from '@tanstack/react-start/server';
-import Cookies from 'js-cookie';
+import { createIsomorphicFn } from '@tanstack/react-start';
 import { AllowedLanguage } from '@/types/locale';
+import { LANGUAGE } from '@/app/constants/stores';
+import { getCookie } from './persistence';
 
-export const getUserDefaultLanguage = createClientOnlyFn(
-	() => (navigator.languages || [navigator.language])[0] as AllowedLanguage,
-);
+export const getUserDefaultLanguage = createIsomorphicFn()
+	.client(() => {
+		const languages = navigator.languages || [navigator.language];
+		return languages[0] as AllowedLanguage;
+	})
+	.server(() => 'en-GB' as AllowedLanguage);
 
-export const getLanguageCookie = createIsomorphicFn()
-	.client(() => Cookies.get('language') as AllowedLanguage | undefined)
-	.server(() => getCookie('language') as AllowedLanguage | undefined);
+export const getLanguageCookie = () =>
+	getCookie(LANGUAGE.cookie) as AllowedLanguage | undefined;

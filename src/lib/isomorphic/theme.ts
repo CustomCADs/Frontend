@@ -1,6 +1,7 @@
-import { createClientOnlyFn, createIsomorphicFn } from '@tanstack/react-start';
-import { getCookie } from '@tanstack/react-start/server';
-import Cookies from 'js-cookie';
+import { createClientOnlyFn } from '@tanstack/react-start';
+import { Theme } from '@/types/locale';
+import { THEME } from '@/app/constants/stores';
+import { getCookie } from './persistence';
 
 export const getSystemThemePreference = createClientOnlyFn(() =>
 	window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -8,14 +9,6 @@ export const getSystemThemePreference = createClientOnlyFn(() =>
 		: 'light',
 );
 
-export const getThemeCookie = createIsomorphicFn()
-	.client(() => Cookies.get('color-theme') as 'dark' | 'light')
-	.server(() => getCookie('color-theme') as 'dark' | 'light');
-
-export const isLightThemeCookie = createIsomorphicFn()
-	.client(() => Cookies.get('color-theme') === 'light')
-	.server(() => getCookie('color-theme') === 'light');
-
-export const isDarkThemeCookie = createIsomorphicFn()
-	.client(() => Cookies.get('color-theme') === 'dark')
-	.server(() => getCookie('color-theme') === 'dark');
+export const getThemeCookie = () => getCookie(THEME.cookie) as Theme;
+export const isLightThemeCookie = () => getThemeCookie() === 'light';
+export const isDarkThemeCookie = () => getThemeCookie() === 'dark';

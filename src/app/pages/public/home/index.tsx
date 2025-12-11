@@ -8,7 +8,7 @@ const Home = () => {
 	const tHome = useInfoTranslations('home');
 
 	return (
-		<div className={cn(page.className, 'p-0')}>
+		<div className={cn(page.className, 'p-0 md:p-0')}>
 			<Section1 tSection1={buildPrefixedGetter('section1_', tHome)} />
 		</div>
 	);

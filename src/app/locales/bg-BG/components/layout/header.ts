@@ -37,6 +37,4 @@ export default {
 	login: 'Влез',
 	register: 'Регистрирай се',
 	logout: 'Излез',
-	language: 'Език',
-	'language-placeholder': 'Потърсете език...',
 } satisfies Header;

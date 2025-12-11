@@ -1,11 +1,4 @@
-import { createIsomorphicFn } from '@tanstack/react-start';
-import { getCookie } from '@tanstack/react-start/server';
-import Cookies from 'js-cookie';
+import * as persistence from './persistence';
 
-export const getCsrfCookie = createIsomorphicFn()
-	.client(() => Cookies.get('csrf'))
-	.server(() => getCookie('csrf'));
-
-export const getRoleCookie = createIsomorphicFn()
-	.client(() => Cookies.get('role'))
-	.server(() => getCookie('role'));
+export const getCsrfCookie = () => persistence.getCookie('csrf') ?? undefined;
+export const getRoleCookie = () => persistence.getCookie('role') ?? undefined;

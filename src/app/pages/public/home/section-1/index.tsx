@@ -7,7 +7,7 @@ type Props = { tSection1: (key: SuffixOf<Home, 'section1_'>) => string };
 const Section1 = ({ tSection1 }: Props) => (
 	<section
 		className={cn(
-			'w-full h-[94vh] flex justify-center md:justify-between items-center transition duration-400',
+			'w-full h-[95vh] flex justify-center md:justify-between items-center transition duration-400',
 			'text-white', // because dark text looks bad on a dark background
 			'bg-[url(/public/home/background.jpg)] bg-cover',
 			'brightness-150 dark:brightness-100',
@@ -19,7 +19,7 @@ const Section1 = ({ tSection1 }: Props) => (
 			</h3>
 			<p className='px-4 text-xl text-center'>{tSection1('subtitle')}</p>
 			<div className='flex justify-evenly gap-x-8 animate-fade-in delay-1000'>
-				<Button to='.' text={tSection1('buy')} />
+				<Button to='/gallery' text={tSection1('buy')} />
 				<Button to='.' text={tSection1('sell')} />
 			</div>
 		</article>

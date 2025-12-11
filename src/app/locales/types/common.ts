@@ -2,9 +2,23 @@ import { Language } from '@/types/locale';
 
 export type Locales = Record<Language, string>;
 
+export type Empty = {
+	products: string;
+};
+
 export type Devtools = {
 	theme: string;
 	language: string;
+	'language-placeholder': string;
+	currency: string;
+	'currency-placeholder': string;
+};
+
+export type Metrics = {
+	width: string;
+	height: string;
+	length: string;
+	volume: string;
 };
 
 export type Errors = {

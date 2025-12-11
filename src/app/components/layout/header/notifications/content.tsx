@@ -1,7 +1,7 @@
-import { Loader } from 'lucide-react';
 import { AllNotificationsResponse } from '@customcads/react-sdk';
 import { useNotificationVirtualization } from '@/app/hooks/features/notifications/useNotificationVirtualization';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
+import Loader from '@/app/components/loading';
 import { PopoverContent } from '@/app/components/ui/popover';
 import { ScrollArea } from '@/app/components/ui/scroll-area';
 import Triangle from './triangle';

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Home, Settings2, ShoppingCart, Store, UserCircle } from 'lucide-react';
+import { Home, Settings2, Store, UserCircle } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import { TITLE } from '@/app/constants/global';
@@ -7,6 +7,7 @@ import CustomIcon from '@/app/components/icon';
 import Menu from './menu';
 import NotificationsTab from './notifications';
 import AccountMenu from './account';
+import CartIndicator from './cart';
 
 const Navbar = () => {
 	const { is } = useAuthStore();
@@ -18,12 +19,12 @@ const Navbar = () => {
 				<li className='flex justify-start items-center gap-x-5 animate-fade-in duration-200 delay-400'>
 					<Menu />
 					<CustomIcon Icon={Home} to='/' text={tHeader('home')} />
-					<CustomIcon Icon={Store} to='.' text={tHeader('gallery')} />
 					<CustomIcon
-						Icon={ShoppingCart}
-						to='.'
-						text={tHeader('cart')}
+						Icon={Store}
+						to='/gallery'
+						text={tHeader('gallery')}
 					/>
+					<CartIndicator text={tHeader('cart')} />
 				</li>
 				<li className='flex justify-center animate-fade-in duration-200 delay-200'>
 					<Link

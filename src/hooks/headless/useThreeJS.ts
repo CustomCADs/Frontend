@@ -13,7 +13,6 @@ export const useThreeJS = (
 	loadCallback?: (cad: THREE.Group) => void,
 ) => {
 	const [progress, setProgress] = useState(0);
-	const progressCallback = (percentage: number) => setProgress(percentage);
 
 	const mountRef = useRef<HTMLDivElement>(null);
 	const instanceRef = useRef<ReturnType<typeof initThreeJS> | null>(null);
@@ -27,14 +26,9 @@ export const useThreeJS = (
 				clearScene(scene);
 
 				if (file.type === 'stl') {
-					loader.stl(scene, file.url, loadCallback, progressCallback);
+					loader.stl(scene, file.url, loadCallback, setProgress);
 				} else {
-					loader.gltf(
-						scene,
-						file.url,
-						loadCallback,
-						progressCallback,
-					);
+					loader.gltf(scene, file.url, loadCallback, setProgress);
 				}
 			}
 		}
@@ -43,7 +37,7 @@ export const useThreeJS = (
 			instanceRef.current?.exit();
 			instanceRef.current = null;
 		};
-	}, [file]);
+	}, [file?.type, file?.url, file?.coords.cam, file?.coords.pan]);
 
 	return { ref: mountRef, instance: instanceRef.current, progress };
 };

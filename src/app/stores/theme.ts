@@ -1,33 +1,31 @@
 import { Store } from '@tanstack/store';
-import Cookies from 'js-cookie';
+import { Theme } from '@/types/locale';
+import * as persistence from '@/lib/isomorphic/persistence';
 import { getEnv } from '@/lib/isomorphic/env';
 import { getSystemThemePreference } from '@/lib/isomorphic/theme';
+import { THEME } from '@/app/constants/stores';
 
-const LOCAL_STORAGE_KEY = 'color-theme';
-const COOKIE_STORAGE_KEY = 'color-theme';
+const persist = persistence.create<ThemeState>(THEME.store, (state) => ({
+	data: state.theme,
+	key: THEME.cookie,
+}));
 
 type ThemeState = {
-	theme: 'light' | 'dark';
+	theme: Theme;
 };
 const defaultState = (): ThemeState => {
-	if (getEnv().isServer) return { theme: 'light' };
+	if (getEnv().isServer) return { theme: 'dark' };
 
-	const persistedState = localStorage.getItem(LOCAL_STORAGE_KEY);
-	if (persistedState) {
-		return JSON.parse(persistedState);
-	}
+	const persistedState = persistence.get(THEME.store);
+	if (persistedState) return JSON.parse(persistedState);
 
 	const state: ThemeState = { theme: getSystemThemePreference() };
-	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-	Cookies.set(COOKIE_STORAGE_KEY, state.theme);
+	persist(state);
 	return state;
 };
 
 export const store = new Store<ThemeState>(defaultState());
-store.subscribe(({ currentVal }) => {
-	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentVal));
-	Cookies.set(COOKIE_STORAGE_KEY, currentVal.theme);
-});
+store.subscribe(({ currentVal }) => persist(currentVal));
 
 export const reset = () => store.setState(defaultState());
 

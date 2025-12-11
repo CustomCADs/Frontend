@@ -2,11 +2,10 @@ import { Hammer, Home, Store } from 'lucide-react';
 import * as auth from '@/lib/utils/auth';
 import { SidebarProps } from './sidebar';
 
-type Is = ReturnType<typeof auth.is>;
 export default {
 	main: [
 		{ name: 'home', url: '/', icon: Home },
-		{ name: 'gallery', url: '.', icon: Store },
+		{ name: 'gallery', url: '/gallery', icon: Store },
 	],
 	getCollections: (is): SidebarProps['collections'] => {
 		if (is.guest)
@@ -135,6 +134,6 @@ export default {
 	},
 } satisfies {
 	main: SidebarProps['main'];
-	getCollections: (is: Is) => SidebarProps['collections'];
-	getWorkspaces: (is: Is) => SidebarProps['workspaces'];
+	getCollections: (is: auth.Returns) => SidebarProps['collections'];
+	getWorkspaces: (is: auth.Returns) => SidebarProps['workspaces'];
 };

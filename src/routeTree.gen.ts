@@ -10,11 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PublicCartRouteImport } from './routes/_public/cart'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
+import { Route as PublicGalleryIndexRouteImport } from './routes/_public/gallery/index'
+import { Route as PublicGalleryIdRouteImport } from './routes/_public/gallery/$id'
+import { Route as PublicEditorIdRouteImport } from './routes/_public/editor.$id'
 
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/_public/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicCartRoute = PublicCartRouteImport.update({
+  id: '/_public/cart',
+  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuestLoginRoute = GuestLoginRouteImport.update({
@@ -22,31 +31,75 @@ const GuestLoginRoute = GuestLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicGalleryIndexRoute = PublicGalleryIndexRouteImport.update({
+  id: '/_public/gallery/',
+  path: '/gallery/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicGalleryIdRoute = PublicGalleryIdRouteImport.update({
+  id: '/_public/gallery/$id',
+  path: '/gallery/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicEditorIdRoute = PublicEditorIdRouteImport.update({
+  id: '/_public/editor/$id',
+  path: '/editor/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof GuestLoginRoute
+  '/cart': typeof PublicCartRoute
   '/': typeof PublicIndexRoute
+  '/editor/$id': typeof PublicEditorIdRoute
+  '/gallery/$id': typeof PublicGalleryIdRoute
+  '/gallery': typeof PublicGalleryIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof GuestLoginRoute
+  '/cart': typeof PublicCartRoute
   '/': typeof PublicIndexRoute
+  '/editor/$id': typeof PublicEditorIdRoute
+  '/gallery/$id': typeof PublicGalleryIdRoute
+  '/gallery': typeof PublicGalleryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_guest/login': typeof GuestLoginRoute
+  '/_public/cart': typeof PublicCartRoute
   '/_public/': typeof PublicIndexRoute
+  '/_public/editor/$id': typeof PublicEditorIdRoute
+  '/_public/gallery/$id': typeof PublicGalleryIdRoute
+  '/_public/gallery/': typeof PublicGalleryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/'
+  fullPaths:
+    | '/login'
+    | '/cart'
+    | '/'
+    | '/editor/$id'
+    | '/gallery/$id'
+    | '/gallery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/'
-  id: '__root__' | '/_guest/login' | '/_public/'
+  to: '/login' | '/cart' | '/' | '/editor/$id' | '/gallery/$id' | '/gallery'
+  id:
+    | '__root__'
+    | '/_guest/login'
+    | '/_public/cart'
+    | '/_public/'
+    | '/_public/editor/$id'
+    | '/_public/gallery/$id'
+    | '/_public/gallery/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   GuestLoginRoute: typeof GuestLoginRoute
+  PublicCartRoute: typeof PublicCartRoute
   PublicIndexRoute: typeof PublicIndexRoute
+  PublicEditorIdRoute: typeof PublicEditorIdRoute
+  PublicGalleryIdRoute: typeof PublicGalleryIdRoute
+  PublicGalleryIndexRoute: typeof PublicGalleryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +111,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_public/cart': {
+      id: '/_public/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof PublicCartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_guest/login': {
       id: '/_guest/login'
       path: '/login'
@@ -65,12 +125,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_public/gallery/': {
+      id: '/_public/gallery/'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof PublicGalleryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/gallery/$id': {
+      id: '/_public/gallery/$id'
+      path: '/gallery/$id'
+      fullPath: '/gallery/$id'
+      preLoaderRoute: typeof PublicGalleryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/editor/$id': {
+      id: '/_public/editor/$id'
+      path: '/editor/$id'
+      fullPath: '/editor/$id'
+      preLoaderRoute: typeof PublicEditorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   GuestLoginRoute: GuestLoginRoute,
+  PublicCartRoute: PublicCartRoute,
   PublicIndexRoute: PublicIndexRoute,
+  PublicEditorIdRoute: PublicEditorIdRoute,
+  PublicGalleryIdRoute: PublicGalleryIdRoute,
+  PublicGalleryIndexRoute: PublicGalleryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

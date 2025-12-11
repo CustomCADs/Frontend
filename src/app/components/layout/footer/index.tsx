@@ -13,7 +13,7 @@ const Footer = () => {
 	const tFooter = useLayoutTranslations('footer');
 
 	return (
-		<footer className='flex flex-col bg-footer 2xl:bg-secondary text-footer-foreground rounded-t-sm transition-colors duration-400'>
+		<footer className='flex flex-col bg-footer 2xl:bg-secondary text-footer-foreground rounded-t-sm transition-colors duration-400 z-10'>
 			<ul className='flex flex-col sm:flex-row justify-around items-center mx-5 py-10 gap-x-4 gap-y-10'>
 				<li className='order-3 flex justify-center items-center gap-x-6 animate-fade-in delay-800'>
 					<FooterLink to='.' text={tFooter('privacy-policy')} />

@@ -3,6 +3,7 @@ import { useDevtoolsTranslations } from '@/app/hooks/locales/translations/common
 import * as page from '@/app/utils/page';
 import ThemeToggle from './theme';
 import LanguageMenu from './language';
+import CurrencySelector from './currency';
 
 const UserPreferences = () => {
 	const tDevtools = useDevtoolsTranslations();
@@ -17,6 +18,10 @@ const UserPreferences = () => {
 				<div className='flex gap-x-4'>
 					<span>{tDevtools('language')}</span>
 					<LanguageMenu />
+				</div>
+				<div className='flex gap-x-4'>
+					<span>{tDevtools('currency')}</span>
+					<CurrencySelector />
 				</div>
 			</div>
 		</div>

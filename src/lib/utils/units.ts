@@ -15,7 +15,7 @@ const G_PER_UNIT: Record<Mass, number> = {
 };
 
 export const percentage = (scale: number) => {
-	const value = parseFloat(scale.toFixed(2));
+	const value = parseFloat(scale.toFixed(2)).toFixed(2);
 	return `${value}%`;
 };
 
@@ -31,5 +31,5 @@ export const volume = (volume: number, unit: Distance) => {
 
 export const weight = (weight: number, unit: Mass) => {
 	const value = parseFloat((weight / G_PER_UNIT[unit]).toFixed(POINTS));
-	return `${value} ${unit}`;
+	return `${value}${unit}`;
 };

@@ -11,6 +11,7 @@ export type Labels = {
 };
 
 export type Placeholders = {
+	'search-products': string;
 	username: string;
 	password: string;
 };
