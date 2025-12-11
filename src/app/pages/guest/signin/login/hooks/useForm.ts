@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation, useQuery } from '@customcads/react-sdk';
@@ -35,6 +36,9 @@ export const useForm = () => {
 	});
 	useCartTransfer();
 
+	const navigate = useNavigate();
+	const [isSubmitted, setIsSubmitted] = useState(false);
+
 	const tErrors = useFormTranslations('errors');
 	const tLabels = useFormTranslations('labels');
 
@@ -53,6 +57,7 @@ export const useForm = () => {
 
 			authStore.login(role);
 			notifications.invalidate();
+			navigate({ to: '/' });
 		},
 		validators: {
 			onChange: schema({ tErrors, tLabels }),
@@ -60,15 +65,13 @@ export const useForm = () => {
 	});
 	useForceLocaleRefresh(() => formApi.validate('change'));
 
-	const navigate = useNavigate();
-
 	return {
 		form: formApi,
 		error: form.extractError(error as unknown),
-		handleSubmit: (e: React.FormEvent<HTMLFormElement>) =>
-			form.handleSubmit(e, async () => {
-				await formApi.handleSubmit();
-				navigate({ to: '/' });
-			}),
+		handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
+			setIsSubmitted(true);
+			return form.handleSubmit(e, formApi.handleSubmit);
+		},
+		isSubmitted,
 	};
 };
