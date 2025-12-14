@@ -5,14 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "types": "tsc -b",
+    "build": "vite build",
     "serve": "vite preview",
+    "deploy": "wrangler deploy",
     "test": "vitest",
     "test:unit": "vitest src",
     "lint": "eslint",
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@cloudflare/vite-plugin": "^1.17.1",
     "@customcads/react-sdk": "^0.1.8",
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@lobehub/icons": "^2.43.1",
@@ -61,6 +64,7 @@
     "tw-animate-css": "^1.3.6",
     "uuid": "^13.0.0",
     "web-vitals": "^5.1.0",
+    "wrangler": "^4.54.0",
     "zod": "^4.1.11"
   },
   "devDependencies": {

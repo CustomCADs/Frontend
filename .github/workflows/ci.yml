@@ -25,12 +25,8 @@ jobs:
       - name: Lint project
         run: npm run lint
 
-      - name: Build source code
-        run: npm run build
-        env:
-          VITE_API_URL: "https://localhost:0123"
-          VITE_API_VERSION: "v0"
-          VITE_STRIPE_PUBLISHABLE_KEY: "pk_test-key"
+      - name: Compile TypeScript
+        run: npm run types
 
       - name: Run unit tests
         run: npm run test:unit
