@@ -3,6 +3,7 @@ import {
 	type AllNotificationsResponse as Notification,
 } from '@customcads/react-sdk';
 import { useHub } from '@/hooks/utils/useHub';
+import * as hubs from '@/lib/hubs';
 
 export const useNotificationsHub = (
 	methodName: 'ReceiveNew',
@@ -16,7 +17,7 @@ export const useNotificationsHub = (
 
 	useHub({
 		hub: {
-			connectionName: 'Notifications',
+			connection: hubs.connect('Notifications'),
 			methods: [{ name: methodName, onReceived: onSingleReceived }],
 		},
 		condition: authn,

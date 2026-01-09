@@ -1,9 +1,9 @@
 import { DependencyList, useEffect } from 'react';
 import * as signalR from '@/lib//hubs/signalr';
 
-type UseHubProps = {
+type Props = {
 	hub: {
-		connectionName: 'Notifications';
+		connection?: signalR.HubConnection;
 		methods: Array<{
 			name: string;
 			onReceived: (payload: never) => void | Promise<void>;
@@ -12,21 +12,15 @@ type UseHubProps = {
 	condition?: boolean;
 	deps?: DependencyList;
 };
-export const useHub = ({ hub, condition, deps }: UseHubProps) =>
+export const useHub = ({ hub, condition, deps }: Props) =>
 	useEffect(() => {
-		if (condition === undefined || condition) {
-			const connection = signalR.buildConnection(hub.connectionName);
+		// if there's a condition and it evaluates to `false`, exit
+		if (condition !== undefined && !condition) return;
 
-			const init = async () => {
-				for (const method of hub.methods) {
-					connection.on(method.name, method.onReceived);
-				}
-				await signalR.start(connection);
-			};
-			init();
+		if (!hub.connection) return;
+		const { connection } = hub;
 
-			return () => {
-				signalR.stop(connection);
-			};
+		for (const method of hub.methods) {
+			connection.on(method.name, method.onReceived);
 		}
 	}, deps);

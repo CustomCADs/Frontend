@@ -3,6 +3,7 @@ import { useThemeSync } from '@/app/hooks/stores/useThemeSync';
 import { useAuthSync } from '@/app/hooks/stores/useAuthSync';
 import { useLanguagesSync } from '@/app/hooks/stores/useLanguagesSync';
 import { useCartSync } from '@/app/hooks/stores/useCartSync';
+import { useRealTime } from '@/app/hooks/hubs/useRealTime';
 import Header from './header';
 import Footer from './footer';
 
@@ -11,6 +12,7 @@ const Layout = ({ children }: Children) => {
 	useAuthSync();
 	useLanguagesSync();
 	useCartSync();
+	useRealTime();
 
 	return (
 		<div className='flex flex-col bg-background transition-colors duration-400'>
