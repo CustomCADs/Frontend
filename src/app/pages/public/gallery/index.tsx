@@ -18,21 +18,25 @@ const Gallery = () => {
 	const dropdowns = useDropdowns(products?.count);
 
 	return (
-		<div
-			className={cn(
-				page.className,
-				'gap-y-16 justify-between',
-				'animate-none',
-			)}
-		>
-			<div className='md:hidden flex flex-col justify-center gap-y-8'>
+		<div className={cn(page.className, 'gap-y-16 justify-between')}>
+			<div
+				className={cn(
+					'md:hidden flex flex-col justify-center gap-y-8',
+					'animate-fade-in delay-500',
+				)}
+			>
 				<div className='flex gap-x-4'>
 					<dropdowns.Categories />
 					<dropdowns.Sortings />
 				</div>
 				<dropdowns.Searchbar />
 			</div>
-			<div className='hidden md:flex md:justify-center md:w-full md:gap-x-8'>
+			<div
+				className={cn(
+					'hidden md:flex md:justify-center md:w-full md:gap-x-8',
+					'animate-fade-in delay-500',
+				)}
+			>
 				<dropdowns.Categories />
 				<dropdowns.Searchbar />
 				<dropdowns.Sortings />

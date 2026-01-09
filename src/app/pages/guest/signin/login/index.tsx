@@ -21,7 +21,7 @@ const Login = () => {
 	return (
 		<div className={page.className}>
 			<form onSubmit={handleSubmit} className='w-full max-w-sm'>
-				<Card className='bg-card border-border border-2 shadow-shadow shadow-xl/100'>
+				<Card className='bg-card border-border border-2 shadow-shadow shadow-xl/100 transition-colors duration-400'>
 					<CardHeader>
 						<CardTitle className='text-center'>
 							{tLogin('title')}

@@ -1,14 +1,14 @@
-import { Link } from '@tanstack/react-router';
-import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
+// import { Link } from '@tanstack/react-router';
+// import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useMoney } from '@/app/hooks/locales/useMoney';
-import { Button } from '@/app/components/ui/button';
+// import { Button } from '@/app/components/ui/button';
 import Money from './money';
 
 type MoneyRecord = Record<string, number>;
 type Props = { prices: MoneyRecord; costs: MoneyRecord };
 const Aside = ({ prices, costs }: Props) => {
-	const tCart = useGalleryTranslations('cart');
+	// const tCart = useGalleryTranslations('cart');
 	const { items } = useCartStore();
 
 	const calculate = (money: Record<string, number>) =>
@@ -29,11 +29,14 @@ const Aside = ({ prices, costs }: Props) => {
 	const content = items?.length ? (
 		<div className='flex flex-col gap-y-12'>
 			<Money money={money} className='text-xl' />
-			<Link to='.'>
+			<span className='font-bold text-xl text-nowrap'>
+				{'Payment is currently still not supported.'}
+			</span>
+			{/* <Link to='.'>
 				<Button variant='outline' size='lg' className='text-lg w-full'>
 					{tCart('buy')}
 				</Button>
-			</Link>
+			</Link> */}
 		</div>
 	) : (
 		<div className='w-full h-full flex justify-center items-center'>
@@ -50,7 +53,7 @@ const Aside = ({ prices, costs }: Props) => {
 	);
 
 	return (
-		<aside className='lg:w-1/3 flex flex-col justify-center items-stretch rounded-4xl'>
+		<aside className='lg:w-1/3 flex flex-col justify-center items-stretch rounded-4xl animate-fade-in delay-1000'>
 			<section className='p-12 rounded-4xl min-h-80 border-2'>
 				{content}
 			</section>
