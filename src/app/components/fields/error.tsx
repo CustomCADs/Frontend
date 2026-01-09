@@ -6,15 +6,14 @@ type Props = {
 	hideIfPristine?: boolean; // should take into consideration whether field has been mutated
 };
 const Error = ({ meta, isSubmitted, hideIfPristine }: Props) => {
-	const hasError = !!meta.errors.length;
-	if (!hasError) return; // no errors
+	if (meta.isValid) return;
 
 	const shouldShowError =
 		meta.isTouched && // field has been focused
 		meta.isBlurred && // field has been unfocused
 		(hideIfPristine ? meta.isDirty : true);
 
-	if (!isSubmitted && !shouldShowError) return;
+	if (!(isSubmitted || shouldShowError)) return;
 
 	return (
 		<small className='relative right-0 text-destructive-foreground text-sm'>

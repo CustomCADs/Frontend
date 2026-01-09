@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
+import PasswordField from '@/app/components/fields/password';
 import Error from '@/app/components/fields/error';
 import { useForm } from './useForm';
 
@@ -40,14 +41,8 @@ export const useFields = () => {
 								{tLabels('password')}
 							</Label>
 						</div>
-						<Input
-							id={api.name}
-							type='password'
-							value={api.state.value}
-							onChange={({ target: { value } }) =>
-								api.handleChange(value)
-							}
-							onBlur={api.handleBlur}
+						<PasswordField
+							api={api}
 							placeholder={tPlaceholders('password')}
 						/>
 						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
