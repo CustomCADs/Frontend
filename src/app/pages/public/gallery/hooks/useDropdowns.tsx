@@ -50,7 +50,7 @@ export const useDropdowns = (count?: number) => {
 		),
 		Sortings: () => (
 			<Sortings
-				sortings={sortings ?? []}
+				sortings={sortings}
 				getSorting={() => ({
 					type: search.sortingType,
 					direction: search.sortingDirection,

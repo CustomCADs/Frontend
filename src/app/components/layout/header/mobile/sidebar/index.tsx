@@ -29,7 +29,7 @@ const Sidebar = ({ main, collections, workspaces }: SidebarProps) => (
 	<SidebarUI className='border-r-0'>
 		<SidebarHeader>
 			<div className='flex flex-col items-center pb-10'>
-				<img src='/public/logo.png' className='w-30 h-30' />
+				<img src='/logo.png' className='w-30 h-30' />
 				<span className='text-2xl font-extrabold'>{TITLE}</span>
 			</div>
 			<NavMain items={main} />

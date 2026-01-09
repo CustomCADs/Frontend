@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react';
-import ErrorPage from '@/app/components/error';
 import SortingsCombobox from './compobox';
 
 export type SortingDirection = 'ascending' | 'descending';
 type SortingsProps = {
 	getSorting: () => { type?: string; direction?: string };
 	updateSorting: (sorting: { type?: string; direction?: string }) => void;
-	sortings: string[];
+	sortings?: string[];
 };
 
 const Sortings = ({ getSorting, updateSorting, sortings }: SortingsProps) => {
@@ -24,13 +23,6 @@ const Sortings = ({ getSorting, updateSorting, sortings }: SortingsProps) => {
 			setSorting(initial);
 		}
 	}, [initial, sortingParam]);
-
-	useEffect(() => {
-		updateSorting({
-			type: sortingParam,
-			direction: directionParam,
-		});
-	}, [sortingParam]);
 
 	const toggleDirection = () => {
 		if (sorting !== initial) {
@@ -54,10 +46,7 @@ const Sortings = ({ getSorting, updateSorting, sortings }: SortingsProps) => {
 		setSorting(() => name ?? initial);
 		updateSorting({ type: name, direction });
 	};
-
-	if (!sortings) {
-		return <ErrorPage status={400} />;
-	}
+	if (!sortings) return;
 
 	const DirectionArrow = direction === 'ascending' ? ArrowUp : ArrowDown;
 

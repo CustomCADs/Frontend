@@ -2,6 +2,10 @@ import { createIsomorphicFn } from '@tanstack/react-start';
 import * as server from '@tanstack/react-start/server';
 import Cookies from 'js-cookie';
 
+const serialize = (data: unknown) => {
+	return typeof data === 'string' ? data : JSON.stringify(data);
+};
+
 type Props<TState> = {
 	key: string;
 	state: TState;
@@ -12,15 +16,12 @@ const set = createIsomorphicFn()
 		localStorage.setItem(key, JSON.stringify(state));
 
 		if (selected) {
-			Cookies.set(selected.key ?? key, JSON.stringify(selected.data));
+			Cookies.set(selected.key ?? key, serialize(selected.data));
 		}
 	})
 	.server(<TState>({ key, selected }: Props<TState>) => {
 		if (selected) {
-			server.setCookie(
-				selected.key ?? key,
-				JSON.stringify(selected.data),
-			);
+			server.setCookie(selected.key ?? key, serialize(selected.data));
 		}
 	});
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CategoryResponse, useQuery } from '@customcads/react-sdk';
 import { Funnel, X } from 'lucide-react';
-import ErrorPage from '@/app/components/error';
 import CategoriesCombobox from './compobox';
 
 type CategoriesProps = {
@@ -22,9 +21,7 @@ const Categories = ({ getCategory, updateCategory }: CategoriesProps) => {
 		}
 	}, [initial, categoryParam]);
 
-	if (!categories) {
-		return <ErrorPage status={400} />;
-	}
+	if (!categories) return;
 
 	const handleSelect = (name?: string) => {
 		const category = categories.find((c) => c.name === name);
