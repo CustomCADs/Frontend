@@ -20,7 +20,6 @@
     "@cloudflare/vite-plugin": "^1.17.1",
     "@customcads/react-sdk": "^0.1.8",
     "@icons-pack/react-simple-icons": "^13.8.0",
-    "@lobehub/icons": "^2.43.1",
     "@microsoft/signalr": "^9.0.6",
     "@radix-ui/react-checkbox": "^1.3.3",
     "@radix-ui/react-collapsible": "^1.1.12",

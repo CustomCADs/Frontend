@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router';
 import { axios, identitySSOUrl } from '@customcads/react-sdk';
-import { Google } from '@lobehub/icons';
 import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import {
 	Card,
@@ -57,7 +56,7 @@ const Login = () => {
 							}
 							className='w-full'
 						>
-							<Google.Color />
+							<img src='/identity/google.svg' />
 							<span>{tLogin('google-login')}</span>
 						</Button>
 						<div className='flex justify-center items-center gap-2'>
