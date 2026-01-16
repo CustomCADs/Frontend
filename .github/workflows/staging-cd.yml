@@ -3,7 +3,7 @@ name: Continuous Deployment pipeline
 on:
   push:
     branches:
-      - main
+      - release/*
 
 jobs:
   continuous-integration:
@@ -21,12 +21,15 @@ jobs:
       - name: Install packages
         run: npm ci
 
+      - name: Update Wrangler configs
+        run: sed -i "s/:local/:staging/" wrangler.jsonc
+
       - name: Build source code
-        run: npm run build
+        run: npm run build:staging
         env:
-          VITE_API_URL: "https://localhost:0123"
-          VITE_API_VERSION: "v0"
-          VITE_STRIPE_PUBLISHABLE_KEY: "pk_test-key"
+          VITE_API_URL: ${{ secrets.STAGING_API_URL }}
+          VITE_API_VERSION: ${{ secrets.STAGING_API_VERSION }}
+          VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.STAGING_STRIPE_PUBLISHABLE_KEY }}
 
       - name: Deploy via Wrangler
         run: npm run deploy
