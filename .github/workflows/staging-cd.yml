@@ -25,7 +25,7 @@ jobs:
         run: sed -i "s/:local/:staging/" wrangler.jsonc
 
       - name: Build source code
-        run: npm run build:staging
+        run: npm run build:stag
         env:
           VITE_API_URL: ${{ secrets.STAGING_API_URL }}
           VITE_API_VERSION: ${{ secrets.STAGING_API_VERSION }}
