@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils/tailwindcss';
-import * as pagination from '@/app/components/ui/pagination';
+import * as paginationUI from '@/app/components/ui/pagination';
+import * as paginationUtils from '@/lib/utils/pagination';
 
 type Props = {
 	current: number;
@@ -9,18 +10,20 @@ type Props = {
 const Pages = ({ current, last, onChange }: Props) => {
 	const renderPages = () => {
 		const pages = [];
-		for (let i = 1; i <= last; i++) {
+
+		const { start, end } = paginationUtils.computeRange(current, last);
+		for (let i = start; i <= end; i++) {
 			pages.push(
-				<pagination.PaginationItem key={i}>
-					<pagination.PaginationLink
+				<paginationUI.PaginationItem key={i}>
+					<paginationUI.PaginationLink
 						clickable
 						onClick={() => onChange(i)}
-						className={cn('text-sm md:text-lg')}
+						className={cn('text-sm md:text-lg size-7 md:size-9')}
 						isActive={current === i}
 					>
 						{i}
-					</pagination.PaginationLink>
-				</pagination.PaginationItem>,
+					</paginationUI.PaginationLink>
+				</paginationUI.PaginationItem>,
 			);
 		}
 		return pages;
@@ -36,43 +39,43 @@ const Pages = ({ current, last, onChange }: Props) => {
 	const isLast = current === last;
 
 	return [
-		<pagination.PaginationItem
+		<paginationUI.PaginationItem
 			key='beginning'
 			className={cn(isFirst && 'opacity-50 hover:opacity-50')}
 		>
-			<pagination.PaginationBeginning
+			<paginationUI.PaginationBeginning
 				clickable={!isFirst}
 				onClick={handle.beginning}
 			/>
-		</pagination.PaginationItem>,
-		<pagination.PaginationItem
+		</paginationUI.PaginationItem>,
+		<paginationUI.PaginationItem
 			key='previous'
 			className={cn(isFirst && 'opacity-50 hover:opacity-50')}
 		>
-			<pagination.PaginationPrevious
+			<paginationUI.PaginationPrevious
 				clickable={!isFirst}
 				onClick={handle.previous}
 			/>
-		</pagination.PaginationItem>,
+		</paginationUI.PaginationItem>,
 		renderPages(),
-		<pagination.PaginationItem
+		<paginationUI.PaginationItem
 			key='next'
 			className={cn(isLast && 'opacity-50 hover:opacity-50')}
 		>
-			<pagination.PaginationNext
+			<paginationUI.PaginationNext
 				clickable={!isLast}
 				onClick={handle.next}
 			/>
-		</pagination.PaginationItem>,
-		<pagination.PaginationItem
+		</paginationUI.PaginationItem>,
+		<paginationUI.PaginationItem
 			key='end'
 			className={cn(isLast && 'opacity-50 hover:opacity-50')}
 		>
-			<pagination.PaginationEnd
+			<paginationUI.PaginationEnd
 				clickable={!isLast}
 				onClick={handle.end}
 			/>
-		</pagination.PaginationItem>,
+		</paginationUI.PaginationItem>,
 	];
 };
 

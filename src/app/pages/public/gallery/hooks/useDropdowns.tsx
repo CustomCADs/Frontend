@@ -9,7 +9,7 @@ import Pagination from '@/app/components/search/pagination';
 
 const Route = getRouteApi('/_public/gallery/');
 
-export const useDropdowns = (count?: number) => {
+export const useDropdowns = () => {
 	const tPlaceholders = useFormTranslations('placeholders');
 
 	const navigate = Route.useNavigate();
@@ -68,7 +68,7 @@ export const useDropdowns = (count?: number) => {
 		),
 		Pagination: () => (
 			<Pagination
-				total={count ?? 0}
+				total={count}
 				defaultPagination={{
 					page: search.page ?? 1,
 					limit: search.limit ?? limits.GALLERY.default,

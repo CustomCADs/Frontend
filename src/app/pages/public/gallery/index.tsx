@@ -15,7 +15,7 @@ const Gallery = () => {
 	const { data: products } = useQuery(({ products }) =>
 		products.gallery.all(galleryQueryArgs),
 	);
-	const dropdowns = useDropdowns(products?.count);
+	const dropdowns = useDropdowns(products?.count ?? 0);
 
 	return (
 		<div className={cn(page.className, 'gap-y-16 justify-between')}>
