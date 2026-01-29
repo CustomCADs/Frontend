@@ -1,11 +1,9 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
-import * as limits from '@/app/constants/limits';
 import Categories from '@/app/components/search/categories';
 import Searchbar from '@/app/components/search/searchbar';
 import Sortings from '@/app/components/search/sortings';
-import Pagination from '@/app/components/search/pagination';
 
 const Route = getRouteApi('/_public/gallery/');
 
@@ -64,24 +62,6 @@ export const useDropdowns = () => {
 						}),
 					});
 				}}
-			/>
-		),
-		Pagination: () => (
-			<Pagination
-				total={count}
-				defaultPagination={{
-					page: search.page ?? 1,
-					limit: search.limit ?? limits.GALLERY.default,
-				}}
-				navigate={({ page, limit }) =>
-					navigate({
-						search: (prev) => ({
-							...prev,
-							page,
-							limit,
-						}),
-					})
-				}
 			/>
 		),
 	};
