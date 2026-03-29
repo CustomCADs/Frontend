@@ -5,7 +5,7 @@ import viteReact from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite';
 import { cloudflare } from '@cloudflare/vite-plugin';
-import { ensureCertsExist } from './vite.helper';
+import { readCerts } from './vite.helper';
 
 const config = defineConfig({
 	plugins: [
@@ -15,9 +15,41 @@ const config = defineConfig({
 		tailwindcss(),
 		cloudflare({ viteEnvironment: { name: 'ssr' } }),
 		tanstackStart({
-			spa: {
+			prerender: {
 				enabled: true,
+				failOnError: false,
+				autoStaticPathsDiscovery: false,
 			},
+			sitemap: {
+				enabled: process.env.NODE_ENV === 'production',
+				host: 'https://www.customcads.com',
+			},
+			pages: [
+				{
+					path: '/',
+					prerender: { enabled: true, crawlLinks: false },
+					sitemap: {
+						exclude: false,
+						changefreq: 'weekly',
+						priority: 1.0,
+					},
+				},
+				{
+					path: '/login',
+					prerender: { enabled: false, crawlLinks: false },
+					sitemap: { exclude: true },
+				},
+				{
+					path: '/gallery',
+					prerender: { enabled: false, crawlLinks: false },
+					sitemap: { exclude: true },
+				},
+				{
+					path: '/cart',
+					prerender: { enabled: false, crawlLinks: false },
+					sitemap: { exclude: true },
+				},
+			],
 		}),
 		viteReact(),
 	],
@@ -31,6 +63,6 @@ const config = defineConfig({
 });
 
 if (process.env.NODE_ENV === 'development')
-	config.server = { port: 5173, https: ensureCertsExist() };
+	config.server = { https: readCerts() };
 
 export default config;

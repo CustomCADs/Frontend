@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import child_process from 'child_process';
 
-export const ensureCertsExist = () => {
+export const readCerts = () => {
 	const certPath = 'certs/cert.pem';
 	const certFilePath = path.resolve(__dirname, certPath);
 
