@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { CalculateCad } from '@/types/threejs';
+import { getEnv } from '@/lib/isomorphic/env';
 import { updateMaterial } from '@/lib/cad/material';
 import { boxSize } from '@/lib/cad/three-js';
 import * as editor from '@/app/stores/editor';
@@ -23,6 +24,8 @@ export const useEditorThreeJS = (cadId: string) => {
 			actions.set.size(size);
 		},
 		looks: (texture: string, color?: string) => {
+			if (getEnv().isServer) return;
+
 			const textures = refs.lastTextures.current;
 			refs.cad.current?.traverse(
 				updateMaterial({ texture, color, textures }),

@@ -1,27 +1,30 @@
 import { type EditCustomziationRequest } from '@customcads/react-sdk';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
+import Loader from '@/app/components/loading';
 import { GeneralButton } from '../general';
 
-type SaveRequest = Pick<
-	EditCustomziationRequest,
-	'materialId' | 'color' | 'scale' | 'infill'
->;
-
 type Props = {
-	cadId: string;
-	save: (body: SaveRequest) => void;
+	id?: string;
+	cad: {
+		id: string;
+		volume: number;
+	};
+	save: (request: EditCustomziationRequest) => void;
 };
-const NextButton = ({ cadId, save }: Props) => {
+const NextButton = ({ id, cad, save }: Props) => {
 	const tEditor = useGalleryTranslations('editor');
 
-	const store = {
-		materialId: useEditorStore(cadId, (state) => state.materialId),
-		color: useEditorStore(cadId, (state) => state.color),
-		scale: useEditorStore(cadId, (state) => state.scale),
-		infill: useEditorStore(cadId, (state) => state.infill),
+	const request = {
+		volume: cad.volume,
+		materialId: useEditorStore(cad.id, (state) => state.materialId),
+		color: useEditorStore(cad.id, (state) => state.color),
+		scale: useEditorStore(cad.id, (state) => state.scale),
+		infill: useEditorStore(cad.id, (state) => state.infill),
 	};
-	const next = () => save(store);
+
+	if (!id) return <Loader />;
+	const next = () => save({ ...request, id });
 
 	return <GeneralButton onClick={next}>{tEditor('next')}</GeneralButton>;
 };

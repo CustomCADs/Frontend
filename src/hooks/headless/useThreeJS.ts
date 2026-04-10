@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Coordinates } from '@/types/threejs';
+import { getEnv } from '@/lib/isomorphic/env';
 import { initThreeJS, clearScene } from '@/lib/cad/three-js';
 import * as loader from '@/lib/cad/loader';
 
@@ -18,7 +19,7 @@ export const useThreeJS = (
 	const instanceRef = useRef<ReturnType<typeof initThreeJS> | null>(null);
 
 	useEffect(() => {
-		if (file?.type) {
+		if (getEnv().isClient && file?.type) {
 			instanceRef.current ??= initThreeJS(mountRef.current, file.coords);
 
 			const scene = instanceRef.current?.scene;

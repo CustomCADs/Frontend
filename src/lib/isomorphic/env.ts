@@ -5,3 +5,7 @@ export const getEnv = createIsomorphicFn()
 	.client(
 		() => ({ env: 'client', isClient: true, isServer: false }) as const,
 	);
+
+export const getShouldSSR = createIsomorphicFn()
+	.server(() => import.meta.env.MODE !== 'development')
+	.client(() => true);

@@ -9,17 +9,17 @@ import GalleryPagination from './pagination';
 const Route = getRouteApi('/_public/gallery/');
 
 const Gallery = () => {
-	const { galleryQueryArgs } = Route.useLoaderData();
-	const { data: products } = useQuery(({ products }) =>
-		products.gallery.all(galleryQueryArgs),
+	const loader = Route.useLoaderData();
+	const query = useQuery(({ products }) =>
+		products.gallery.all(loader.requestParams),
 	);
+	const result = query.data ?? loader.result;
 
-	const hasProducts = products && products.count !== 0;
 	return (
 		<div className={cn(page.className, 'gap-y-16 justify-between')}>
 			<Bars />
-			<List products={products} />
-			{hasProducts && <GalleryPagination count={products.count} />}
+			<List products={result} />
+			{result.count !== 0 && <GalleryPagination count={result.count} />}
 		</div>
 	);
 };

@@ -1,15 +1,21 @@
 import Product from '@/app/pages/public/product';
-import { queries } from '@customcads/react-sdk';
+import { productsApi } from '@customcads/react-sdk';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_public/gallery/$id')({
-	loader: async ({ params, context: { queryClient } }) => {
-		await queryClient.prefetchQuery(
-			queries.products.gallery.single({ id: params.id }),
-		);
+	loader: async ({ params }) => {
+		const { data: product } = await productsApi.gallery.single({
+			id: params.id,
+		});
+
+		return { productId: params.id, product };
 	},
 	component: Product,
-	head: ({ params }) => ({
-		meta: [{ title: `CustomCADs | Product ${params.id}` }],
-	}),
+	head: ({ loaderData, params }) => {
+		const title = loaderData?.product
+			? `CustomCADs | Product "${loaderData.product.name}"`
+			: `CustomCADs | Product "${params.id}"`;
+
+		return { meta: [{ title }] };
+	},
 });

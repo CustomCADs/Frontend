@@ -13,7 +13,7 @@ const List = ({ products }: Props) => {
 
 	if (!products) {
 		return (
-			<span className='text-center text-lg md:text-2xl'>
+			<span className='text-center text-lg md:text-3xl'>
 				{tLoading('gallery')}
 			</span>
 		);
