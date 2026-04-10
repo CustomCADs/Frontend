@@ -1,14 +1,18 @@
-import { createClientOnlyFn } from '@tanstack/react-start';
-import { Theme } from '@/types/locale';
+import { createIsomorphicFn } from '@tanstack/react-start';
 import { THEME } from '@/app/constants/stores';
-import { getCookie } from './persistence';
+import { ThemeStoreState } from '@/app/stores/theme';
+import { get } from './persistence';
+import { Theme } from '@/types/locale';
 
-export const getSystemThemePreference = createClientOnlyFn(() =>
-	window.matchMedia('(prefers-color-scheme: dark)').matches
-		? 'dark'
-		: 'light',
-);
+const getThemeCookie = () => get<ThemeStoreState>(THEME.store);
 
-export const getThemeCookie = () => getCookie(THEME.cookie) as Theme;
-export const isLightThemeCookie = () => getThemeCookie() === 'light';
-export const isDarkThemeCookie = () => getThemeCookie() === 'dark';
+export const isLightThemeCookie = () => getThemeCookie()?.theme === 'light';
+export const isDarkThemeCookie = () => getThemeCookie()?.theme === 'dark';
+
+export const getSystemThemePreference = createIsomorphicFn()
+	.client<[], Theme>(() =>
+		window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'dark'
+			: 'light',
+	)
+	.server<Theme>(() => getThemeCookie()?.theme ?? 'dark'); // fallback in SSR mode

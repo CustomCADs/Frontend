@@ -1,7 +1,8 @@
 import { createIsomorphicFn } from '@tanstack/react-start';
 import { AllowedLanguage } from '@/types/locale';
+import { LanguageStoreState } from '@/app/stores/language';
 import { LANGUAGE } from '@/app/constants/stores';
-import { getCookie } from './persistence';
+import { get } from './persistence';
 
 export const getUserDefaultLanguage = createIsomorphicFn()
 	.client(() => {
@@ -11,4 +12,4 @@ export const getUserDefaultLanguage = createIsomorphicFn()
 	.server(() => 'en-GB' as AllowedLanguage);
 
 export const getLanguageCookie = () =>
-	getCookie(LANGUAGE.cookie) as AllowedLanguage | undefined;
+	get<LanguageStoreState>(LANGUAGE.store)?.current ?? undefined;

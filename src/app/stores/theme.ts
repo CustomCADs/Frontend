@@ -1,30 +1,22 @@
 import { Store } from '@tanstack/store';
 import { Theme } from '@/types/locale';
 import * as persistence from '@/lib/isomorphic/persistence';
-import { getEnv } from '@/lib/isomorphic/env';
 import { getSystemThemePreference } from '@/lib/isomorphic/theme';
 import { THEME } from '@/app/constants/stores';
 
-const persist = persistence.create<ThemeState>(THEME.store, (state) => ({
-	data: state.theme,
-	key: THEME.cookie,
-}));
+const persist = persistence.create<State>(THEME.store);
 
-type ThemeState = {
+type State = {
 	theme: Theme;
 };
-const defaultState = (): ThemeState => {
-	if (getEnv().isServer) return { theme: 'dark' };
+const defaultState = (): State => {
+	if (persistence.exists(THEME.store))
+		return persistence.get<State>(THEME.store)!;
 
-	const persistedState = persistence.get(THEME.store);
-	if (persistedState) return JSON.parse(persistedState);
-
-	const state: ThemeState = { theme: getSystemThemePreference() };
-	persist(state);
-	return state;
+	return persist({ theme: getSystemThemePreference() });
 };
 
-export const store = new Store<ThemeState>(defaultState());
+export const store = new Store<State>(defaultState());
 store.subscribe(({ currentVal }) => persist(currentVal));
 
 export const reset = () => store.setState(defaultState());
@@ -35,6 +27,8 @@ export const toggle = () => {
 	}));
 };
 
-export const set = (theme: ThemeState['theme']) => {
+export const set = (theme: State['theme']) => {
 	store.setState({ theme });
 };
+
+export type ThemeStoreState = State;

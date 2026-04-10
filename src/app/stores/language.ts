@@ -1,16 +1,12 @@
 import { Store } from '@tanstack/store';
 import * as persistence from '@/lib/isomorphic/persistence';
 import { AllowedLanguage } from '@/types/locale';
-import { getEnv } from '@/lib/isomorphic/env';
 import { getUserDefaultLanguage } from '@/lib/isomorphic/language';
 import { LANGUAGE } from '@/app/constants/stores';
 
-const persist = persistence.create<LanguageState>(LANGUAGE.store, (state) => ({
-	data: state.current,
-	key: LANGUAGE.cookie,
-}));
+const persist = persistence.create<State>(LANGUAGE.store);
 
-type LanguageState = {
+type State = {
 	default: AllowedLanguage;
 	current: AllowedLanguage;
 };
@@ -19,22 +15,14 @@ const defaultState = () => ({
 	current: getUserDefaultLanguage(),
 });
 
-const loadInitialState = (): LanguageState => {
-	if (getEnv().isServer)
-		return {
-			default: 'en-GB',
-			current: 'en-GB',
-		};
+const loadInitialState = (): State => {
+	if (persistence.exists(LANGUAGE.store))
+		return persistence.get<State>(LANGUAGE.store)!;
 
-	const persistedState = persistence.get(LANGUAGE.store);
-	if (persistedState) return JSON.parse(persistedState);
-
-	const state = defaultState();
-	persist(state);
-	return state;
+	return persist(defaultState());
 };
 
-export const store = new Store<LanguageState>(loadInitialState());
+export const store = new Store<State>(loadInitialState());
 store.subscribe(({ currentVal }) => persist(currentVal));
 
 export const resetStore = () => store.setState(defaultState());
@@ -50,3 +38,5 @@ export const setCurrent = (currentLang: AllowedLanguage) =>
 		...prev,
 		current: currentLang,
 	}));
+
+export type LanguageStoreState = State;

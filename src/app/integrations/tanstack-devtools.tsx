@@ -12,8 +12,6 @@ export const TanStackDevtools = () => (
 			panelLocation: 'bottom',
 			position: 'bottom-left',
 			theme: 'dark',
-			triggerImage:
-				'https://tanstack.com/images/logos/logo-color-100.png',
 		}}
 		plugins={[
 			{

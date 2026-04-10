@@ -2,13 +2,18 @@ import { createIsomorphicFn } from '@tanstack/react-start';
 import * as server from '@tanstack/react-start/server';
 import Cookies from 'js-cookie';
 
-export const get = createIsomorphicFn()
-	.client((key: string, from?: 'local' | 'cookies') =>
-		from === 'cookies' ? Cookies.get(key) : localStorage.getItem(key),
-	)
-	.server((key: string, from?: 'local' | 'cookies') =>
-		from === 'cookies' ? server.getCookie(key) : null,
-	);
+const getCookie = createIsomorphicFn()
+	.client((key: string) => Cookies.get(key))
+	.server((key: string) => server.getCookie(key));
 
-export const getLocal = (key: string) => get(key, 'local');
-export const getCookie = (key: string) => get(key, 'cookies');
+const parseCookie = <TState>(cookie: string | null): TState | null => {
+	try {
+		return JSON.parse(cookie ?? 'null');
+	} catch {
+		return JSON.parse(JSON.stringify(cookie ?? null));
+	}
+};
+
+export const exists = (key: string) => getCookie(key) !== undefined;
+export const get = <TState = string>(key: string) =>
+	parseCookie<TState>(getCookie(key) ?? null);
