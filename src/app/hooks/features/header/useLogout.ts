@@ -1,7 +1,7 @@
 import { useMutation } from '@customcads/react-sdk';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
-import * as languageStore from '@/app/stores/language';
+import * as localeStore from '@/app/stores/locale';
 
 export const useLogout = () => {
 	const { actions } = useCartStore();
@@ -14,7 +14,7 @@ export const useLogout = () => {
 		await logout();
 		authStore.logout();
 		actions.cart.clear();
-		languageStore.resetStore();
+		localeStore.resetStore();
 	};
 
 	return handleLogout;

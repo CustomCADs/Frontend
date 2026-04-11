@@ -1,4 +1,4 @@
-import { store } from '@/app/stores/language';
+import { getLanguageCookie, getTimeZoneCookie } from '@/lib/isomorphic/locale';
 
 type FormatAbsoluteOptions = {
 	date: string;
@@ -7,10 +7,11 @@ type FormatAbsoluteOptions = {
 };
 export const format = ({
 	date,
-	locale = store.state.current,
+	locale = getLanguageCookie(),
 	dateOnly = false,
 }: FormatAbsoluteOptions) =>
 	new Date(date).toLocaleString(locale, {
+		timeZone: getTimeZoneCookie(),
 		hour12: false,
 		year: 'numeric',
 		month: '2-digit',

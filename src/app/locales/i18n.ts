@@ -1,8 +1,8 @@
 import i18n, { Resource } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { ALLOWED_LANGUAGES, Language } from '@/types/locale';
+import { getLanguageCookie } from '@/lib/isomorphic/locale';
 import { loadTranslations } from './load-translations';
-import { getLanguageCookie } from '@/lib/isomorphic/language';
 
 i18n.use(initReactI18next).init({
 	supportedLngs: ALLOWED_LANGUAGES,

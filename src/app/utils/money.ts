@@ -1,5 +1,8 @@
 import { Currency, ExchangeRate, EXCHANGE_RATES } from '@customcads/react-sdk';
-import { getUserDefaultLanguage } from '@/lib/isomorphic/language';
+import {
+	getLanguageCookie,
+	getUserDefaultLanguage,
+} from '@/lib/isomorphic/locale';
 import { invertBy } from '@/lib/utils/typescript';
 
 const currencies = invertBy(EXCHANGE_RATES, 'language');
@@ -16,7 +19,9 @@ const currencyToRate = (rates: ExchangeRate[], currency: Currency) => {
 };
 
 export const resolveCurrency = (currency?: Currency) =>
-	currency ?? currencies[getUserDefaultLanguage()] ?? 'EUR';
+	currency ??
+	currencies[getLanguageCookie() ?? getUserDefaultLanguage()] ??
+	'EUR';
 
 export const currencyToSymbol = (currency?: Currency) =>
 	EXCHANGE_RATES[resolveCurrency(currency)].symbol;
