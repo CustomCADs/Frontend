@@ -5,6 +5,7 @@ import * as common from './common';
 export type CommonTranslations = {
 	'common.locales': common.Locales;
 	'common.metrics': common.Metrics;
+	'common.loading': common.Loading;
 	'common.empty': common.Empty;
 	'common.devtools': common.Devtools;
 	'common.errors': common.Errors;

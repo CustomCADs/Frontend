@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as PublicCartRouteImport } from './routes/_public/cart'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
@@ -16,6 +17,10 @@ import { Route as PublicGalleryIndexRouteImport } from './routes/_public/gallery
 import { Route as PublicGalleryIdRouteImport } from './routes/_public/gallery/$id'
 import { Route as PublicEditorIdRouteImport } from './routes/_public/editor.$id'
 
+const GuestRoute = GuestRouteImport.update({
+  id: '/_guest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/_public/',
   path: '/',
@@ -27,9 +32,9 @@ const PublicCartRoute = PublicCartRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuestLoginRoute = GuestLoginRouteImport.update({
-  id: '/_guest/login',
+  id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => GuestRoute,
 } as any)
 const PublicGalleryIndexRoute = PublicGalleryIndexRouteImport.update({
   id: '/_public/gallery/',
@@ -65,6 +70,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_guest': typeof GuestRouteWithChildren
   '/_guest/login': typeof GuestLoginRoute
   '/_public/cart': typeof PublicCartRoute
   '/_public/': typeof PublicIndexRoute
@@ -85,6 +91,7 @@ export interface FileRouteTypes {
   to: '/login' | '/cart' | '/' | '/editor/$id' | '/gallery/$id' | '/gallery'
   id:
     | '__root__'
+    | '/_guest'
     | '/_guest/login'
     | '/_public/cart'
     | '/_public/'
@@ -94,7 +101,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  GuestLoginRoute: typeof GuestLoginRoute
+  GuestRoute: typeof GuestRouteWithChildren
   PublicCartRoute: typeof PublicCartRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicEditorIdRoute: typeof PublicEditorIdRoute
@@ -104,6 +111,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_guest': {
+      id: '/_guest'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof GuestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_public/': {
       id: '/_public/'
       path: '/'
@@ -123,7 +137,7 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof GuestLoginRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof GuestRoute
     }
     '/_public/gallery/': {
       id: '/_public/gallery/'
@@ -149,8 +163,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const rootRouteChildren: RootRouteChildren = {
+interface GuestRouteChildren {
+  GuestLoginRoute: typeof GuestLoginRoute
+}
+
+const GuestRouteChildren: GuestRouteChildren = {
   GuestLoginRoute: GuestLoginRoute,
+}
+
+const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  GuestRoute: GuestRouteWithChildren,
   PublicCartRoute: PublicCartRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicEditorIdRoute: PublicEditorIdRoute,

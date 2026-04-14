@@ -1,7 +1,10 @@
 import z from 'zod';
 import { createFileRoute } from '@tanstack/react-router';
-import { categoriesApi, queries } from '@customcads/react-sdk';
-import { OnlyParam } from '@/lib/utils/typescript';
+import {
+	queryCall,
+	type GalleryAllProductsRequest,
+	type SingleCategoryRequest,
+} from '@customcads/react-sdk';
 import * as limits from '@/app/constants/limits';
 import Gallery from '@/app/pages/public/gallery';
 
@@ -23,33 +26,34 @@ export const Route = createFileRoute('/_public/gallery/')({
 		page: search.page ?? 1,
 		limit: search.limit ?? limits.GALLERY.default,
 	}),
-	loader: async ({ deps, context }) => {
-		const { queryClient } = context;
-
-		let category = null;
-		if (deps.categoryName) {
-			const { data } = await categoriesApi.single({
-				type: 'by-name',
-				name: deps.categoryName,
-			});
-			category = data;
-		}
-
-		const { gallery } = queries.products;
-		const galleryQueryArgs: OnlyParam<typeof gallery.all> = {
+	loader: async ({ deps, context: { queryClient } }) => {
+		const requestParams: GalleryAllProductsRequest = {
 			name: deps.name,
-			categoryId: category?.id,
 			sortingType: deps.sortingType,
 			sortingDirection: deps.sortingDirection,
 			page: deps.page,
 			limit: deps.limit,
 		};
-		await queryClient.prefetchQuery(gallery.all(galleryQueryArgs));
 
-		await queryClient.prefetchQuery(queries.categories.all);
-		await queryClient.prefetchQuery(queries.products.gallery.sortings);
+		if (deps.categoryName) {
+			const categoryRequestParams: SingleCategoryRequest = {
+				type: 'by-name',
+				name: deps.categoryName,
+			};
 
-		return { galleryQueryArgs };
+			const { data: category } = await queryCall(
+				({ categories }) => categories.single(categoryRequestParams),
+				(opts) => queryClient.fetchQuery(opts),
+			);
+			requestParams.categoryId = category.id;
+		}
+
+		const { data: result } = await queryCall(
+			({ products }) => products.gallery.all(requestParams),
+			(opts) => queryClient.fetchQuery(opts),
+		);
+
+		return { requestParams, result };
 	},
 	head: () => ({ meta: [{ title: 'CustomCADs | Gallery' }] }),
 });

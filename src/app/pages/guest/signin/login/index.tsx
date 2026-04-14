@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router';
 import { axios, identitySSOUrl } from '@customcads/react-sdk';
-import { Google } from '@lobehub/icons';
 import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import {
 	Card,
@@ -21,7 +20,7 @@ const Login = () => {
 	return (
 		<div className={page.className}>
 			<form onSubmit={handleSubmit} className='w-full max-w-sm'>
-				<Card className='bg-card border-border border-2 shadow-shadow shadow-xl/100'>
+				<Card className='bg-card border-border border-2 shadow-shadow shadow-xl/100 transition-colors duration-400'>
 					<CardHeader>
 						<CardTitle className='text-center'>
 							{tLogin('title')}
@@ -57,7 +56,7 @@ const Login = () => {
 							}
 							className='w-full'
 						>
-							<Google.Color />
+							<img src='/identity/google.svg' />
 							<span>{tLogin('google-login')}</span>
 						</Button>
 						<div className='flex justify-center items-center gap-2'>

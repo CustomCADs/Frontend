@@ -4,19 +4,19 @@ import {
 	useDevtoolsTranslations,
 	useLocalesTranslations,
 } from '@/app/hooks/locales/translations/common';
-import { useLanguageStore } from '@/app/hooks/stores/useLanguageStore';
-import * as languageStore from '@/app/stores/language';
+import { useLocaleStore } from '@/app/hooks/stores/useLocaleStore';
+import * as localeStore from '@/app/stores/locale';
 import CustomIcon from '@/app/components/icon';
 import Compobox from './compobox';
 
 const LanguageMenu = () => {
-	const { current } = useLanguageStore();
+	const { language } = useLocaleStore();
 	const tDevtools = useDevtoolsTranslations();
 	const tLocales = useLocalesTranslations();
 
 	return (
 		<Compobox
-			current={current}
+			current={language}
 			options={ALLOWED_LANGUAGES.map((lang) => ({
 				label: tLocales(lang),
 				value: lang,
@@ -26,11 +26,11 @@ const LanguageMenu = () => {
 			trigger={
 				<CustomIcon
 					Icon={Globe}
-					text={tLocales(current)}
+					text={tLocales(language)}
 					className='gap-x-2'
 				/>
 			}
-			onSelect={languageStore.setCurrent}
+			onSelect={localeStore.setLanguage}
 		/>
 	);
 };

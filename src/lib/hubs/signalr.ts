@@ -1,5 +1,7 @@
 import * as signalR from '@microsoft/signalr';
 
+export type HubConnection = signalR.HubConnection;
+
 export const buildConnection = (hub: string) =>
 	new signalR.HubConnectionBuilder()
 		.withUrl(`${import.meta.env.VITE_API_URL}/SignalR/${hub}`)
@@ -10,7 +12,7 @@ export const start = async (connection: signalR.HubConnection) => {
 	try {
 		await connection.start();
 	} catch {
-		setTimeout(start, 5000);
+		setTimeout(() => start(connection), 5000);
 	}
 };
 

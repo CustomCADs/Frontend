@@ -1,35 +1,17 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
-import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import viteReact from '@vitejs/plugin-react';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
-import tailwindcss from '@tailwindcss/vite';
-import { ensureCertsExist } from './vite.helper';
+import * as vite from 'vite';
+import * as vitePlugins from './vite.plugins';
+import * as viteHelper from './vite.helper';
 
-const config = defineConfig({
+export default vite.defineConfig(({ mode }) => ({
 	plugins: [
-		viteTsConfigPaths({
-			projects: ['./tsconfig.json'],
-		}),
-		tailwindcss(),
-		tanstackStart({
-			spa: {
-				enabled: true,
-			},
-		}),
-		viteReact(),
+		vitePlugins.react(),
+		vitePlugins.tsConfigPaths(),
+		vitePlugins.tailwindcss(),
+		vitePlugins.cloudflare({ enable: mode !== 'test' }),
+		vitePlugins.tanstackStart({ mode }),
 	],
-	server: {
-		port: 5173,
-		https: ensureCertsExist(),
-	},
-	build: {
-		assetsInlineLimit: 0,
-	},
-	test: {
-		globals: true,
-		environment: 'jsdom',
-	},
-});
-
-export default config;
+	build: { assetsInlineLimit: 0 },
+	test: { globals: true, environment: 'jsdom' },
+	server: viteHelper.server({ mode }),
+}));

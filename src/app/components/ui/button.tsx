@@ -39,12 +39,14 @@ const Button = ({
 	variant,
 	size,
 	asChild = false,
+	tag,
 	...props
 }: React.ComponentProps<'button'> &
 	VariantProps<typeof buttonVariants> & {
 		asChild?: boolean;
+		tag?: string;
 	}) => {
-	const Comp = asChild ? Slot : 'button';
+	const Comp = tag ?? (asChild ? Slot : 'button');
 
 	return (
 		<Comp

@@ -2,31 +2,33 @@ import { createIsomorphicFn } from '@tanstack/react-start';
 import * as server from '@tanstack/react-start/server';
 import Cookies from 'js-cookie';
 
+type Type = 'cookie' | 'local' | 'full';
+
+export const serialize = (data: unknown) => {
+	return typeof data === 'string' ? data : JSON.stringify(data);
+};
+
 type Props<TState> = {
 	key: string;
 	state: TState;
-	selected?: { key: string; data: unknown };
+	type?: Type;
 };
 const set = createIsomorphicFn()
-	.client(<TState>({ key, state, selected }: Props<TState>) => {
-		localStorage.setItem(key, JSON.stringify(state));
+	.client(<TState>({ key, state, type = 'full' }: Props<TState>) => {
+		if (type !== 'cookie') localStorage.setItem(key, serialize(state));
+		if (type !== 'local') Cookies.set(key, serialize(state));
 
-		if (selected) {
-			Cookies.set(selected.key ?? key, JSON.stringify(selected.data));
-		}
+		return state;
 	})
-	.server(<TState>({ key, selected }: Props<TState>) => {
-		if (selected) {
-			server.setCookie(
-				selected.key ?? key,
-				JSON.stringify(selected.data),
-			);
-		}
+	.server(<TState>({ key, state, type = 'full' }: Props<TState>) => {
+		if (type !== 'local') server.setCookie(key, serialize(state));
+
+		return state;
 	});
 
-export const create = <TState>(
-	key: string,
-	selector?: (state: TState) => { data: unknown; key: string },
-) => {
-	return (state: TState) => set({ key, state, selected: selector?.(state) });
+export const create = <TState>(key: string, type?: Type) => {
+	return (state: TState) => {
+		set({ key, type, state });
+		return state;
+	};
 };

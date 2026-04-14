@@ -1,12 +1,11 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { useQuery, type EditCustomziationRequest } from '@customcads/react-sdk';
+import { useQuery } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils/tailwindcss';
 import * as editor from '@/app/stores/editor';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useCartItemEditor } from '@/app/hooks/features/carts/useCartItemEditor';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import Cad from '@/app/components/cad';
-import Loader from '@/app/components/loading';
 import * as page from '@/app/utils/page';
 import * as calculate3D from '@/app/utils/calculate-3D';
 import { useRadioGroups } from './hooks';
@@ -22,30 +21,28 @@ const Route = getRouteApi('/_public/editor/$id');
 
 const Editor = () => {
 	const navigate = Route.useNavigate();
-	const { cadId, productId, cadVolume } = Route.useLoaderData();
 
-	const { data: product } = useQuery(({ products }) =>
-		products.gallery.single({ id: productId }),
-	);
-	const { customization, save } = useCartItemEditor(productId);
+	const loader = Route.useLoaderData();
+	const query = {
+		product: useQuery(({ products }) =>
+			products.gallery.single({ id: loader.product.id }),
+		).data,
+		cad: useQuery(({ cads }) => cads.single({ id: loader.cad.id })).data,
+	};
+	const product = query.product ?? loader.product;
+	const cad = query.cad ?? loader.cad;
 
-	const scale = useEditorStore(cadId, (state) => state.scale);
-	const size = useEditorStore(cadId, (state) => state.size);
+	const { customization, save } = useCartItemEditor(product.id);
+	const { scale, size } = {
+		scale: useEditorStore(product.cadId, (state) => state.scale),
+		size: useEditorStore(product.cadId, (state) => state.size),
+	};
 
 	const radio = useRadioGroups();
 	const tEditor = useGalleryTranslations('editor');
 
-	if (!product || !customization) return <Loader />;
-
-	const actions = editor.getActions(cadId);
-	const volume = calculate3D.volumeMm3(cadVolume, scale, size);
-
-	const handleNext = (
-		store: Omit<EditCustomziationRequest, 'id' | 'volume'>,
-	) => {
-		const { id } = customization;
-		return save({ id, volume, ...store }, () => navigate({ to: '/cart' }));
-	};
+	const actions = editor.getActions(product.cadId);
+	const volume = calculate3D.volumeMm3(cad.volume, scale, size);
 
 	return (
 		<div
@@ -89,7 +86,13 @@ const Editor = () => {
 				<GeneralSection>
 					<div className='flex justify-evenly items-center gap-x-2'>
 						<ResetButton reset={actions.record.reset} />
-						<NextButton cadId={cadId} save={handleNext} />
+						<NextButton
+							id={customization?.id}
+							cad={cad}
+							save={(request) =>
+								save(request, () => navigate({ to: '/cart' }))
+							}
+						/>
 					</div>
 				</GeneralSection>
 			</Side>

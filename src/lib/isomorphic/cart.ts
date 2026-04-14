@@ -1,8 +1,6 @@
 import { CART } from '@/app/constants/stores';
-import { CartItem } from '@/app/types/cart-item';
-import { getCookie } from './persistence';
+import { CartStoreState } from '@/app/stores/cart';
+import { get } from './persistence';
 
-const parse = (cookie: string | null): CartItem[] | null =>
-	JSON.parse(cookie ?? 'null');
-
-export const getCartCookie = () => parse(getCookie(CART.cookie) ?? null);
+export const getCartCookie = () =>
+	get<CartStoreState>(CART.store)?.items ?? null;

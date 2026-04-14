@@ -14,7 +14,7 @@ const Cart = () => {
 	return (
 		<div className={cn(page.className, 'justify-start')}>
 			<div className='w-full flex flex-col lg:flex-row md:justify-between gap-x-8 gap-y-6'>
-				<section className='lg:min-w-9/16 flex flex-col gap-y-6 lg:gap-y-12'>
+				<section className='lg:min-w-9/16 flex flex-col gap-y-6 lg:gap-y-12 animate-fade-in delay-500'>
 					<h3 className='text-3xl text-center font-extrabold'>
 						{tCart('title')}
 					</h3>

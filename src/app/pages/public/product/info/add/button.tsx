@@ -11,6 +11,7 @@ type Props = {
 const ProductButton = ({ Icon, text, className, onClick }: Props) => (
 	<div className='flex items-center gap-x-2 cursor-pointer'>
 		<Button
+			tag='span'
 			variant='secondary'
 			size='icon-lg'
 			className={className}
@@ -19,6 +20,7 @@ const ProductButton = ({ Icon, text, className, onClick }: Props) => (
 			<Icon className='lg:scale-125' />
 		</Button>
 		<Button
+			tag='span'
 			variant='secondary'
 			className={cn('min-h-10 px-6 lg:text-lg', className)}
 			onClick={onClick}

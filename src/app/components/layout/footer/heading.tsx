@@ -1,12 +1,14 @@
 import { Link } from '@tanstack/react-router';
 import { TITLE } from '@/app/constants/global';
+import { getYear } from '@/lib/utils/time';
 
-const date = `2023-${new Date().getFullYear()}`;
 const FooterHeading = () => (
-	<header className='text-lg font-extrabold'>
-		<span>&copy; </span>
-		<Link to='.'>{TITLE}</Link>
-		<span> - {date}</span>
+	<header className='flex items-center gap-x-2 text-lg font-extrabold'>
+		<Link to='.'>&copy; {TITLE}</Link>
+		<span>—</span>
+		<span>
+			{getYear.customcads_founded_at()}–{getYear.current()}
+		</span>
 	</header>
 );
 

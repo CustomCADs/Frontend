@@ -1,15 +1,13 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
-import * as limits from '@/app/constants/limits';
 import Categories from '@/app/components/search/categories';
 import Searchbar from '@/app/components/search/searchbar';
 import Sortings from '@/app/components/search/sortings';
-import Pagination from '@/app/components/search/pagination';
 
 const Route = getRouteApi('/_public/gallery/');
 
-export const useDropdowns = (count?: number) => {
+export const useDropdowns = () => {
 	const tPlaceholders = useFormTranslations('placeholders');
 
 	const navigate = Route.useNavigate();
@@ -50,7 +48,7 @@ export const useDropdowns = (count?: number) => {
 		),
 		Sortings: () => (
 			<Sortings
-				sortings={sortings ?? []}
+				sortings={sortings}
 				getSorting={() => ({
 					type: search.sortingType,
 					direction: search.sortingDirection,
@@ -64,24 +62,6 @@ export const useDropdowns = (count?: number) => {
 						}),
 					});
 				}}
-			/>
-		),
-		Pagination: () => (
-			<Pagination
-				total={count ?? 0}
-				defaultPagination={{
-					page: search.page ?? 1,
-					limit: search.limit ?? limits.GALLERY.default,
-				}}
-				navigate={({ page, limit }) =>
-					navigate({
-						search: (prev) => ({
-							...prev,
-							page,
-							limit,
-						}),
-					})
-				}
 			/>
 		),
 	};

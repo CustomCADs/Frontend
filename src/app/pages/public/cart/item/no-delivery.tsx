@@ -33,7 +33,12 @@ const ItemNoDelivery = ({ item, ...props }: Props) => {
 		print: 0,
 	});
 
-	if (!product) return <Loader />;
+	if (!product)
+		return (
+			<div className='flex justify-center py-8'>
+				<Loader size={10} />
+			</div>
+		);
 
 	const remove = () => {
 		props.addToPrice(-product.price);

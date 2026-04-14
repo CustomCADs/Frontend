@@ -1,28 +1,21 @@
 import { Store } from '@tanstack/store';
 import * as persistence from '@/lib/isomorphic/persistence';
-import { getEnv } from '@/lib/isomorphic/env';
 import * as auth from '@/lib/utils/auth';
 import { CartItem } from '@/app/types/cart-item';
 import { CART } from '@/app/constants/stores';
 
-export const persist = persistence.create<CartState>(CART.store, (state) => ({
-	data: state.items,
-	key: CART.cookie,
-}));
+export const persist = persistence.create<State>(CART.store);
 
-type CartState = {
+type State = {
 	items: CartItem[] | null;
 };
-const defaultState = (): CartState => {
-	if (getEnv().isServer) return { items: null };
-	if (auth.is().customer) return { items: null };
+const defaultState = (): State => {
+	if (!auth.is().guest) return { items: null };
 
-	const persistedState = persistence.get(CART.store);
-	if (persistedState) return JSON.parse(persistedState);
+	if (persistence.exists(CART.store))
+		return persistence.get<State>(CART.store)!;
 
-	const state = { items: [] };
-	persist(state);
-	return state;
+	return persist({ items: [] });
 };
 
 export const store = new Store(defaultState());
@@ -145,3 +138,5 @@ export const actions = {
 		},
 	},
 };
+
+export type CartStoreState = State;

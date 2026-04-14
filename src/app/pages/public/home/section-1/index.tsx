@@ -25,7 +25,7 @@ const Section1 = ({ tSection1 }: Props) => (
 		</article>
 		<aside className='absolute md:static top-5/16 transform -translate-y-5/16 md:-translate-y-0 opacity-50 md:opacity-100 basis-1/2 md:flex md:justify-end'>
 			<img
-				src='/public/home/aside.png'
+				src='/home/aside.png'
 				className='min-w-screen md:min-w-0 md:max-w-10/12'
 			/>
 		</aside>

@@ -39,7 +39,12 @@ const ItemForDelivery = ({ item, ...props }: Props) => {
 		product: product?.price ?? 0,
 		print: customization?.cost ?? 0,
 	});
-	if (!product || !customization) return <Loader />;
+	if (!product || !customization)
+		return (
+			<div className='flex justify-center py-8'>
+				<Loader size={10} />
+			</div>
+		);
 
 	const remove = () => {
 		props.addTo.price(-product.price * item.quantity);

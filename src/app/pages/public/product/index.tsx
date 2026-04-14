@@ -1,7 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils/tailwindcss';
-import Loader from '@/app/components/loading';
 import * as page from '@/app/utils/page';
 import Card from './card';
 import Info from './info';
@@ -10,12 +9,11 @@ import Info from './info';
 const Route = getRouteApi('/_public/gallery/$id');
 
 const Product = () => {
-	const { id } = Route.useParams();
-	const { data: product } = useQuery(({ products }) =>
-		products.gallery.single({ id }),
+	const loader = Route.useLoaderData();
+	const query = useQuery(({ products }) =>
+		products.gallery.single({ id: loader.productId }),
 	);
-
-	if (!product) return <Loader />;
+	const product = query.data ?? loader.product;
 
 	return (
 		<div className={cn(page.className, 'justify-start gap-y-10')}>

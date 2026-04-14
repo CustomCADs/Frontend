@@ -31,6 +31,7 @@ const Buttons = ({
 		),
 		delivery: isPrintable ? (
 			<Button
+				tag='span'
 				variant='secondary'
 				onClick={onDeliveryChange}
 				className='px-2 md:px-4'

@@ -2,11 +2,10 @@ import { Store } from '@tanstack/store';
 import { Ratio } from '@/types/threejs';
 import * as persistence from '@/lib/isomorphic/persistence';
 import { EDITOR } from '@/app/constants/stores';
-import { getEnv } from '@/lib/isomorphic/env';
 
-const persist = persistence.create(EDITOR.store);
+const persist = persistence.create<Record<string, State>>(EDITOR.store);
 
-type EditorState = {
+type State = {
 	materialId: number;
 	color: string;
 	infill: number;
@@ -15,7 +14,7 @@ type EditorState = {
 	weight: number;
 	cost: number;
 };
-export const defaultState: EditorState = {
+export const defaultState: State = {
 	materialId: 1,
 	color: '#ffffff',
 	infill: 0.2,
@@ -25,96 +24,92 @@ export const defaultState: EditorState = {
 	cost: 0,
 };
 
-const loadInitialState = (): Record<string, EditorState> => {
-	if (getEnv().isServer) return {};
+const loadInitialState = (): Record<string, State> => {
+	if (persistence.exists(EDITOR.store))
+		return persistence.get<Record<string, State>>(EDITOR.store)!;
 
-	const persistedState = persistence.get(EDITOR.store);
-	if (persistedState) return JSON.parse(persistedState);
-
-	const state = {};
-	persist(state);
-	return state;
+	return persist({});
 };
 
-export const store = new Store<Record<string, EditorState>>(loadInitialState());
+export const store = new Store<Record<string, State>>(loadInitialState());
 store.subscribe(({ currentVal }) => persist(currentVal));
 
-const resetRecord = (id: string | null) =>
+const resetRecord = (key: string | null) =>
 	store.setState((prev) => {
-		if (!id) return {};
+		if (!key) return {};
 
 		return {
 			...prev,
-			[id]: defaultState,
+			[key]: defaultState,
 		};
 	});
 
-const addRecord = (id: string) =>
+const addRecord = (key: string) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: defaultState,
+		[key]: defaultState,
 	}));
 
-const removeRecord = (id: string) =>
+const removeRecord = (key: string) =>
 	store.setState((prev) =>
-		Object.fromEntries(Object.entries(prev).filter((x) => x[0] !== id)),
+		Object.fromEntries(Object.entries(prev).filter((x) => x[0] !== key)),
 	);
 
-const setMaterialId = (id: string, materialId: number) =>
+const setMaterialId = (key: string, materialId: number) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], materialId },
+		[key]: { ...prev[key], materialId },
 	}));
 
-const setColor = (id: string, color: string) =>
+const setColor = (key: string, color: string) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], color },
+		[key]: { ...prev[key], color },
 	}));
 
-const setInfill = (id: string, infill: number) =>
+const setInfill = (key: string, infill: number) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], infill },
+		[key]: { ...prev[key], infill },
 	}));
 
-const setSize = (id: string, size: Ratio) =>
+const setSize = (key: string, size: Ratio) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], size },
+		[key]: { ...prev[key], size },
 	}));
 
-const setScale = (id: string, scale: number) =>
+const setScale = (key: string, scale: number) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], scale },
+		[key]: { ...prev[key], scale },
 	}));
 
-const setWeight = (id: string, weight: number) =>
+const setWeight = (key: string, weight: number) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], weight },
+		[key]: { ...prev[key], weight },
 	}));
 
-const setCost = (id: string, cost: number) =>
+const setCost = (key: string, cost: number) =>
 	store.setState((prev) => ({
 		...prev,
-		[id]: { ...prev[id], cost },
+		[key]: { ...prev[key], cost },
 	}));
 
-export const getActions = (id: string) => ({
+export const getActions = (key: string) => ({
 	record: {
-		add: () => addRecord(id),
-		remove: () => removeRecord(id),
-		reset: () => resetRecord(id),
+		add: () => addRecord(key),
+		remove: () => removeRecord(key),
+		reset: () => resetRecord(key),
 	},
 	set: {
-		materialId: (materialId: number) => setMaterialId(id, materialId),
-		color: (color: string) => setColor(id, color),
-		infill: (infill: number) => setInfill(id, infill),
-		size: (size: Ratio) => setSize(id, size),
-		scale: (scale: number) => setScale(id, scale),
-		weight: (weight: number) => setWeight(id, weight),
-		cost: (cost: number) => setCost(id, cost),
+		materialId: (materialId: number) => setMaterialId(key, materialId),
+		color: (color: string) => setColor(key, color),
+		infill: (infill: number) => setInfill(key, infill),
+		size: (size: Ratio) => setSize(key, size),
+		scale: (scale: number) => setScale(key, scale),
+		weight: (weight: number) => setWeight(key, weight),
+		cost: (cost: number) => setCost(key, cost),
 	},
 });
