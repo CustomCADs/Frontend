@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import child_process from 'child_process';
+import type { UserConfig } from 'vite';
 
-export const readCerts = () => {
+const readCerts = () => {
 	const certPath = 'certs/cert.pem';
 	const certFilePath = path.resolve(__dirname, certPath);
 
@@ -34,4 +35,8 @@ export const readCerts = () => {
 		key: fs.readFileSync(keyFilePath),
 		cert: fs.readFileSync(certFilePath),
 	};
+};
+
+export const server = ({ mode }: { mode: string }): UserConfig['server'] => {
+	if (mode === 'development') return { https: readCerts() };
 };

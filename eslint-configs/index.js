@@ -10,7 +10,7 @@ export const getEslintConfig = (__dirname) => [
 		},
 	},
 	{
-		files: ['**/*.ts', '**/*.tsx'],
+		files: ['src/**/*.ts', 'src/**/*.tsx'],
 		languageOptions: {
 			...languageOptions,
 			parserOptions: {
@@ -22,7 +22,7 @@ export const getEslintConfig = (__dirname) => [
 		rules,
 	},
 	{
-		files: ['vite.config.ts', 'vite.helper.ts'],
+		files: ['vite.config.ts'],
 		languageOptions: {
 			...languageOptions,
 			parserOptions: {
