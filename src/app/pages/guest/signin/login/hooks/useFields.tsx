@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
-import PasswordField from '@/app/components/fields/password';
+import PasswordInput from '@/app/components/fields/password';
 import Error from '@/app/components/fields/error';
 import { useForm } from './useForm';
 
@@ -41,13 +41,10 @@ export const useFields = () => {
 								{tLabels('password')}
 							</Label>
 						</div>
-						<PasswordField
-							api={api}
-							placeholder={tPlaceholders('password')}
-						/>
+						<PasswordInput api={api} />
 						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
 						<Link
-							to='.'
+							to='/forgot-password'
 							className='ml-auto inline-block text-sm underline-offset-4 hover:underline'
 						>
 							{tLabels('forgot-password')}
@@ -81,9 +78,5 @@ export const useFields = () => {
 		),
 	};
 
-	return {
-		fields,
-		error,
-		handleSubmit,
-	};
+	return { fields, error, handleSubmit };
 };

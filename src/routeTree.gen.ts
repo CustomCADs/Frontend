@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as PublicCartRouteImport } from './routes/_public/cart'
+import { Route as GuestResetPasswordRouteImport } from './routes/_guest/reset-password'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
+import { Route as GuestForgotPasswordRouteImport } from './routes/_guest/forgot-password'
 import { Route as PublicGalleryIndexRouteImport } from './routes/_public/gallery/index'
 import { Route as PublicGalleryIdRouteImport } from './routes/_public/gallery/$id'
 import { Route as PublicEditorIdRouteImport } from './routes/_public/editor.$id'
@@ -31,9 +33,19 @@ const PublicCartRoute = PublicCartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuestResetPasswordRoute = GuestResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => GuestRoute,
+} as any)
 const GuestLoginRoute = GuestLoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestForgotPasswordRoute = GuestForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => GuestRoute,
 } as any)
 const PublicGalleryIndexRoute = PublicGalleryIndexRouteImport.update({
@@ -53,7 +65,9 @@ const PublicEditorIdRoute = PublicEditorIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/forgot-password': typeof GuestForgotPasswordRoute
   '/login': typeof GuestLoginRoute
+  '/reset-password': typeof GuestResetPasswordRoute
   '/cart': typeof PublicCartRoute
   '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
@@ -61,7 +75,9 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof PublicGalleryIndexRoute
 }
 export interface FileRoutesByTo {
+  '/forgot-password': typeof GuestForgotPasswordRoute
   '/login': typeof GuestLoginRoute
+  '/reset-password': typeof GuestResetPasswordRoute
   '/cart': typeof PublicCartRoute
   '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
@@ -71,7 +87,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_guest': typeof GuestRouteWithChildren
+  '/_guest/forgot-password': typeof GuestForgotPasswordRoute
   '/_guest/login': typeof GuestLoginRoute
+  '/_guest/reset-password': typeof GuestResetPasswordRoute
   '/_public/cart': typeof PublicCartRoute
   '/_public/': typeof PublicIndexRoute
   '/_public/editor/$id': typeof PublicEditorIdRoute
@@ -81,18 +99,30 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/cart'
     | '/'
     | '/editor/$id'
     | '/gallery/$id'
     | '/gallery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/cart' | '/' | '/editor/$id' | '/gallery/$id' | '/gallery'
+  to:
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/cart'
+    | '/'
+    | '/editor/$id'
+    | '/gallery/$id'
+    | '/gallery'
   id:
     | '__root__'
     | '/_guest'
+    | '/_guest/forgot-password'
     | '/_guest/login'
+    | '/_guest/reset-password'
     | '/_public/cart'
     | '/_public/'
     | '/_public/editor/$id'
@@ -132,11 +162,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicCartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_guest/reset-password': {
+      id: '/_guest/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof GuestResetPasswordRouteImport
+      parentRoute: typeof GuestRoute
+    }
     '/_guest/login': {
       id: '/_guest/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof GuestLoginRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/_guest/forgot-password': {
+      id: '/_guest/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof GuestForgotPasswordRouteImport
       parentRoute: typeof GuestRoute
     }
     '/_public/gallery/': {
@@ -164,11 +208,15 @@ declare module '@tanstack/react-router' {
 }
 
 interface GuestRouteChildren {
+  GuestForgotPasswordRoute: typeof GuestForgotPasswordRoute
   GuestLoginRoute: typeof GuestLoginRoute
+  GuestResetPasswordRoute: typeof GuestResetPasswordRoute
 }
 
 const GuestRouteChildren: GuestRouteChildren = {
+  GuestForgotPasswordRoute: GuestForgotPasswordRoute,
   GuestLoginRoute: GuestLoginRoute,
+  GuestResetPasswordRoute: GuestResetPasswordRoute,
 }
 
 const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
