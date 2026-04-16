@@ -4,7 +4,7 @@ import { useMutation } from '@customcads/react-sdk';
 import * as form from '@/lib/utils/form';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
-import { schema } from '@/app/validators/email';
+import { schema } from '@/app/validators/forgot-password';
 
 export const useForm = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);

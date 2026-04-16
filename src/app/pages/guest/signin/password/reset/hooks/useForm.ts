@@ -5,7 +5,7 @@ import { useMutation } from '@customcads/react-sdk';
 import * as form from '@/lib/utils/form';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
-import { schema } from '@/app/validators/password';
+import { schema } from '@/app/validators/reset-password';
 
 const Route = getRouteApi('/_guest/reset-password');
 

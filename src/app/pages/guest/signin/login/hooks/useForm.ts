@@ -9,14 +9,9 @@ import { useNotificationQueryData } from '@/app/hooks/features/notifications/use
 import { useCartTransfer } from '@/app/hooks/features/carts/useCartTransfer';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
-import { schema } from '@/app/validators/login';
+import { schema, Data } from '@/app/validators/login';
 
-type Fields = {
-	username: string;
-	password: string;
-	rememberMe: boolean;
-};
-const defaultValues: Fields = {
+const defaultValues: Data = {
 	username: '',
 	password: '',
 	rememberMe: false,
