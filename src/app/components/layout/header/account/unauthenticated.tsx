@@ -16,7 +16,7 @@ const Unauthenticated = () => {
 		<CustomIcon
 			key='register'
 			Icon={UserPen}
-			to='.'
+			to='/register'
 			text={tHeader('register')}
 			className={'text-lg hover:text-header-foreground'}
 		/>,

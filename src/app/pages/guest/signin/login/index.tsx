@@ -59,7 +59,7 @@ const Login = () => {
 							{tLogin('register-message')}
 						</span>
 						<br />
-						<Link to='.'>
+						<Link to='/register'>
 							<Button
 								variant='link'
 								className='font-bold underline text-sm'

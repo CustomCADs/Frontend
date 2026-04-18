@@ -1,4 +1,21 @@
-export type PickRole = {
+export type Register = {
+	'google-register': string;
+	'role-title': string;
+	'role-description': string;
+	'profile-title': string;
+	'profile-description': string;
+	'creds-title': string;
+	'creds-description': string;
+	back: string;
+	next: string;
+	submit: string;
+	success: string;
+	'email-waiting': string;
+	'no-received': string;
+	retry: string;
+};
+
+export type ChooseRole = {
 	title: string;
 	'customer-subtitle': string;
 	'customer-plus-1': string;
@@ -8,31 +25,4 @@ export type PickRole = {
 	'contributor-plus-1': string;
 	'contributor-plus-2': string;
 	'contributor-plus-3': string;
-	btn: string;
-};
-
-export type Register = {
-	'go-back': string;
-	'title-customer': string;
-	'title-contributor': string;
-	btn: string;
-	'login-message': string;
-	'resend-message': string;
-	login: string;
-	resend: string;
-	'email-sent': string;
-};
-
-export type ConfirmEmail = {
-	title: string;
-	btn: string;
-	success: string;
-	error: string;
-};
-
-export type RetryConfirmEmail = {
-	title: string;
-	btn: string;
-	success: string;
-	error: string;
 };

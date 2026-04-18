@@ -4,4 +4,5 @@ export default {
 	required: "The field '{{field}}' is required",
 	length: "The length of '{{field}}' must be between {{min}} and {{max}}",
 	pattern: "The field '{{field}}' is not valid",
+	'equal-passwords': 'Passwords must be equal',
 } satisfies Errors;
