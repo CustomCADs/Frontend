@@ -26,3 +26,10 @@ export type ChooseRole = {
 	'contributor-plus-2': string;
 	'contributor-plus-3': string;
 };
+
+export type ConfirmEmail = {
+	title: string;
+	success: string;
+	'success-msg': string;
+	error: string;
+};

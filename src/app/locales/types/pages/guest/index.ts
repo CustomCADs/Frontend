@@ -7,4 +7,5 @@ export type Translations = {
 	'pages.guest.signin.reset': signin.Reset;
 	'pages.guest.signup.register': signup.Register;
 	'pages.guest.signup.role': signup.ChooseRole;
+	'pages.guest.signup.email': signup.ConfirmEmail;
 };
