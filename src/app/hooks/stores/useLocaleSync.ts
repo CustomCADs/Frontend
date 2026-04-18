@@ -17,8 +17,6 @@ export const useLocaleSync = () => {
 	}, []);
 
 	useEffect(() => {
-		if (i18n.language !== locale.language) {
-			updateI18n({ instance: i18n, language: locale.language });
-		}
+		updateI18n({ instance: i18n, language: locale.language });
 	}, [i18n, locale.language]);
 };

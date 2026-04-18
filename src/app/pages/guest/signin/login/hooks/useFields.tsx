@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { Label } from '@/app/components/ui/label';
-import { Input } from '@/app/components/ui/input';
+import FormInput from '@/app/components/fields/input';
 import PasswordInput from '@/app/components/fields/password';
 import Error from '@/app/components/fields/error';
 import { useForm } from './useForm';
@@ -17,14 +17,9 @@ export const useFields = () => {
 				{(api) => (
 					<>
 						<Label htmlFor={api.name}>{tLabels('username')}</Label>
-						<Input
-							id={api.name}
+						<FormInput
+							api={api}
 							type='username'
-							value={api.state.value}
-							onChange={({ target: { value } }) =>
-								api.handleChange(value)
-							}
-							onBlur={api.handleBlur}
 							placeholder={tPlaceholders('username')}
 						/>
 						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
@@ -57,14 +52,13 @@ export const useFields = () => {
 			<form.Field name='rememberMe'>
 				{(api) => (
 					<>
-						<Input
-							id={api.name}
+						<FormInput
+							api={api}
 							type='checkbox'
-							checked={api.state.value}
+							placeholder={tPlaceholders('username')}
 							onChange={({ target: { checked } }) =>
 								api.handleChange(checked)
 							}
-							onBlur={api.handleBlur}
 							className='w-1/10'
 						/>
 						<div className='flex items-center'>

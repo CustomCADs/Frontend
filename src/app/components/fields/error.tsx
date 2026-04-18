@@ -15,9 +15,10 @@ const Error = ({ meta, isSubmitted, hideIfPristine }: Props) => {
 
 	if (!(isSubmitted || shouldShowError)) return;
 
+	const [error] = meta.errors;
 	return (
 		<small className='relative right-0 text-destructive-foreground text-sm'>
-			{meta.errors[0].message}
+			{error.message ?? error[0].message}
 		</small>
 	);
 };

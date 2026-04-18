@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AnyFieldApi } from '@tanstack/react-form';
 import { Eye, EyeOff, LucideIcon } from 'lucide-react';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
-import { Input } from '@/app/components/ui/input';
+import FormInput from './input';
 
 const ToggledIcon = ({ Icon }: { Icon: LucideIcon }) => (
 	<Icon size={22} className='niggers' />
@@ -17,12 +17,9 @@ const PasswordInput = ({ api, placeholder }: Props) => {
 
 	return (
 		<div className='flex items-center gap-x-3'>
-			<Input
-				id={api.name}
+			<FormInput
+				api={api}
 				type={isVisible ? 'text' : 'password'}
-				value={api.state.value}
-				onChange={({ target: { value } }) => api.handleChange(value)}
-				onBlur={api.handleBlur}
 				placeholder={placeholder ?? tPlaceholders('password')}
 			/>
 			<span onClick={toggleVisibility} className='cursor-pointer'>

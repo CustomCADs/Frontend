@@ -94,7 +94,7 @@ code {
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);
     --border: oklch(71.959% 0.01875 285.863);
-    --input: oklch(0.274 0.006 286.033);
+    --input: oklch(0.474 0.006 286.033);
     --input-accent: oklch(91.973% 0.00413 285.946 / 0.366);
     --ring: oklch(0.442 0.017 285.786);
     --shadow: oklch(29.598% 0.01262 285.574);

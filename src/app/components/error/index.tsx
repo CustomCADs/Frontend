@@ -27,7 +27,7 @@ const ErrorPage = ({ status, error }: ErrorPageProps) => {
 			{status === 401 && (
 				<div className='text-lg'>
 					<Link
-						to='.'
+						to='/login'
 						className='text-accent-foreground font-bold transition-colors duration-200'
 					>
 						{tError('login_link')}
