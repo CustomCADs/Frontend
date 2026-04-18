@@ -1,10 +1,11 @@
 import { type MaterialResponse } from '@customcads/react-sdk';
 
-type FormatProps = { material: MaterialResponse; cost?: boolean };
-export const format = ({ material, cost }: FormatProps) => {
+type Props = { material: MaterialResponse; cost?: string };
+export const format = ({ material, cost }: Props) => {
+	const money = cost ?? `${material.cost}€`;
 	const n = material.name;
 	const d = `: ${material.density}g/cm³`;
-	const c = ` (${material.cost}€/kg)`;
+	const c = ` (${money}/kg)`;
 
 	return cost ? n + c + d : n + d;
 };
