@@ -1,6 +1,5 @@
 import { Coins } from 'lucide-react';
 import { CURRENCIES, Currency } from '@customcads/react-sdk';
-import { useDevtoolsTranslations } from '@/app/hooks/locales/translations/common';
 import { useCurrencyStore } from '@/app/hooks/stores/useCurrencyStore';
 import * as currencyStore from '@/app/stores/currency';
 import CustomIcon from '@/app/components/icon';
@@ -12,9 +11,8 @@ const getCurrencySymbol = (currency: Currency) => {
 	return currency === symbol ? null : symbol;
 };
 
-const CurrencySelector = () => {
-	const tDevtools = useDevtoolsTranslations();
-
+type Props = { placeholder?: string };
+export const CurrencySelector = ({ placeholder }: Props) => {
 	const { current } = useCurrencyStore();
 	const symbol = getCurrencySymbol(current);
 
@@ -26,7 +24,7 @@ const CurrencySelector = () => {
 				value: curr,
 				symbol: getCurrencySymbol(curr),
 			}))}
-			placeholder={tDevtools('currency-placeholder')}
+			placeholder={placeholder}
 			trigger={
 				<CustomIcon
 					Icon={Coins}

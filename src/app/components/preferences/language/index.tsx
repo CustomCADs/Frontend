@@ -1,17 +1,14 @@
 import { Globe } from 'lucide-react';
 import { ALLOWED_LANGUAGES, FLAGS } from '@/types/locale';
-import {
-	useDevtoolsTranslations,
-	useLocalesTranslations,
-} from '@/app/hooks/locales/translations/common';
+import { useLocalesTranslations } from '@/app/hooks/locales/translations/common';
 import { useLocaleStore } from '@/app/hooks/stores/useLocaleStore';
 import * as localeStore from '@/app/stores/locale';
 import CustomIcon from '@/app/components/icon';
 import Compobox from './compobox';
 
-const LanguageMenu = () => {
+type Props = { placeholder?: string };
+export const LanguageMenu = ({ placeholder }: Props) => {
 	const { language } = useLocaleStore();
-	const tDevtools = useDevtoolsTranslations();
 	const tLocales = useLocalesTranslations();
 
 	return (
@@ -22,7 +19,7 @@ const LanguageMenu = () => {
 				value: lang,
 				flag: FLAGS[lang],
 			}))}
-			placeholder={tDevtools('language-placeholder')}
+			placeholder={placeholder}
 			trigger={
 				<CustomIcon
 					Icon={Globe}

@@ -10,14 +10,6 @@ export type Empty = {
 	products: string;
 };
 
-export type Devtools = {
-	theme: string;
-	language: string;
-	'language-placeholder': string;
-	currency: string;
-	'currency-placeholder': string;
-};
-
 export type Metrics = {
 	width: string;
 	height: string;

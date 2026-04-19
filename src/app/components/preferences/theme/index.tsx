@@ -4,7 +4,7 @@ import * as themeStore from '@/app/stores/theme';
 import { Switch } from '@/app/components/ui/switch';
 import CustomIcon from '@/app/components/icon';
 
-const ThemeToggle = () => {
+export const ThemeToggle = () => {
 	const { isDarkMode } = useThemeStore();
 
 	return (

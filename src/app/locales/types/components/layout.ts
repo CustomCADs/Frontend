@@ -46,7 +46,7 @@ export type Header = {
 	gallery: string;
 	cart: string;
 	notifications: string;
-	settings: string;
+	preferences: string;
 	account: string;
 	login: string;
 	register: string;

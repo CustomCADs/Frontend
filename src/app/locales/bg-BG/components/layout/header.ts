@@ -33,7 +33,7 @@ export default {
 	cart: 'Количка',
 	notifications: 'Известия',
 	account: 'Акаунт',
-	settings: 'Настройки',
+	preferences: 'Предпочитания',
 	login: 'Влез',
 	register: 'Регистрирай се',
 	logout: 'Излез',

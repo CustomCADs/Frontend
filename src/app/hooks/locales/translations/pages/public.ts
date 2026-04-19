@@ -1,6 +1,6 @@
 import { useTranslation } from '../../useTranslation';
 
-type Info = 'home';
+type Info = 'home' | 'preferences';
 export const useInfoTranslations = <N extends Info>(ns: N) =>
 	useTranslation(`pages.public.info.${ns}`).t;
 

@@ -40,7 +40,7 @@ code {
     --success-foreground: oklch(0.985 0 0);
     --border: oklch(32.897% 0.00004 271.152);
     --input: oklch(32.897% 0.00004 271.152);
-    --input-accent: oklch(91.973% 0.00413 285.946 / 0.366);
+    --input-accent: oklch(65.823% 0.00739 286.052 / 0.366);
     --ring: oklch(0.871 0.006 286.286);
     --shadow: oklch(20.505% 0.00198 286.056 / 0.765);
     --unread: oklch(77.464% 0.1392 228.017);

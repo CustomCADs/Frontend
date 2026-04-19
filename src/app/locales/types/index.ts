@@ -7,7 +7,6 @@ export type CommonTranslations = {
 	'common.metrics': common.Metrics;
 	'common.loading': common.Loading;
 	'common.empty': common.Empty;
-	'common.devtools': common.Devtools;
 	'common.errors': common.Errors;
 };
 

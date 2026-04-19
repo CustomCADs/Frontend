@@ -9,7 +9,7 @@ const Mobile = () => {
 
 	return (
 		<SidebarProvider>
-			<Navbar is={is} />
+			<Navbar />
 			<Sidebar
 				main={navs.main}
 				collections={navs.getCollections(is)}

@@ -1,7 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Settings2 } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import CustomIcon from '@/app/components/icon';
 import Account from '../account';
 import {
 	SidebarGroup,
@@ -39,14 +37,6 @@ const NavSecondary = ({
 							)}
 						</SidebarMenuItem>
 					))}
-					<SidebarMenuButton>
-						<CustomIcon
-							Icon={Settings2}
-							to='.'
-							text={tHeader('settings')}
-							className='text-lg hover:text-header-foreground'
-						/>
-					</SidebarMenuButton>
 					<Account />
 				</SidebarMenu>
 			</SidebarGroupContent>
