@@ -1,39 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as src from '../form';
 
 describe('Form utility tests', () => {
-	describe('Equality Helper', () => {
-		let helper: ReturnType<typeof src.equalityHelper>;
-
-		beforeEach(() => {
-			helper = src.equalityHelper();
-		});
-
-		it('sync method should return true', () => {
-			// Arrange
-			// Act
-			const result = helper.sync('test');
-
-			// Assert
-			expect(result).toBe(true);
-		});
-
-		it.each([{ input: 'test' }, { input: 'different' }])(
-			'check method should return correctly when input is $input',
-			({ input }) => {
-				// Arrange
-				const expected = 'test';
-				helper.sync(expected);
-
-				// Act
-				const result = helper.check(input);
-
-				// Assert
-				expect(result).toBe(input === expected);
-			},
-		);
-	});
-
 	describe('File Helper', () => {
 		it('returns false for empty file', () => {
 			// Arrange

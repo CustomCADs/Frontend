@@ -1,16 +1,29 @@
-export const equalityHelper = () => {
-	let holder = '';
+import { Translators } from '@/app/types/schema';
+import z from 'zod';
 
-	const sync = (x: string) => {
-		holder = x;
-		return true;
-	};
-
-	const check = (x: string) => {
-		return holder === x;
-	};
-
-	return { sync, check };
+export const zodHelpers = {
+	emptyOrLength: (args: { min: number; max: number }, error: string) =>
+		z
+			.string()
+			.refine(
+				(x) =>
+					x === '' || (x.length >= args.min && x.length <= args.max),
+				{ error },
+			),
+	passwordEquality: <
+		TShape extends {
+			password: z.ZodString;
+			confirmPassword: z.ZodString;
+		},
+	>(
+		object: z.ZodObject<TShape>,
+		tErrors: Translators['tErrors'],
+	) =>
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		object.refine((data: any) => data.password === data.confirmPassword, {
+			error: tErrors('equal-passwords'),
+			path: ['confirmPassword'],
+		}),
 };
 
 export const fileHelper = (file: File) => file.size > 0;

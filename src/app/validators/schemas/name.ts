@@ -1,6 +1,7 @@
 import z from 'zod';
 import { Translators } from '@/app/types/schema';
 import { USERS as VALIDATIONS } from '@/app/constants/validations';
+import { zodHelpers } from '@/lib/utils/form';
 
 type Props = Translators;
 export const schema = ({ tErrors, tLabels }: Props) => {
@@ -32,23 +33,13 @@ export const schema = ({ tErrors, tLabels }: Props) => {
 			.min(args.username.min, {
 				message: tErrors('length', args.username),
 			}),
-		firstName: z
-			.string()
-			.nonempty({ message: tErrors('required', args.firstName) })
-			.max(args.firstName.max, {
-				message: tErrors('length', args.firstName),
-			})
-			.min(args.firstName.min, {
-				message: tErrors('length', args.firstName),
-			}),
-		lastName: z
-			.string()
-			.nonempty({ message: tErrors('required', args.lastName) })
-			.max(args.lastName.max, {
-				message: tErrors('length', args.lastName),
-			})
-			.min(args.lastName.min, {
-				message: tErrors('length', args.lastName),
-			}),
+		firstName: zodHelpers.emptyOrLength(
+			args.firstName,
+			tErrors('length', args.firstName),
+		),
+		lastName: zodHelpers.emptyOrLength(
+			args.lastName,
+			tErrors('length', args.lastName),
+		),
 	};
 };
