@@ -7,4 +7,5 @@ export type Translations = {
 	'components.form.labels': form.Labels;
 	'components.form.placeholders': form.Placeholders;
 	'components.form.errors': form.Errors;
+	'components.form.state': form.State;
 };

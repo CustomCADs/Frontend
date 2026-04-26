@@ -9,19 +9,20 @@ import {
 	CardTitle,
 } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
+import Alert from '@/app/components/alert';
 import * as page from '@/app/utils/page';
 import { useFields } from './hooks/useFields';
 
 const ForgotPassword = () => {
-	const { fields, error, isSubmitted, handleSubmit } = useFields();
+	const { fields, error, isSuccess, handleSubmit } = useFields();
 	const tForgot = useSigninTranslations('reset');
 
 	return (
 		<div className={cn(page.className, 'animate-fade-in delay-400')}>
-			<form onSubmit={handleSubmit}>
-				<Card className='bg-card border-border border-2 shadow-shadow shadow-xl/100 transition-colors duration-600'>
+			<form onSubmit={handleSubmit} className='min-w-1/3'>
+				<Card className='py-15 px-8 bg-card border-border border-2 shadow-shadow shadow-xl/100 transition-colors duration-600'>
 					<CardHeader>
-						<CardTitle className='text-center'>
+						<CardTitle className='md:text-lg text-center'>
 							{tForgot('title')}
 						</CardTitle>
 						<CardDescription className='text-center'>
@@ -35,18 +36,12 @@ const ForgotPassword = () => {
 							</div>
 						</div>
 					</CardContent>
-					<CardFooter className='flex-col gap-3.5'>
-						{error && (
-							<span className='text-sm font-bold text-destructive mt-2'>
-								{error}
-							</span>
-						)}
+					<CardFooter className='flex flex-col gap-3.5'>
 						<Button className='w-full'>{tForgot('button')}</Button>
-						{isSubmitted && !error && (
-							<span className='text-lg font-extrabold mt-2'>
-								{tForgot('message')}
-							</span>
-						)}
+						<Alert
+							success={isSuccess && tForgot('message')}
+							error={error}
+						/>
 					</CardFooter>
 				</Card>
 			</form>

@@ -15,7 +15,6 @@ import { Route as PublicCartRouteImport } from './routes/_public/cart'
 import { Route as GuestResetPasswordRouteImport } from './routes/_guest/reset-password'
 import { Route as GuestRegisterRouteImport } from './routes/_guest/register'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
-import { Route as GuestForgotPasswordRouteImport } from './routes/_guest/forgot-password'
 import { Route as GuestConfirmEmailRouteImport } from './routes/_guest/confirm-email'
 import { Route as PublicGalleryIndexRouteImport } from './routes/_public/gallery/index'
 import { Route as PublicGalleryIdRouteImport } from './routes/_public/gallery/$id'
@@ -50,11 +49,6 @@ const GuestLoginRoute = GuestLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => GuestRoute,
 } as any)
-const GuestForgotPasswordRoute = GuestForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
-  getParentRoute: () => GuestRoute,
-} as any)
 const GuestConfirmEmailRoute = GuestConfirmEmailRouteImport.update({
   id: '/confirm-email',
   path: '/confirm-email',
@@ -78,7 +72,6 @@ const PublicEditorIdRoute = PublicEditorIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/confirm-email': typeof GuestConfirmEmailRoute
-  '/forgot-password': typeof GuestForgotPasswordRoute
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/reset-password': typeof GuestResetPasswordRoute
@@ -90,7 +83,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/confirm-email': typeof GuestConfirmEmailRoute
-  '/forgot-password': typeof GuestForgotPasswordRoute
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/reset-password': typeof GuestResetPasswordRoute
@@ -104,7 +96,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_guest': typeof GuestRouteWithChildren
   '/_guest/confirm-email': typeof GuestConfirmEmailRoute
-  '/_guest/forgot-password': typeof GuestForgotPasswordRoute
   '/_guest/login': typeof GuestLoginRoute
   '/_guest/register': typeof GuestRegisterRoute
   '/_guest/reset-password': typeof GuestResetPasswordRoute
@@ -118,7 +109,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/confirm-email'
-    | '/forgot-password'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -130,7 +120,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/confirm-email'
-    | '/forgot-password'
     | '/login'
     | '/register'
     | '/reset-password'
@@ -143,7 +132,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_guest'
     | '/_guest/confirm-email'
-    | '/_guest/forgot-password'
     | '/_guest/login'
     | '/_guest/register'
     | '/_guest/reset-password'
@@ -207,13 +195,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestLoginRouteImport
       parentRoute: typeof GuestRoute
     }
-    '/_guest/forgot-password': {
-      id: '/_guest/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof GuestForgotPasswordRouteImport
-      parentRoute: typeof GuestRoute
-    }
     '/_guest/confirm-email': {
       id: '/_guest/confirm-email'
       path: '/confirm-email'
@@ -247,7 +228,6 @@ declare module '@tanstack/react-router' {
 
 interface GuestRouteChildren {
   GuestConfirmEmailRoute: typeof GuestConfirmEmailRoute
-  GuestForgotPasswordRoute: typeof GuestForgotPasswordRoute
   GuestLoginRoute: typeof GuestLoginRoute
   GuestRegisterRoute: typeof GuestRegisterRoute
   GuestResetPasswordRoute: typeof GuestResetPasswordRoute
@@ -255,7 +235,6 @@ interface GuestRouteChildren {
 
 const GuestRouteChildren: GuestRouteChildren = {
   GuestConfirmEmailRoute: GuestConfirmEmailRoute,
-  GuestForgotPasswordRoute: GuestForgotPasswordRoute,
   GuestLoginRoute: GuestLoginRoute,
   GuestRegisterRoute: GuestRegisterRoute,
   GuestResetPasswordRoute: GuestResetPasswordRoute,

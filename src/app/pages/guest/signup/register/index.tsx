@@ -9,8 +9,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/app/components/ui/card';
-import { Error } from '@/app/components/form/error';
 import MultiStepForm from '@/app/components/form/multi-step';
+import Alert from '@/app/components/alert';
 import * as page from '@/app/utils/page';
 import { useForm } from './hooks/useForm';
 import RetryEmail from './retry-email';
@@ -60,14 +60,17 @@ const Register = () => {
 						}}
 						onSubmit={handleSubmit}
 					>
-						<SSO role={values.role} show={current.key !== 'role'}>
+						<SSO
+							role={values.role}
+							show={current.key === 'profile'}
+						>
 							<Step step={current.key} {...rest} />
 						</SSO>
 					</MultiStepForm>
 				</CardContent>
 				<CardFooter className='flex-col'>
 					{rest.isSuccess && <RetryEmail data={values} />}
-					{rest.error && <Error message={rest.error} />}
+					<Alert success={false} error={rest.error} />
 				</CardFooter>
 			</Card>
 		</div>

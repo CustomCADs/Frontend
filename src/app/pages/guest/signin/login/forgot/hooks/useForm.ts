@@ -1,29 +1,25 @@
 import { useState } from 'react';
-import { getRouteApi } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation } from '@customcads/react-sdk';
 import * as form from '@/lib/utils/form';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
-import { schema } from '@/app/validators/reset-password';
-
-const Route = getRouteApi('/_guest/reset-password');
+import { schema } from '@/app/validators/forgot-password';
 
 export const useForm = () => {
-	const { email, token } = Route.useSearch();
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
-	const { mutateAsync: resetPassword, error } = useMutation(
-		({ identity }) => identity.resetPassword,
+	const { mutateAsync: sendEmail, ...mutation } = useMutation(
+		({ identity }) => identity.forgotPassword,
 	);
 
 	const tErrors = useFormTranslations('errors');
 	const tLabels = useFormTranslations('labels');
 
 	const formApi = useTanStackForm({
-		defaultValues: { password: '' },
+		defaultValues: { email: '' },
 		onSubmit: async ({ value }) => {
-			await resetPassword({ email, token, newPassword: value.password });
+			await sendEmail({ email: value.email });
 		},
 		validators: {
 			onChange: schema({ tErrors, tLabels }),
@@ -33,11 +29,12 @@ export const useForm = () => {
 
 	return {
 		form: formApi,
-		error: form.extractError(error as unknown),
+		error: form.extractError(mutation.error as unknown),
 		handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
 			setIsSubmitted(true);
 			return form.handleSubmit(e, formApi.handleSubmit);
 		},
+		isSuccess: mutation.isSuccess,
 		isSubmitted,
 	};
 };

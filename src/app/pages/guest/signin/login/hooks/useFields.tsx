@@ -1,4 +1,3 @@
-import { Link } from '@tanstack/react-router';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { Label } from '@/app/components/ui/label';
 import FormInput from '@/app/components/fields/input';
@@ -38,12 +37,6 @@ export const useFields = () => {
 						</div>
 						<PasswordInput api={api} />
 						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
-						<Link
-							to='/forgot-password'
-							className='ml-auto inline-block text-sm underline-offset-4 hover:underline'
-						>
-							{tLabels('forgot-password')}
-						</Link>
 					</>
 				)}
 			</form.Field>

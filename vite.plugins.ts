@@ -31,7 +31,7 @@ const tanStackStartPlugin = ({ mode }: { mode: string }) =>
 				sitemap: { exclude: true },
 			},
 			{
-				path: '/forgot-password',
+				path: '/register',
 				prerender: { enabled: false, crawlLinks: false },
 				sitemap: { exclude: true },
 			},

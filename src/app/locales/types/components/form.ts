@@ -26,3 +26,8 @@ export type Placeholders = {
 	password: string;
 	'confirm-password': string;
 };
+
+export type State = {
+	success: string;
+	error: string;
+};

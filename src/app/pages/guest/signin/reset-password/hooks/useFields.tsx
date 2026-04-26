@@ -7,12 +7,12 @@ import { useForm } from './useForm';
 export const useFields = () => {
 	const tLabels = useFormTranslations('labels');
 
-	const { form, error, isSubmitted, handleSubmit } = useForm();
+	const { form, error, isSubmitted, isSuccess, handleSubmit } = useForm();
 	const fields = {
 		Password: () => (
 			<form.Field name='password'>
 				{(api) => (
-					<>
+					<div className='grid gap-2 mb-6'>
 						<div className='flex items-center'>
 							<Label htmlFor={api.name}>
 								{tLabels('password')}
@@ -20,11 +20,11 @@ export const useFields = () => {
 						</div>
 						<PasswordInput api={api} />
 						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
-					</>
+					</div>
 				)}
 			</form.Field>
 		),
 	};
 
-	return { fields, error, isSubmitted, handleSubmit };
+	return { fields, error, isSuccess, handleSubmit };
 };

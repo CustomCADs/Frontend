@@ -13,6 +13,7 @@ import { Error } from '@/app/components/form/error';
 import GoogleSSO from '@/app/components/sso/google';
 import * as page from '@/app/utils/page';
 import { useFields } from './hooks/useFields';
+import ForgotPasswordDialog from './forgot/dialog';
 
 const Login = () => {
 	const { fields, error, handleSubmit } = useFields();
@@ -37,6 +38,7 @@ const Login = () => {
 							</div>
 							<div className='grid gap-2 mb-4'>
 								<fields.Password />
+								<ForgotPasswordDialog />
 							</div>
 						</div>
 					</CardContent>

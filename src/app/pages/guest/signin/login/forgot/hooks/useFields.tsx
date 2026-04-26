@@ -8,7 +8,7 @@ export const useFields = () => {
 	const tLabels = useFormTranslations('labels');
 	const tPlaceholders = useFormTranslations('placeholders');
 
-	const { form, error, isSubmitted, handleSubmit } = useForm();
+	const { form, error, isSubmitted, isSuccess, handleSubmit } = useForm();
 	const fields = {
 		Email: () => (
 			<form.Field name='email'>
@@ -33,5 +33,5 @@ export const useFields = () => {
 		),
 	};
 
-	return { fields, error, isSubmitted, handleSubmit };
+	return { fields, error, isSuccess, handleSubmit };
 };
