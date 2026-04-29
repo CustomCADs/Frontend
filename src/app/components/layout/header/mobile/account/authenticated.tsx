@@ -12,7 +12,7 @@ const Authenticated = () => {
 		<SidebarMenuButton key='account'>
 			<CustomIcon
 				Icon={UserCircle}
-				to='.'
+				to='/account'
 				text={tHeader('account')}
 				size={20}
 				className='text-lg hover:text-header-foreground'

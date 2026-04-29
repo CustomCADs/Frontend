@@ -9,9 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrivateRouteImport } from './routes/_private'
 import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as PublicCartRouteImport } from './routes/_public/cart'
+import { Route as PrivateAccountRouteImport } from './routes/_private/account'
 import { Route as GuestResetPasswordRouteImport } from './routes/_guest/reset-password'
 import { Route as GuestRegisterRouteImport } from './routes/_guest/register'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
@@ -20,6 +22,10 @@ import { Route as PublicGalleryIndexRouteImport } from './routes/_public/gallery
 import { Route as PublicGalleryIdRouteImport } from './routes/_public/gallery/$id'
 import { Route as PublicEditorIdRouteImport } from './routes/_public/editor.$id'
 
+const PrivateRoute = PrivateRouteImport.update({
+  id: '/_private',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuestRoute = GuestRouteImport.update({
   id: '/_guest',
   getParentRoute: () => rootRouteImport,
@@ -33,6 +39,11 @@ const PublicCartRoute = PublicCartRouteImport.update({
   id: '/_public/cart',
   path: '/cart',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateAccountRoute = PrivateAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => PrivateRoute,
 } as any)
 const GuestResetPasswordRoute = GuestResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -75,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/reset-password': typeof GuestResetPasswordRoute
+  '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
   '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
@@ -86,6 +98,7 @@ export interface FileRoutesByTo {
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/reset-password': typeof GuestResetPasswordRoute
+  '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
   '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
@@ -95,10 +108,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_guest': typeof GuestRouteWithChildren
+  '/_private': typeof PrivateRouteWithChildren
   '/_guest/confirm-email': typeof GuestConfirmEmailRoute
   '/_guest/login': typeof GuestLoginRoute
   '/_guest/register': typeof GuestRegisterRoute
   '/_guest/reset-password': typeof GuestResetPasswordRoute
+  '/_private/account': typeof PrivateAccountRoute
   '/_public/cart': typeof PublicCartRoute
   '/_public/': typeof PublicIndexRoute
   '/_public/editor/$id': typeof PublicEditorIdRoute
@@ -112,6 +127,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/reset-password'
+    | '/account'
     | '/cart'
     | '/'
     | '/editor/$id'
@@ -123,6 +139,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/reset-password'
+    | '/account'
     | '/cart'
     | '/'
     | '/editor/$id'
@@ -131,10 +148,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_guest'
+    | '/_private'
     | '/_guest/confirm-email'
     | '/_guest/login'
     | '/_guest/register'
     | '/_guest/reset-password'
+    | '/_private/account'
     | '/_public/cart'
     | '/_public/'
     | '/_public/editor/$id'
@@ -144,6 +163,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   GuestRoute: typeof GuestRouteWithChildren
+  PrivateRoute: typeof PrivateRouteWithChildren
   PublicCartRoute: typeof PublicCartRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicEditorIdRoute: typeof PublicEditorIdRoute
@@ -153,6 +173,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_private': {
+      id: '/_private'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof PrivateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_guest': {
       id: '/_guest'
       path: ''
@@ -173,6 +200,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/cart'
       preLoaderRoute: typeof PublicCartRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_private/account': {
+      id: '/_private/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof PrivateAccountRouteImport
+      parentRoute: typeof PrivateRoute
     }
     '/_guest/reset-password': {
       id: '/_guest/reset-password'
@@ -242,8 +276,20 @@ const GuestRouteChildren: GuestRouteChildren = {
 
 const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
 
+interface PrivateRouteChildren {
+  PrivateAccountRoute: typeof PrivateAccountRoute
+}
+
+const PrivateRouteChildren: PrivateRouteChildren = {
+  PrivateAccountRoute: PrivateAccountRoute,
+}
+
+const PrivateRouteWithChildren =
+  PrivateRoute._addFileChildren(PrivateRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   GuestRoute: GuestRouteWithChildren,
+  PrivateRoute: PrivateRouteWithChildren,
   PublicCartRoute: PublicCartRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicEditorIdRoute: PublicEditorIdRoute,

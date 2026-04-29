@@ -8,7 +8,7 @@ const Authenticated = () => {
 	const handleLogout = useLogout();
 
 	return [
-		<CustomIcon key='account' Icon={UserCircle} to='.' />,
+		<CustomIcon key='account' Icon={UserCircle} to='/account' />,
 		<CustomIcon
 			key='logout'
 			Icon={LogOut}
