@@ -17,3 +17,7 @@ const parseCookie = <TState>(cookie: string | null): TState | null => {
 export const exists = (key: string) => getCookie(key) !== undefined;
 export const get = <TState = string>(key: string) =>
 	parseCookie<TState>(getCookie(key) ?? null);
+
+export const getAll = createIsomorphicFn()
+	.client(() => document.cookie)
+	.server(() => server.getRequestHeader('cookie') ?? '');
