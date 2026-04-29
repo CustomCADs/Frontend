@@ -1,7 +1,7 @@
 import * as signin from './signin';
 import * as signup from './signup';
 
-export type Translations = {
+export type Guest = {
 	'pages.guest.signin.login': signin.Login;
 	'pages.guest.signin.forgot': signin.Forgot;
 	'pages.guest.signin.reset': signin.Reset;

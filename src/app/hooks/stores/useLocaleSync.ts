@@ -19,4 +19,6 @@ export const useLocaleSync = () => {
 	useEffect(() => {
 		updateI18n({ instance: i18n, language: locale.language });
 	}, [i18n, locale.language]);
+
+	updateI18n({ instance: i18n, language: locale.language });
 };

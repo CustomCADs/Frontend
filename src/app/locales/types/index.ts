@@ -1,8 +1,8 @@
-import { Translations as PagesTranslations } from './pages';
-import { Translations as ComponentsTranslations } from './components';
+import { Pages } from './pages';
+import { Components } from './components';
 import * as common from './common';
 
-export type CommonTranslations = {
+export type Common = {
 	'common.locales': common.Locales;
 	'common.metrics': common.Metrics;
 	'common.loading': common.Loading;
@@ -10,6 +10,4 @@ export type CommonTranslations = {
 	'common.errors': common.Errors;
 };
 
-export type Translations = PagesTranslations &
-	ComponentsTranslations &
-	CommonTranslations;
+export type Translations = Pages & Components & Common;
