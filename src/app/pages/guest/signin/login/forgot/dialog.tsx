@@ -1,4 +1,4 @@
-import { useFormTranslations } from '@/app/hooks/locales/translations/components';
+import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import {
 	Dialog,
 	DialogTrigger,
@@ -7,13 +7,13 @@ import {
 import ForgotPassword from '.';
 
 const ForgotPasswordDialog = () => {
-	const tLabels = useFormTranslations('labels');
+	const tLogin = useSigninTranslations('login');
 
 	return (
 		<Dialog>
 			<DialogTrigger className='justify-self-end'>
 				<span className='text-sm underline-offset-4 hover:underline'>
-					{tLabels('forgot-password')}
+					{tLogin('forgot-password')}
 				</span>
 			</DialogTrigger>
 			<DialogContent className='bg-card' autoFocus={false}>

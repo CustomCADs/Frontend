@@ -11,8 +11,8 @@ import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/gu
 
 const defaultValues: Data = {
 	role: 'Customer',
-	firstName: '',
-	lastName: '',
+	firstName: undefined,
+	lastName: undefined,
 	username: '',
 	email: '',
 	password: '',

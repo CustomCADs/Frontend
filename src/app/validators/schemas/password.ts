@@ -11,7 +11,7 @@ export const schema = ({ tErrors, tLabels }: Props) => {
 			max: VALIDATIONS.password.max,
 		},
 		confirmPassword: {
-			field: tLabels('confirm-password'),
+			field: tLabels('confirmPassword'),
 			min: VALIDATIONS.password.min,
 			max: VALIDATIONS.password.max,
 		},

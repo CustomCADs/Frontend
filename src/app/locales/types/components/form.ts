@@ -12,9 +12,8 @@ export type Labels = {
 	username: string;
 	email: string;
 	password: string;
-	'confirm-password': string;
-	'remember-me': string;
-	'forgot-password': string;
+	confirmPassword: string;
+	rememberMe: string;
 };
 
 export type Placeholders = {

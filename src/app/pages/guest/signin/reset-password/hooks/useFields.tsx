@@ -1,30 +1,21 @@
-import { useFormTranslations } from '@/app/hooks/locales/translations/components';
-import { Label } from '@/app/components/ui/label';
-import PasswordInput from '@/app/components/fields/password';
-import Error from '@/app/components/fields/error';
+import FormField from '@/app/components/fields/field';
 import { useForm } from './useForm';
 
 export const useFields = () => {
-	const tLabels = useFormTranslations('labels');
+	const { form, isSubmitted, ...rest } = useForm();
 
-	const { form, error, isSubmitted, isSuccess, handleSubmit } = useForm();
 	const fields = {
 		Password: () => (
 			<form.Field name='password'>
-				{(api) => (
-					<div className='grid gap-2 mb-6'>
-						<div className='flex items-center'>
-							<Label htmlFor={api.name}>
-								{tLabels('password')}
-							</Label>
-						</div>
-						<PasswordInput api={api} />
-						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
-					</div>
-				)}
+				{(api) => <FormField api={api} isSubmitted={isSubmitted} />}
+			</form.Field>
+		),
+		ConfirmPassword: () => (
+			<form.Field name='confirmPassword'>
+				{(api) => <FormField api={api} isSubmitted={isSubmitted} />}
 			</form.Field>
 		),
 	};
 
-	return { fields, error, isSuccess, handleSubmit };
+	return { fields, ...rest };
 };

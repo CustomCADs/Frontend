@@ -5,9 +5,13 @@ export const zodHelpers = {
 	emptyOrLength: (args: { min: number; max: number }, error: string) =>
 		z
 			.string()
+			.optional()
 			.refine(
-				(x) =>
-					x === '' || (x.length >= args.min && x.length <= args.max),
+				(x) => {
+					if (!x) return true;
+
+					return x.length >= args.min && x.length <= args.max;
+				},
 				{ error },
 			),
 	passwordEquality: <
@@ -29,18 +33,8 @@ export const zodHelpers = {
 export const fileHelper = (file: File) => file.size > 0;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const extractError = (error: any) => {
-	const data = error?.response?.data;
-
-	if (data?.detail) return data.detail as string;
-	if (data?.message) {
-		const errors = data?.errors as Record<string, string[]>;
-
-		return Object.entries(errors)
-			.map(([, y]) => y.join('; '))
-			.join('\n');
-	}
-};
+export const extractError = (error: any) =>
+	error?.response?.data?.detail as string;
 
 export const doFieldsHaveErrors = <TValues, TKeys = keyof TValues>(
 	getErrors: (field: TKeys) => { errors: unknown[] },

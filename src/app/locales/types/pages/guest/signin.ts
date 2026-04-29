@@ -5,6 +5,7 @@ export type Login = {
 	'google-login': string;
 	'register-message': string;
 	register: string;
+	'forgot-password': string;
 };
 
 export type Forgot = {

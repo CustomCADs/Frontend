@@ -34,6 +34,9 @@ const ForgotPassword = () => {
 							<div className='grid gap-2 mb-6'>
 								<fields.Password />
 							</div>
+							<div className='grid gap-2 mb-6'>
+								<fields.ConfirmPassword />
+							</div>
 						</div>
 					</CardContent>
 					<CardFooter className='flex flex-col gap-3.5'>

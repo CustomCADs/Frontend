@@ -7,7 +7,6 @@ export default {
 	username: 'Потребителско име',
 	email: 'Имейл',
 	password: 'Парола',
-	'confirm-password': 'Потвърдете Паролата',
-	'forgot-password': 'Забравихте паролата си?',
-	'remember-me': 'Запомни ме',
+	confirmPassword: 'Потвърдете Паролата',
+	rememberMe: 'Запомни ме',
 } satisfies Labels;

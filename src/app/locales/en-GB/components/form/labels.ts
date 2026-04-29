@@ -7,7 +7,6 @@ export default {
 	username: 'Username',
 	email: 'Email',
 	password: 'Password',
-	'confirm-password': 'Confirm Password',
-	'forgot-password': 'Forgot your password?',
-	'remember-me': 'Remember me',
+	confirmPassword: 'Confirm Password',
+	rememberMe: 'Remember me',
 } satisfies Labels;

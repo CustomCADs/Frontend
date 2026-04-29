@@ -21,7 +21,7 @@ export const useForm = () => {
 	const tLabels = useFormTranslations('labels');
 
 	const formApi = useTanStackForm({
-		defaultValues: { password: '' },
+		defaultValues: { password: '', confirmPassword: '' },
 		onSubmit: async ({ value }) => {
 			await resetPassword({ email, token, newPassword: value.password });
 		},
