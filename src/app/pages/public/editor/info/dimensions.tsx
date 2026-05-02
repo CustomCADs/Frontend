@@ -1,12 +1,12 @@
 import type { Distance } from '@/types/units';
 import * as units from '@/lib/utils/units';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
-import { useMetricsTranslation } from '@/app/hooks/locales/translations/common';
+import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
 import * as calculate3D from '@/app/utils/calculate-3D';
 
 type Props = { id: string; volume: number; distance: Distance };
 const DimensionsInfo = ({ id, volume, distance }: Props) => {
-	const tMetrics = useMetricsTranslation();
+	const tMetrics = useCommonTranslations('metrics');
 	const scale = useEditorStore(id, (state) => state.scale);
 
 	const size = useEditorStore(id, (state) => state.size);
