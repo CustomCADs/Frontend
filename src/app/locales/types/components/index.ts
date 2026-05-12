@@ -4,6 +4,7 @@ import * as form from './form';
 export type Components = {
 	'components.layout.header': layout.Header;
 	'components.layout.footer': layout.Footer;
+	'components.layout.ui': layout.Ui;
 	'components.form.labels': form.Labels;
 	'components.form.placeholders': form.Placeholders;
 	'components.form.errors': form.Errors;

@@ -1,7 +1,7 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils/tailwindcss';
-import { useCommonTranslations } from '@/app/hooks/locales/translations/pages/private/common';
+import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import Tabs from '@/app/components/tabs';
 import * as page from '@/app/utils/page';
 import { View, Edit, Data } from './panels/index';
@@ -19,7 +19,7 @@ const MyAccount = () => {
 	const query = useQuery(({ identity }) => identity.myAccount);
 
 	const account = query.data ?? loader.account;
-	const tAccount = useCommonTranslations('account');
+	const tAccount = usePrivateTranslations('account');
 
 	const labels: Record<Tab, string> = {
 		view: tAccount('view'),

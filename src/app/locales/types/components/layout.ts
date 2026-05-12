@@ -5,6 +5,11 @@ export type Footer = {
 	'customer-support': string;
 };
 
+export type Ui = {
+	'clipboard-label': string;
+	'clipboard-message': string;
+};
+
 export type Header = {
 	useful: string;
 	'services-info': string;
