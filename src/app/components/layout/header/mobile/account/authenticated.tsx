@@ -6,7 +6,7 @@ import { SidebarMenuButton } from '@/app/components/ui/sidebar';
 
 const Authenticated = () => {
 	const tHeader = useLayoutTranslations('header');
-	const handleLogout = useLogout();
+	const { logout } = useLogout();
 
 	return [
 		<SidebarMenuButton key='account'>
@@ -18,7 +18,7 @@ const Authenticated = () => {
 				className='text-lg hover:text-header-foreground'
 			/>
 		</SidebarMenuButton>,
-		<SidebarMenuButton key='logout' onClick={handleLogout}>
+		<SidebarMenuButton key='logout' onClick={logout}>
 			<CustomIcon
 				Icon={LogOut}
 				text={tHeader('logout')}

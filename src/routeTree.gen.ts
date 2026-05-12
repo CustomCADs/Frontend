@@ -12,9 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PrivateRouteImport } from './routes/_private'
 import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as SharedResetPasswordRouteImport } from './routes/_shared/reset-password'
 import { Route as PublicCartRouteImport } from './routes/_public/cart'
 import { Route as PrivateAccountRouteImport } from './routes/_private/account'
-import { Route as GuestResetPasswordRouteImport } from './routes/_guest/reset-password'
 import { Route as GuestRegisterRouteImport } from './routes/_guest/register'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
 import { Route as GuestConfirmEmailRouteImport } from './routes/_guest/confirm-email'
@@ -35,6 +35,11 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SharedResetPasswordRoute = SharedResetPasswordRouteImport.update({
+  id: '/_shared/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicCartRoute = PublicCartRouteImport.update({
   id: '/_public/cart',
   path: '/cart',
@@ -44,11 +49,6 @@ const PrivateAccountRoute = PrivateAccountRouteImport.update({
   id: '/account',
   path: '/account',
   getParentRoute: () => PrivateRoute,
-} as any)
-const GuestResetPasswordRoute = GuestResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => GuestRoute,
 } as any)
 const GuestRegisterRoute = GuestRegisterRouteImport.update({
   id: '/register',
@@ -85,9 +85,9 @@ export interface FileRoutesByFullPath {
   '/confirm-email': typeof GuestConfirmEmailRoute
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
-  '/reset-password': typeof GuestResetPasswordRoute
   '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
+  '/reset-password': typeof SharedResetPasswordRoute
   '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
   '/gallery/$id': typeof PublicGalleryIdRoute
@@ -97,9 +97,9 @@ export interface FileRoutesByTo {
   '/confirm-email': typeof GuestConfirmEmailRoute
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
-  '/reset-password': typeof GuestResetPasswordRoute
   '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
+  '/reset-password': typeof SharedResetPasswordRoute
   '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
   '/gallery/$id': typeof PublicGalleryIdRoute
@@ -112,9 +112,9 @@ export interface FileRoutesById {
   '/_guest/confirm-email': typeof GuestConfirmEmailRoute
   '/_guest/login': typeof GuestLoginRoute
   '/_guest/register': typeof GuestRegisterRoute
-  '/_guest/reset-password': typeof GuestResetPasswordRoute
   '/_private/account': typeof PrivateAccountRoute
   '/_public/cart': typeof PublicCartRoute
+  '/_shared/reset-password': typeof SharedResetPasswordRoute
   '/_public/': typeof PublicIndexRoute
   '/_public/editor/$id': typeof PublicEditorIdRoute
   '/_public/gallery/$id': typeof PublicGalleryIdRoute
@@ -126,9 +126,9 @@ export interface FileRouteTypes {
     | '/confirm-email'
     | '/login'
     | '/register'
-    | '/reset-password'
     | '/account'
     | '/cart'
+    | '/reset-password'
     | '/'
     | '/editor/$id'
     | '/gallery/$id'
@@ -138,9 +138,9 @@ export interface FileRouteTypes {
     | '/confirm-email'
     | '/login'
     | '/register'
-    | '/reset-password'
     | '/account'
     | '/cart'
+    | '/reset-password'
     | '/'
     | '/editor/$id'
     | '/gallery/$id'
@@ -152,9 +152,9 @@ export interface FileRouteTypes {
     | '/_guest/confirm-email'
     | '/_guest/login'
     | '/_guest/register'
-    | '/_guest/reset-password'
     | '/_private/account'
     | '/_public/cart'
+    | '/_shared/reset-password'
     | '/_public/'
     | '/_public/editor/$id'
     | '/_public/gallery/$id'
@@ -165,6 +165,7 @@ export interface RootRouteChildren {
   GuestRoute: typeof GuestRouteWithChildren
   PrivateRoute: typeof PrivateRouteWithChildren
   PublicCartRoute: typeof PublicCartRoute
+  SharedResetPasswordRoute: typeof SharedResetPasswordRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicEditorIdRoute: typeof PublicEditorIdRoute
   PublicGalleryIdRoute: typeof PublicGalleryIdRoute
@@ -194,6 +195,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_shared/reset-password': {
+      id: '/_shared/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof SharedResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_public/cart': {
       id: '/_public/cart'
       path: '/cart'
@@ -207,13 +215,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/account'
       preLoaderRoute: typeof PrivateAccountRouteImport
       parentRoute: typeof PrivateRoute
-    }
-    '/_guest/reset-password': {
-      id: '/_guest/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof GuestResetPasswordRouteImport
-      parentRoute: typeof GuestRoute
     }
     '/_guest/register': {
       id: '/_guest/register'
@@ -264,14 +265,12 @@ interface GuestRouteChildren {
   GuestConfirmEmailRoute: typeof GuestConfirmEmailRoute
   GuestLoginRoute: typeof GuestLoginRoute
   GuestRegisterRoute: typeof GuestRegisterRoute
-  GuestResetPasswordRoute: typeof GuestResetPasswordRoute
 }
 
 const GuestRouteChildren: GuestRouteChildren = {
   GuestConfirmEmailRoute: GuestConfirmEmailRoute,
   GuestLoginRoute: GuestLoginRoute,
   GuestRegisterRoute: GuestRegisterRoute,
-  GuestResetPasswordRoute: GuestResetPasswordRoute,
 }
 
 const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
@@ -291,6 +290,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuestRoute: GuestRouteWithChildren,
   PrivateRoute: PrivateRouteWithChildren,
   PublicCartRoute: PublicCartRoute,
+  SharedResetPasswordRoute: SharedResetPasswordRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicEditorIdRoute: PublicEditorIdRoute,
   PublicGalleryIdRoute: PublicGalleryIdRoute,

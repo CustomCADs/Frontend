@@ -21,16 +21,18 @@ export const format = ({
 		second: dateOnly ? undefined : '2-digit',
 	});
 
+type Interval = 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second';
 type FormatRelativeOptions = {
 	date: string;
+	limit?: Interval;
 };
-export const formatRelative = ({ date }: FormatRelativeOptions) => {
+export const formatRelative = ({ date, limit }: FormatRelativeOptions) => {
 	const now = new Date();
 	const seconds = Math.floor(
 		(now.getTime() - new Date(date).getTime()) / 1000,
 	);
 
-	const intervals = [
+	const intervals: { label: Interval | 'year'; seconds: number }[] = [
 		{ label: 'year', seconds: 60 * 60 * 24 * 365 },
 		{ label: 'month', seconds: 60 * 60 * 24 * 30 },
 		{ label: 'week', seconds: 60 * 60 * 24 * 7 },
@@ -39,6 +41,13 @@ export const formatRelative = ({ date }: FormatRelativeOptions) => {
 		{ label: 'minute', seconds: 60 },
 		{ label: 'second', seconds: 1 },
 	];
+
+	if (limit) {
+		const limitInterval = intervals.find((i) => i.label === limit);
+		if (limitInterval && seconds < limitInterval.seconds) {
+			return `<1 ${limit} ago`;
+		}
+	}
 
 	for (const interval of intervals) {
 		const count = Math.floor(seconds / interval.seconds);

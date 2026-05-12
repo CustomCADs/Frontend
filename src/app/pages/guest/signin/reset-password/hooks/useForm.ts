@@ -7,7 +7,7 @@ import { useFormTranslations } from '@/app/hooks/locales/translations/components
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
 import { schema } from '@/app/validators/reset-password';
 
-const Route = getRouteApi('/_guest/reset-password');
+const Route = getRouteApi('/_shared/reset-password');
 
 export const useForm = () => {
 	const { email, token } = Route.useSearch();

@@ -5,14 +5,14 @@ import { useLogout } from '@/app/hooks/features/header/useLogout';
 
 const Authenticated = () => {
 	const tHeader = useLayoutTranslations('header');
-	const handleLogout = useLogout();
+	const { logout } = useLogout();
 
 	return [
 		<CustomIcon key='account' Icon={UserCircle} to='/account' />,
 		<CustomIcon
 			key='logout'
 			Icon={LogOut}
-			onClick={handleLogout}
+			onClick={logout}
 			text={tHeader('logout')}
 		/>,
 	];
