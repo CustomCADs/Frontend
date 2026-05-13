@@ -1,3 +1,2 @@
-export * from './view';
-export * from './edit';
-export * from './data';
+export * from './profile';
+export * from './access';

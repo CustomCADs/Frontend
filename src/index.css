@@ -223,4 +223,37 @@ code {
         animation: fade-in var(--tw-duration, 1s) ease-in-out
             var(--tw-animation-delay, 0s) forwards;
     }
+
+    /* Chrome, Edge, Safari */
+    ::-webkit-scrollbar {
+        width: 8px; /* Ширина на вертикалния скрол */
+        height: 8px; /* Височина на хоризонталния скрол */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent; /* Скрива пътечката */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(100, 116, 139, 0.5); /* Цвят на плъзгача (slate-500) */
+        border-radius: 10px; /* Заобляне */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #3b82f6; /* Цвят при посочване (blue-500) */
+    }
+
+    /* Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(100, 116, 139, 0.5) transparent;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 }

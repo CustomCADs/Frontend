@@ -4,9 +4,11 @@ import { cn } from '@/lib/utils/tailwindcss';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import Tabs from '@/app/components/tabs';
 import * as page from '@/app/utils/page';
-import { View, Edit, Data } from './panels/index';
+import Header from './header';
+import { Profile, Access } from './panels';
+import Footer from './footer';
 
-export const tabs = ['view', 'edit', 'data'] as const;
+export const tabs = ['profile', 'access'] as const;
 export type Tab = (typeof tabs)[number];
 
 const Route = getRouteApi('/_private/account');
@@ -21,33 +23,37 @@ const MyAccount = () => {
 	const account = query.data ?? loader.account;
 	const tAccount = usePrivateTranslations('account');
 
-	const labels: Record<Tab, string> = {
-		view: tAccount('view'),
-		edit: tAccount('edit'),
-		data: tAccount('data'),
-	};
-	const panels: Record<Tab, React.ReactNode> = {
-		view: <View />,
-		edit: <Edit />,
-		data: <Data />,
+	const tabsUI: Record<Tab, { label: string; panel: React.ReactNode }> = {
+		profile: {
+			label: tAccount('profile'),
+			panel: <Profile account={account} />,
+		},
+		access: {
+			label: tAccount('access'),
+			panel: <Access account={account} />,
+		},
 	};
 
 	return (
-		<div className={cn(page.className, 'gap-y-8')}>
+		<div className={cn(page.className, 'gap-y-8 md:py-20')}>
 			<h1 className='text-3xl font-extrabold'>
 				{tAccount('title', { username: account.username })}
 			</h1>
 			<Tabs
 				tabs={tabs.map((tab) => ({
 					id: tab,
-					label: labels[tab],
-					className: 'inline text-xl md:px-20 min-h-20 md:min-h-50',
-					panel: panels[tab],
+					ui: tabsUI[tab],
+					className: 'text-xl',
+					header: <Header {...account} />,
+					footer: <Footer {...account} />,
 				}))}
 				defaultTab={search.tab}
-				onTabChange={(tab) => navigate({ search: { tab } })}
-				orientation='vertical'
-				className='w-full flex flex-col md:flex-row gap-y-4'
+				onTabChange={(tab) =>
+					tab !== search.tab && navigate({ search: { tab } })
+				}
+				orientation='horizontal'
+				tabVariant='line'
+				className='w-full md:min-h-[83vh]'
 			/>
 		</div>
 	);
