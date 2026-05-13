@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { queryCall, useMutation } from '@customcads/react-sdk';
+import { query, useMutation } from '@customcads/react-sdk';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { Checkbox } from '@/app/components/ui/checkbox';
 
@@ -12,9 +12,9 @@ const Track = ({ track }: Props) => {
 
 	const toggleTrackViewedProducts = async () => {
 		await mutation.mutateAsync();
-		await queryCall(
+		await query.invalidateQueries(
 			({ identity }) => identity.myAccount,
-			(opts) => queryClient.invalidateQueries(opts),
+			queryClient,
 		);
 	};
 	const tProfile = usePrivateTranslations('account.profile');

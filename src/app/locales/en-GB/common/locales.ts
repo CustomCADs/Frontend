@@ -1,4 +1,4 @@
-import { Locales } from '@/app/locales/types/common';
+import { Common } from '@/app/locales/types/common';
 
 export default {
 	'': 'European',
@@ -32,4 +32,4 @@ export default {
 	'en-SG': 'English (Singapore)',
 	'th-TH': 'Thai',
 	'en-ZA': 'English (South Africa)',
-} satisfies Locales;
+} satisfies Common['common.locales'];

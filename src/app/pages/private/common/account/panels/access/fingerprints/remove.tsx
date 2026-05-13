@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { queryCall, useMutation } from '@customcads/react-sdk';
+import { query, useMutation } from '@customcads/react-sdk';
 import { ShieldUser, X } from 'lucide-react';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { useLogout } from '@/app/hooks/features/header/useLogout';
@@ -13,9 +13,9 @@ const Remove = ({ id, allow }: Props) => {
 
 	const handleDelete = async () => {
 		await mutation.mutateAsync({ refreshTokenId: id });
-		await queryCall(
+		await query.invalidateQueries(
 			({ identity }) => identity.myAccount,
-			(opts) => queryClient.invalidateQueries(opts),
+			queryClient,
 		);
 	};
 	const { logout } = useLogout();

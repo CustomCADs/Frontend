@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useQueryClient } from '@tanstack/react-query';
-import { queryCall, useMutation } from '@customcads/react-sdk';
+import { query, useMutation } from '@customcads/react-sdk';
 import * as form from '@/lib/utils/form';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
@@ -23,9 +23,9 @@ export const useForm = (defaultValues: profile.Data) => {
 		onSubmit: async ({ value }) => {
 			await changeNames(value);
 
-			await queryCall(
+			await query.invalidateQueries(
 				({ identity }) => identity.myAccount,
-				(opts) => queryClient.invalidateQueries(opts),
+				queryClient,
 			);
 		},
 		validators: { onChange: profile.schema({ tErrors, tLabels }) },

@@ -1,7 +1,7 @@
 import z from 'zod';
 import { createFileRoute } from '@tanstack/react-router';
 import {
-	queryCall,
+	query,
 	type GalleryAllProductsRequest,
 	type SingleCategoryRequest,
 } from '@customcads/react-sdk';
@@ -41,16 +41,16 @@ export const Route = createFileRoute('/_public/gallery/')({
 				name: deps.categoryName,
 			};
 
-			const { data: category } = await queryCall(
+			const { data: category } = await query.fetchQuery(
 				({ categories }) => categories.single(categoryRequestParams),
-				(opts) => queryClient.fetchQuery(opts),
+				queryClient,
 			);
 			requestParams.categoryId = category.id;
 		}
 
-		const { data: result } = await queryCall(
+		const { data: result } = await query.fetchQuery(
 			({ products }) => products.gallery.all(requestParams),
-			(opts) => queryClient.fetchQuery(opts),
+			queryClient,
 		);
 
 		return { requestParams, result };

@@ -1,4 +1,4 @@
-import { Roles } from '@/app/locales/types/common';
+import { Common } from '@/app/locales/types/common';
 
 export default {
 	Customer: 'Customer',
@@ -6,4 +6,4 @@ export default {
 	Creator: 'Creator',
 	Designer: 'Designer',
 	Administrator: 'Administrator',
-} satisfies Roles;
+} satisfies Common['common.roles'];

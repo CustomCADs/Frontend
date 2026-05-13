@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { queryCall, useMutation } from '@customcads/react-sdk';
+import { query, useMutation } from '@customcads/react-sdk';
 import { X } from 'lucide-react';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { Button } from '@/app/components/ui/button';
@@ -14,9 +14,9 @@ const Remove = ({ id }: Props) => {
 
 	const handleDelete = async () => {
 		await deleteViewedProduct({ productId: id });
-		await queryCall(
+		await query.invalidateQueries(
 			({ identity }) => identity.myAccount,
-			(opts) => queryClient.invalidateQueries(opts),
+			queryClient,
 		);
 	};
 	const tProfile = usePrivateTranslations('account.profile');
