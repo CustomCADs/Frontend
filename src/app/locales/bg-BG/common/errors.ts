@@ -1,4 +1,4 @@
-import { Errors } from '@/app/locales/types/common';
+import { Common } from '@/app/locales/types/common';
 
 export default {
 	login_link: 'Влез в акаунт.',
@@ -19,4 +19,4 @@ export default {
 	default_title: 'Нещо се обърка!',
 	default_message: 'Възникна неочаквана грешка. Опитайте по-късно.',
 	default_tip: 'Ако проблемът продължи, свържете се с нас.',
-} satisfies Errors;
+} satisfies Common['common.errors'];

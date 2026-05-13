@@ -1,8 +1,12 @@
 import { Labels } from '@/app/locales/types/components/form';
 
 export default {
+	role: 'Роля',
+	firstName: 'Лично Име',
+	lastName: 'Последно Име',
 	username: 'Потребителско име',
+	email: 'Имейл',
 	password: 'Парола',
-	'forgot-password': 'Забравихте паролата си?',
-	'remember-me': 'Запомни ме',
+	confirmPassword: 'Потвърдете Паролата',
+	rememberMe: 'Запомни ме',
 } satisfies Labels;

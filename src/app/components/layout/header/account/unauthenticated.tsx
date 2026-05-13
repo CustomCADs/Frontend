@@ -11,14 +11,14 @@ const Unauthenticated = () => {
 			Icon={LogIn}
 			to='/login'
 			text={tHeader('login')}
-			className={'text-lg hover:text-header-foreground'}
+			className='text-lg hover:text-header-foreground'
 		/>,
 		<CustomIcon
 			key='register'
 			Icon={UserPen}
-			to='.'
+			to='/register'
 			text={tHeader('register')}
-			className={'text-lg hover:text-header-foreground'}
+			className='text-lg hover:text-header-foreground'
 		/>,
 	];
 };

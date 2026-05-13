@@ -1,5 +1,5 @@
-import { Empty } from '../../types/common';
+import { Common } from '../../types/common';
 
 export default {
 	products: 'No Products found.',
-} satisfies Empty;
+} satisfies Common['common.empty'];

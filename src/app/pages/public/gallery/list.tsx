@@ -1,15 +1,12 @@
 import { ApiResult, GalleryAllProductsResponse } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils/tailwindcss';
-import {
-	useEmptyTranslations,
-	useLoadingTranslations,
-} from '@/app/hooks/locales/translations/common';
+import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
 import Item from './item';
 
 type Props = { products?: ApiResult<GalleryAllProductsResponse> };
 const List = ({ products }: Props) => {
-	const tLoading = useLoadingTranslations();
-	const tEmpty = useEmptyTranslations();
+	const tLoading = useCommonTranslations('loading');
+	const tEmpty = useCommonTranslations('empty');
 
 	if (!products) {
 		return (

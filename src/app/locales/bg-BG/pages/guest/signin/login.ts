@@ -7,4 +7,5 @@ export default {
 	'google-login': 'Влезте с Гугъл',
 	'register-message': 'Нямате акаунт?',
 	register: 'Регистрирайте се',
+	'forgot-password': 'Забравихте паролата си?',
 } satisfies Login;

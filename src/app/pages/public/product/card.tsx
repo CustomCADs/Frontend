@@ -1,14 +1,15 @@
 import { GallerySingleProductResponse } from '@customcads/react-sdk';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import { useMoney } from '@/app/hooks/locales/useMoney';
+import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
 import Cad from '@/app/components/cad';
 import Detail from './detail';
 
 type Props = { product: GallerySingleProductResponse };
 const Card = ({ product }: Props) => {
-	const tProduct = useGalleryTranslations('product');
+	const moneyFormat = useMoneyFormatter();
+	const price = moneyFormat(product.price);
 
-	const price = useMoney(product.price);
+	const tProduct = useGalleryTranslations('product');
 	const { name, description, category, cadId } = product;
 
 	return (

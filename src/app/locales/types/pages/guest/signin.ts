@@ -5,4 +5,19 @@ export type Login = {
 	'google-login': string;
 	'register-message': string;
 	register: string;
+	'forgot-password': string;
+};
+
+export type Forgot = {
+	title: string;
+	subtitle: string;
+	button: string;
+	message: string;
+};
+
+export type Reset = {
+	title: string;
+	subtitle: string;
+	button: string;
+	message: string;
 };

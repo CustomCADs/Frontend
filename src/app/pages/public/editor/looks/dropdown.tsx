@@ -1,6 +1,7 @@
 import { type MaterialResponse } from '@customcads/react-sdk';
 import { Children } from '@/types/react';
 import { cn } from '@/lib/utils/tailwindcss';
+import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -18,28 +19,35 @@ const MaterialsDropdown = ({
 	materials,
 	current,
 	onClick,
-}: Props) => (
-	<DropdownMenu>
-		<DropdownMenuTrigger>{children}</DropdownMenuTrigger>
-		<DropdownMenuContent>
-			<ul className='flex flex-col gap-y-2 p-4'>
-				{materials.map((x) => (
-					<li
-						key={x.id}
-						onClick={() => onClick?.(x)}
-						className={cn(
-							'cursor-pointer',
-							current === x.id
-								? 'opacity-50'
-								: 'hover:opacity-70',
-						)}
-					>
-						{materials_utils.format({ material: x, cost: true })}
-					</li>
-				))}
-			</ul>
-		</DropdownMenuContent>
-	</DropdownMenu>
-);
+}: Props) => {
+	const formatMoney = useMoneyFormatter();
+
+	return (
+		<DropdownMenu>
+			<DropdownMenuTrigger>{children}</DropdownMenuTrigger>
+			<DropdownMenuContent>
+				<ul className='flex flex-col gap-y-2 p-4'>
+					{materials.map((x) => (
+						<li
+							key={x.id}
+							onClick={() => onClick?.(x)}
+							className={cn(
+								'cursor-pointer',
+								current === x.id
+									? 'opacity-50'
+									: 'hover:opacity-70',
+							)}
+						>
+							{materials_utils.format({
+								material: x,
+								cost: formatMoney(x.cost, 0),
+							})}
+						</li>
+					))}
+				</ul>
+			</DropdownMenuContent>
+		</DropdownMenu>
+	);
+};
 
 export default MaterialsDropdown;

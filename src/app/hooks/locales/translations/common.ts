@@ -1,14 +1,5 @@
 import { useTranslation } from '../useTranslation';
 
-export const useLocalesTranslations = () => useTranslation('common.locales').t;
-
-export const useLoadingTranslations = () => useTranslation('common.loading').t;
-
-export const useEmptyTranslations = () => useTranslation('common.empty').t;
-
-export const useErrorsTranslations = () => useTranslation('common.errors').t;
-
-export const useMetricsTranslation = () => useTranslation('common.metrics').t;
-
-export const useDevtoolsTranslations = () =>
-	useTranslation('common.devtools').t;
+type Common = 'locales' | 'roles' | 'loading' | 'empty' | 'errors' | 'metrics';
+export const useCommonTranslations = <N extends Common>(ns: N) =>
+	useTranslation(`common.${ns}`).t;

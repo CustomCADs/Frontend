@@ -4,18 +4,24 @@ import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import * as localeStore from '@/app/stores/locale';
 
 export const useLogout = () => {
-	const { actions } = useCartStore();
 	const { mutateAsync: logout } = useMutation(
 		({ identity }) => identity.logout,
 	);
 
+	const { actions } = useCartStore();
 	const authStore = useAuthStore();
-	const handleLogout = async () => {
-		await logout();
+
+	const clear = () => {
 		authStore.logout();
 		actions.cart.clear();
 		localeStore.resetStore();
 	};
 
-	return handleLogout;
+	return {
+		logout: async () => {
+			await logout();
+			clear();
+		},
+		clearSession: clear,
+	};
 };

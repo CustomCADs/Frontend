@@ -1,5 +1,6 @@
 import { isAxiosError } from 'axios';
 import {
+	AnyRouteMatch,
 	HeadContent,
 	Scripts,
 	createRootRouteWithContext,
@@ -12,24 +13,34 @@ import '@/app/config/env';
 import Layout from '@/app/components/layout';
 import ErrorPage from '@/app/components/error';
 import { TanStackDevtools } from '@/app/integrations/tanstack-devtools';
-import cssUrl from '@/index.css?url';
+import '@/index.css';
+
+let cssUrl: string | undefined;
+if (!import.meta.env.DEV) {
+	await import('@/index.css?url').then((i) => (cssUrl = i.default));
+}
 
 export const Route = createRootRouteWithContext<RouterContext>()({
-	head: () => ({
-		meta: [
-			{
-				charSet: 'utf-8',
-			},
-			{
-				name: 'viewport',
-				content: 'width=device-width, initial-scale=1',
-			},
-			{
-				title: 'CustomCADs',
-			},
-		],
-		links: [{ rel: 'stylesheet', href: cssUrl }],
-	}),
+	head: () => {
+		const links: AnyRouteMatch['links'] = [];
+		if (cssUrl) links.push({ rel: 'stylesheet', href: cssUrl });
+
+		return {
+			meta: [
+				{
+					charSet: 'utf-8',
+				},
+				{
+					name: 'viewport',
+					content: 'width=device-width, initial-scale=1',
+				},
+				{
+					title: 'CustomCADs',
+				},
+			],
+			links,
+		};
+	},
 	shellComponent: ({ children }) => (
 		<html lang='en' className={cn({ dark: !isLightThemeCookie() })}>
 			<head>

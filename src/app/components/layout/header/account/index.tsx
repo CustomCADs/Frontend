@@ -1,11 +1,11 @@
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import Unauthenticated from './unauthenticated';
-import Logout from './logout';
+import Authenticated from './authenticated';
 
 const Account = () => {
 	const { is } = useAuthStore();
 
-	return is.guest ? <Unauthenticated /> : <Logout />;
+	return is.guest ? <Unauthenticated /> : <Authenticated />;
 };
 
 export default Account;

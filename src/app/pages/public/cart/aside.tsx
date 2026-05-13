@@ -1,7 +1,7 @@
 // import { Link } from '@tanstack/react-router';
 // import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
-import { useMoney } from '@/app/hooks/locales/useMoney';
+import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
 // import { Button } from '@/app/components/ui/button';
 import Money from './money';
 
@@ -19,10 +19,11 @@ const Aside = ({ prices, costs }: Props) => {
 		costs: calculate(costs),
 	};
 
+	const formatMoney = useMoneyFormatter();
 	const money = {
-		product: useMoney(sum.prices),
-		print: useMoney(sum.costs),
-		total: useMoney(sum.prices + sum.costs),
+		product: formatMoney(sum.prices),
+		print: formatMoney(sum.costs),
+		total: formatMoney(sum.prices + sum.costs),
 	};
 
 	// TODO: Update when Payment is implemented

@@ -1,21 +1,27 @@
 import { createIsomorphicFn } from '@tanstack/react-start';
-import { AllowedLanguage } from '@/types/locale';
+import { ALLOWED_LANGUAGES, AllowedLanguage } from '@/types/locale';
 import { LanguageStoreState } from '@/app/stores/locale';
 import { LOCALE } from '@/app/constants/stores';
 import { get } from './persistence';
 
 export const getUserDefaultLanguage = createIsomorphicFn()
-	.client(() => {
+	.client<[], AllowedLanguage>(() => {
 		const languages = navigator.languages || [navigator.language];
-		return languages[0] as AllowedLanguage;
+
+		const matches: (AllowedLanguage | undefined)[] = [
+			ALLOWED_LANGUAGES.find((x) => languages.includes(x)),
+			ALLOWED_LANGUAGES.map((x) => ({
+				original: x,
+				split: x.split('-')[0],
+			})).find((x) => languages.includes(x.split))?.original,
+		];
+
+		return matches.find((x) => !!x) ?? 'en-GB';
 	})
-	.server(() => 'en-GB' as AllowedLanguage);
+	.server<AllowedLanguage>(() => 'en-GB');
 
 export const getUserTimeZone = createIsomorphicFn()
-	.client(() => {
-		const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
-		return timeZone;
-	})
+	.client(() => Intl.DateTimeFormat().resolvedOptions().timeZone)
 	.server(() => 'UTC');
 
 export const getLanguageCookie = () =>

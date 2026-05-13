@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { axios, identitySSOUrl } from '@customcads/react-sdk';
 import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import {
 	Card,
@@ -10,8 +9,11 @@ import {
 	CardTitle,
 } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
+import { Error } from '@/app/components/form/error';
+import GoogleSSO from '@/app/components/sso/google';
 import * as page from '@/app/utils/page';
 import { useFields } from './hooks/useFields';
+import ForgotPasswordDialog from './forgot/dialog';
 
 const Login = () => {
 	const { fields, error, handleSubmit } = useFields();
@@ -36,6 +38,7 @@ const Login = () => {
 							</div>
 							<div className='grid gap-2 mb-4'>
 								<fields.Password />
+								<ForgotPasswordDialog />
 							</div>
 						</div>
 					</CardContent>
@@ -43,36 +46,22 @@ const Login = () => {
 						<Button type='submit' className='w-full'>
 							{tLogin('login')}
 						</Button>
-						<Button
-							variant='outline'
-							onClick={() =>
-								window.location.assign(
-									axios.defaults.baseURL +
-										identitySSOUrl({
-											provider: 'Google',
-											redirectUrl: window.location.origin,
-										}),
-								)
-							}
+						<GoogleSSO
+							text={tLogin('google-login')}
 							className='w-full'
-						>
-							<img src='/identity/google.svg' />
-							<span>{tLogin('google-login')}</span>
-						</Button>
+						/>
 						<div className='flex justify-center items-center gap-2'>
 							<fields.RememberMe />
 						</div>
-						<span className='text-sm font-bold text-red-500 mt-2'>
-							{error}
-						</span>
+						<Error message={error} />
 					</CardFooter>
-					<hr className='h-[2px]' />
+					<hr className='h-0.5' />
 					<div className='text-center'>
 						<span className='text-sm'>
 							{tLogin('register-message')}
 						</span>
 						<br />
-						<Link to='.'>
+						<Link to='/register'>
 							<Button
 								variant='link'
 								className='font-bold underline text-sm'

@@ -2,15 +2,14 @@ import { createRouter } from '@tanstack/react-router';
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query';
 import { routeTree } from '@/routeTree.gen';
 import * as TanstackQuery from '@/app/integrations/tanstack-query';
-import { setupApi } from '@/app/integrations/customcads-react';
-import * as auth from '@/app/stores/auth';
+import { setupApi } from '@/app/integrations/customcads-axios';
 import '@/app/locales/i18n';
 
 export type RouterContext = ReturnType<typeof TanstackQuery.getContext>;
 
 export const getRouter = () => {
 	const queryContext = TanstackQuery.getContext();
-	setupApi(auth.store());
+	setupApi();
 
 	const router = createRouter({
 		routeTree,

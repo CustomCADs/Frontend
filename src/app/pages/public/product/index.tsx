@@ -11,7 +11,7 @@ const Route = getRouteApi('/_public/gallery/$id');
 const Product = () => {
 	const loader = Route.useLoaderData();
 	const query = useQuery(({ products }) =>
-		products.gallery.single({ id: loader.productId }),
+		products.gallery.single({ id: loader.productId, viewed: true }),
 	);
 	const product = query.data ?? loader.product;
 

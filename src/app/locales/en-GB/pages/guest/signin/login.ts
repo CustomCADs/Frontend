@@ -7,4 +7,5 @@ export default {
 	'google-login': 'Login with Google',
 	'register-message': "Don't have an account?",
 	register: 'Register',
+	'forgot-password': 'Forgot your password?',
 } satisfies Login;

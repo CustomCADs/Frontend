@@ -1,4 +1,4 @@
-import { Errors } from '@/app/locales/types/common';
+import { Common } from '@/app/locales/types/common';
 
 export default {
 	login_link: 'Sign In',
@@ -21,4 +21,4 @@ export default {
 	default_title: 'Something Went Wrong',
 	default_message: 'An unexpected error occurred. Please try again later.',
 	default_tip: 'If the issue persists, contact our support team.',
-} satisfies Errors;
+} satisfies Common['common.errors'];

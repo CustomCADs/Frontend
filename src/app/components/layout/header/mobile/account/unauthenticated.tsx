@@ -18,7 +18,7 @@ const Unauthenticated = () => {
 		<SidebarMenuButton key='register'>
 			<CustomIcon
 				Icon={UserPen}
-				to='.'
+				to='/register'
 				text={tHeader('register')}
 				className='text-lg gap-x-2'
 			/>

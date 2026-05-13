@@ -5,11 +5,11 @@ import * as viteHelper from './vite.helper';
 
 export default vite.defineConfig(({ mode }) => ({
 	plugins: [
+		vitePlugins.tanstackStart({ mode }),
 		vitePlugins.react(),
 		vitePlugins.tsConfigPaths(),
 		vitePlugins.tailwindcss(),
 		vitePlugins.cloudflare({ enable: mode !== 'test' }),
-		vitePlugins.tanstackStart({ mode }),
 	],
 	build: { assetsInlineLimit: 0 },
 	test: { globals: true, environment: 'jsdom' },

@@ -1,5 +1,5 @@
-import { Loading } from '../../types/common';
+import { Common } from '../../types/common';
 
 export default {
 	gallery: 'Gallery loading...',
-} satisfies Loading;
+} satisfies Common['common.loading'];

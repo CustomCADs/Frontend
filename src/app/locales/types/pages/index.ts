@@ -1,4 +1,5 @@
-import * as guest from './guest';
-import * as public_ from './public';
+import { Guest } from './guest';
+import { Public } from './public';
+import { Private } from './private';
 
-export type Translations = guest.Translations & public_.Translations;
+export type Pages = Guest & Public & Private;

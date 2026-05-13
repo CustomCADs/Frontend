@@ -1,31 +1,40 @@
 import { Language } from '@/types/locale';
 
-export type Locales = Record<Language, string>;
+export type Common = {
+	'common.locales': Locales;
+	'common.roles': Roles;
+	'common.metrics': Metrics;
+	'common.loading': Loading;
+	'common.empty': Empty;
+	'common.errors': Errors;
+};
 
-export type Loading = {
+type Locales = Record<Language, string>;
+
+type Roles = {
+	Customer: string;
+	Contributor: string;
+	Creator: string;
+	Designer: string;
+	Administrator: string;
+};
+
+type Loading = {
 	gallery: string;
 };
 
-export type Empty = {
+type Empty = {
 	products: string;
 };
 
-export type Devtools = {
-	theme: string;
-	language: string;
-	'language-placeholder': string;
-	currency: string;
-	'currency-placeholder': string;
-};
-
-export type Metrics = {
+type Metrics = {
 	width: string;
 	height: string;
 	length: string;
 	volume: string;
 };
 
-export type Errors = {
+type Errors = {
 	login_link: string;
 	contact_support_link: string;
 	'400_title': string;

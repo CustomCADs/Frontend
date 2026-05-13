@@ -33,7 +33,7 @@ export default {
 	cart: 'Cart',
 	notifications: 'Notifications',
 	account: 'Account',
-	settings: 'Settings',
+	preferences: 'Preferences',
 	login: 'Login',
 	register: 'Register',
 	logout: 'Logout',
