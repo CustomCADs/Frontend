@@ -24,6 +24,9 @@ export const getUserTimeZone = createIsomorphicFn()
 	.client(() => Intl.DateTimeFormat().resolvedOptions().timeZone)
 	.server(() => 'UTC');
 
+export const getDefaultLanguageCookie = () =>
+	get<LanguageStoreState>(LOCALE.store)?.defaultLanguage ?? undefined;
+
 export const getLanguageCookie = () =>
 	get<LanguageStoreState>(LOCALE.store)?.language ?? undefined;
 
