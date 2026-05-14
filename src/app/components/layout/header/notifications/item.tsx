@@ -18,7 +18,7 @@ const NotificationItem = ({ notification }: Props) => {
 			onClick={open}
 		>
 			<Wrapper
-				to={notification.link}
+				to={notification.link ?? undefined}
 				className='flex text-center px-1 py-3'
 			>
 				{notification.status === 'Unread' && (

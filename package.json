@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.17.1",
-    "@customcads/react-sdk": "^1.13.4",
+    "@customcads/react-sdk": "^1.13.5-beta.1",
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@microsoft/signalr": "^9.0.6",
     "@radix-ui/react-alert-dialog": "^1.1.15",
