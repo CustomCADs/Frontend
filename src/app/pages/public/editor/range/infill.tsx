@@ -10,7 +10,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from '@/app/components/ui/tooltip';
-import RangeUi from './ui';
+import { Slider } from '@/app/components/ui/slider';
 
 const InfillRange = ({ id }: { id: string }) => {
 	const tEditor = useGalleryTranslations('editor');
@@ -19,37 +19,36 @@ const InfillRange = ({ id }: { id: string }) => {
 	const infill = useEditorStore(id, (state) => state.infill);
 
 	return (
-		<RangeUi
-			min={INFILL.min}
-			max={INFILL.max}
-			values={[parseFloat(infill.toFixed(4))]}
-			onDrag={(e) => actions.set.infill(e.sortedValues[0])}
-			stepSize={0.0001}
-		>
-			<div className='flex justify-between items-center'>
-				<p className='flex gap-x-1 text-base'>
-					<Tooltip>
-						<TooltipTrigger asChild>
-							<CircleQuestionMark size={14} />
-						</TooltipTrigger>
-						<TooltipContent>
-							{tEditor('infill-description')}
-						</TooltipContent>
-					</Tooltip>
-					<span>{tEditor('infill')}: </span>
-					<span>{units.percentage(100 * infill)}</span>
-				</p>
-				<span
-					className={cn(
-						'justify-self-end text-xs italic',
-						'opacity-0 transition fade-in duration-400',
-						infill > 0.3 && 'opacity-100',
-					)}
-				>
-					({tEditor('unrecommended')})
-				</span>
-			</div>
-		</RangeUi>
+		<div className='flex flex-col gap-y-2'>
+			<p className='flex gap-x-1 text-base'>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<CircleQuestionMark size={14} />
+					</TooltipTrigger>
+					<TooltipContent>
+						{tEditor('infill-description')}
+					</TooltipContent>
+				</Tooltip>
+				<span>{tEditor('infill')}: </span>
+				<span>{units.percentage(100 * infill)}</span>
+			</p>
+			<Slider
+				size={0.0001}
+				min={INFILL.min}
+				max={INFILL.max}
+				value={[parseFloat(infill.toFixed(4))]}
+				onValueChange={(values) => actions.set.infill(values[0])}
+			/>
+			<span
+				className={cn(
+					'justify-self-end text-xs italic',
+					'opacity-0 transition fade-in duration-300',
+					infill > 0.3 && 'opacity-100',
+				)}
+			>
+				({tEditor('unrecommended')})
+			</span>
+		</div>
 	);
 };
 

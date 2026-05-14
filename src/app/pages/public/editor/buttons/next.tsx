@@ -23,10 +23,14 @@ const NextButton = ({ id, cad, save }: Props) => {
 		infill: useEditorStore(cad.id, (state) => state.infill),
 	};
 
-	if (!id) return <Loader />;
-	const next = () => save({ ...request, id });
-
-	return <GeneralButton onClick={next}>{tEditor('next')}</GeneralButton>;
+	return (
+		<GeneralButton
+			disabled={!id}
+			onClick={() => save({ ...request, id: id! })}
+		>
+			{id ? tEditor('next') : <Loader />}
+		</GeneralButton>
+	);
 };
 
 export default NextButton;
