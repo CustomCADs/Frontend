@@ -2,12 +2,10 @@ import { AllNotificationsResponse } from '@customcads/react-sdk';
 import { useNotificationVirtualization } from '@/app/hooks/features/notifications/useNotificationVirtualization';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import Loader from '@/app/components/loading';
-import { PopoverContent } from '@/app/components/ui/popover';
 import { ScrollArea } from '@/app/components/ui/scroll-area';
-import Triangle from './triangle';
 import NotificationItem from './item';
 
-type ContentProps = {
+type Props = {
 	notifications: AllNotificationsResponse[];
 	nextPage: {
 		exists: boolean;
@@ -15,7 +13,7 @@ type ContentProps = {
 		fetch: VoidFunction;
 	};
 };
-const Content = ({ notifications, nextPage }: ContentProps) => {
+const Scroll = ({ notifications, nextPage }: Props) => {
 	const virtualizer = useNotificationVirtualization({
 		length: nextPage.exists
 			? notifications.length + 1
@@ -61,31 +59,28 @@ const Content = ({ notifications, nextPage }: ContentProps) => {
 		));
 
 	return (
-		<PopoverContent className='px-2' asChild>
-			<ScrollArea
-				viewportRef={virtualizer.setContainer}
-				className='bg-header-popover h-80 w-60 top-8 rounded-sm mx-4'
-			>
-				<Triangle />
-				<div className='flex flex-col gap-3'>
-					<h4 className='text-md text-center leading-none font-extrabold'>
-						{tHeader('notifications')}
-					</h4>
+		<ScrollArea
+			viewportRef={virtualizer.setContainer}
+			className='bg-header-popover h-80 w-80 sm:w-100 md:w-120 lg:w-140 rounded-sm'
+		>
+			<div className='flex flex-col gap-3'>
+				<h4 className='text-md text-center leading-none font-extrabold'>
+					{tHeader('notifications')}
+				</h4>
 
-					<div className='relative w-full overflow-y-auto'>
-						<ul
-							style={{
-								height: `${virtualizer.instance.getTotalSize()}px`,
-								position: 'relative',
-							}}
-						>
-							{items}
-						</ul>
-					</div>
+				<div className='relative w-full overflow-y-auto'>
+					<ul
+						style={{
+							height: `${virtualizer.instance.getTotalSize()}px`,
+							position: 'relative',
+						}}
+					>
+						{items}
+					</ul>
 				</div>
-			</ScrollArea>
-		</PopoverContent>
+			</div>
+		</ScrollArea>
 	);
 };
 
-export default Content;
+export default Scroll;

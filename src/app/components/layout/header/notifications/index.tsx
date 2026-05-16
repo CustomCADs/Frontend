@@ -2,9 +2,9 @@ import { Bell } from 'lucide-react';
 import { useInfiniteQuery } from '@customcads/react-sdk';
 import { useNotificationRealTime } from '@/app/hooks/features/notifications/useNotificationRealTime';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
-import { Popover, PopoverTrigger } from '@/app/components/ui/popover';
+import * as popover from '@/app/components/ui/popover';
 import CustomIcon from '@/app/components/icon';
-import Content from './content';
+import Scroll from './scroll';
 
 const ALL_PARAMS = { limit: 10 };
 const bell = <CustomIcon Icon={Bell} />;
@@ -22,17 +22,21 @@ const NotificationsTab = () => {
 	const { pages } = query.data;
 
 	return (
-		<Popover>
-			<PopoverTrigger>{bell}</PopoverTrigger>
-			<Content
-				notifications={pages.flatMap(({ items }) => items)}
-				nextPage={{
-					exists: query.hasNextPage,
-					isFetching: query.isFetchingNextPage,
-					fetch: query.fetchNextPage,
-				}}
-			/>
-		</Popover>
+		<popover.Root>
+			<popover.Trigger>{bell}</popover.Trigger>
+			<popover.Content className='px-2 w-auto md:w-auto' asChild>
+				<div className='relative top-4 flex flex-col items-center'>
+					<Scroll
+						notifications={pages.flatMap(({ items }) => items)}
+						nextPage={{
+							exists: query.hasNextPage,
+							isFetching: query.isFetchingNextPage,
+							fetch: query.fetchNextPage,
+						}}
+					/>
+				</div>
+			</popover.Content>
+		</popover.Root>
 	);
 };
 
