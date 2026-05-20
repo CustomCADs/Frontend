@@ -1,15 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { MenuIcon } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import {
-	DropdownMenu,
-	DropdownMenuTrigger,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-} from '@/app/components/ui/dropdown-menu';
+import * as NavMenu from '@/app/components/ui/navmenu';
+import { Separator } from '@/app/components/ui/separator';
 import { useItems } from './hooks/useItems';
 
 const Content = () => {
@@ -19,33 +12,37 @@ const Content = () => {
 	if (!items.length) return null;
 
 	return (
-		<DropdownMenu>
-			<div className='cursor-pointer'>
-				<DropdownMenuTrigger asChild>
+		<NavMenu.Root>
+			<NavMenu.Item>
+				<NavMenu.Trigger
+					className='h-6 p-0 bg-header hover:bg-header data-[state=open]:hover:bg-header'
+					asChild
+				>
 					<MenuIcon />
-				</DropdownMenuTrigger>
-				<DropdownMenuContent>
-					<DropdownMenuLabel>{tHeader(titleKey)}</DropdownMenuLabel>
-					<DropdownMenuSeparator className='h-[1.5px]' />
+				</NavMenu.Trigger>
+				<NavMenu.Content className='min-w-40 text-nowrap text-center'>
+					<label>{tHeader(titleKey)}</label>
+					<Separator className='h-[1.5px]' />
 					{items.map((group, i) => (
-						<>
-							<DropdownMenuGroup>
-								{group.map(({ link, textKey }) => (
-									<Link key={textKey} to={link}>
-										<DropdownMenuItem>
+						<div key={i} className='pt-3'>
+							{group.map(({ link, textKey }) => (
+								<NavMenu.Link
+									key={textKey}
+									asChild
+									className='hover:bg-header-accent'
+								>
+									<Link to={link}>
+										<NavMenu.Item>
 											{tHeader(textKey)}
-										</DropdownMenuItem>
+										</NavMenu.Item>
 									</Link>
-								))}
-							</DropdownMenuGroup>
-							{i !== items.length - 1 && (
-								<DropdownMenuSeparator />
-							)}
-						</>
+								</NavMenu.Link>
+							))}
+						</div>
 					))}
-				</DropdownMenuContent>
-			</div>
-		</DropdownMenu>
+				</NavMenu.Content>
+			</NavMenu.Item>
+		</NavMenu.Root>
 	);
 };
 export default Content;
