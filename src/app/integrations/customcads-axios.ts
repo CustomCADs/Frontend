@@ -10,11 +10,12 @@ export const setupApi = () => {
 
 	customcads.axios.interceptors.request.use((cfg) => {
 		cfg.headers['Csrf-Token'] = getCsrfCookie();
+		if (getEnv().isClient) return cfg;
 
-		if (getEnv().isServer && !cfg.headers.has('cookie')) {
-			cfg.headers['cookie'] = persistence.getAll();
-		}
+		cfg.headers['User-Agent'] = persistence.getHeader('user-agent');
+		if (cfg.headers.has('cookie')) return cfg;
 
+		cfg.headers['cookie'] = persistence.getAll();
 		return cfg;
 	});
 
@@ -54,7 +55,7 @@ export const setupApi = () => {
 						`${config.headers['cookie']}; ${jwt}`;
 				});
 
-				return await customcads.axios(error.config!);
+				return await customcads.axios(config);
 			} catch {
 				return Promise.reject(error);
 			}
