@@ -7,7 +7,7 @@ import { cloudflare } from '@cloudflare/vite-plugin';
 const tanStackStartPlugin = ({ mode }: { mode: string }) =>
 	tanstackStart({
 		prerender: {
-			enabled: true,
+			enabled: false,
 			failOnError: false,
 			autoStaticPathsDiscovery: false,
 		},
@@ -18,7 +18,7 @@ const tanStackStartPlugin = ({ mode }: { mode: string }) =>
 		pages: [
 			{
 				path: '/',
-				prerender: { enabled: true, crawlLinks: false },
+				prerender: { enabled: false, crawlLinks: false },
 				sitemap: {
 					exclude: false,
 					changefreq: 'weekly',

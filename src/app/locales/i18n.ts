@@ -18,6 +18,8 @@ const initialize = () => {
 		}, {}),
 		interpolation: { escapeValue: false },
 	});
+
+	return i18n;
 };
 
 export { i18n, initialize };

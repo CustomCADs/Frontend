@@ -3,7 +3,6 @@ import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query
 import { routeTree } from '@/routeTree.gen';
 import * as TanstackQuery from '@/app/integrations/tanstack-query';
 import { setupApi } from '@/app/integrations/customcads-axios';
-import * as i18n from '@/app/locales/i18n';
 
 export type RouterContext = ReturnType<typeof TanstackQuery.getContext>;
 
@@ -18,14 +17,11 @@ export const getRouter = () => {
 		scrollRestoration: true,
 		scrollRestorationBehavior: 'smooth',
 		defaultViewTransition: true,
-		Wrap: ({ children }) => {
-			i18n.initialize();
-			return (
-				<TanstackQuery.Provider {...queryContext}>
-					{children}
-				</TanstackQuery.Provider>
-			);
-		},
+		Wrap: ({ children }) => (
+			<TanstackQuery.Provider {...queryContext}>
+				{children}
+			</TanstackQuery.Provider>
+		),
 	});
 
 	setupRouterSsrQueryIntegration({
