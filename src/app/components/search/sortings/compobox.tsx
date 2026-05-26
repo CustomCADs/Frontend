@@ -1,10 +1,8 @@
-'use client';
 import { useState } from 'react';
 import { CheckIcon } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import Loader from '@/app/components/loading';
-import * as command from '@/app/components/ui/command';
-import * as popover from '@/app/components/ui/popover';
+import { command, popover } from '@/app/components/ui';
 
 type Value = string;
 type Props = {
@@ -19,22 +17,22 @@ const SortingsCombobox = ({ current, options, ...props }: Props) => {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<popover.Popover open={open} onOpenChange={setOpen}>
-			<popover.PopoverTrigger>{props.children}</popover.PopoverTrigger>
-			<popover.PopoverContent className='w-[250px] p-0 z-[100000]'>
-				<command.Command className='bg-accent text-accent-foreground'>
-					<command.CommandInput placeholder={props.placeholder} />
-					<command.CommandList>
-						<command.CommandEmpty>
+		<popover.Root open={open} onOpenChange={setOpen}>
+			<popover.Trigger>{props.children}</popover.Trigger>
+			<popover.Content className='w-62.5 p-0 z-100000'>
+				<command.Root className='bg-accent text-accent-foreground'>
+					<command.Input placeholder={props.placeholder} />
+					<command.List>
+						<command.Empty>
 							{props.empty ?? (
 								<div className='flex justify-center'>
 									<Loader />
 								</div>
 							)}
-						</command.CommandEmpty>
-						<command.CommandGroup>
+						</command.Empty>
+						<command.Group>
 							{options.map((option) => (
-								<command.CommandItem
+								<command.Item
 									key={option.value}
 									value={option.label}
 									onSelect={(label) => {
@@ -64,13 +62,13 @@ const SortingsCombobox = ({ current, options, ...props }: Props) => {
 											{option.label}
 										</span>
 									</div>
-								</command.CommandItem>
+								</command.Item>
 							))}
-						</command.CommandGroup>
-					</command.CommandList>
-				</command.Command>
-			</popover.PopoverContent>
-		</popover.Popover>
+						</command.Group>
+					</command.List>
+				</command.Root>
+			</popover.Content>
+		</popover.Root>
 	);
 };
 

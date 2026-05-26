@@ -19,7 +19,6 @@ export const get = <TState = string>(key: string) =>
 	parseCookie<TState>(getCookie(key) ?? null);
 
 export const getHeader = createServerOnlyFn(server.getRequestHeader);
-
 export const getAll = createIsomorphicFn()
 	.client(() => document.cookie)
 	.server(() => server.getRequestHeader('cookie') ?? '');

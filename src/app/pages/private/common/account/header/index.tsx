@@ -1,7 +1,7 @@
 import { type MyAccountResponse } from '@customcads/react-sdk';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
-import { CardHeader } from '@/app/components/ui/card';
+import { Header as CardHeader } from '@/app/components/ui/card';
 import Download from './download';
 import Item from './item';
 

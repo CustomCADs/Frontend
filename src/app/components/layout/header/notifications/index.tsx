@@ -2,11 +2,11 @@ import { Bell } from 'lucide-react';
 import { useInfiniteQuery } from '@customcads/react-sdk';
 import { useNotificationRealTime } from '@/app/hooks/features/notifications/useNotificationRealTime';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
-import * as popover from '@/app/components/ui/popover';
+import { popover } from '@/app/components/ui';
 import CustomIcon from '@/app/components/icon';
 import Scroll from './scroll';
 
-const ALL_PARAMS = { limit: 10 };
+const ALL_PARAMS = { page: 1, limit: 10 };
 const bell = <CustomIcon Icon={Bell} />;
 
 const NotificationsTab = () => {

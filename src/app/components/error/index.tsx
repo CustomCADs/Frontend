@@ -1,14 +1,14 @@
 import { Link } from '@tanstack/react-router';
 import { AppErrorFields } from '@/types/errors';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
 import * as page from '@/app/utils/page';
 
-type ErrorPageProps = {
+type Props = {
 	status: 400 | 401 | 403 | 404 | null;
 	error?: AppErrorFields;
 };
-const ErrorPage = ({ status, error }: ErrorPageProps) => {
+const ErrorPage = ({ status, error }: Props) => {
 	const tError = useCommonTranslations('errors');
 	const { title, message, tip } = error ?? {
 		title: tError(`${status ?? 'default'}_title`),

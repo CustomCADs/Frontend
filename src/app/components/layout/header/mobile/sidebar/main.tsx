@@ -1,23 +1,19 @@
 import { Link } from '@tanstack/react-router';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import {
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-} from '@/app/components/ui/sidebar';
+import { Menu, MenuItem, MenuButton } from '@/app/components/ui/sidebar';
 import { Item } from '.';
 
-type NavMainProps = {
+type Props = {
 	items: Array<Item & { isActive?: boolean; badge?: string }>;
 };
-const NavMain = ({ items }: NavMainProps) => {
+const NavMain = ({ items }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 
 	return (
-		<SidebarMenu>
+		<Menu>
 			{items.map((item) => (
-				<SidebarMenuItem key={item.name}>
-					<SidebarMenuButton asChild isActive={item.isActive}>
+				<MenuItem key={item.name}>
+					<MenuButton asChild isActive={item.isActive}>
 						<Link to={item.url}>
 							<item.icon
 								style={{ width: '20px', height: '20px' }}
@@ -26,10 +22,10 @@ const NavMain = ({ items }: NavMainProps) => {
 								{tHeader(item.name)}
 							</span>
 						</Link>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
+					</MenuButton>
+				</MenuItem>
 			))}
-		</SidebarMenu>
+		</Menu>
 	);
 };
 

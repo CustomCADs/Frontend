@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import { CustomizeCad } from '@/types/threejs';
 
-type UpdateProps = CustomizeCad & {
+type Props = CustomizeCad & {
 	textures: Map<THREE.Object3D, string>;
 };
-export const updateMaterial = ({ textures, texture, color }: UpdateProps) => {
+export const updateMaterial = ({ textures, texture, color }: Props) => {
 	return (cad: THREE.Object3D<THREE.Object3DEventMap>) => {
 		if (cad instanceof THREE.Mesh) {
 			if (textures.get(cad) !== texture) {

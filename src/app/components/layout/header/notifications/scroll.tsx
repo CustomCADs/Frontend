@@ -2,7 +2,7 @@ import { AllNotificationsResponse } from '@customcads/react-sdk';
 import { useNotificationVirtualization } from '@/app/hooks/features/notifications/useNotificationVirtualization';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import Loader from '@/app/components/loading';
-import { ScrollArea } from '@/app/components/ui/scroll-area';
+import { scroll } from '@/app/components/ui';
 import NotificationItem from './item';
 
 type Props = {
@@ -59,7 +59,7 @@ const Scroll = ({ notifications, nextPage }: Props) => {
 		));
 
 	return (
-		<ScrollArea
+		<scroll.Area
 			viewportRef={virtualizer.setContainer}
 			className='bg-header-popover h-80 w-80 sm:w-100 md:w-120 lg:w-140 rounded-sm'
 		>
@@ -79,7 +79,7 @@ const Scroll = ({ notifications, nextPage }: Props) => {
 					</ul>
 				</div>
 			</div>
-		</ScrollArea>
+		</scroll.Area>
 	);
 };
 

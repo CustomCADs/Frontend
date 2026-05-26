@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
-import { ScrollArea } from '@/app/components/ui/scroll-area';
+import { scroll } from '@/app/components/ui';
 import Item from './item';
 
 type Set = (productId: string, cost: number, acc?: boolean) => void;
@@ -12,7 +12,7 @@ const List = ({ set }: Props) => {
 
 	return (
 		<div className='ps-4 pe-2 py-4 overflow-clip shadow-sm shadow-primary rounded-4xl'>
-			<ScrollArea className='h-[50vh] lg:h-[75vh] lg:pe-5'>
+			<scroll.Area className='h-[50vh] lg:h-[75vh] lg:pe-5'>
 				<ul className='grid grid-cols-1 gap-y-2'>
 					{items?.length ? (
 						items.map((x) => (
@@ -39,7 +39,7 @@ const List = ({ set }: Props) => {
 						</div>
 					)}
 				</ul>
-			</ScrollArea>
+			</scroll.Area>
 		</div>
 	);
 };

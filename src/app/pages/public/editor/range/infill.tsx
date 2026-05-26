@@ -1,16 +1,10 @@
 import { CircleQuestionMark } from 'lucide-react';
-import * as units from '@/lib/utils/units';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn, units } from '@/lib/utils';
 import { INFILL } from '@/app/constants/threejs';
 import * as editor from '@/app/stores/editor';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from '@/app/components/ui/tooltip';
-import { Slider } from '@/app/components/ui/slider';
+import { tooltip, Slider } from '@/app/components/ui';
 
 const InfillRange = ({ id }: { id: string }) => {
 	const tEditor = useGalleryTranslations('editor');
@@ -21,14 +15,14 @@ const InfillRange = ({ id }: { id: string }) => {
 	return (
 		<div className='flex flex-col gap-y-2'>
 			<p className='flex gap-x-1 text-base'>
-				<Tooltip>
-					<TooltipTrigger asChild>
+				<tooltip.Root>
+					<tooltip.Trigger asChild>
 						<CircleQuestionMark size={14} />
-					</TooltipTrigger>
-					<TooltipContent>
+					</tooltip.Trigger>
+					<tooltip.Content>
 						{tEditor('infill-description')}
-					</TooltipContent>
-				</Tooltip>
+					</tooltip.Content>
+				</tooltip.Root>
 				<span>{tEditor('infill')}: </span>
 				<span>{units.percentage(100 * infill)}</span>
 			</p>

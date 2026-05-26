@@ -1,10 +1,8 @@
-'use client';
 import { useState } from 'react';
 import { Currency } from '@customcads/react-sdk';
 import { CheckIcon } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
-import * as command from '@/app/components/ui/command';
-import * as popover from '@/app/components/ui/popover';
+import { cn } from '@/lib/utils';
+import { command, popover } from '@/app/components/ui';
 
 type Option = { value: Currency; label: string; symbol: string | null };
 type Props = {
@@ -19,18 +17,16 @@ const CurrencyCombobox = ({ current, options, ...props }: Props) => {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<popover.Popover open={open} onOpenChange={setOpen}>
-			<popover.PopoverTrigger>{props.trigger}</popover.PopoverTrigger>
-			<popover.PopoverContent className='w-[175px] p-0 z-[100000]'>
-				<command.Command className='bg-header-accent text-header-accent-foreground'>
-					<command.CommandInput placeholder={props.placeholder} />
-					<command.CommandList>
-						<command.CommandEmpty>
-							{props.empty}
-						</command.CommandEmpty>
-						<command.CommandGroup>
+		<popover.Root open={open} onOpenChange={setOpen}>
+			<popover.Trigger>{props.trigger}</popover.Trigger>
+			<popover.Content className='w-43.75 p-0 z-100000'>
+				<command.Root className='bg-header-accent text-header-accent-foreground'>
+					<command.Input placeholder={props.placeholder} />
+					<command.List>
+						<command.Empty>{props.empty}</command.Empty>
+						<command.Group>
 							{options.map((option) => (
-								<command.CommandItem
+								<command.Item
 									key={option.value}
 									value={option.label}
 									onSelect={(label) => {
@@ -67,13 +63,13 @@ const CurrencyCombobox = ({ current, options, ...props }: Props) => {
 											)}
 										</div>
 									</div>
-								</command.CommandItem>
+								</command.Item>
 							))}
-						</command.CommandGroup>
-					</command.CommandList>
-				</command.Command>
-			</popover.PopoverContent>
-		</popover.Popover>
+						</command.Group>
+					</command.List>
+				</command.Root>
+			</popover.Content>
+		</popover.Root>
 	);
 };
 

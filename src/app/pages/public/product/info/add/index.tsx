@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { LucideIcon } from 'lucide-react';
+import { ClassName } from '@/types/react';
 import { useCartUpdates } from '@/app/hooks/features/carts/useCartUpdates';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import * as popover from '@/app/components/ui/popover';
-import { Button } from '@/app/components/ui/button';
+import { Button, popover } from '@/app/components/ui';
 import * as productTags from '@/app/utils/product-tags';
 import ProductButton from './button';
 
-type Props = {
+type Props = ClassName & {
 	Icon: LucideIcon;
 	product: { id: string; is: ReturnType<typeof productTags.is> };
 	text: string;
 	isAdded: boolean;
-	className?: string;
 };
 const AddToCartButton = ({
 	Icon,
@@ -54,11 +53,11 @@ const AddToCartButton = ({
 		);
 
 	return (
-		<popover.Popover open={isOpen} onOpenChange={toggleIsOpen}>
-			<popover.PopoverTrigger>
+		<popover.Root open={isOpen} onOpenChange={toggleIsOpen}>
+			<popover.Trigger>
 				<ProductButton Icon={Icon} text={text} className={className} />
-			</popover.PopoverTrigger>
-			<popover.PopoverContent>
+			</popover.Trigger>
+			<popover.Content>
 				<aside className='flex flex-col gap-y-6 py-4 md:py-8'>
 					<h4 className='text-center font-bold'>
 						{tProduct('add_delivery-question')}
@@ -78,8 +77,8 @@ const AddToCartButton = ({
 						</Button>
 					</div>
 				</aside>
-			</popover.PopoverContent>
-		</popover.Popover>
+			</popover.Content>
+		</popover.Root>
 	);
 };
 

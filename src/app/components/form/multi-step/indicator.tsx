@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 
 type Props = { label: string; index: number; currentStep: number };
 const Indicator = ({ label, index, currentStep }: Props) => {

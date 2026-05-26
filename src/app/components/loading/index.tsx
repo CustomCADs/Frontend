@@ -1,10 +1,9 @@
-import { Progress } from '@/app/components/ui/progress';
-import { Spinner } from '@/app/components/ui/spinner';
+import { Progress, Spinner } from '@/app/components/ui';
 
-type LoaderProps =
+type Props =
 	| { isCad: true; progress: number }
 	| { isCad?: undefined | false; size?: number };
-const Loader = (props: LoaderProps) => {
+const Loader = (props: Props) => {
 	if (!props.isCad) {
 		return <Spinner className={`size-${props.size}`} />;
 	}

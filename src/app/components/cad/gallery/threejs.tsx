@@ -1,5 +1,5 @@
 import { Coordinates } from '@customcads/react-sdk';
-import { type AllowedType } from '@/lib/cad/get-type';
+import { type AllowedType } from '@/lib/cad';
 import { useThreeJS } from '@/hooks/headless/useThreeJS';
 import Model from '../model';
 

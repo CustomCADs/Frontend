@@ -1,6 +1,6 @@
 import { usePagination } from '@/hooks/headless/usePagination';
 import * as LIMITS from '@/app/constants/limits';
-import * as pagination from '@/app/components/ui/pagination';
+import { pagination } from '@/app/components/ui';
 import Limits from './limits';
 import Pages from './pages';
 
@@ -16,8 +16,8 @@ const Pagination = ({ total, defaultPagination, navigate }: Props) => {
 	} = usePagination({ total, defaultPagination, onChange: navigate });
 
 	return (
-		<pagination.Pagination>
-			<pagination.PaginationContent className='grid grid-cols-4 place-items-center gap-y-4'>
+		<pagination.Root>
+			<pagination.Content className='grid grid-cols-4 place-items-center gap-y-4'>
 				<section className='col-span-2 md:col-span-1 order-2 md:order-1'>
 					<Limits
 						min={1}
@@ -41,8 +41,8 @@ const Pagination = ({ total, defaultPagination, navigate }: Props) => {
 						onChange={handleChange.limit}
 					/>
 				</section>
-			</pagination.PaginationContent>
-		</pagination.Pagination>
+			</pagination.Content>
+		</pagination.Root>
 	);
 };
 

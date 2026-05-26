@@ -1,8 +1,8 @@
-import * as units from '@/lib/utils/units';
+import { units } from '@/lib/utils';
 import * as editor from '@/app/stores/editor';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import { Slider } from '@/app/components/ui/slider';
+import { Slider } from '@/app/components/ui';
 import * as calculate3D from '@/app/utils/calculate-3D';
 
 const ScaleRange = ({ id }: { id: string }) => {

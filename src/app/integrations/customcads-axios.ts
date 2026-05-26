@@ -1,7 +1,5 @@
 import * as customcads from '@customcads/react-sdk';
-import { getEnv } from '@/lib/isomorphic/env';
-import * as persistence from '@/lib/isomorphic/persistence';
-import { getCsrfCookie } from '@/lib/isomorphic/api';
+import { persistence, getEnv, getCsrfCookie } from '@/lib/isomorphic';
 import { isAxiosError } from 'axios';
 
 export const setupApi = () => {

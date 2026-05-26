@@ -1,5 +1,5 @@
 import z from 'zod';
-import * as form from '@/lib/utils/form';
+import { form } from '@/lib/utils';
 import { Translators } from '@/app/types/schema';
 import * as schemas from './schemas';
 

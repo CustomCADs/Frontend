@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import * as src from '../file';
+import * as src from '../';
 
 const BASE_URL =
 	'https://845a4abada4f8cc3e189d27901a36eeb.r2.cloudflarestorage.com/customcads-testing-bucket';

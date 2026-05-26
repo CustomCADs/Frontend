@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
 import { Currency } from '@customcads/react-sdk';
-import * as persistence from '@/lib/isomorphic/persistence';
+import { persistence } from '@/lib/isomorphic';
 import { CURRENCY } from '@/app/constants/stores';
 import * as money from '@/app/utils/money';
 

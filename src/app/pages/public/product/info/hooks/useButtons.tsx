@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { HeartMinus, HeartPlus, ListCheck, ListPlus } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 import * as productTags from '@/app/utils/product-tags';
 import AddToCartButton from '../add';
 

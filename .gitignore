@@ -16,3 +16,4 @@ todos.json
 .env.*
 certs/
 *.gen.ts
+project.inlang

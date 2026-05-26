@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
 import { Ratio } from '@/types/threejs';
-import * as persistence from '@/lib/isomorphic/persistence';
+import { persistence } from '@/lib/isomorphic';
 import { EDITOR } from '@/app/constants/stores';
 
 const persist = persistence.create<Record<string, State>>(EDITOR.store);

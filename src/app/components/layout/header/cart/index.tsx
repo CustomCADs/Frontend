@@ -2,7 +2,7 @@ import { ShoppingCart } from 'lucide-react';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import CustomIcon from '@/app/components/icon';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 const CartIndicator = ({ text }: { text?: string }) => {
 	const { is } = useAuthStore();

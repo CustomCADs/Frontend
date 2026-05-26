@@ -1,7 +1,7 @@
-import { Children } from '@/types/react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { Children, ClassName } from '@/types/react';
+import { cn } from '@/lib/utils';
 
-type Props = { className?: string } & Children;
+type Props = Children & ClassName;
 const GeneralSection = ({ children, className }: Props) => (
 	<section className={cn('flex flex-col gap-y-4 text-lg', className)}>
 		{children}

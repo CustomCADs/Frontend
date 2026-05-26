@@ -14,7 +14,7 @@ const NotificationItem = ({ notification }: Props) => {
 	const Wrapper = !!notification.link ? Link : 'div';
 	return (
 		<div
-			className='flex flex-col text-sm border-y-1 my-2 rounded-md'
+			className='flex flex-col text-sm border-y my-2 rounded-md'
 			onClick={open}
 		>
 			<Wrapper
@@ -26,7 +26,7 @@ const NotificationItem = ({ notification }: Props) => {
 				)}
 				<span className='font-medium'>{notification.description}</span>
 			</Wrapper>
-			<span className='text-right italic px-2 py-1 text-sm text-popover-foreground bg-gradient-to-r from-transparent to-popover rounded-md'>
+			<span className='text-right italic px-2 py-1 text-sm text-popover-foreground bg-linear-to-r from-transparent to-popover rounded-md'>
 				{dateTime.formatRelative({ date: notification.createdAt })}
 			</span>
 		</div>

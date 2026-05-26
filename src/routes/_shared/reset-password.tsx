@@ -1,8 +1,7 @@
 import z from 'zod';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { identityApi } from '@customcads/react-sdk';
-import * as auth from '@/lib/utils/auth';
-import { get } from '@/lib/isomorphic/persistence';
+import { auth } from '@/lib/utils';
 import ResetPassword from '@/app/pages/guest/signin/reset-password';
 
 export const Route = createFileRoute('/_shared/reset-password')({
@@ -18,8 +17,7 @@ export const Route = createFileRoute('/_shared/reset-password')({
 			if (email === account.email) return;
 		} catch {} // user's probably unauthenticated
 
-		const role = get('role');
-		const is = auth.is({ authn: !!role, authz: role ?? null });
+		const is = auth.is();
 		if (!is.guest) throw redirect({ to: '/' });
 	},
 	head: () => ({ meta: [{ title: 'CustomCADs | Reset Password' }] }),

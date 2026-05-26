@@ -3,13 +3,13 @@ import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react';
 import SortingsCombobox from './compobox';
 
 export type SortingDirection = 'ascending' | 'descending';
-type SortingsProps = {
+type Props = {
 	getSorting: () => { type?: string; direction?: string };
 	updateSorting: (sorting: { type?: string; direction?: string }) => void;
 	sortings?: string[];
 };
 
-const Sortings = ({ getSorting, updateSorting, sortings }: SortingsProps) => {
+const Sortings = ({ getSorting, updateSorting, sortings }: Props) => {
 	const { type: sortingParam, direction: directionParam } = getSorting();
 	const initial = 'Sort By';
 

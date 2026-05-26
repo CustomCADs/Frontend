@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { ClipboardPen } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-import { Button } from './ui/button';
+import { Button, tooltip } from './ui';
 
 type Props = { value: string };
 const Clipboard = ({ value }: Props) => {
@@ -20,8 +19,8 @@ const Clipboard = ({ value }: Props) => {
 	};
 
 	return (
-		<Tooltip>
-			<TooltipTrigger className='relative flex flex-col items-center'>
+		<tooltip.Root>
+			<tooltip.Trigger className='relative flex flex-col items-center'>
 				<Button
 					type='button'
 					variant='ghost'
@@ -46,9 +45,9 @@ const Clipboard = ({ value }: Props) => {
 				>
 					{tUi('clipboard-message')}
 				</span>
-			</TooltipTrigger>
-			<TooltipContent>{tUi('clipboard-label')}</TooltipContent>
-		</Tooltip>
+			</tooltip.Trigger>
+			<tooltip.Content>{tUi('clipboard-label')}</tooltip.Content>
+		</tooltip.Root>
 	);
 };
 

@@ -3,12 +3,12 @@ import { CategoryResponse, useQuery } from '@customcads/react-sdk';
 import { Funnel, X } from 'lucide-react';
 import CategoriesCombobox from './compobox';
 
-type CategoriesProps = {
+type Props = {
 	getCategory: () => string | undefined;
 	updateCategory: (category?: CategoryResponse) => void;
 };
 
-const Categories = ({ getCategory, updateCategory }: CategoriesProps) => {
+const Categories = ({ getCategory, updateCategory }: Props) => {
 	const { data: categories } = useQuery(({ categories }) => categories.all);
 	const categoryParam = getCategory();
 

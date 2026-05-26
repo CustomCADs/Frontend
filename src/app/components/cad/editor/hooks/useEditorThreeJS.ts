@@ -1,9 +1,8 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { CalculateCad } from '@/types/threejs';
-import { getEnv } from '@/lib/isomorphic/env';
-import { updateMaterial } from '@/lib/cad/material';
-import { boxSize } from '@/lib/cad/three-js';
+import { getEnv } from '@/lib/isomorphic';
+import { updateMaterial, boxSize } from '@/lib/cad';
 import * as editor from '@/app/stores/editor';
 import * as calculate3D from '@/app/utils/calculate-3D';
 

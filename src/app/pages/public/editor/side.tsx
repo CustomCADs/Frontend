@@ -1,12 +1,12 @@
 import { Children } from '@/types/react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 
 type Props = { orientation: 'left' | 'right' } & Children;
 const Side = ({ children, orientation }: Props) => (
 	<div
 		className={cn(
 			// base
-			'bg-secondary border-[1px] md:border-0 rounded-md md:rounded-none shadow-shadow shadow-xl',
+			'bg-secondary border md:border-0 rounded-md md:rounded-none shadow-shadow shadow-xl',
 
 			// radius
 			orientation === 'left' && 'rounded-b-xl md:rounded-e-xl',

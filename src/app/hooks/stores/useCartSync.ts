@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { type ActiveCartItem, useQuery } from '@customcads/react-sdk';
-import { getCartCookie } from '@/lib/isomorphic/cart';
+import { getCartCookie } from '@/lib/isomorphic';
 import { CartItem } from '@/app/types/cart-item';
 import * as cartStore from '@/app/stores/cart';
 import { useAuthStore } from './useAuthStore';

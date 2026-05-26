@@ -1,7 +1,7 @@
 import { Moon, Sun } from 'lucide-react';
 import { useThemeStore } from '@/app/hooks/stores/useThemeStore';
 import * as themeStore from '@/app/stores/theme';
-import { Switch } from '@/app/components/ui/switch';
+import { Switch } from '@/app/components/ui';
 import CustomIcon from '@/app/components/icon';
 
 export const ThemeToggle = () => {

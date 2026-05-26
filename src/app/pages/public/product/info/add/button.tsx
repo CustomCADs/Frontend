@@ -1,11 +1,11 @@
 import { LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
-import { Button } from '@/app/components/ui/button';
+import { ClassName } from '@/types/react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/app/components/ui';
 
-type Props = {
+type Props = ClassName & {
 	Icon: LucideIcon;
 	text: string;
-	className?: string;
 	onClick?: VoidFunction;
 };
 const ProductButton = ({ Icon, text, className, onClick }: Props) => (

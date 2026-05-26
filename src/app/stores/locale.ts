@@ -1,7 +1,10 @@
 import { Store } from '@tanstack/store';
-import * as persistence from '@/lib/isomorphic/persistence';
 import { AllowedLanguage } from '@/types/locale';
-import * as locale from '@/lib/isomorphic/locale';
+import {
+	persistence,
+	getUserDefaultLanguage,
+	getUserTimeZone,
+} from '@/lib/isomorphic';
 import { LOCALE } from '@/app/constants/stores';
 
 const persist = persistence.create<State>(LOCALE.store);
@@ -12,9 +15,9 @@ type State = {
 	timezone: string;
 };
 const defaultState = (): State => ({
-	defaultLanguage: locale.getUserDefaultLanguage(),
-	language: locale.getUserDefaultLanguage(),
-	timezone: locale.getUserTimeZone(),
+	defaultLanguage: getUserDefaultLanguage(),
+	language: getUserDefaultLanguage(),
+	timezone: getUserTimeZone(),
 });
 
 const loadInitialState = (): State => {

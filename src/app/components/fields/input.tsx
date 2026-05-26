@@ -1,5 +1,5 @@
 import { AnyFieldApi } from '@tanstack/react-form';
-import { Input } from '@/app/components/ui/input';
+import { Input } from '@/app/components/ui';
 
 type Props = { api: AnyFieldApi } & React.ComponentProps<typeof Input>;
 const FormInput = ({ api, ...props }: Props) => (

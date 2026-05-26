@@ -1,10 +1,9 @@
-import { queries } from '@customcads/react-sdk';
-import { OnlyParam } from '@/lib/utils/typescript';
+import { type AllNotificationsRequest } from '@customcads/react-sdk';
 import { useNotificationsHub } from '@/app/hooks/hubs/useNotificationHub';
 import { useNotificationQueryData } from './useNotificationQueryData';
 
 type Props = {
-	allParams: OnlyParam<typeof queries.notifications.all>;
+	allParams: AllNotificationsRequest;
 };
 export const useNotificationRealTime = ({ allParams }: Props) => {
 	const queries = useNotificationQueryData({

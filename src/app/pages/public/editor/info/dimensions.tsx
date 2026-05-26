@@ -1,5 +1,5 @@
 import type { Distance } from '@/types/units';
-import * as units from '@/lib/utils/units';
+import { units } from '@/lib/utils';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
 import * as calculate3D from '@/app/utils/calculate-3D';

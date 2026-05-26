@@ -1,13 +1,13 @@
 import { useStore } from '@tanstack/react-store';
-import { is } from '@/lib/utils/auth';
-import * as auth from '@/app/stores/auth';
+import { auth } from '@/lib/utils';
+import * as authStore from '@/app/stores/auth';
 
 export const useAuthStore = () => {
-	const { store, ...actions } = auth.store();
+	const { store, ...actions } = authStore.get();
 	const state = useStore(store);
 
 	return {
-		is: is(state),
+		is: auth.is(state),
 		...state,
 		...actions,
 	};

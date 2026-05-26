@@ -1,36 +1,34 @@
-import { cn } from '@/lib/utils/tailwindcss';
-import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { Dialog as Primitive } from 'radix-ui';
 import { XIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const Dialog = ({
-	...props
-}: React.ComponentProps<typeof DialogPrimitive.Root>) => (
-	<DialogPrimitive.Root data-slot='dialog' {...props} />
+const Dialog = ({ ...props }: React.ComponentProps<typeof Primitive.Root>) => (
+	<Primitive.Root data-slot='dialog' {...props} />
 );
 
 const DialogTrigger = ({
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Trigger>) => (
-	<DialogPrimitive.Trigger data-slot='dialog-ger' {...props} />
+}: React.ComponentProps<typeof Primitive.Trigger>) => (
+	<Primitive.Trigger data-slot='dialog-ger' {...props} />
 );
 
 const DialogPortal = ({
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Portal>) => (
-	<DialogPrimitive.Portal data-slot='dialog-al' {...props} />
+}: React.ComponentProps<typeof Primitive.Portal>) => (
+	<Primitive.Portal data-slot='dialog-al' {...props} />
 );
 
 const DialogClose = ({
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Close>) => (
-	<DialogPrimitive.Close data-slot='dialog-e' {...props} />
+}: React.ComponentProps<typeof Primitive.Close>) => (
+	<Primitive.Close data-slot='dialog-e' {...props} />
 );
 
 const DialogOverlay = ({
 	className,
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Overlay>) => (
-	<DialogPrimitive.Overlay
+}: React.ComponentProps<typeof Primitive.Overlay>) => (
+	<Primitive.Overlay
 		data-slot='dialog-overlay'
 		className={cn(
 			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50',
@@ -45,7 +43,7 @@ const DialogContent = ({
 	children,
 	close = { show: true, text: 'Close' },
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Content> & {
+}: React.ComponentProps<typeof Primitive.Content> & {
 	close?: {
 		show: boolean;
 		text: string;
@@ -53,7 +51,7 @@ const DialogContent = ({
 }) => (
 	<DialogPortal data-slot='dialog-portal'>
 		<DialogOverlay />
-		<DialogPrimitive.Content
+		<Primitive.Content
 			data-slot='dialog-content'
 			className={cn(
 				'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg',
@@ -64,15 +62,15 @@ const DialogContent = ({
 		>
 			{children}
 			{close.show && (
-				<DialogPrimitive.Close
+				<Primitive.Close
 					data-slot='dialog-close'
 					className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 				>
 					<XIcon />
 					<span className='sr-only'>{close.text}</span>
-				</DialogPrimitive.Close>
+				</Primitive.Close>
 			)}
-		</DialogPrimitive.Content>
+		</Primitive.Content>
 	</DialogPortal>
 );
 
@@ -101,8 +99,8 @@ const DialogFooter = ({ className, ...props }: React.ComponentProps<'div'>) => (
 const DialogTitle = ({
 	className,
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Title>) => (
-	<DialogPrimitive.Title
+}: React.ComponentProps<typeof Primitive.Title>) => (
+	<Primitive.Title
 		data-slot='dialog-title'
 		className={cn('text-lg leading-none font-semibold', className)}
 		{...props}
@@ -112,8 +110,8 @@ const DialogTitle = ({
 const DialogDescription = ({
 	className,
 	...props
-}: React.ComponentProps<typeof DialogPrimitive.Description>) => (
-	<DialogPrimitive.Description
+}: React.ComponentProps<typeof Primitive.Description>) => (
+	<Primitive.Description
 		data-slot='dialog-description'
 		className={cn('text-muted-foreground text-sm', className)}
 		{...props}
@@ -121,14 +119,14 @@ const DialogDescription = ({
 );
 
 export {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogOverlay,
-	DialogPortal,
-	DialogTitle,
-	DialogTrigger,
+	Dialog as Root,
+	DialogClose as Close,
+	DialogContent as Content,
+	DialogDescription as Description,
+	DialogFooter as Footer,
+	DialogHeader as Header,
+	DialogOverlay as Overlay,
+	DialogPortal as Portal,
+	DialogTitle as Title,
+	DialogTrigger as Trigger,
 };

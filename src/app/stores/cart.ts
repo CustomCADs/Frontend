@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
-import * as persistence from '@/lib/isomorphic/persistence';
-import * as auth from '@/lib/utils/auth';
+import { persistence } from '@/lib/isomorphic';
+import { auth } from '@/lib/utils';
 import { CartItem } from '@/app/types/cart-item';
 import { CART } from '@/app/constants/stores';
 

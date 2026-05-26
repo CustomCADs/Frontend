@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useMutation } from '@customcads/react-sdk';
-import { extractError } from '@/lib/utils/form';
+import { form } from '@/lib/utils';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import { useNotificationQueryData } from '@/app/hooks/features/notifications/useNotificationQueryData';
 
@@ -18,7 +18,7 @@ export const useVerifyEmail = ({ username, token }: Props) => {
 
 	const { reset: resetAuth } = useAuthStore();
 	const { invalidate: resetNotifications } = useNotificationQueryData({
-		params: { all: { limit: 10 } },
+		params: { all: { page: 1, limit: 10 } },
 	});
 
 	useEffect(() => {
@@ -28,6 +28,6 @@ export const useVerifyEmail = ({ username, token }: Props) => {
 
 	return {
 		isSuccess: mutation.isSuccess,
-		error: extractError(mutation.error),
+		error: form.extractError(mutation.error),
 	};
 };

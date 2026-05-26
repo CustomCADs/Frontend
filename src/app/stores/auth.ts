@@ -1,17 +1,17 @@
 import { Store } from '@tanstack/store';
-import { getRoleCookie } from '@/lib/isomorphic/api';
+import { getRoleCookie } from '@/lib/isomorphic';
 import { getStore } from '@/lib/isomorphic/store';
 
-type AuthState = {
+type State = {
 	authn: boolean;
 	authz: string | null;
 };
-const getDefaultState = (role?: string): AuthState => ({
+const getDefaultState = (role?: string): State => ({
 	authn: Boolean(role),
 	authz: role ?? null,
 });
-export const store = getStore(() => {
-	const store = new Store<AuthState>(getDefaultState(getRoleCookie()));
+export const get = getStore(() => {
+	const store = new Store<State>(getDefaultState(getRoleCookie()));
 
 	return {
 		store,

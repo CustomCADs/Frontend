@@ -1,7 +1,6 @@
 import { Store } from '@tanstack/store';
 import { Theme } from '@/types/locale';
-import * as persistence from '@/lib/isomorphic/persistence';
-import { getSystemThemePreference } from '@/lib/isomorphic/theme';
+import { persistence, getSystemThemePreference } from '@/lib/isomorphic';
 import { THEME } from '@/app/constants/stores';
 
 const persist = persistence.create<State>(THEME.store);

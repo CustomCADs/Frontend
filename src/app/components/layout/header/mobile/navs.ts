@@ -1,13 +1,13 @@
 import { Hammer, Home, Store } from 'lucide-react';
-import * as auth from '@/lib/utils/auth';
-import { SidebarProps } from './sidebar';
+import { auth } from '@/lib/utils';
+import { Props } from './sidebar';
 
 export default {
 	main: [
 		{ name: 'home', url: '/', icon: Home },
 		{ name: 'gallery', url: '/gallery', icon: Store },
 	],
-	getCollections: (is): SidebarProps['collections'] => {
+	getCollections: (is): Props['collections'] => {
 		if (is.guest)
 			return [
 				{
@@ -29,7 +29,7 @@ export default {
 
 		return [];
 	},
-	getWorkspaces: (is): SidebarProps['workspaces'] => {
+	getWorkspaces: (is): Props['workspaces'] => {
 		if (is.customer)
 			return [
 				{
@@ -133,7 +133,7 @@ export default {
 		return [];
 	},
 } satisfies {
-	main: SidebarProps['main'];
-	getCollections: (is: auth.Returns) => SidebarProps['collections'];
-	getWorkspaces: (is: auth.Returns) => SidebarProps['workspaces'];
+	main: Props['main'];
+	getCollections: (is: auth.Returns) => Props['collections'];
+	getWorkspaces: (is: auth.Returns) => Props['workspaces'];
 };

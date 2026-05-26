@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 
 type Props = { name: string; value: string };
 const Detail = ({ name, value }: Props) => (

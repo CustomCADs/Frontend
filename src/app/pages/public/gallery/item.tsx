@@ -4,7 +4,7 @@ import {
 	type GalleryAllProductsResponse,
 } from '@customcads/react-sdk';
 import { Banknote, Eye } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 
 const Item = ({ product }: { product: GalleryAllProductsResponse }) => {
 	const { data: image } = useQuery(

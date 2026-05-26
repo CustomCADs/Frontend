@@ -1,14 +1,14 @@
 import { Ref } from 'react';
 import Loader from '../loading';
 
-type ModelProps = {
+type Props = {
 	threejs: {
 		ref: Ref<HTMLDivElement>;
 		progress: number;
 	};
 };
 
-const Model = ({ threejs: { ref, progress } }: ModelProps) => [
+const Model = ({ threejs: { ref, progress } }: Props) => [
 	progress < 1 && <Loader key='loader' progress={progress} isCad />,
 	<div key='model' ref={ref} className='h-full w-full' />,
 ];

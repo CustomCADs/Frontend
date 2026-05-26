@@ -1,13 +1,13 @@
 import { Link } from '@tanstack/react-router';
 import { TITLE } from '@/app/constants/global';
-import { getYear } from '@/lib/utils/time';
+import { time } from '@/lib/utils';
 
 const FooterHeading = () => (
 	<header className='flex items-center gap-x-2 text-lg font-extrabold'>
 		<Link to='/'>&copy; {TITLE}</Link>
 		<span>—</span>
 		<span>
-			{getYear.customcads_founded_at()}–{getYear.current()}
+			{time.getYear.customcads_founded_at()}–{time.getYear.current()}
 		</span>
 	</header>
 );

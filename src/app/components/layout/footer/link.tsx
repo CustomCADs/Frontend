@@ -1,8 +1,8 @@
 import { Link, LinkProps } from '@tanstack/react-router';
 
-type FooterLinkProps = LinkProps & { text: string };
+type Props = LinkProps & { text: string };
 
-const FooterLink = ({ text, ...props }: FooterLinkProps) => {
+const FooterLink = ({ text, ...props }: Props) => {
 	return (
 		<span className='text-footer-foreground text-sm md:text-base font-bold underline hover:text-footer-accent-foreground'>
 			<Link {...props} className='ease-in duration-100'>

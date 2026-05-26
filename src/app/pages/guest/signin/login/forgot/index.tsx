@@ -1,13 +1,5 @@
 import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/app/components/ui/card';
-import { Button } from '@/app/components/ui/button';
+import { Button, card } from '@/app/components/ui';
 import Alert from '@/app/components/alert';
 import { useFields } from './hooks/useFields';
 
@@ -17,30 +9,30 @@ const ForgotPassword = () => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<Card className='bg-card border-0 transition-colors duration-600'>
-				<CardHeader>
-					<CardTitle className='md:text-lg text-center'>
+			<card.Root className='bg-card border-0 transition-colors duration-600'>
+				<card.Header>
+					<card.Title className='md:text-lg text-center'>
 						{tForgot('title')}
-					</CardTitle>
-					<CardDescription className='text-center'>
+					</card.Title>
+					<card.Description className='text-center'>
 						{tForgot('subtitle')}
-					</CardDescription>
-				</CardHeader>
-				<CardContent>
+					</card.Description>
+				</card.Header>
+				<card.Content>
 					<div className='flex flex-col'>
 						<div className='grid gap-2 mb-6'>
 							<fields.Email />
 						</div>
 					</div>
-				</CardContent>
-				<CardFooter className='flex-col gap-3.5'>
+				</card.Content>
+				<card.Footer className='flex-col gap-3.5'>
 					<Button className='w-full'>{tForgot('button')}</Button>
 					<Alert
 						success={isSuccess && tForgot('message')}
 						error={error}
 					/>
-				</CardFooter>
-			</Card>
+				</card.Footer>
+			</card.Root>
 		</form>
 	);
 };

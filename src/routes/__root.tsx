@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-router';
 import { AppError } from '@/types/errors';
 import { RouterContext } from '@/router';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { isLightThemeCookie } from '@/lib/isomorphic/theme';
 import '@/app/config/env';
 import Layout from '@/app/components/layout';

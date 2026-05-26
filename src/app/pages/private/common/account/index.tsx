@@ -1,6 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import Tabs from '@/app/components/tabs';
 import * as page from '@/app/utils/page';

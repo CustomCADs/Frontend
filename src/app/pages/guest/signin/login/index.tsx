@@ -1,14 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/app/components/ui/card';
-import { Button } from '@/app/components/ui/button';
+import { Button, card } from '@/app/components/ui';
 import { Error } from '@/app/components/form/error';
 import GoogleSSO from '@/app/components/sso/google';
 import * as page from '@/app/utils/page';
@@ -22,16 +14,16 @@ const Login = () => {
 	return (
 		<div className={page.className}>
 			<form onSubmit={handleSubmit} className='w-full max-w-sm'>
-				<Card className='bg-card border-border border-2 shadow-shadow shadow-xl/100 transition-colors duration-400'>
-					<CardHeader>
-						<CardTitle className='text-center'>
+				<card.Root className='bg-card border-border border-2 shadow-shadow shadow-xl/100 transition-colors duration-400'>
+					<card.Header>
+						<card.Title className='text-center'>
 							{tLogin('title')}
-						</CardTitle>
-						<CardDescription className='text-center'>
+						</card.Title>
+						<card.Description className='text-center'>
 							{tLogin('subtitle')}
-						</CardDescription>
-					</CardHeader>
-					<CardContent>
+						</card.Description>
+					</card.Header>
+					<card.Content>
 						<div className='flex flex-col'>
 							<div className='grid gap-2 mb-6'>
 								<fields.Username />
@@ -41,8 +33,8 @@ const Login = () => {
 								<ForgotPasswordDialog />
 							</div>
 						</div>
-					</CardContent>
-					<CardFooter className='flex-col gap-3.5'>
+					</card.Content>
+					<card.Footer className='flex-col gap-3.5'>
 						<Button type='submit' className='w-full'>
 							{tLogin('login')}
 						</Button>
@@ -54,7 +46,7 @@ const Login = () => {
 							<fields.RememberMe />
 						</div>
 						<Error message={error} />
-					</CardFooter>
+					</card.Footer>
 					<hr className='h-0.5' />
 					<div className='text-center'>
 						<span className='text-sm'>
@@ -70,7 +62,7 @@ const Login = () => {
 							</Button>
 						</Link>
 					</div>
-				</Card>
+				</card.Root>
 			</form>
 		</div>
 	);

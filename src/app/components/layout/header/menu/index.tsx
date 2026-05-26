@@ -1,8 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { MenuIcon } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import * as NavMenu from '@/app/components/ui/navmenu';
-import { Separator } from '@/app/components/ui/separator';
+import { navMenu, Separator } from '@/app/components/ui';
 import { useItems } from './hooks/useItems';
 
 const Content = () => {
@@ -12,37 +11,37 @@ const Content = () => {
 	if (!items.length) return null;
 
 	return (
-		<NavMenu.Root>
-			<NavMenu.Item>
-				<NavMenu.Trigger
+		<navMenu.Root>
+			<navMenu.Item>
+				<navMenu.Trigger
 					className='h-6 p-0 bg-header hover:bg-header data-[state=open]:hover:bg-header'
 					asChild
 				>
 					<MenuIcon />
-				</NavMenu.Trigger>
-				<NavMenu.Content className='min-w-40 text-nowrap text-center'>
+				</navMenu.Trigger>
+				<navMenu.Content className='min-w-40 text-nowrap text-center'>
 					<label>{tHeader(titleKey)}</label>
 					<Separator className='h-[1.5px]' />
 					{items.map((group, i) => (
 						<div key={i} className='pt-3'>
 							{group.map(({ link, textKey }) => (
-								<NavMenu.Link
+								<navMenu.Link
 									key={textKey}
 									asChild
 									className='hover:bg-header-accent'
 								>
 									<Link to={link}>
-										<NavMenu.Item>
+										<navMenu.Item>
 											{tHeader(textKey)}
-										</NavMenu.Item>
+										</navMenu.Item>
 									</Link>
-								</NavMenu.Link>
+								</navMenu.Link>
 							))}
 						</div>
 					))}
-				</NavMenu.Content>
-			</NavMenu.Item>
-		</NavMenu.Root>
+				</navMenu.Content>
+			</navMenu.Item>
+		</navMenu.Root>
 	);
 };
 export default Content;

@@ -1,19 +1,19 @@
 import { Settings2 } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useInfoTranslations } from '@/app/hooks/locales/translations/pages/public';
 import CustomIcon from '@/app/components/icon';
-import * as sheet from '@/app/components/ui/sheet';
+import { sheet } from '@/app/components/ui';
 import * as preferences from '@/app/components/preferences';
 
 const Preferences = ({ text }: { text?: string }) => {
 	const tPreferences = useInfoTranslations('preferences');
 
 	return (
-		<sheet.Sheet>
-			<sheet.SheetTrigger>
+		<sheet.Root>
+			<sheet.Trigger>
 				<CustomIcon Icon={Settings2} text={text} />
-			</sheet.SheetTrigger>
-			<sheet.SheetContent
+			</sheet.Trigger>
+			<sheet.Content
 				className={cn(
 					'w-5/6 md:w-auto py-20 md:p-16 rounded-3xl',
 					'flex flex-col justify-center items-center gap-y-12',
@@ -36,8 +36,8 @@ const Preferences = ({ text }: { text?: string }) => {
 						placeholder={tPreferences('currency-placeholder')}
 					/>
 				</div>
-			</sheet.SheetContent>
-		</sheet.Sheet>
+			</sheet.Content>
+		</sheet.Root>
 	);
 };
 

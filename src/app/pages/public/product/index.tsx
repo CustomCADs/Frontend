@@ -1,6 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import * as page from '@/app/utils/page';
 import Card from './card';
 import Info from './info';

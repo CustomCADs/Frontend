@@ -1,5 +1,5 @@
 import { Children } from '@/types/react';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 type Props = { onClick?: VoidFunction; disabled?: boolean } & Children;
 const GeneralButton = ({ children, disabled, onClick }: Props) => (

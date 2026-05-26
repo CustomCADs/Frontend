@@ -1,5 +1,5 @@
-import type { Mass } from '@/types/units';
-import * as units from '@/lib/utils/units';
+import { type Mass } from '@/types/units';
+import { units } from '@/lib/utils';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';

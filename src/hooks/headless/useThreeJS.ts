@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Coordinates } from '@/types/threejs';
 import { getEnv } from '@/lib/isomorphic/env';
-import { initThreeJS, clearScene } from '@/lib/cad/three-js';
-import * as loader from '@/lib/cad/loader';
+import { initThreeJS, clearScene, loader } from '@/lib/cad';
 
 export const useThreeJS = (
 	file?: {

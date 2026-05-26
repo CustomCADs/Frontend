@@ -1,5 +1,5 @@
-import { Translators } from '@/app/types/schema';
 import z from 'zod';
+import { Translators } from '@/app/types/schema';
 
 export const zodHelpers = {
 	emptyOrLength: (args: { min: number; max: number }, error: string) =>
@@ -28,9 +28,8 @@ export const zodHelpers = {
 			error: tErrors('equal-passwords'),
 			path: ['confirmPassword'],
 		}),
+	file: (file: File) => file.size > 0,
 };
-
-export const fileHelper = (file: File) => file.size > 0;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const extractError = (error: any) =>
@@ -55,7 +54,7 @@ export const doFieldsHaveErrors = <TValues, TKeys = keyof TValues>(
 };
 
 export const handleSubmit = async (
-	e: React.FormEvent<HTMLFormElement>,
+	e: React.SubmitEvent<HTMLFormElement>,
 	onSubmit: () => Promise<void>,
 ) => {
 	e.preventDefault();

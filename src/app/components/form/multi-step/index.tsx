@@ -1,7 +1,7 @@
 import { type Step } from '@/types/form';
 import { type Children } from '@/types/react';
-import { cn } from '@/lib/utils/tailwindcss';
-import { Button } from '@/app/components/ui/button';
+import { cn } from '@/lib/utils';
+import { Button } from '@/app/components/ui';
 import Indicator from './indicator';
 
 type Props<K> = Children & {
@@ -15,7 +15,7 @@ type Props<K> = Children & {
 		next: string;
 		submit: string;
 	};
-	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+	onSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
 };
 // eslint-disable-next-line func-style
 function MultiStepForm<K>({ children, steps, move, text, onSubmit }: Props<K>) {

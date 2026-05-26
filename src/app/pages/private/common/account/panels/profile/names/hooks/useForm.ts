@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useQueryClient } from '@tanstack/react-query';
 import { query, useMutation } from '@customcads/react-sdk';
-import * as form from '@/lib/utils/form';
+import { form } from '@/lib/utils';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
 import * as profile from '@/app/validators/profile';
@@ -35,7 +35,7 @@ export const useForm = (defaultValues: profile.Data) => {
 	return {
 		form: formApi,
 		error: form.extractError(mutation.error),
-		handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
 			setIsSubmitted(true);
 			return form.handleSubmit(e, formApi.handleSubmit);
 		},

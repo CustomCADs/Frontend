@@ -1,4 +1,4 @@
-import { getRoleCookie } from '../isomorphic/api';
+import { getRoleCookie } from '@/lib/isomorphic';
 
 type Props = { authn: boolean; authz: string | null };
 export type Returns = {

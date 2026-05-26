@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import * as ui from '@/app/components/ui/tabs';
-import { Card } from './ui/card';
+import { ClassName } from '@/types/react';
+import { tabs as ui } from '@/app/components/ui';
+import { Root as Card } from './ui/card';
 
-type Props<Tab> = React.ComponentProps<typeof ui.Tabs> & {
-	tabs: readonly {
-		id: Tab;
-		header: React.ReactNode;
-		ui: {
-			label: string;
-			panel: React.ReactNode;
-		};
-		footer: React.ReactNode;
-		className: string;
-	}[];
-	defaultTab?: Tab;
-	onTabChange?: (tab: Tab) => void;
-	tabVariant?: React.ComponentProps<typeof ui.TabsList>['variant'];
+type Tab<T> = ClassName & {
+	id: T;
+	header: React.ReactNode;
+	ui: {
+		label: string;
+		panel: React.ReactNode;
+	};
+	footer: React.ReactNode;
+};
+
+type Props<T> = React.ComponentProps<typeof ui.Root> & {
+	tabs: readonly Tab<T>[];
+	defaultTab?: T;
+	onTabChange?: (tab: T) => void;
+	tabVariant?: React.ComponentProps<typeof ui.List>['variant'];
 };
 // eslint-disable-next-line func-style
-function Tabs<Tab extends string>({
+function Tabs<T extends string>({
 	tabs,
 	defaultTab,
 	onTabChange,
 	tabVariant,
 	...props
-}: Props<Tab>) {
-	const [tab, setTab] = useState<Tab>(defaultTab ?? tabs[0].id);
+}: Props<T>) {
+	const [tab, setTab] = useState<T>(defaultTab ?? tabs[0].id);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -35,28 +37,28 @@ function Tabs<Tab extends string>({
 	}, [tab]);
 
 	return (
-		<ui.Tabs
+		<ui.Root
 			value={tab}
-			onValueChange={(tab) => setTab(tab as Tab)}
+			onValueChange={(tab) => setTab(tab as T)}
 			{...props}
 		>
-			<ui.TabsList className='w-full md:w-auto' variant={tabVariant}>
+			<ui.List className='w-full md:w-auto' variant={tabVariant}>
 				{tabs.map(({ id, ui: { label }, className }) => (
-					<ui.TabsTrigger key={id} value={id} className={className}>
+					<ui.Trigger key={id} value={id} className={className}>
 						{label}
-					</ui.TabsTrigger>
+					</ui.Trigger>
 				))}
-			</ui.TabsList>
+			</ui.List>
 			{tabs.map(({ id, header, ui: { panel }, footer }) => (
-				<ui.TabsContent key={id} value={id}>
+				<ui.Content key={id} value={id}>
 					<Card className='min-h-140 pt-4 flex flex-col gap-y-0'>
 						{header}
 						{panel}
 						{footer}
 					</Card>
-				</ui.TabsContent>
+				</ui.Content>
 			))}
-		</ui.Tabs>
+		</ui.Root>
 	);
 }
 
