@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { store, getActions, defaultState } from '@/app/stores/editor';
 
 export const useEditorStore = <TState>(
@@ -10,5 +10,5 @@ export const useEditorStore = <TState>(
 		actions.record.add();
 	}
 
-	return useStore(store, (store) => selector(store[id] ?? defaultState));
+	return useSelector(store, (store) => selector(store[id] ?? defaultState));
 };

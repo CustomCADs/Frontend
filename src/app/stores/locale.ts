@@ -28,9 +28,9 @@ const loadInitialState = (): State => {
 };
 
 export const store = new Store<State>(loadInitialState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
-export const resetStore = () => store.setState(defaultState());
+export const resetStore = () => store.setState(defaultState);
 
 export const setDefaultLanguage = (defaultLanguage: AllowedLanguage) =>
 	store.setState((prev) => ({

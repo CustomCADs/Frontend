@@ -32,7 +32,7 @@ const loadInitialState = (): Record<string, State> => {
 };
 
 export const store = new Store<Record<string, State>>(loadInitialState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
 const resetRecord = (key: string | null) =>
 	store.setState((prev) => {

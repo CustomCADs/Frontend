@@ -30,7 +30,7 @@ describe('File utility tests', () => {
 		const mockResult = { response, length: CONTENT_LENGTH };
 
 		beforeEach(() => {
-			global.fetch = vi.fn().mockResolvedValueOnce(response);
+			vi.stubGlobal('fetch', vi.fn().mockResolvedValueOnce(response));
 		});
 
 		it.each(cases)('makes proper call to fetch', async (file) => {
@@ -42,7 +42,7 @@ describe('File utility tests', () => {
 			});
 
 			// Assert
-			expect(global.fetch).toHaveBeenCalledWith(file.url, {
+			expect(fetch).toHaveBeenCalledWith(file.url, {
 				headers: {
 					'Content-Type': CONTENT_TYPE,
 				},
@@ -70,7 +70,7 @@ describe('File utility tests', () => {
 			async (file) => {
 				// Arrange
 				const error = new Error('Fetch failed');
-				global.fetch = vi.fn().mockRejectedValueOnce(error);
+				vi.stubGlobal('fetch', vi.fn().mockRejectedValueOnce(error));
 
 				// Act + Assert
 				await expect(
@@ -86,12 +86,15 @@ describe('File utility tests', () => {
 			'throws proper errors when fetch is unsuccessful',
 			async (file) => {
 				// Arrange
-				global.fetch = vi.fn().mockResolvedValueOnce({
-					...response,
-					ok: false,
-					status: 404,
-					statusText: 'Not Found',
-				});
+				vi.stubGlobal(
+					'fetch',
+					vi.fn().mockResolvedValueOnce({
+						...response,
+						ok: false,
+						status: 404,
+						statusText: 'Not Found',
+					}),
+				);
 
 				// Act
 				// Arrange
@@ -110,7 +113,7 @@ describe('File utility tests', () => {
 		const response = { ok: true };
 
 		beforeEach(() => {
-			global.fetch = vi.fn().mockResolvedValueOnce(response);
+			vi.stubGlobal('fetch', vi.fn().mockResolvedValueOnce(response));
 		});
 
 		it.each(cases)('makes proper call to fetch', async (file) => {
@@ -122,7 +125,7 @@ describe('File utility tests', () => {
 			});
 
 			// Assert
-			expect(global.fetch).toHaveBeenCalledWith(file.url, {
+			expect(fetch).toHaveBeenCalledWith(file.url, {
 				body: MOCK_FILE,
 				method: 'PUT',
 				headers: {
@@ -137,7 +140,7 @@ describe('File utility tests', () => {
 			async (file) => {
 				// Arrange
 				const error = new Error('Upload failed');
-				global.fetch = vi.fn().mockRejectedValueOnce(error);
+				vi.stubGlobal('fetch', vi.fn().mockRejectedValueOnce(error));
 
 				// Act
 				// Assert

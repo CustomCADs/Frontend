@@ -19,12 +19,12 @@ const defaultState = (): State => {
 };
 
 export const store = new Store(defaultState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
 export const actions = {
 	cart: {
-		fill: (items: CartItem[]) => store.setState({ items }),
-		clear: () => store.setState({ items: [] }),
+		fill: (items: CartItem[]) => store.setState(() => ({ items })),
+		clear: () => store.setState(() => ({ items: [] })),
 		add: (newItem: CartItem) =>
 			store.setState((prev) => {
 				if (!prev.items) return { items: [newItem] };

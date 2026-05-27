@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import { useSteps } from '@/app/components/form/multi-step/hooks/useSteps';
 import { card } from '@/app/components/ui';
@@ -14,7 +14,7 @@ export type Key = 'role' | 'profile' | 'creds';
 
 const Register = () => {
 	const { steps, handleSubmit, ...rest } = useForm();
-	const values = useStore(rest.form.store, (state) => state.values);
+	const values = useSelector(rest.form.store, (state) => state.values);
 
 	const { current, move } = useSteps({ steps });
 	const tRegister = useSignupTranslations('register');

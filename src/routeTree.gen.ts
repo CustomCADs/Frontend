@@ -82,25 +82,25 @@ const PublicEditorIdRoute = PublicEditorIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof PublicIndexRoute
   '/confirm-email': typeof GuestConfirmEmailRoute
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
   '/reset-password': typeof SharedResetPasswordRoute
-  '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
   '/gallery/$id': typeof PublicGalleryIdRoute
-  '/gallery': typeof PublicGalleryIndexRoute
+  '/gallery/': typeof PublicGalleryIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof PublicIndexRoute
   '/confirm-email': typeof GuestConfirmEmailRoute
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
   '/reset-password': typeof SharedResetPasswordRoute
-  '/': typeof PublicIndexRoute
   '/editor/$id': typeof PublicEditorIdRoute
   '/gallery/$id': typeof PublicGalleryIdRoute
   '/gallery': typeof PublicGalleryIndexRoute
@@ -123,25 +123,25 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/confirm-email'
     | '/login'
     | '/register'
     | '/account'
     | '/cart'
     | '/reset-password'
-    | '/'
     | '/editor/$id'
     | '/gallery/$id'
-    | '/gallery'
+    | '/gallery/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/confirm-email'
     | '/login'
     | '/register'
     | '/account'
     | '/cart'
     | '/reset-password'
-    | '/'
     | '/editor/$id'
     | '/gallery/$id'
     | '/gallery'
@@ -177,14 +177,14 @@ declare module '@tanstack/react-router' {
     '/_private': {
       id: '/_private'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof PrivateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_guest': {
       id: '/_guest'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof GuestRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -240,7 +240,7 @@ declare module '@tanstack/react-router' {
     '/_public/gallery/': {
       id: '/_public/gallery/'
       path: '/gallery'
-      fullPath: '/gallery'
+      fullPath: '/gallery/'
       preLoaderRoute: typeof PublicGalleryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

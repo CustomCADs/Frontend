@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { isDarkThemeCookie } from '@/lib/isomorphic/theme';
 import { store } from '@/app/stores/theme';
 
 export const useThemeStore = () => {
-	const state = useStore(store);
+	const state = useSelector(store);
 
 	const [isDarkMode, setIsDarkMode] = useState(isDarkThemeCookie());
 	useEffect(() => {

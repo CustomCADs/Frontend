@@ -19,10 +19,10 @@ const loadInitialState = (): State => {
 };
 
 export const store = new Store<State>(loadInitialState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
 export const resetStore = () =>
-	store.setState({ current: defaultBrowserCurrency });
+	store.setState(() => ({ current: defaultBrowserCurrency }));
 
 export const setCurrent = (currentCurr: Currency) =>
 	store.setState((prev) => ({

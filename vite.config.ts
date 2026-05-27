@@ -7,11 +7,11 @@ export default vite.defineConfig(({ mode }) => ({
 	plugins: [
 		vitePlugins.tanstackStart({ mode }),
 		vitePlugins.react(),
-		vitePlugins.tsConfigPaths(),
 		vitePlugins.tailwindcss(),
 		vitePlugins.cloudflare({ enable: mode !== 'test' }),
 	],
 	build: { assetsInlineLimit: 0 },
 	test: { globals: true, environment: 'jsdom' },
 	server: viteHelper.server({ mode }),
+	resolve: { tsconfigPaths: true },
 }));

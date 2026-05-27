@@ -16,9 +16,9 @@ const defaultState = (): State => {
 };
 
 export const store = new Store<State>(defaultState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
-export const reset = () => store.setState(defaultState());
+export const reset = () => store.setState(defaultState);
 
 export const toggle = () => {
 	store.setState((prev) => ({
@@ -27,7 +27,7 @@ export const toggle = () => {
 };
 
 export const set = (theme: State['theme']) => {
-	store.setState({ theme });
+	store.setState(() => ({ theme }));
 };
 
 export type ThemeStoreState = State;

@@ -68,6 +68,7 @@ const i18next = { 'i18next/no-literal-string': 'error' };
 const tanstackQuery = {
 	'@tanstack/query/exhaustive-deps': 'warn',
 	'@tanstack/query/stable-query-client': 'warn',
+	'@tanstack/query/no-rest-destructuring': 'warn',
 };
 const tanstackRouter = {
 	'@tanstack/router/create-route-property-order': 'warn',

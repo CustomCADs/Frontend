@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import RadioField from '@/app/components/fields/radio';
 import { radioGroup } from '@/app/components/ui';
@@ -10,7 +10,7 @@ import List from './list';
 type Props = { form: Form; isSubmitted: boolean };
 const ChooseRole = ({ form, isSubmitted }: Props) => {
 	const tRole = useSignupTranslations('role');
-	const { role } = useStore(form.store, (state) => state.values);
+	const { role } = useSelector(form.store, (state) => state.values);
 
 	return (
 		<div className='min-w-3/4 flex flex-col items-center md:items-stretch gap-y-4'>

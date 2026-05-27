@@ -6,16 +6,16 @@ type State = {
 	authn: boolean;
 	authz: string | null;
 };
-const getDefaultState = (role?: string): State => ({
-	authn: Boolean(role),
-	authz: role ?? null,
-});
+const defaultState = {
+	authn: Boolean(getRoleCookie()),
+	authz: getRoleCookie() ?? null,
+};
 export const get = getStore(() => {
-	const store = new Store<State>(getDefaultState(getRoleCookie()));
+	const store = new Store<State>(defaultState);
 
 	return {
 		store,
-		reset: () => store.setState(getDefaultState(getRoleCookie())),
+		reset: () => store.setState(() => defaultState),
 		login: (role: string) => {
 			store.setState(() => ({ authn: true, authz: role }));
 		},
