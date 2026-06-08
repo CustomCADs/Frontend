@@ -1,15 +1,15 @@
 import { useQueryClient } from '@tanstack/react-query';
 import {
-	AllNotificationsResponse,
-	ApiResult,
-	NotificationStatsResponse,
+	type AllNotificationsRequest,
+	type AllNotificationsResponse,
+	type ApiResult,
+	type NotificationStatsResponse,
 	queries,
 } from '@customcads/react-sdk';
-import { invalidateQueries } from '@/lib/utils/api';
-import { OnlyParam } from '@/lib/utils/typescript';
+import { query } from '@/lib/utils';
 
 type Props = {
-	params: { all: OnlyParam<typeof queries.notifications.all> };
+	params: { all: AllNotificationsRequest };
 };
 export const useNotificationQueryData = ({ params }: Props) => {
 	const keys = {
@@ -94,8 +94,6 @@ export const useNotificationQueryData = ({ params }: Props) => {
 				);
 			},
 		},
-		invalidate: async () => {
-			await invalidateQueries(queryClient, [keys.all, keys.stats]);
-		},
+		invalidate: () => query.invalidate(queryClient, [keys.all, keys.stats]),
 	};
 };

@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useDropdowns } from './hooks/useDropdowns';
 
 const Bars = () => {

@@ -2,45 +2,40 @@ import { Link } from '@tanstack/react-router';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import Account from '../account';
 import {
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarMenu,
-	SidebarMenuBadge,
-	SidebarMenuButton,
-	SidebarMenuItem,
+	Group,
+	GroupContent,
+	Menu,
+	MenuItem,
+	MenuButton,
+	MenuBadge,
 } from '@/app/components/ui/sidebar';
 import { Item } from '.';
 
-type NavSecondaryProps = { items: Array<Item & { badge?: string }> };
-const NavSecondary = ({
-	items,
-	...props
-}: NavSecondaryProps & React.ComponentPropsWithoutRef<typeof SidebarGroup>) => {
+type Props = React.ComponentPropsWithoutRef<typeof Group> & {
+	items: Array<Item & { badge?: string }>;
+};
+const NavSecondary = ({ items, ...props }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 
 	return (
-		<SidebarGroup {...props}>
-			<SidebarGroupContent>
-				<SidebarMenu>
+		<Group {...props}>
+			<GroupContent>
+				<Menu>
 					{items.map((item) => (
-						<SidebarMenuItem key={item.name}>
-							<SidebarMenuButton asChild>
+						<MenuItem key={item.name}>
+							<MenuButton asChild>
 								<Link to={item.url}>
 									<item.icon />
 									<span>{tHeader(item.name)}</span>
 								</Link>
-							</SidebarMenuButton>
-							{item.badge && (
-								<SidebarMenuBadge>
-									{item.badge}
-								</SidebarMenuBadge>
-							)}
-						</SidebarMenuItem>
+							</MenuButton>
+							{item.badge && <MenuBadge>{item.badge}</MenuBadge>}
+						</MenuItem>
 					))}
 					<Account />
-				</SidebarMenu>
-			</SidebarGroupContent>
-		</SidebarGroup>
+				</Menu>
+			</GroupContent>
+		</Group>
 	);
 };
 

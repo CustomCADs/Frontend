@@ -1,4 +1,4 @@
-import { createIsomorphicFn } from '@tanstack/react-start';
+import { createIsomorphicFn, createServerOnlyFn } from '@tanstack/react-start';
 import * as server from '@tanstack/react-start/server';
 import Cookies from 'js-cookie';
 
@@ -18,6 +18,7 @@ export const exists = (key: string) => getCookie(key) !== undefined;
 export const get = <TState = string>(key: string) =>
 	parseCookie<TState>(getCookie(key) ?? null);
 
+export const getHeader = createServerOnlyFn(server.getRequestHeader);
 export const getAll = createIsomorphicFn()
 	.client(() => document.cookie)
 	.server(() => server.getRequestHeader('cookie') ?? '');

@@ -1,9 +1,10 @@
-import { cn } from '@/lib/utils/tailwindcss';
+import { ClassName } from '@/types/react';
+import { cn } from '@/lib/utils';
 import * as preferences from '@/app/components/preferences';
 import * as page from '@/app/utils/page';
 import { useInfoTranslations } from '@/app/hooks/locales/translations/pages/public';
 
-type Props = { className?: string };
+type Props = ClassName;
 const UserPreferences = ({ className }: Props) => {
 	const tPreferences = useInfoTranslations('preferences');
 

@@ -1,14 +1,7 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import { useSteps } from '@/app/components/form/multi-step/hooks/useSteps';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/app/components/ui/card';
+import { card } from '@/app/components/ui';
 import MultiStepForm from '@/app/components/form/multi-step';
 import Alert from '@/app/components/alert';
 import * as page from '@/app/utils/page';
@@ -21,7 +14,7 @@ export type Key = 'role' | 'profile' | 'creds';
 
 const Register = () => {
 	const { steps, handleSubmit, ...rest } = useForm();
-	const values = useStore(rest.form.store, (state) => state.values);
+	const values = useSelector(rest.form.store, (state) => state.values);
 
 	const { current, move } = useSteps({ steps });
 	const tRegister = useSignupTranslations('register');
@@ -44,12 +37,12 @@ const Register = () => {
 
 	return (
 		<div className={page.className}>
-			<Card className='w-full max-w-3xl space-y-4'>
-				<CardHeader className='text-center'>
-					<CardTitle className='italic text-xl'>{title}!</CardTitle>
-					<CardDescription>{description}</CardDescription>
-				</CardHeader>
-				<CardContent>
+			<card.Root className='w-full max-w-3xl space-y-4'>
+				<card.Header className='text-center'>
+					<card.Title className='italic text-xl'>{title}!</card.Title>
+					<card.Description>{description}</card.Description>
+				</card.Header>
+				<card.Content>
 					<MultiStepForm
 						steps={{ all: steps, current }}
 						move={move}
@@ -67,12 +60,12 @@ const Register = () => {
 							<Step step={current.key} {...rest} />
 						</SSO>
 					</MultiStepForm>
-				</CardContent>
-				<CardFooter className='flex-col'>
+				</card.Content>
+				<card.Footer className='flex-col'>
 					{rest.isSuccess && <RetryEmail data={values} />}
 					<Alert success={false} error={rest.error} />
-				</CardFooter>
-			</Card>
+				</card.Footer>
+			</card.Root>
 		</div>
 	);
 };

@@ -1,17 +1,13 @@
 import { type AnyFieldApi } from '@tanstack/react-form';
-import { Children } from '@/types/react';
+import { Children, ClassName } from '@/types/react';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
-import { Label } from '../ui/label';
+import { Label } from '@/app/components/ui';
 import FormInput from './input';
 import PasswordInput from './password';
 import Error from './error';
 
-type Props = Children & {
-	api: AnyFieldApi;
-	isSubmitted: boolean;
-	canEdit?: boolean;
-	className?: string;
-};
+type Props = Children &
+	ClassName & { api: AnyFieldApi; isSubmitted: boolean; canEdit?: boolean };
 const FormField = ({ api, isSubmitted, canEdit, ...props }: Props) => {
 	const tLabels = useFormTranslations('labels');
 	const tPlaceholders = useFormTranslations('placeholders');

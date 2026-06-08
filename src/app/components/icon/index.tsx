@@ -1,6 +1,7 @@
 import { Link, LinkProps } from '@tanstack/react-router';
 import { type LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { ClassName } from '@/types/react';
+import { cn } from '@/lib/utils';
 
 type Props = LinkProps & {
 	Icon: LucideIcon;
@@ -8,8 +9,7 @@ type Props = LinkProps & {
 	clickable?: boolean;
 	onClick?: VoidFunction;
 	size?: number;
-	className?: string;
-};
+} & ClassName;
 const CustomIcon = ({
 	Icon,
 	text,

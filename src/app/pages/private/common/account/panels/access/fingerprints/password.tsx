@@ -1,6 +1,6 @@
 import { useMutation } from '@customcads/react-sdk';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 type Props = { email: string };
 const Password = ({ email }: Props) => {

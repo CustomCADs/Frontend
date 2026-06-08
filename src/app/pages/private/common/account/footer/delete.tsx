@@ -3,8 +3,8 @@ import { useMutation } from '@customcads/react-sdk';
 import { UserX } from 'lucide-react';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { useLogout } from '@/app/hooks/features/header/useLogout';
-import * as dialog from '@/app/components/ui/alert-dialog';
-import { Button } from '@/app/components/ui/button';
+import { alertDialog } from '@/app/components/ui';
+import { Button } from '@/app/components/ui';
 
 const Delete = () => {
 	const { mutateAsync: deleteMyAccount } = useMutation(
@@ -23,30 +23,34 @@ const Delete = () => {
 
 	return (
 		<div className='basis-1/3 flex justify-center'>
-			<dialog.Root>
-				<dialog.Trigger>
+			<alertDialog.Root>
+				<alertDialog.Trigger>
 					<Button variant='destructive' size='sm' tag='div'>
 						<UserX />
 						<span className='font-black'>
 							{tShell('delete-btn')}
 						</span>
 					</Button>
-				</dialog.Trigger>
-				<dialog.Content>
-					<dialog.Header>
-						<dialog.Title>{tShell('delete-title')}</dialog.Title>
-						<dialog.Description>
+				</alertDialog.Trigger>
+				<alertDialog.Content>
+					<alertDialog.Header>
+						<alertDialog.Title>
+							{tShell('delete-title')}
+						</alertDialog.Title>
+						<alertDialog.Description>
 							{tShell('delete-description')}
-						</dialog.Description>
-					</dialog.Header>
-					<dialog.Footer>
-						<dialog.Cancel>{tShell('cancel')}</dialog.Cancel>
-						<dialog.Action onClick={handleDelete}>
+						</alertDialog.Description>
+					</alertDialog.Header>
+					<alertDialog.Footer>
+						<alertDialog.Cancel>
+							{tShell('cancel')}
+						</alertDialog.Cancel>
+						<alertDialog.Action onClick={handleDelete}>
 							{tShell('continue')}
-						</dialog.Action>
-					</dialog.Footer>
-				</dialog.Content>
-			</dialog.Root>
+						</alertDialog.Action>
+					</alertDialog.Footer>
+				</alertDialog.Content>
+			</alertDialog.Root>
 		</div>
 	);
 };

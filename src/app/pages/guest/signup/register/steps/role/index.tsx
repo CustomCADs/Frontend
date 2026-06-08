@@ -1,7 +1,7 @@
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import RadioField from '@/app/components/fields/radio';
-import { RadioGroup } from '@/app/components/ui/radio-group';
+import { radioGroup } from '@/app/components/ui';
 import Error from '@/app/components/fields/error';
 import { type Data } from '@/app/validators/register';
 import { type Form } from '../../hooks/useForm';
@@ -10,7 +10,7 @@ import List from './list';
 type Props = { form: Form; isSubmitted: boolean };
 const ChooseRole = ({ form, isSubmitted }: Props) => {
 	const tRole = useSignupTranslations('role');
-	const { role } = useStore(form.store, (state) => state.values);
+	const { role } = useSelector(form.store, (state) => state.values);
 
 	return (
 		<div className='min-w-3/4 flex flex-col items-center md:items-stretch gap-y-4'>
@@ -18,7 +18,7 @@ const ChooseRole = ({ form, isSubmitted }: Props) => {
 			<form.Field name='role'>
 				{(api) => (
 					<>
-						<RadioGroup
+						<radioGroup.Root
 							name={api.name}
 							value={api.state.value}
 							onValueChange={(x) =>
@@ -34,7 +34,7 @@ const ChooseRole = ({ form, isSubmitted }: Props) => {
 								value='Contributor'
 								label={tRole('contributor-subtitle')}
 							/>
-						</RadioGroup>
+						</radioGroup.Root>
 						<Error meta={api.getMeta()} isSubmitted={isSubmitted} />
 					</>
 				)}

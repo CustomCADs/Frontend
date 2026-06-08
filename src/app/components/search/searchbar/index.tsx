@@ -1,18 +1,14 @@
 import { useState } from 'react';
 import { Search, X } from 'lucide-react';
-import { Input } from '@/app/components/ui/input';
+import { Input } from '@/app/components/ui';
 
-type SearchbarProps = {
+type Props = {
 	placeholder: string;
 	getSearch: () => string | undefined;
 	updateSearch: (searchTerm: string | undefined) => void;
 };
 
-const Searchbar = ({
-	placeholder,
-	getSearch,
-	updateSearch,
-}: SearchbarProps) => {
+const Searchbar = ({ placeholder, getSearch, updateSearch }: Props) => {
 	const [search, setSearch] = useState(getSearch());
 
 	return (

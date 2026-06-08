@@ -1,7 +1,7 @@
 import { Header } from '@/app/locales/types/components/layout';
 
 export default {
-	useful: 'Useful',
+	useful: 'Informational',
 	'apply-designer': 'Apply to become Designer',
 	'services-info': 'Our Services & Solutions',
 	'printer-info': 'The Technology we use',

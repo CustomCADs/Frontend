@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { useFields } from './hooks/useFields';
 import Actions from './actions';
@@ -11,7 +11,7 @@ const Names = ({ username, firstName, lastName }: Props) => {
 	const form = useFields({ username, firstName, lastName }, mode === 'edit');
 
 	const handle = {
-		submit: async (e: React.FormEvent<HTMLFormElement>) => {
+		submit: async (e: React.SubmitEvent<HTMLFormElement>) => {
 			await form.handleSubmit(e);
 			setMode('view');
 		},

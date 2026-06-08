@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation } from '@customcads/react-sdk';
-import * as form from '@/lib/utils/form';
+import { form } from '@/lib/utils';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
 import { schema } from '@/app/validators/reset-password';
@@ -34,7 +34,7 @@ export const useForm = () => {
 	return {
 		form: formApi,
 		error: form.extractError(mutation.error as unknown),
-		handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
 			setIsSubmitted(true);
 			return form.handleSubmit(e, formApi.handleSubmit);
 		},

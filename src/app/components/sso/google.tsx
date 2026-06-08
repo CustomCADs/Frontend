@@ -1,8 +1,9 @@
+import { ClassName } from '@/types/react';
 import { axios, identitySSOUrl } from '@customcads/react-sdk';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 import svg from '/identity/google.svg';
 
-type Props = { text: string; role?: string; className?: string };
+type Props = ClassName & { text: string; role?: string };
 const GoogleSSO = ({ text, role, className }: Props) => (
 	<Button
 		variant='outline'

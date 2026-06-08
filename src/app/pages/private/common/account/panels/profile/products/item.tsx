@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
-import * as uuid from '@/lib/utils/uuid';
+import { uuid } from '@/lib/utils';
 import * as dateTime from '@/app/utils/date-time';
 import Remove from './remove';
 

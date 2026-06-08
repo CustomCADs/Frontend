@@ -1,11 +1,11 @@
 import { ALLOWED_LANGUAGES, AllowedLanguage } from '@/types/locale';
 import { i18n as defaultI18n } from '@/app/locales/i18n';
 
-type UpdateI18nProps = {
+type Props = {
 	instance: typeof defaultI18n;
 	language?: AllowedLanguage;
 };
-export const updateI18n = ({ instance: i18n, language }: UpdateI18nProps) => {
+export const updateI18n = ({ instance: i18n, language }: Props) => {
 	const isDifferent = i18n.language !== language;
 	const isAllowed = language && ALLOWED_LANGUAGES.includes(language);
 

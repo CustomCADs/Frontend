@@ -1,5 +1,5 @@
 import { useQuery } from '@customcads/react-sdk';
-import { getCadType } from '@/lib/cad/get-type';
+import { getCadType } from '@/lib/cad';
 import { useCadBlobUrl } from '@/app/hooks/features/cads/useCadBlobUrl';
 import Loader from '@/app/components/loading';
 import GalleryThreeJS from './threejs';

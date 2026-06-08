@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@customcads/react-sdk';
-import { fetchFile } from '@/lib/utils/file';
+import { fetchFile } from '@/lib/utils';
 import type { Material } from '@/app/types/material';
 
 export const useTextures = (enabled?: boolean) => {

@@ -1,12 +1,8 @@
 import { type MaterialResponse } from '@customcads/react-sdk';
 import { Children } from '@/types/react';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuTrigger,
-} from '@/app/components/ui/dropdown-menu';
+import * as dropdownMenu from '@/app/components/ui/dropdown-menu';
 import * as materials_utils from '@/app/utils/materials';
 
 type Props = {
@@ -23,9 +19,9 @@ const MaterialsDropdown = ({
 	const formatMoney = useMoneyFormatter();
 
 	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger>{children}</DropdownMenuTrigger>
-			<DropdownMenuContent>
+		<dropdownMenu.Root>
+			<dropdownMenu.Trigger>{children}</dropdownMenu.Trigger>
+			<dropdownMenu.Content>
 				<ul className='flex flex-col gap-y-2 p-4'>
 					{materials.map((x) => (
 						<li
@@ -45,8 +41,8 @@ const MaterialsDropdown = ({
 						</li>
 					))}
 				</ul>
-			</DropdownMenuContent>
-		</DropdownMenu>
+			</dropdownMenu.Content>
+		</dropdownMenu.Root>
 	);
 };
 

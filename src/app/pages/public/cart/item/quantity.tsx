@@ -1,5 +1,5 @@
 import { Minus, Plus } from 'lucide-react';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 type Props = {
 	value: number;

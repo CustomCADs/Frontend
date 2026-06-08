@@ -15,6 +15,6 @@ export default {
 	unrecommended: 'Непрепоръчително',
 	dimensions: 'Размери',
 	scale: 'Мащаб',
-	reset: 'Нулирай',
+	reset: 'Отмени',
 	next: 'Напред',
 } satisfies Editor;

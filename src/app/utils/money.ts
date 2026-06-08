@@ -3,9 +3,9 @@ import {
 	getLanguageCookie,
 	getUserDefaultLanguage,
 } from '@/lib/isomorphic/locale';
-import { invertBy } from '@/lib/utils/typescript';
+import { typescript } from '@/lib/utils';
 
-const currencies = invertBy(EXCHANGE_RATES, 'language');
+const currencies = typescript.invertBy(EXCHANGE_RATES, 'language');
 const { EUR } = EXCHANGE_RATES;
 
 const currencyToRate = (rates: ExchangeRate[], currency: Currency) => {

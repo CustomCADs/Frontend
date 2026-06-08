@@ -1,8 +1,8 @@
+import { ClassName } from '@/types/react';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 
-type Props = {
+type Props = ClassName & {
 	money: { product: string; print: string; total: string };
-	className?: string;
 	separator?: string;
 	withSigns?: boolean;
 };

@@ -7,12 +7,13 @@ import {
 } from '@tanstack/react-router';
 import { AppError } from '@/types/errors';
 import { RouterContext } from '@/router';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { isLightThemeCookie } from '@/lib/isomorphic/theme';
 import '@/app/config/env';
 import Layout from '@/app/components/layout';
 import ErrorPage from '@/app/components/error';
 import { TanStackDevtools } from '@/app/integrations/tanstack-devtools';
+import * as i18n from '@/app/locales/i18n';
 import '@/index.css';
 
 let cssUrl: string | undefined;
@@ -41,18 +42,22 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			links,
 		};
 	},
-	shellComponent: ({ children }) => (
-		<html lang='en' className={cn({ dark: !isLightThemeCookie() })}>
-			<head>
-				<HeadContent />
-			</head>
-			<body>
-				<Layout>{children}</Layout>
-				<TanStackDevtools />
-				<Scripts />
-			</body>
-		</html>
-	),
+	shellComponent: ({ children }) => {
+		const { language } = i18n.initialize();
+		const lang = language.split('-')[0] ?? 'en';
+		return (
+			<html lang={lang} className={cn({ dark: !isLightThemeCookie() })}>
+				<head>
+					<HeadContent />
+				</head>
+				<body>
+					<Layout>{children}</Layout>
+					<TanStackDevtools />
+					<Scripts />
+				</body>
+			</html>
+		);
+	},
 	errorComponent: ({ error }) => {
 		if (error instanceof AppError) {
 			return <ErrorPage status={null} error={error} />;

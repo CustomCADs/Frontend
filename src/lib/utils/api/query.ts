@@ -1,6 +1,6 @@
 import { QueryClient, QueryKey } from '@tanstack/react-query';
 
-export const invalidateQueries = async (
+export const invalidate = async (
 	queryClient: QueryClient,
 	queries: QueryKey[],
 ) =>

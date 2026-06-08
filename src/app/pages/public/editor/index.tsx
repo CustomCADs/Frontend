@@ -1,6 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useQuery } from '@customcads/react-sdk';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import * as editor from '@/app/stores/editor';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useCartItemEditor } from '@/app/hooks/features/carts/useCartItemEditor';

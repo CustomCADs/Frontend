@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
-import * as form from '@/lib/utils/form';
+import { form } from '@/lib/utils';
 import { useFormTranslations } from '@/app/hooks/locales/translations/components';
 import { schema, Data } from '@/app/validators/register';
 import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh';
@@ -53,7 +53,7 @@ export const useForm = () => {
 
 	return {
 		form: formApi,
-		handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
 			setIsSubmitted(true);
 			return form.handleSubmit(e, formApi.handleSubmit);
 		},

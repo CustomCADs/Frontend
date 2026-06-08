@@ -1,6 +1,6 @@
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import Bullet from './bullet';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 
 type Props = { prefix: 'customer' | 'contributor'; show?: boolean };
 const List = ({ prefix, show }: Props) => {

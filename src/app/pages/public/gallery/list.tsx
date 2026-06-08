@@ -1,5 +1,5 @@
 import { ApiResult, GalleryAllProductsResponse } from '@customcads/react-sdk';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
 import Item from './item';
 

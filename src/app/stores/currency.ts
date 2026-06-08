@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
 import { Currency } from '@customcads/react-sdk';
-import * as persistence from '@/lib/isomorphic/persistence';
+import { persistence } from '@/lib/isomorphic';
 import { CURRENCY } from '@/app/constants/stores';
 import * as money from '@/app/utils/money';
 
@@ -19,10 +19,10 @@ const loadInitialState = (): State => {
 };
 
 export const store = new Store<State>(loadInitialState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
 export const resetStore = () =>
-	store.setState({ current: defaultBrowserCurrency });
+	store.setState(() => ({ current: defaultBrowserCurrency }));
 
 export const setCurrent = (currentCurr: Currency) =>
 	store.setState((prev) => ({

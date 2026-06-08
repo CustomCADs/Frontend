@@ -2,7 +2,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import * as page from '@/app/utils/page';
 import { useVerifyEmail } from './hooks/useVerifyEmail';
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import Result from './result';
 
 const Route = getRouteApi('/_guest/confirm-email');

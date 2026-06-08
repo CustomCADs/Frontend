@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils/tailwindcss';
+import { cn } from '@/lib/utils';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useCartCalculator } from '@/app/hooks/features/carts/useCartCalculator';
 import * as page from '@/app/utils/page';

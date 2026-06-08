@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { DownloadRequest, useMutation } from '@customcads/react-sdk';
-import { fetchFile } from '@/lib/utils/file';
+import { fetchFile } from '@/lib/utils';
 
 export const useCadBlobUrl = (
 	cadId: DownloadRequest['id'] | undefined,

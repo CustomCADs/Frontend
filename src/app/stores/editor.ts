@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
 import { Ratio } from '@/types/threejs';
-import * as persistence from '@/lib/isomorphic/persistence';
+import { persistence } from '@/lib/isomorphic';
 import { EDITOR } from '@/app/constants/stores';
 
 const persist = persistence.create<Record<string, State>>(EDITOR.store);
@@ -32,7 +32,7 @@ const loadInitialState = (): Record<string, State> => {
 };
 
 export const store = new Store<Record<string, State>>(loadInitialState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
 const resetRecord = (key: string | null) =>
 	store.setState((prev) => {

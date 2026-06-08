@@ -1,14 +1,14 @@
 import { useQuery } from '@customcads/react-sdk';
 import { AppError } from '@/types/errors';
-import { getCadType } from '@/lib/cad/get-type';
+import { getCadType } from '@/lib/cad';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useCadBlobUrl } from '@/app/hooks/features/cads/useCadBlobUrl';
 import { useTextures } from '@/app/hooks/features/materials/useTextures';
 import Loader from '@/app/components/loading';
 import EditorThreeJS from './threejs';
 
-type EditorCadProps = { cadId: string };
-const EditorCad = ({ cadId }: EditorCadProps) => {
+type Props = { cadId: string };
+const EditorCad = ({ cadId }: Props) => {
 	const { blobUrl: cadBlobUrl, progress } = useCadBlobUrl(cadId, 'Product');
 	const { data: cad } = useQuery(({ cads }) => cads.single({ id: cadId }));
 

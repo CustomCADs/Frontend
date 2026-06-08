@@ -1,4 +1,4 @@
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 import { useMutation } from '@customcads/react-sdk';
 import { Data } from '@/app/validators/register';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';

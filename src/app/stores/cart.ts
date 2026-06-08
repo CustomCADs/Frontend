@@ -1,6 +1,6 @@
 import { Store } from '@tanstack/store';
-import * as persistence from '@/lib/isomorphic/persistence';
-import * as auth from '@/lib/utils/auth';
+import { persistence } from '@/lib/isomorphic';
+import { auth } from '@/lib/utils';
 import { CartItem } from '@/app/types/cart-item';
 import { CART } from '@/app/constants/stores';
 
@@ -19,12 +19,12 @@ const defaultState = (): State => {
 };
 
 export const store = new Store(defaultState());
-store.subscribe(({ currentVal }) => persist(currentVal));
+store.subscribe((state) => persist(state));
 
 export const actions = {
 	cart: {
-		fill: (items: CartItem[]) => store.setState({ items }),
-		clear: () => store.setState({ items: [] }),
+		fill: (items: CartItem[]) => store.setState(() => ({ items })),
+		clear: () => store.setState(() => ({ items: [] })),
 		add: (newItem: CartItem) =>
 			store.setState((prev) => {
 				if (!prev.items) return { items: [newItem] };

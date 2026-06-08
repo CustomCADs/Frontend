@@ -2,8 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { query, useMutation } from '@customcads/react-sdk';
 import { X } from 'lucide-react';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
-import { Button } from '@/app/components/ui/button';
-import * as ui from '@/app/components/ui/alert-dialog';
+import { alertDialog, Button } from '@/app/components/ui';
 
 type Props = { id: string };
 const Remove = ({ id }: Props) => {
@@ -22,28 +21,32 @@ const Remove = ({ id }: Props) => {
 	const tProfile = usePrivateTranslations('account.profile');
 
 	return (
-		<ui.Root>
-			<ui.Trigger>
+		<alertDialog.Root>
+			<alertDialog.Trigger>
 				<Button variant='destructive' size='sm' tag='div'>
 					{tProfile('remove-btn')}
 					<X className='dark:text-destructive-foreground' />
 				</Button>
-			</ui.Trigger>
-			<ui.Content>
-				<ui.Header>
-					<ui.Title>{tProfile('remove-title')}</ui.Title>
-					<ui.Description>
+			</alertDialog.Trigger>
+			<alertDialog.Content>
+				<alertDialog.Header>
+					<alertDialog.Title>
+						{tProfile('remove-title')}
+					</alertDialog.Title>
+					<alertDialog.Description>
 						{tProfile('remove-description')}
-					</ui.Description>
-				</ui.Header>
-				<ui.Footer>
-					<ui.Cancel>{tProfile('cancel')}</ui.Cancel>
-					<ui.Action onClick={handleDelete}>
+					</alertDialog.Description>
+				</alertDialog.Header>
+				<alertDialog.Footer>
+					<alertDialog.Cancel>
+						{tProfile('cancel')}
+					</alertDialog.Cancel>
+					<alertDialog.Action onClick={handleDelete}>
 						{tProfile('continue')}
-					</ui.Action>
-				</ui.Footer>
-			</ui.Content>
-		</ui.Root>
+					</alertDialog.Action>
+				</alertDialog.Footer>
+			</alertDialog.Content>
+		</alertDialog.Root>
 	);
 };
 

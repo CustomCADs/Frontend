@@ -1,9 +1,9 @@
 import { DependencyList, useEffect } from 'react';
-import * as signalR from '@/lib//hubs/signalr';
+import { HubConnection } from '@/lib//hubs/signalr';
 
 type Props = {
 	hub: {
-		connection?: signalR.HubConnection;
+		connection?: HubConnection;
 		methods: Array<{
 			name: string;
 			onReceived: (payload: never) => void | Promise<void>;

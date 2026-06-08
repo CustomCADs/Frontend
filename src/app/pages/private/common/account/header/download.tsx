@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SquareUser } from 'lucide-react';
 import { identityApi } from '@customcads/react-sdk';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 const Download = () => {
 	const [url, setUrl] = useState<string | null>(null);

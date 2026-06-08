@@ -1,6 +1,6 @@
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { Error } from '@/app/components/form/error';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 type Props = {
 	error: string;

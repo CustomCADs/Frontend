@@ -1,10 +1,10 @@
 import { Header } from '@/app/locales/types/components/layout';
 
 export default {
-	useful: 'Полезни',
+	useful: 'Информативен',
 	'apply-designer': 'Кандидатствай за Дизайнер',
-	'services-info': 'Services Info',
-	'printer-info': 'Printer Info',
+	'services-info': 'Относно Услугите и Решенията ни',
+	'printer-info': 'Относно Технологиите ни',
 	collections: 'Колекции',
 	resources: 'Ресурси',
 	customs: 'Поръчки по поръчка',

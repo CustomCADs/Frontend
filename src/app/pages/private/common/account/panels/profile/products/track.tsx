@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { query, useMutation } from '@customcads/react-sdk';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
-import { Checkbox } from '@/app/components/ui/checkbox';
+import { Checkbox } from '@/app/components/ui';
 
 type Props = { track: boolean };
 const Track = ({ track }: Props) => {

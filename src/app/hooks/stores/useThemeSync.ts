@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useStore } from '@tanstack/react-store';
+import { useSelector } from '@tanstack/react-store';
 import { store } from '@/app/stores/theme';
 
 export const useThemeSync = () => {
-	const state = useStore(store);
+	const state = useSelector(store);
 
 	useEffect(() => {
 		document.documentElement.classList.toggle(

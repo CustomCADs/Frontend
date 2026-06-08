@@ -1,9 +1,10 @@
-import { cn } from '@/lib/utils/tailwindcss';
-import { SuffixOf } from '@/lib/utils/typescript';
+import { cn, typescript } from '@/lib/utils';
 import { Home } from '@/app/locales/types/pages/public/info';
 import Button from './button';
 
-type Props = { tSection1: (key: SuffixOf<Home, 'section1_'>) => string };
+type Props = {
+	tSection1: (key: typescript.SuffixOf<Home, 'section1_'>) => string;
+};
 const Section1 = ({ tSection1 }: Props) => (
 	<section
 		className={cn(
@@ -23,7 +24,7 @@ const Section1 = ({ tSection1 }: Props) => (
 				<Button to='.' text={tSection1('sell')} />
 			</div>
 		</article>
-		<aside className='absolute md:static top-5/16 transform -translate-y-5/16 md:-translate-y-0 opacity-50 md:opacity-100 basis-1/2 md:flex md:justify-end'>
+		<aside className='absolute md:static top-5/16 transform -translate-y-5/16 md:translate-y-0 opacity-50 md:opacity-100 basis-1/2 md:flex md:justify-end'>
 			<img
 				src='/home/aside.png'
 				className='min-w-screen md:min-w-0 md:max-w-10/12'

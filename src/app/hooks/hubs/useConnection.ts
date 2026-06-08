@@ -1,14 +1,14 @@
 import { DependencyList, useEffect } from 'react';
-import * as hubs from '@/lib/hubs';
+import { type Name, connect } from '@/lib/hubs';
 
 type Props = {
-	name: hubs.Name;
+	name: Name;
 	condition?: boolean;
 	deps?: DependencyList;
 };
 export const useConnection = ({ name, condition, deps }: Props) =>
 	useEffect(() => {
 		if (condition === undefined || condition) {
-			hubs.connect(name);
+			connect(name);
 		}
 	}, deps);

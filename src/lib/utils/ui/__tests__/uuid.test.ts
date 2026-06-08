@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import * as src from '../uuid';
+import { uuid as src } from '../';
 
 const ids = [
 	'21245254-6937-4d90-a90a-6b981c48b05b',

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation } from '@customcads/react-sdk';
-import * as form from '@/lib/utils/form';
+import { form } from '@/lib/utils';
 import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
 import { useNotificationQueryData } from '@/app/hooks/features/notifications/useNotificationQueryData';
 import { useCartTransfer } from '@/app/hooks/features/carts/useCartTransfer';
@@ -23,7 +23,7 @@ export const useForm = () => {
 	useCartTransfer();
 
 	const { invalidate: resetNotifications } = useNotificationQueryData({
-		params: { all: { limit: 10 } },
+		params: { all: { page: 1, limit: 10 } },
 	});
 	const { reset: resetAuth } = useAuthStore();
 
@@ -52,7 +52,7 @@ export const useForm = () => {
 	return {
 		form: formApi,
 		error: form.extractError(error as unknown),
-		handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
 			setIsSubmitted(true);
 			return form.handleSubmit(e, formApi.handleSubmit);
 		},

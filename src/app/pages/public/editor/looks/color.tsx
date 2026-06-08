@@ -2,9 +2,7 @@ import { X } from 'lucide-react';
 import * as editor from '@/app/stores/editor';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
-import { Button } from '@/app/components/ui/button';
-import { Input } from '@/app/components/ui/input';
-import { Label } from '@/app/components/ui/label';
+import { Button, Input, Label } from '@/app/components/ui';
 
 const Color = ({ id }: { id: string }) => {
 	const tEditor = useGalleryTranslations('editor');

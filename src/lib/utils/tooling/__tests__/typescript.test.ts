@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import * as src from '../typescript';
+import { typescript as src } from '../';
 
 describe('TypeScript utility tests', () => {
 	describe('Invert By', () => {

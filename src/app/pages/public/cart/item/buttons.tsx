@@ -1,7 +1,6 @@
 import { Trash } from 'lucide-react';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import { Checkbox } from '@/app/components/ui/checkbox';
-import { Button } from '@/app/components/ui/button';
+import { Button, Checkbox } from '@/app/components/ui';
 import { Children } from '@/types/react';
 
 type Props = {

@@ -1,7 +1,7 @@
 import z from 'zod';
+import { form } from '@/lib/utils';
 import { Translators } from '@/app/types/schema';
 import { USERS as VALIDATIONS } from '@/app/constants/validations';
-import { zodHelpers } from '@/lib/utils/form';
 
 type Props = Translators;
 export const schema = ({ tErrors, tLabels }: Props) => {
@@ -33,11 +33,11 @@ export const schema = ({ tErrors, tLabels }: Props) => {
 			.min(args.username.min, {
 				message: tErrors('length', args.username),
 			}),
-		firstName: zodHelpers.emptyOrLength(
+		firstName: form.zodHelpers.emptyOrLength(
 			args.firstName,
 			tErrors('length', args.firstName),
 		),
-		lastName: zodHelpers.emptyOrLength(
+		lastName: form.zodHelpers.emptyOrLength(
 			args.lastName,
 			tErrors('length', args.lastName),
 		),

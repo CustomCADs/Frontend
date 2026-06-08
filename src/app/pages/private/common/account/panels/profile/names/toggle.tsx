@@ -1,6 +1,6 @@
 import { Edit } from 'lucide-react';
 import { Children } from '@/types/react';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/components/ui';
 
 type Props = Children & { onClick: VoidFunction };
 const ToggleEdit = ({ children, onClick }: Props) => (

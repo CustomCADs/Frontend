@@ -1,62 +1,48 @@
 import { Link } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import {
-	Collapsible,
-	CollapsibleContent,
-	CollapsibleTrigger,
-} from '@/app/components/ui/collapsible';
-import {
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarGroupLabel,
-	SidebarMenu,
-	SidebarMenuAction,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarMenuSub,
-	SidebarMenuSubButton,
-	SidebarMenuSubItem,
-} from '@/app/components/ui/sidebar';
+import { collapsible, sidebar } from '@/app/components/ui';
 import { Item } from '.';
 
-type NavWorkspacesProps = {
+type Props = {
 	items: Array<{ name: Item['name']; pages: Item[] }>;
 };
-const NavWorkspaces = ({ items }: NavWorkspacesProps) => {
+const NavWorkspaces = ({ items }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 	if (!items.length) return;
 
 	return (
-		<SidebarGroup>
-			<SidebarGroupLabel className='text-md'>
+		<sidebar.Group>
+			<sidebar.GroupLabel className='text-md'>
 				{tHeader('collections')}
-			</SidebarGroupLabel>
-			<SidebarGroupContent>
-				<SidebarMenu>
+			</sidebar.GroupLabel>
+			<sidebar.GroupContent>
+				<sidebar.Menu>
 					{items.map((item) => (
-						<Collapsible key={item.name}>
-							<SidebarMenuItem>
-								<CollapsibleTrigger asChild>
-									<SidebarMenuAction
+						<collapsible.Root key={item.name}>
+							<sidebar.MenuItem>
+								<collapsible.Trigger asChild>
+									<sidebar.MenuAction
 										className='bg-sidebar-accent text-sidebar-accent-foreground left-2 data-[state=open]:rotate-90'
 										showOnHover
 									>
 										<ChevronRight />
-									</SidebarMenuAction>
-								</CollapsibleTrigger>
-								<CollapsibleTrigger asChild>
-									<SidebarMenuButton>
+									</sidebar.MenuAction>
+								</collapsible.Trigger>
+								<collapsible.Trigger asChild>
+									<sidebar.MenuButton>
 										<span className='ms-8 text-lg'>
 											{tHeader(item.name)}
 										</span>
-									</SidebarMenuButton>
-								</CollapsibleTrigger>
-								<CollapsibleContent>
-									<SidebarMenuSub>
+									</sidebar.MenuButton>
+								</collapsible.Trigger>
+								<collapsible.Content>
+									<sidebar.MenuSub>
 										{item.pages.map((page) => (
-											<SidebarMenuSubItem key={page.name}>
-												<SidebarMenuSubButton asChild>
+											<sidebar.MenuSubItem
+												key={page.name}
+											>
+												<sidebar.MenuSubButton asChild>
 													<Link to={page.url}>
 														<span>
 															<page.icon />
@@ -65,17 +51,17 @@ const NavWorkspaces = ({ items }: NavWorkspacesProps) => {
 															{tHeader(page.name)}
 														</span>
 													</Link>
-												</SidebarMenuSubButton>
-											</SidebarMenuSubItem>
+												</sidebar.MenuSubButton>
+											</sidebar.MenuSubItem>
 										))}
-									</SidebarMenuSub>
-								</CollapsibleContent>
-							</SidebarMenuItem>
-						</Collapsible>
+									</sidebar.MenuSub>
+								</collapsible.Content>
+							</sidebar.MenuItem>
+						</collapsible.Root>
 					))}
-				</SidebarMenu>
-			</SidebarGroupContent>
-		</SidebarGroup>
+				</sidebar.Menu>
+			</sidebar.GroupContent>
+		</sidebar.Group>
 	);
 };
 

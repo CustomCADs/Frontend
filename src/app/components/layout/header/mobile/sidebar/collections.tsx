@@ -1,37 +1,37 @@
 import { Link } from '@tanstack/react-router';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import {
-	SidebarGroup,
-	SidebarGroupLabel,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
+	Group,
+	GroupLabel,
+	Menu,
+	MenuItem,
+	MenuButton,
 } from '@/app/components/ui/sidebar';
 import { Item } from '.';
 
-type NavCollectionsProps = { items: Item[] };
-const NavCollections = ({ items }: NavCollectionsProps) => {
+type Props = { items: Item[] };
+const NavCollections = ({ items }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 	if (!items.length) return;
 
 	return (
-		<SidebarGroup className='group-data-[collapsible=icon]:hidden'>
-			<SidebarGroupLabel>{tHeader('useful')}</SidebarGroupLabel>
-			<SidebarMenu>
+		<Group className='group-data-[collapsible=icon]:hidden'>
+			<GroupLabel>{tHeader('useful')}</GroupLabel>
+			<Menu>
 				{items.map((item) => (
-					<SidebarMenuItem key={item.name}>
-						<SidebarMenuButton asChild>
+					<MenuItem key={item.name}>
+						<MenuButton asChild>
 							<Link to={item.url} title={item.name}>
 								<span>
 									<item.icon />
 								</span>
 								<span>{tHeader(item.name)}</span>
 							</Link>
-						</SidebarMenuButton>
-					</SidebarMenuItem>
+						</MenuButton>
+					</MenuItem>
 				))}
-			</SidebarMenu>
-		</SidebarGroup>
+			</Menu>
+		</Group>
 	);
 };
 

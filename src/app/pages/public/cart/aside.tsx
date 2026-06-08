@@ -2,7 +2,7 @@
 // import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
-// import { Button } from '@/app/components/ui/button';
+// import { Button } from '@/app/components/ui';
 import Money from './money';
 
 type MoneyRecord = Record<string, number>;

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import * as src from '../form';
+import { form as src } from '../';
 
 describe('Form utility tests', () => {
 	describe('File Helper', () => {
@@ -11,7 +11,7 @@ describe('Form utility tests', () => {
 
 			// Act
 			// Assert
-			expect(src.fileHelper(emptyFile)).toBe(false);
+			expect(src.zodHelpers.file(emptyFile)).toBe(false);
 		});
 
 		it('returns true for non-empty file', () => {
@@ -23,7 +23,7 @@ describe('Form utility tests', () => {
 
 			// Act
 			// Assert
-			expect(src.fileHelper(nonEmptyFile)).toBe(true);
+			expect(src.zodHelpers.file(nonEmptyFile)).toBe(true);
 		});
 
 		it('works for large files', () => {
@@ -35,7 +35,7 @@ describe('Form utility tests', () => {
 
 			// Act
 			// Assert
-			expect(src.fileHelper(largeFile)).toBe(true);
+			expect(src.zodHelpers.file(largeFile)).toBe(true);
 		});
 	});
 

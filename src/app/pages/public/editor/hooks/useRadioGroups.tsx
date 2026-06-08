@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Distance, Mass } from '@/types/units';
 import RadioField from '@/app/components/fields/radio';
-import { RadioGroup } from '@/app/components/ui/radio-group';
+import { Root } from '@/app/components/ui/radio-group';
 
 export const useRadioGroups = () => {
 	const [distance, setDistance] = useState<Distance>('mm');
@@ -12,8 +12,8 @@ export const useRadioGroups = () => {
 		mass,
 		ui: {
 			distance: (metrics: Distance[]) => ({
-				Wrapper: (props: React.ComponentProps<typeof RadioGroup>) => (
-					<RadioGroup
+				Wrapper: (props: React.ComponentProps<typeof Root>) => (
+					<Root
 						name='distance'
 						value={distance}
 						onValueChange={(x) => setDistance(x as Distance)}
@@ -25,8 +25,8 @@ export const useRadioGroups = () => {
 				)),
 			}),
 			mass: (metrics: Mass[]) => ({
-				Wrapper: (props: React.ComponentProps<typeof RadioGroup>) => (
-					<RadioGroup
+				Wrapper: (props: React.ComponentProps<typeof Root>) => (
+					<Root
 						name='mass'
 						value={mass}
 						onValueChange={(x) => setMass(x as Mass)}
