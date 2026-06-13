@@ -23,7 +23,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "^1.39.0",
+    "@cloudflare/vite-plugin": "1.30.1",
     "@customcads/react-sdk": "^1.13.5-beta.2",
     "@icons-pack/react-simple-icons": "^13.11.1",
     "@microsoft/signalr": "^10.0.0",
