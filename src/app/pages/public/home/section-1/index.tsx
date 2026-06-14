@@ -25,10 +25,7 @@ const Section1 = ({ tSection1 }: Props) => (
 			</div>
 		</article>
 		<aside className='absolute md:static top-5/16 transform -translate-y-5/16 md:translate-y-0 opacity-50 md:opacity-100 basis-1/2 md:flex md:justify-end'>
-			<img
-				src='/home/aside.png'
-				className='min-w-screen md:min-w-0 md:max-w-10/12'
-			/>
+			<img src='/home/aside.png' className='md:max-w-5/6' />
 		</aside>
 	</section>
 );

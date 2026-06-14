@@ -1,5 +1,4 @@
-import { cn } from '@/lib/utils';
-import { typescript } from '@/lib/utils';
+import { cn, typescript } from '@/lib/utils';
 import { useInfoTranslations } from '@/app/hooks/locales/translations/pages/public';
 import * as page from '@/app/utils/page';
 import Section1 from './section-1';
