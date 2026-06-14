@@ -16,8 +16,14 @@ const Footer = () => {
 		<footer className='flex flex-col bg-footer 2xl:bg-secondary text-footer-foreground rounded-t-sm transition-colors duration-400 z-10'>
 			<ul className='flex flex-col sm:flex-row justify-around items-center mx-5 py-10 gap-x-4 gap-y-10'>
 				<li className='order-3 flex justify-center items-center gap-x-6 animate-fade-in delay-800'>
-					<FooterLink to='.' text={tFooter('privacy-policy')} />
-					<FooterLink to='.' text={tFooter('terms-conditions')} />
+					<FooterLink
+						to='/privacy-policy'
+						text={tFooter('privacy-policy')}
+					/>
+					<FooterLink
+						to='/terms-of-service'
+						text={tFooter('terms-conditions')}
+					/>
 				</li>
 				<li className='order-1 sm:order-2 flex justify-center gap-4 animate-fade-in delay-600'>
 					<FooterIcon
