@@ -48,12 +48,12 @@ export const Route = createFileRoute('/_public/gallery/')({
 			requestParams.categoryId = category.id;
 		}
 
-		const { data: result } = await query.fetchQuery(
+		query.prefetchQuery(
 			({ products }) => products.gallery.all(requestParams),
 			queryClient,
 		);
 
-		return { requestParams, result };
+		return { requestParams };
 	},
 	head: () => ({ meta: [{ title: 'CustomCADs | Gallery' }] }),
 });

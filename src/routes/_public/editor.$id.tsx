@@ -9,12 +9,11 @@ export const Route = createFileRoute('/_public/editor/$id')({
 			({ products }) => products.gallery.single({ id: params.id }),
 			queryClient,
 		);
-		const { data: cad } = await query.fetchQuery(
+
+		query.prefetchQuery(
 			({ cads }) => cads.single({ id: product.cadId }),
 			queryClient,
 		);
-
-		return { product, cad };
 	},
 	head: () => ({ meta: [{ title: 'CustomCADs | Editor' }] }),
 });

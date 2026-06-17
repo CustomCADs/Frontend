@@ -1,5 +1,5 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { useQuery } from '@customcads/react-sdk';
+import { useSuspenseQuery } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils';
 import * as page from '@/app/utils/page';
 import Card from './card';
@@ -9,11 +9,10 @@ import Info from './info';
 const Route = getRouteApi('/_public/gallery/$id');
 
 const Product = () => {
-	const loader = Route.useLoaderData();
-	const query = useQuery(({ products }) =>
-		products.gallery.single({ id: loader.productId, viewed: true }),
+	const { id } = Route.useParams();
+	const { data: product } = useSuspenseQuery(({ products }) =>
+		products.gallery.single({ id, viewed: true }),
 	);
-	const product = query.data ?? loader.product;
 
 	return (
 		<div className={cn(page.className, 'justify-start gap-y-10')}>

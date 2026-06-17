@@ -8,12 +8,8 @@ export const Route = createFileRoute('/_private/account')({
 	validateSearch: z.object({
 		tab: z.literal(tabs).optional(),
 	}),
-	loader: async ({ context: { queryClient } }) => {
-		const { data: account } = await query.fetchQuery(
-			({ identity }) => identity.myAccount,
-			queryClient,
-		);
-		return { account };
+	loader: ({ context: { queryClient } }) => {
+		query.prefetchQuery(({ identity }) => identity.myAccount, queryClient);
 	},
 	head: () => ({ meta: [{ title: 'CustomCADs | Account' }] }),
 });

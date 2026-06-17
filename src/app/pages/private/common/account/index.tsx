@@ -1,5 +1,5 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { useQuery } from '@customcads/react-sdk';
+import { useSuspenseQuery } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import Tabs from '@/app/components/tabs';
@@ -17,10 +17,9 @@ const MyAccount = () => {
 	const search = Route.useSearch();
 	const navigate = Route.useNavigate();
 
-	const loader = Route.useLoaderData();
-	const query = useQuery(({ identity }) => identity.myAccount);
-
-	const account = query.data ?? loader.account;
+	const { data: account } = useSuspenseQuery(
+		({ identity }) => identity.myAccount,
+	);
 	const tAccount = usePrivateTranslations('account');
 
 	const tabsUI: Record<Tab, { label: string; panel: React.ReactNode }> = {
@@ -49,7 +48,8 @@ const MyAccount = () => {
 				}))}
 				defaultTab={search.tab}
 				onTabChange={(tab) =>
-					tab !== search.tab && navigate({ search: { tab } })
+					tab !== search.tab &&
+					navigate({ search: { tab }, replace: false })
 				}
 				orientation='horizontal'
 				tabVariant='line'
