@@ -7,4 +7,5 @@ export default {
 	section1_buy: 'Buy Product',
 	section1_sell: 'Sell Product',
 	section2_title: 'The Services we provide:',
+	section3_title: 'Our most popular Products:',
 } satisfies Home;

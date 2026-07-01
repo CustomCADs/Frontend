@@ -16,7 +16,7 @@ const Section2 = ({ tSection2 }: Props) => {
 				'px-4 py-20 w-full min-h-[95vh] flex flex-col justify-center items-center gap-y-20',
 				'text-white', // because dark content looks bad on a dark background
 				'bg-[url(/home/services/background.jpg)] bg-cover',
-				'brightness-100 dark:brightness-60 transition duration-400',
+				'brightness-100 dark:brightness-80 transition duration-400',
 			)}
 		>
 			<h1 className='text-4xl text-center font-bold'>

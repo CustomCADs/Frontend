@@ -4,6 +4,7 @@ export type Home = {
 	section1_buy: string;
 	section1_sell: string;
 	section2_title: string;
+	section3_title: string;
 };
 
 export type Services = {

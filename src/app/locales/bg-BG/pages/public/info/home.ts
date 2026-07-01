@@ -7,4 +7,5 @@ export default {
 	section1_buy: 'Купи Продукт',
 	section1_sell: 'Продай Продукт',
 	section2_title: 'Услугите, които предлагаме:',
+	section3_title: 'Най-популярните ни Продукти:',
 } satisfies Home;

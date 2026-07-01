@@ -2,6 +2,7 @@ export * as alert from './alert';
 export * as alertDialog from './alert-dialog';
 export { Button } from './button';
 export * as card from './card';
+export * as carousel from './carousel';
 export { Checkbox } from './checkbox';
 export * as collapsible from './collapsible';
 export * as command from './command';
