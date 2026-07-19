@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+/* eslint-disable i18next/no-literal-string */
 import { cn } from '@/lib/utils';
 import * as page from '@/app/utils/page';
 
