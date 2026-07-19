@@ -1,5 +1,5 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { useQuery } from '@customcads/react-sdk';
+import { useSuspenseQuery } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils';
 import * as editor from '@/app/stores/editor';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
@@ -21,16 +21,14 @@ const Route = getRouteApi('/_public/editor/$id');
 
 const Editor = () => {
 	const navigate = Route.useNavigate();
+	const { id: productId } = Route.useParams();
 
-	const loader = Route.useLoaderData();
-	const query = {
-		product: useQuery(({ products }) =>
-			products.gallery.single({ id: loader.product.id }),
-		).data,
-		cad: useQuery(({ cads }) => cads.single({ id: loader.cad.id })).data,
-	};
-	const product = query.product ?? loader.product;
-	const cad = query.cad ?? loader.cad;
+	const { data: product } = useSuspenseQuery(({ products }) =>
+		products.gallery.single({ id: productId }),
+	);
+	const { data: cad } = useSuspenseQuery(({ cads }) =>
+		cads.single({ id: product.cadId }),
+	);
 
 	const { customization, save } = useCartItemEditor(product.id);
 	const { scale, size } = {

@@ -13,6 +13,8 @@ import { Route as PrivateRouteImport } from './routes/_private'
 import { Route as GuestRouteImport } from './routes/_guest'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as SharedResetPasswordRouteImport } from './routes/_shared/reset-password'
+import { Route as PublicTermsOfServiceRouteImport } from './routes/_public/terms-of-service'
+import { Route as PublicPrivacyPolicyRouteImport } from './routes/_public/privacy-policy'
 import { Route as PublicCartRouteImport } from './routes/_public/cart'
 import { Route as PrivateAccountRouteImport } from './routes/_private/account'
 import { Route as GuestRegisterRouteImport } from './routes/_guest/register'
@@ -38,6 +40,16 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
 const SharedResetPasswordRoute = SharedResetPasswordRouteImport.update({
   id: '/_shared/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicTermsOfServiceRoute = PublicTermsOfServiceRouteImport.update({
+  id: '/_public/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicPrivacyPolicyRoute = PublicPrivacyPolicyRouteImport.update({
+  id: '/_public/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicCartRoute = PublicCartRouteImport.update({
@@ -88,6 +100,8 @@ export interface FileRoutesByFullPath {
   '/register': typeof GuestRegisterRoute
   '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
+  '/privacy-policy': typeof PublicPrivacyPolicyRoute
+  '/terms-of-service': typeof PublicTermsOfServiceRoute
   '/reset-password': typeof SharedResetPasswordRoute
   '/editor/$id': typeof PublicEditorIdRoute
   '/gallery/$id': typeof PublicGalleryIdRoute
@@ -100,6 +114,8 @@ export interface FileRoutesByTo {
   '/register': typeof GuestRegisterRoute
   '/account': typeof PrivateAccountRoute
   '/cart': typeof PublicCartRoute
+  '/privacy-policy': typeof PublicPrivacyPolicyRoute
+  '/terms-of-service': typeof PublicTermsOfServiceRoute
   '/reset-password': typeof SharedResetPasswordRoute
   '/editor/$id': typeof PublicEditorIdRoute
   '/gallery/$id': typeof PublicGalleryIdRoute
@@ -114,6 +130,8 @@ export interface FileRoutesById {
   '/_guest/register': typeof GuestRegisterRoute
   '/_private/account': typeof PrivateAccountRoute
   '/_public/cart': typeof PublicCartRoute
+  '/_public/privacy-policy': typeof PublicPrivacyPolicyRoute
+  '/_public/terms-of-service': typeof PublicTermsOfServiceRoute
   '/_shared/reset-password': typeof SharedResetPasswordRoute
   '/_public/': typeof PublicIndexRoute
   '/_public/editor/$id': typeof PublicEditorIdRoute
@@ -129,6 +147,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/account'
     | '/cart'
+    | '/privacy-policy'
+    | '/terms-of-service'
     | '/reset-password'
     | '/editor/$id'
     | '/gallery/$id'
@@ -141,6 +161,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/account'
     | '/cart'
+    | '/privacy-policy'
+    | '/terms-of-service'
     | '/reset-password'
     | '/editor/$id'
     | '/gallery/$id'
@@ -154,6 +176,8 @@ export interface FileRouteTypes {
     | '/_guest/register'
     | '/_private/account'
     | '/_public/cart'
+    | '/_public/privacy-policy'
+    | '/_public/terms-of-service'
     | '/_shared/reset-password'
     | '/_public/'
     | '/_public/editor/$id'
@@ -165,6 +189,8 @@ export interface RootRouteChildren {
   GuestRoute: typeof GuestRouteWithChildren
   PrivateRoute: typeof PrivateRouteWithChildren
   PublicCartRoute: typeof PublicCartRoute
+  PublicPrivacyPolicyRoute: typeof PublicPrivacyPolicyRoute
+  PublicTermsOfServiceRoute: typeof PublicTermsOfServiceRoute
   SharedResetPasswordRoute: typeof SharedResetPasswordRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicEditorIdRoute: typeof PublicEditorIdRoute
@@ -200,6 +226,20 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof SharedResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/terms-of-service': {
+      id: '/_public/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof PublicTermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/privacy-policy': {
+      id: '/_public/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PublicPrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_public/cart': {
@@ -290,6 +330,8 @@ const rootRouteChildren: RootRouteChildren = {
   GuestRoute: GuestRouteWithChildren,
   PrivateRoute: PrivateRouteWithChildren,
   PublicCartRoute: PublicCartRoute,
+  PublicPrivacyPolicyRoute: PublicPrivacyPolicyRoute,
+  PublicTermsOfServiceRoute: PublicTermsOfServiceRoute,
   SharedResetPasswordRoute: SharedResetPasswordRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicEditorIdRoute: PublicEditorIdRoute,

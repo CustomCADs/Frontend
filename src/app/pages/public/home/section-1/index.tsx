@@ -10,11 +10,11 @@ const Section1 = ({ tSection1 }: Props) => (
 		className={cn(
 			'w-full h-[95vh] flex justify-center md:justify-between items-center transition duration-400',
 			'text-white', // because dark text looks bad on a dark background
-			'bg-[url(/public/home/background.jpg)] bg-cover',
+			'bg-[url(/home/welcome/background.jpg)] bg-cover',
 			'brightness-150 dark:brightness-100',
 		)}
 	>
-		<article className='z-10 md:basis-1/2 p-10 flex flex-col justify-center gap-y-20 animate-fade-in delay-500'>
+		<article className='z-10 md:basis-1/2 p-10 flex flex-col justify-center gap-y-20 animate-fade-in delay-800'>
 			<h3 className='text-3xl text-center font-extrabold'>
 				{tSection1('title')}
 			</h3>
@@ -25,10 +25,7 @@ const Section1 = ({ tSection1 }: Props) => (
 			</div>
 		</article>
 		<aside className='absolute md:static top-5/16 transform -translate-y-5/16 md:translate-y-0 opacity-50 md:opacity-100 basis-1/2 md:flex md:justify-end'>
-			<img
-				src='/home/aside.png'
-				className='min-w-screen md:min-w-0 md:max-w-10/12'
-			/>
+			<img src='/home/welcome/aside.png' className='md:max-w-5/6' />
 		</aside>
 	</section>
 );

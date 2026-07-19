@@ -3,6 +3,7 @@ import * as gallery from './gallery';
 
 export type Public = {
 	'pages.public.info.home': info.Home;
+	'pages.public.info.services': info.Services;
 	'pages.public.info.preferences': info.Preferences;
 	'pages.public.gallery.product': gallery.Product;
 	'pages.public.gallery.cart': gallery.Cart;

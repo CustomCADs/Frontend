@@ -1,4 +1,3 @@
-import { cn } from '@/lib/utils';
 import { useDropdowns } from './hooks/useDropdowns';
 
 const Bars = () => {
@@ -7,10 +6,7 @@ const Bars = () => {
 	return [
 		<div
 			key='mobile'
-			className={cn(
-				'md:hidden flex flex-col justify-center gap-y-8',
-				'animate-fade-in delay-500',
-			)}
+			className='md:hidden flex flex-col justify-center gap-y-8'
 		>
 			<div className='flex gap-x-4'>
 				<dropdowns.Categories />
@@ -20,10 +16,7 @@ const Bars = () => {
 		</div>,
 		<div
 			key='desktop'
-			className={cn(
-				'hidden md:flex md:justify-center md:w-full md:gap-x-8',
-				'animate-fade-in delay-500',
-			)}
+			className='hidden md:flex md:justify-center md:w-full md:gap-x-8'
 		>
 			<dropdowns.Categories />
 			<dropdowns.Searchbar />

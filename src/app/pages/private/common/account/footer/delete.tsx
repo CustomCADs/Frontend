@@ -3,8 +3,7 @@ import { useMutation } from '@customcads/react-sdk';
 import { UserX } from 'lucide-react';
 import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { useLogout } from '@/app/hooks/features/header/useLogout';
-import { alertDialog } from '@/app/components/ui';
-import { Button } from '@/app/components/ui';
+import { alertDialog, Button } from '@/app/components/ui';
 
 const Delete = () => {
 	const { mutateAsync: deleteMyAccount } = useMutation(

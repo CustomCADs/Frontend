@@ -14,6 +14,7 @@ export const getRouter = () => {
 		routeTree,
 		context: { ...queryContext },
 		defaultPreload: 'intent',
+		defaultPreloadStaleTime: 0,
 		scrollRestoration: true,
 		scrollRestorationBehavior: 'smooth',
 		defaultViewTransition: true,
