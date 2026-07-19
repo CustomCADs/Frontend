@@ -9,48 +9,38 @@ const lock = (cad: Group) => {
 	cad.position.sub(center);
 };
 
-export const gltf = (
+export const gltf = async (
 	scene: Scene,
 	url: string,
 	callback?: (cad: Group) => void,
 	progress?: (percentage: number) => void,
 ) => {
-	new GLTFLoader().load(
-		url,
-		(cad) => {
-			lock(cad.scene);
-			if (callback) callback(cad.scene);
-			scene.add(cad.scene);
-		},
-		(e) => {
-			const percentage = e.loaded / e.total;
-			if (progress) progress(percentage);
-		},
-	);
+	const cad = await new GLTFLoader().loadAsync(url, ({ loaded, total }) => {
+		const percentage = loaded / total;
+		if (progress) progress(percentage);
+	});
+
+	lock(cad.scene);
+	if (callback) callback(cad.scene);
+	scene.add(cad.scene);
 };
 
-export const stl = (
+export const stl = async (
 	scene: Scene,
 	url: string,
 	callback?: (cad: Group) => void,
 	progress?: (percentage: number) => void,
 ) => {
-	new STLLoader().load(
-		url,
-		(cad) => {
-			const group = new Group();
-			cad.center();
-			group.add(
-				new Mesh(cad, new MeshStandardMaterial({ color: 0xaaaaaa })),
-			);
+	const cad = await new STLLoader().loadAsync(url, ({ loaded, total }) => {
+		const percentage = loaded / total;
+		if (progress) progress(percentage);
+	});
 
-			lock(group);
-			if (callback) callback(group);
-			scene.add(group);
-		},
-		(e) => {
-			const percentage = e.loaded / e.total;
-			if (progress) progress(percentage);
-		},
-	);
+	const group = new Group();
+	cad.center();
+	group.add(new Mesh(cad, new MeshStandardMaterial({ color: 0xaaaaaa })));
+
+	lock(group);
+	if (callback) callback(group);
+	scene.add(group);
 };

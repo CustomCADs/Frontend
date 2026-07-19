@@ -2,14 +2,14 @@ import { useQuery } from '@customcads/react-sdk';
 import { AppError } from '@/types/errors';
 import { getCadType } from '@/lib/cad';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
-import { useCadBlobUrl } from '@/app/hooks/features/cads/useCadBlobUrl';
+import { useFetchCad } from '@/app/hooks/features/cads/useFetchCad';
 import { useTextures } from '@/app/hooks/features/materials/useTextures';
 import Loader from '@/app/components/loading';
 import EditorThreeJS from './threejs';
 
 type Props = { cadId: string };
 const EditorCad = ({ cadId }: Props) => {
-	const { blobUrl: cadBlobUrl, progress } = useCadBlobUrl(cadId, 'Product');
+	const { blobUrl, progress } = useFetchCad(cadId, 'Product');
 	const { data: cad } = useQuery(({ cads }) => cads.single({ id: cadId }));
 
 	const materialId = useEditorStore(cadId, (state) => state.materialId);
@@ -23,7 +23,7 @@ const EditorCad = ({ cadId }: Props) => {
 			tip: 'Reload this page or clear your browser cache.',
 		});
 
-	if (!cad || !cadBlobUrl || !texture) {
+	if (!cad || !blobUrl || !texture) {
 		return <Loader progress={progress} isCad />;
 	}
 
@@ -33,7 +33,7 @@ const EditorCad = ({ cadId }: Props) => {
 				texture={texture}
 				cad={{
 					id: cadId,
-					blobUrl: cadBlobUrl,
+					blobUrl: blobUrl,
 					type: getCadType(cad.contentType as never),
 					coords: {
 						cam: cad.camCoordinates,

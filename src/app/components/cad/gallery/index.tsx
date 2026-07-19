@@ -1,12 +1,12 @@
 import { useQuery } from '@customcads/react-sdk';
 import { getCadType } from '@/lib/cad';
-import { useCadBlobUrl } from '@/app/hooks/features/cads/useCadBlobUrl';
+import { useFetchCad } from '@/app/hooks/features/cads/useFetchCad';
 import Loader from '@/app/components/loading';
 import GalleryThreeJS from './threejs';
 
 const GalleryCad = ({ cadId }: { cadId: string }) => {
 	const { data: cad } = useQuery(({ cads }) => cads.single({ id: cadId }));
-	const { blobUrl, progress } = useCadBlobUrl(cadId, 'Product');
+	const { blobUrl, progress } = useFetchCad(cadId, 'Product');
 
 	return (
 		<div className='relative h-full w-full'>
