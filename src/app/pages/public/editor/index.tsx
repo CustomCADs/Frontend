@@ -30,7 +30,7 @@ const Editor = () => {
 		cads.single({ id: product.cadId }),
 	);
 
-	const { customization, save } = useCartItemEditor(product.id);
+	const { customization, save } = useCartItemEditor(product.id, cad.volume);
 	const { scale, size } = {
 		scale: useEditorStore(product.cadId, (state) => state.scale),
 		size: useEditorStore(product.cadId, (state) => state.size),

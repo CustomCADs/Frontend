@@ -6,6 +6,7 @@ import { useIdempotencyKeys } from '@/app/hooks/features/idempotency-keys/useIde
 import { INFILL } from '@/app/constants/threejs';
 
 export const useCustomizationCreator = (
+	volume: number,
 	item?: CartItem,
 	enableCreation?: boolean,
 ) => {
@@ -16,8 +17,9 @@ export const useCustomizationCreator = (
 		edit: useMutation(({ customizations }) => customizations.edit),
 	};
 
-	const itemCustomizationId = item?.forDelivery ? item.customizationId : null;
-	const customizationId = mutations.create.data?.id ?? itemCustomizationId;
+	const customizationId =
+		mutations.create.data?.id ??
+		(item?.forDelivery ? item.customizationId : null);
 
 	const { data: customization, error: error } = useQuery(
 		({ customizations }) => customizations.single({ id: customizationId! }),
@@ -35,7 +37,7 @@ export const useCustomizationCreator = (
 				color: '#ffffff',
 				infill: INFILL.min,
 				scale: 100 / 100,
-				volume: 0,
+				volume,
 			});
 		}
 	};
