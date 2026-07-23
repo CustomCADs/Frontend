@@ -14,7 +14,7 @@ const Products = ({ track, products }: Props) => {
 			items={products.map(({ id, viewedAt }) => (
 				<Item key={id} id={id} viewedAt={viewedAt} />
 			))}
-			className='w-65 md:w-md'
+			className='w-65 lg:w-175 xl:w-250'
 		>
 			<Track track={track} />
 		</Scroller>

@@ -4,4 +4,5 @@ export default {
 	title: 'Акаунт | {{username}}',
 	profile: 'Профил',
 	access: 'Достъп',
+	info: 'Данни',
 } satisfies MyAccount;

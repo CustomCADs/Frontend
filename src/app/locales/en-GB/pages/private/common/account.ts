@@ -4,4 +4,5 @@ export default {
 	title: 'Account | {{username}}',
 	profile: 'Profile',
 	access: 'Access',
+	info: 'Info',
 } satisfies MyAccount;

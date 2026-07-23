@@ -30,7 +30,7 @@ const Aside = ({ prices, costs }: Props) => {
 	const content = items?.length ? (
 		<div className='flex flex-col gap-y-12'>
 			<Money money={money} className='text-xl' />
-			<span className='font-bold text-xl text-nowrap'>
+			<span className='font-bold text-xl'>
 				{'Payment is currently still not supported.'}
 			</span>
 			{/* <Link to='.'>
@@ -41,7 +41,7 @@ const Aside = ({ prices, costs }: Props) => {
 		</div>
 	) : (
 		<div className='w-full h-full flex justify-center items-center'>
-			<span className='font-bold text-xl text-nowrap'>
+			<span className='font-bold text-xl'>
 				{'Payment is currently still not supported.'}
 			</span>
 			{/* <Link
@@ -54,8 +54,8 @@ const Aside = ({ prices, costs }: Props) => {
 	);
 
 	return (
-		<aside className='lg:w-1/3 flex flex-col justify-center items-stretch rounded-4xl animate-fade-in delay-1000'>
-			<section className='p-12 rounded-4xl min-h-80 border-2'>
+		<aside className='flex flex-col justify-center items-stretch rounded-4xl animate-fade-in delay-1000'>
+			<section className='p-12 rounded-4xl sm:min-w-106 min-h-80 border-2'>
 				{content}
 			</section>
 		</aside>
