@@ -35,10 +35,9 @@ const Categories = ({ getCategory, updateCategory }: Props) => {
 		}
 	};
 
-	const iconClass = 'cursor-pointer w-5 h-5 md:w-5 md:h-5';
 	return (
 		<div className='flex items-center gap-x-2'>
-			<Funnel className={iconClass} />
+			<Funnel className='w-5 h-5 md:w-5 md:h-5' />
 			<CategoriesCombobox
 				current={category}
 				options={categories.map((x) => ({
@@ -52,7 +51,10 @@ const Categories = ({ getCategory, updateCategory }: Props) => {
 				</span>
 			</CategoriesCombobox>
 			{category !== initial && (
-				<X onClick={() => handleSelect()} className={iconClass} />
+				<X
+					onClick={() => handleSelect()}
+					className='cursor-pointer w-5 h-5 md:w-5 md:h-5'
+				/>
 			)}
 		</div>
 	);

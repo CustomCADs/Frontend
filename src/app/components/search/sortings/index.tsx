@@ -42,11 +42,14 @@ const Sortings = ({ getSorting, updateSorting, sortings }: Props) => {
 		}
 	};
 
+	if (!sortings) return;
+
 	const handleSelect = (name?: string) => {
 		setSorting(() => name ?? initial);
 		updateSorting({ type: name, direction });
 	};
-	if (!sortings) return;
+	const format = (sorting: string) =>
+		sorting.replace(/([a-z])([A-Z])/g, '$1 $2');
 
 	const DirectionArrow = direction === 'ascending' ? ArrowUp : ArrowDown;
 
@@ -55,18 +58,18 @@ const Sortings = ({ getSorting, updateSorting, sortings }: Props) => {
 			<ArrowUpDown />
 			<SortingsCombobox
 				current={sorting}
-				options={sortings.map((x) => ({
-					value: x,
-					label: x,
-				}))}
+				options={sortings.map((x) => ({ value: x, label: format(x) }))}
 				onSelect={handleSelect}
 			>
 				<span className='flex justify-between items-center gap-x-2 px-8 py-3 bg-secondary text-popover-foreground text-xs md:text-lg border-2 border-border rounded-2xl cursor-pointer hover:brightness-80 transition duration-200'>
-					{sorting}
+					{format(sorting)}
 				</span>
 			</SortingsCombobox>
 			{sorting !== initial && (
-				<DirectionArrow onClick={toggleDirection} />
+				<DirectionArrow
+					onClick={toggleDirection}
+					className='cursor-pointer'
+				/>
 			)}
 		</div>
 	);

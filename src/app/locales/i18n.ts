@@ -7,8 +7,8 @@ import {
 } from '@/lib/isomorphic/locale';
 import { loadTranslations } from './load-translations';
 
-const initialize = () => {
-	i18n.use(initReactI18next).init({
+const initialize = async () => {
+	await i18n.use(initReactI18next).init({
 		supportedLngs: ALLOWED_LANGUAGES,
 		lng: getLanguageCookie(),
 		fallbackLng: getDefaultLanguageCookie() ?? ('en-GB' satisfies Language),

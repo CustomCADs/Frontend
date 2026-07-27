@@ -18,7 +18,7 @@ const Pagination = ({ total, defaultPagination, navigate }: Props) => {
 	return (
 		<pagination.Root>
 			<pagination.Content className='grid grid-cols-4 place-items-center gap-y-4'>
-				<section className='col-span-2 md:col-span-1 order-2 md:order-1'>
+				<section className='col-span-2 md:col-span-1 order-2 md:order-1 cursor-pointer'>
 					<Limits
 						min={1}
 						max={Math.ceil(total / limit)}
@@ -33,7 +33,7 @@ const Pagination = ({ total, defaultPagination, navigate }: Props) => {
 						onChange={handleChange.page}
 					/>
 				</section>
-				<section className='col-span-2 md:col-span-1 order-3 md:order-3'>
+				<section className='col-span-2 md:col-span-1 order-3 md:order-3 cursor-pointer'>
 					<Limits
 						min={LIMITS.GALLERY.min}
 						max={LIMITS.GALLERY.max}

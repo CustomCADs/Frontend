@@ -15,11 +15,13 @@ import ErrorPage from '@/app/components/error';
 import { TanStackDevtools } from '@/app/integrations/tanstack-devtools';
 import * as i18n from '@/app/locales/i18n';
 import '@/index.css';
+import { getLanguageCookie } from '@/lib/isomorphic';
 
 let cssUrl: string | undefined;
 if (!import.meta.env.DEV) {
 	await import('@/index.css?url').then((i) => (cssUrl = i.default));
 }
+i18n.initialize();
 
 export const Route = createRootRouteWithContext<RouterContext>()({
 	head: () => {
@@ -43,8 +45,8 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 		};
 	},
 	shellComponent: ({ children }) => {
-		const { language } = i18n.initialize();
-		const lang = language.split('-')[0] ?? 'en';
+		const lang = getLanguageCookie()?.split('-')[0] ?? 'en';
+
 		return (
 			<html lang={lang} className={cn({ dark: !isLightThemeCookie() })}>
 				<head>

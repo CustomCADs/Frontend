@@ -23,7 +23,7 @@ const Buttons = ({
 			<Button
 				variant='destructive'
 				onClick={onRemoveClick}
-				className='md:self-stretch md:min-w-22'
+				className='cursor-pointer md:self-stretch md:min-w-22'
 			>
 				<Trash />
 			</Button>
@@ -33,7 +33,7 @@ const Buttons = ({
 				tag='span'
 				variant='secondary'
 				onClick={onDeliveryChange}
-				className='px-2 md:px-4'
+				className='cursor-pointer px-2 md:px-4'
 			>
 				<div className='max-w-32 flex items-center gap-x-2'>
 					<span className='text-xs'>{tCart('delivery')}:</span>
