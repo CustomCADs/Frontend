@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import * as page from '@/app/utils/page';
 import Card from './card';
 import Info from './info';
-// import Tags from './tags';
+import Tags from './tags';
 
 const Route = getRouteApi('/_public/gallery/$id');
 
@@ -20,9 +20,9 @@ const Product = () => {
 				{product.name}
 			</h3>
 			<section className='w-full flex flex-col items-center gap-y-4 md:gap-x-8 md:gap-y-6'>
+				<Tags>{product.tags}</Tags>
 				<Card product={product} />
 				<Info product={product} />
-				{/* <Tags tags={product.tags} /> */}
 			</section>
 		</div>
 	);

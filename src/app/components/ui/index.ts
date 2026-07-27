@@ -1,5 +1,6 @@
 export * as alert from './alert';
 export * as alertDialog from './alert-dialog';
+export { Badge } from './badge';
 export { Button } from './button';
 export * as card from './card';
 export * as carousel from './carousel';
