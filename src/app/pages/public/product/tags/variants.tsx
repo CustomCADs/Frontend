@@ -11,7 +11,11 @@ const variants = {
 export type Variant = keyof typeof variants;
 
 export const tagVariants = cva(
-	cn('w-32 h-6', 'sm:px-6 sm:h-8 sm:text-sm', 'xl:px-8 xl:h-10 xl:text-base'),
+	cn(
+		'w-32 border-2 dark:border-3 h-6',
+		'sm:px-6 sm:h-8 sm:text-sm',
+		'xl:px-8 xl:h-10 xl:text-base',
+	),
 	{
 		variants: { variant: variants },
 		defaultVariants: { variant: 'default' },
