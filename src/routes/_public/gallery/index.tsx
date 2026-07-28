@@ -12,6 +12,7 @@ export const Route = createFileRoute('/_public/gallery/')({
 	validateSearch: z.object({
 		name: z.string().optional(),
 		categoryName: z.string().optional(),
+		tags: z.array(z.string()).optional(),
 		sortingType: z.string().optional(),
 		sortingDirection: z.string().optional(),
 		page: z.number().optional(),
@@ -20,6 +21,7 @@ export const Route = createFileRoute('/_public/gallery/')({
 	component: Gallery,
 	loaderDeps: ({ search }) => ({
 		name: search.name,
+		tags: search.tags,
 		categoryName: search.categoryName,
 		sortingType: search.sortingType,
 		sortingDirection: search.sortingDirection,
@@ -46,6 +48,16 @@ export const Route = createFileRoute('/_public/gallery/')({
 				queryClient,
 			);
 			requestParams.categoryId = category.id;
+		}
+
+		if (deps.tags) {
+			const { data: tags } = await query.fetchQuery(
+				({ tags }) => tags.all,
+				queryClient,
+			);
+			requestParams.tagIds = tags
+				.filter((x) => deps.tags?.includes(x.name))
+				.map((x) => x.id);
 		}
 
 		query.prefetchQuery(

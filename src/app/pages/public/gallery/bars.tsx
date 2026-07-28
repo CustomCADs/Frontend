@@ -4,6 +4,7 @@ import { useFormTranslations } from '@/app/hooks/locales/translations/components
 import Categories from '@/app/components/search/categories';
 import Searchbar from '@/app/components/search/searchbar';
 import Sortings from '@/app/components/search/sortings';
+import Tags from './tags';
 
 const Route = getRouteApi('/_public/gallery/');
 
@@ -16,6 +17,7 @@ const Bars = () => {
 	const { data: sortings } = useQuery(
 		({ products }) => products.gallery.sortings,
 	);
+	const { data: tags } = useQuery(({ tags }) => tags.all);
 
 	return (
 		<div className='w-full grid grid-cols-4 justify-items-center gap-y-8 gap-x-8 md:gap-x-0'>
@@ -64,6 +66,18 @@ const Bars = () => {
 						});
 					}}
 				/>
+			</section>
+			<section className='order-4 col-span-4'>
+				<Tags
+					getTags={() => search.tags}
+					updateTags={(tags) => {
+						navigate({
+							search: (prev) => ({ ...prev, tags }),
+						});
+					}}
+				>
+					{tags?.map((x) => x.name)}
+				</Tags>
 			</section>
 		</div>
 	);
