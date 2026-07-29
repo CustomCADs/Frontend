@@ -9,6 +9,7 @@ export * as collapsible from './collapsible';
 export * as command from './command';
 export * as dialog from './dialog';
 export * as dropdownMenu from './dropdown-menu';
+export * as empty from './empty';
 export { Input } from './input';
 export { Label } from './label';
 export * as navMenu from './navmenu';

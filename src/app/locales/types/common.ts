@@ -1,13 +1,13 @@
 import { Language } from '@/types/locale';
+import { Empty } from './common/empty';
 
 export type Common = {
 	'common.locales': Locales;
 	'common.roles': Roles;
 	'common.metrics': Metrics;
 	'common.loading': Loading;
-	'common.empty': Empty;
 	'common.errors': Errors;
-};
+} & Empty;
 
 type Locales = Record<Language, string>;
 
@@ -21,10 +21,6 @@ type Roles = {
 
 type Loading = {
 	gallery: string;
-};
-
-type Empty = {
-	products: string;
 };
 
 type Metrics = {

@@ -2,11 +2,11 @@ import { ApiResult, GalleryAllProductsResponse } from '@customcads/react-sdk';
 import { cn } from '@/lib/utils';
 import { useCommonTranslations } from '@/app/hooks/locales/translations/common';
 import Item from './item';
+import Empty from './empty';
 
 type Props = { products?: ApiResult<GalleryAllProductsResponse> };
 const List = ({ products }: Props) => {
 	const tLoading = useCommonTranslations('loading');
-	const tEmpty = useCommonTranslations('empty');
 
 	if (!products) {
 		return (
@@ -15,14 +15,7 @@ const List = ({ products }: Props) => {
 			</span>
 		);
 	}
-
-	if (!products.count) {
-		return (
-			<span className='text-center text-lg md:text-2xl'>
-				{tEmpty('products')}
-			</span>
-		);
-	}
+	if (!products.count) return <Empty />;
 
 	return (
 		<ul

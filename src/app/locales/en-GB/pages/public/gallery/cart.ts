@@ -10,5 +10,4 @@ export default {
 	'print-cost': 'Print cost',
 	'total-sum': 'Total sum',
 	buy: 'Buy',
-	'no-items': 'Add Products to this Cart',
 } satisfies Cart;

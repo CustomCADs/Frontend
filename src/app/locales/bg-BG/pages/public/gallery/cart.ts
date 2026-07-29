@@ -10,5 +10,4 @@ export default {
 	'print-cost': 'Разход за Принтиране',
 	'total-sum': 'Обща сума',
 	buy: 'Купи',
-	'no-items': 'Добави Продукти към тази Количка',
 } satisfies Cart;
