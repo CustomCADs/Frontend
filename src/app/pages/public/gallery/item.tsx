@@ -19,6 +19,7 @@ const Item = ({ product, className }: Props) => {
 		<Link
 			to='/gallery/$id'
 			params={{ id: product.id }}
+			preloadDelay={250}
 			className={cn(
 				'max-h-50 md:max-h-75 bg-secondary text-secondary-foreground border-gray border-2 rounded-md shadow-primary shadow-md',
 				'flex flex-col justify-between gap-y-4 p-4',

@@ -5,6 +5,7 @@ import Categories from '@/app/components/search/categories';
 import Searchbar from '@/app/components/search/searchbar';
 import Sortings from '@/app/components/search/sortings';
 import Tags from './tags';
+import Preview from './preview';
 
 const Route = getRouteApi('/_public/gallery/');
 
@@ -36,6 +37,7 @@ const Bars = () => {
 			</section>
 			<section className='order-3 md:col-span-2 col-span-4 md:order-2'>
 				<Searchbar
+					preview={(search) => <Preview name={search} />}
 					placeholder={tPlaceholders('search-products')}
 					getSearch={() => search.name}
 					updateSearch={(name) => {

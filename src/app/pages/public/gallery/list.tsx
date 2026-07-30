@@ -5,7 +5,7 @@ import Empty from './empty';
 
 type Props = { products: ApiResult<GalleryAllProductsResponse> };
 const List = ({ products }: Props) => {
-	if (!products.count) return <Empty />;
+	if (!products.count) return <Empty media title description link />;
 
 	return (
 		<ul
