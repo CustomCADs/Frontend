@@ -7,6 +7,7 @@ import {
 } from '@customcads/react-sdk';
 import * as limits from '@/app/constants/limits';
 import Gallery from '@/app/pages/public/gallery';
+import Skeleton from '@/app/pages/public/gallery/skeleton';
 
 export const Route = createFileRoute('/_public/gallery/')({
 	validateSearch: z.object({
@@ -19,6 +20,7 @@ export const Route = createFileRoute('/_public/gallery/')({
 		limit: z.number().optional(),
 	}),
 	component: Gallery,
+	pendingComponent: Skeleton,
 	loaderDeps: ({ search }) => ({
 		name: search.name,
 		tags: search.tags,
