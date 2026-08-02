@@ -12,7 +12,7 @@ const Service = ({ image, link, description }: Props) => {
 	return (
 		<Comp
 			to={link}
-			className='relative overflow-hidden cursor-pointer group'
+			className='relative overflow-hidden cursor-pointer group select-none'
 		>
 			<img src={image} className='w-80 aspect-square' />
 			<aside

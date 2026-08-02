@@ -20,7 +20,7 @@ export const selected = {
 
 export const tagVariants = cva(
 	cn(
-		'w-32 border-2 h-6',
+		'w-32 border-2 h-6 select-none',
 		'sm:px-6 sm:h-8 sm:text-sm',
 		'xl:px-8 xl:h-10 xl:text-base',
 	),

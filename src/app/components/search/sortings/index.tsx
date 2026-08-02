@@ -61,7 +61,7 @@ const Sortings = ({ getSorting, updateSorting, sortings }: Props) => {
 				options={sortings.map((x) => ({ value: x, label: format(x) }))}
 				onSelect={handleSelect}
 			>
-				<span className='flex justify-between items-center gap-x-2 px-8 py-3 bg-secondary text-popover-foreground text-xs md:text-lg border-2 border-border rounded-2xl cursor-pointer hover:brightness-80 transition duration-200'>
+				<span className='flex justify-between items-center gap-x-2 px-8 py-3 bg-secondary text-popover-foreground text-xs md:text-lg border-2 border-border rounded-2xl cursor-pointer select-none hover:brightness-80 transition duration-200'>
 					{format(sorting)}
 				</span>
 			</SortingsCombobox>

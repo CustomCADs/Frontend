@@ -7,7 +7,7 @@ const Header = ({ product }: Props) => (
 		<h4 className='text-xl font-semibold'>{product.name}</h4>
 		<PresignedImage
 			request={{ id: product.imageId, relationType: 'Product' }}
-			className='w-30 h-30 rounded-xl'
+			className='w-30 h-30 rounded-xl select-none'
 		/>
 	</section>
 );

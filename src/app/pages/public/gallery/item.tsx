@@ -21,17 +21,17 @@ const Item = ({ product, className }: Props) => (
 		<PresignedImage
 			request={{ id: product.imageId, relationType: 'Product' }}
 			enabled={!!product}
-			className='basis-full max-h-30 md:max-h-52 object-cover rounded-sm'
+			className='basis-full max-h-30 md:max-h-52 object-cover rounded-sm select-none'
 		/>
 		<div className='flex justify-around items-center gap-x-10'>
-			<div className='flex gap-x-2'>
+			<div className='flex gap-x-2 select-none'>
 				<Eye />
 				{product.counts.views}
 			</div>
 			<span className='text-sm sm:text-md md:text-lg truncate font-bold'>
 				{product.name}
 			</span>
-			<div className='flex gap-x-2'>
+			<div className='flex gap-x-2 select-none'>
 				<Banknote />
 				{product.counts.purchases}
 			</div>

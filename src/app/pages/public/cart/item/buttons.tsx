@@ -43,7 +43,7 @@ const Buttons = ({
 		) : (
 			<button className='bg-secondary/60 text-secondary-foreground rounded-md py-2 px-2 md:px-4'>
 				<div className='max-w-20 flex items-center gap-x-2'>
-					<span className='text-xs text-wrap opacity-60 font-bold'>
+					<span className='text-xs text-wrap opacity-60 font-bold select-none'>
 						{tCart('undeliverable')}
 					</span>
 				</div>

@@ -10,7 +10,7 @@ const Item = ({ product }: Props) => (
 			<item.Media>
 				<PresignedImage
 					request={{ id: product.imageId, relationType: 'Product' }}
-					className='w-16 md:w-24 lg:w-32 aspect-square rounded-2xl'
+					className='w-16 md:w-24 lg:w-32 aspect-square rounded-2xl select-none'
 				/>
 			</item.Media>
 			<item.Content>
