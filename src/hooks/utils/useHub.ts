@@ -3,11 +3,12 @@ import { HubConnection } from '@/lib//hubs/signalr';
 
 type Props = {
 	hub: {
-		connection?: HubConnection;
-		methods: Array<{
+		connection: HubConnection;
+		methods: Array<string>;
+		methodsToAdd: {
 			name: string;
 			onReceived: (payload: never) => void | Promise<void>;
-		}>;
+		}[];
 	};
 	condition?: boolean;
 	deps?: DependencyList;
@@ -17,10 +18,9 @@ export const useHub = ({ hub, condition, deps }: Props) =>
 		// if there's a condition and it evaluates to `false`, exit
 		if (condition !== undefined && !condition) return;
 
-		if (!hub.connection) return;
-		const { connection } = hub;
-
-		for (const method of hub.methods) {
-			connection.on(method.name, method.onReceived);
+		for (const method of hub.methodsToAdd) {
+			if (hub.methods.includes(method.name)) return;
+			hub.methods.push(method.name);
+			hub.connection.on(method.name, method.onReceived);
 		}
 	}, deps);
