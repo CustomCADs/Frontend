@@ -4,6 +4,7 @@ import { useAuthSync } from '@/app/hooks/stores/useAuthSync';
 import { useLocaleSync } from '@/app/hooks/stores/useLocaleSync';
 import { useCartSync } from '@/app/hooks/stores/useCartSync';
 import { useRealTime } from '@/app/hooks/hubs/useRealTime';
+import { Toaster } from '../ui/sonner';
 import Header from './header';
 import Footer from './footer';
 
@@ -20,6 +21,7 @@ const Layout = ({ children }: Children) => {
 				<Header />
 				<main className='basis-full grow self-stretch flex flex-col'>
 					{children}
+					<Toaster />
 				</main>
 			</div>
 			<Footer />
