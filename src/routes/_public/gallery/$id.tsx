@@ -5,7 +5,10 @@ import { createFileRoute } from '@tanstack/react-router';
 export const Route = createFileRoute('/_public/gallery/$id')({
 	loader: async ({ params, context: { queryClient } }) => {
 		const { data: product } = await query.fetchQuery(
-			({ products }) => products.gallery.single({ id: params.id }),
+			({ products }) => ({
+				...products.gallery.single({ id: params.id }),
+				staleTime: 10_000,
+			}),
 			queryClient,
 		);
 

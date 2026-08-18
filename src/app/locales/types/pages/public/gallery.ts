@@ -25,7 +25,6 @@ export type Cart = {
 	'print-cost': string;
 	'total-sum': string;
 	buy: string;
-	'no-items': string;
 };
 
 export type Editor = {

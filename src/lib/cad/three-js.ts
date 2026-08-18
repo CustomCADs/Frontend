@@ -139,6 +139,8 @@ export const initThreeJS = (
 		window.removeEventListener('resize', resizeHandler);
 
 		controls.dispose();
+		renderer.getContext().getExtension('WEBGL_lose_context')?.loseContext();
+
 		renderer.dispose();
 		renderer.domElement.remove();
 

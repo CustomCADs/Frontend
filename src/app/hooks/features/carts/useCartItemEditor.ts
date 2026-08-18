@@ -5,29 +5,26 @@ import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useCustomizationCreator } from '@/app/hooks/features/customizations/useCustomizationCreator';
 import { useCartUpdates } from './useCartUpdates';
 
-export const useCartItemEditor = (productId: string) => {
+export const useCartItemEditor = (productId: string, volume: number) => {
 	const { items } = useCartStore();
 	const itemsLoaded = !!items;
 
 	const item = items?.find((i) => i.productId === productId);
 	const updates = useCartUpdates();
 	const addItemIfMissing = (customizationId: string) => {
-		if (!item) {
-			updates.cart.add({
-				productId,
-				quantity: 1,
-				forDelivery: true,
-				customizationId: customizationId,
-			});
-			return;
-		}
+		if (item)
+			return { otherwise: (cb: (item: CartItem) => void) => cb(item) };
 
-		return {
-			otherwise: (callback: (item: CartItem) => void) => callback(item),
-		};
+		updates.cart.add({
+			productId,
+			quantity: 1,
+			forDelivery: true,
+			customizationId: customizationId,
+		});
 	};
 
 	const { customization, edit: editCustomization } = useCustomizationCreator(
+		volume,
 		item,
 		itemsLoaded,
 	);

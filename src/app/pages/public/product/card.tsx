@@ -21,7 +21,7 @@ const Card = ({ product }: Props) => {
 				</h3>
 				<Detail name={tProduct('category')} value={category.name} />
 			</div>
-			<aside className='w-full h-[50vh] md:h-[60vh] rounded-xl overflow-clip'>
+			<aside className='w-full h-[45vh] md:h-[50vh] rounded-xl overflow-clip'>
 				<Cad type='gallery' cadId={cadId} />
 			</aside>
 			<p>{description}</p>

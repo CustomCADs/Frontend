@@ -30,7 +30,7 @@ const Limits = ({ min, max, limit, onChange }: Props) => {
 	return (
 		<pagination.Item className='flex gap-x-4'>
 			<select.Root onValueChange={(val) => onChange(Number(val))}>
-				<select.Trigger className='text-secondary-foreground text-sm md:text-lg py-1 ps-4 pe-2 rounded-lg'>
+				<select.Trigger className='cursor-pointer text-secondary-foreground text-sm md:text-lg py-1 ps-4 pe-2 rounded-lg select-none'>
 					<span className='text-xs'>{limit}</span>
 				</select.Trigger>
 				<select.Content className='max-h-100'>

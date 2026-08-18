@@ -1,11 +1,20 @@
 import * as signalr from './signalr';
 
 export type Name = 'Notifications';
-export type Hub = { name: Name; connection: signalr.HubConnection };
+export type Hub = {
+	name: Name;
+	connection: signalr.HubConnection;
+	methods: string[];
+};
+
 let hubs: Hub[] = [];
 
 const create = (name: Name) => {
-	const hub: Hub = { name, connection: signalr.buildConnection(name) };
+	const hub: Hub = {
+		name,
+		connection: signalr.buildConnection(name),
+		methods: [],
+	};
 
 	hubs.push(hub);
 	signalr.start(hub.connection);
@@ -18,9 +27,5 @@ export const remove = (hub: Hub) => {
 	signalr.stop(hub.connection);
 };
 
-export const connect = (name: Name) => {
-	const hub = hubs.find((x) => x.name === name);
-
-	if (!hub) return create(name).connection;
-	return hub.connection;
-};
+export const connect = (name: Name) =>
+	hubs.find((x) => x.name === name) ?? create(name);

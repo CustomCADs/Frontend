@@ -5,10 +5,10 @@ import { usePrivateTranslations } from '@/app/hooks/locales/translations/pages/p
 import Tabs from '@/app/components/tabs';
 import * as page from '@/app/utils/page';
 import Header from './header';
-import { Profile, Access } from './panels';
+import { Profile, Access, Info } from './panels';
 import Footer from './footer';
 
-export const tabs = ['profile', 'access'] as const;
+export const tabs = ['profile', 'access', 'info'] as const;
 export type Tab = (typeof tabs)[number];
 
 const Route = getRouteApi('/_private/account');
@@ -30,6 +30,10 @@ const MyAccount = () => {
 		access: {
 			label: tAccount('access'),
 			panel: <Access account={account} />,
+		},
+		info: {
+			label: tAccount('info'),
+			panel: <Info account={account} />,
 		},
 	};
 

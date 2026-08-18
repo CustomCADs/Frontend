@@ -15,7 +15,7 @@ const Gallery = () => {
 	);
 
 	return (
-		<div className={cn(page.className, 'gap-y-16 justify-between')}>
+		<div className={cn(page.className, 'gap-y-12 justify-between')}>
 			<Bars />
 			<List products={result} />
 			{result.count !== 0 && <GalleryPagination count={result.count} />}

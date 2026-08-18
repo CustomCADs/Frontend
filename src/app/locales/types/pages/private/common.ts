@@ -2,6 +2,7 @@ export type MyAccount = {
 	title: string;
 	profile: string;
 	access: string;
+	info: string;
 };
 
 export type MyAccountShell = {

@@ -17,10 +17,10 @@ export const useNotificationsHub = (
 
 	useHub({
 		hub: {
-			connection: hubs.connect('Notifications'),
-			methods: [{ name: methodName, onReceived: onSingleReceived }],
+			...hubs.connect('Notifications'),
+			methodsToAdd: [{ name: methodName, onReceived: onSingleReceived }],
 		},
-		condition: authn,
+		condition: !!authn && !!account,
 		deps: [account?.id],
 	});
 };

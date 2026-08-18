@@ -21,12 +21,12 @@ const PopularProducts = () => {
 
 	return (
 		<carousel.Root opts={{ loop: true, dragFree: true, slidesToScroll: 1 }}>
-			<carousel.Content className='px-6 py-10 max-w-70 md:max-w-140 lg:max-w-280'>
+			<carousel.Content className='px-6 py-10 max-w-70 sm:max-w-140 lg:max-w-220 xl:max-w-280 select-none'>
 				<Products limit={LIMIT.default} tag={tag}>
 					{(x) => (
 						<carousel.Item
 							key={x.id}
-							className='md:basis-1/2 lg:basis-1/3'
+							className='sm:basis-1/2 lg:basis-1/3'
 						>
 							<Item product={x} className='aspect-square' />
 						</carousel.Item>

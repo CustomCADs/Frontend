@@ -2,6 +2,7 @@ import { Currency, ExchangeRate, EXCHANGE_RATES } from '@customcads/react-sdk';
 import {
 	getLanguageCookie,
 	getUserDefaultLanguage,
+	getUserNavigatorLanguage,
 } from '@/lib/isomorphic/locale';
 import { typescript } from '@/lib/utils';
 
@@ -20,7 +21,11 @@ const currencyToRate = (rates: ExchangeRate[], currency: Currency) => {
 
 export const resolveCurrency = (currency?: Currency) =>
 	currency ??
-	currencies[getLanguageCookie() ?? getUserDefaultLanguage()] ??
+	currencies[
+		getUserNavigatorLanguage() ??
+			getLanguageCookie() ??
+			getUserDefaultLanguage()
+	] ??
 	'EUR';
 
 export const currencyToSymbol = (currency?: Currency) =>

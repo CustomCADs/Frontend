@@ -4,6 +4,10 @@ import { LanguageStoreState } from '@/app/stores/locale';
 import { LOCALE } from '@/app/constants/stores';
 import { get } from './persistence';
 
+export const getUserNavigatorLanguage = createIsomorphicFn()
+	.client(() => navigator.language as AllowedLanguage)
+	.server(() => null);
+
 export const getUserDefaultLanguage = createIsomorphicFn()
 	.client<[], AllowedLanguage>(() => {
 		const languages = navigator.languages || [navigator.language];
