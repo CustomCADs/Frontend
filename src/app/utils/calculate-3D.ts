@@ -1,7 +1,7 @@
 import { COST, RATIO, WEIGHT } from '@/app/constants/threejs';
 import { Ratio } from '@/types/threejs';
 
-const getMinSize = (size: Ratio) => {
+export const getMinSize = (size: Ratio) => {
 	if (!size.x || !size.y || !size.z) return 0;
 
 	const { x, y, z } = {
@@ -29,8 +29,8 @@ export const baseRatio = (size: Ratio) => {
 
 export const volumeMm3 = (volume: number, scale: number, size: Ratio) => {
 	const scaledVolume = volume * scale ** 3;
-	const min = getMinSize(size);
-	return scaledVolume * min ** 3;
+	const base = getMinSize(size);
+	return scaledVolume * base ** 3;
 };
 
 export const weightGrams = (

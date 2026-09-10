@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { EditCustomziationRequest } from '@customcads/react-sdk';
 import { CartItem } from '@/app/types/cart-item';
+import { CustomizationCad } from '@/app/types/printing';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useCustomizationCreator } from '@/app/hooks/features/customizations/useCustomizationCreator';
 import { useCartUpdates } from './useCartUpdates';
 
-export const useCartItemEditor = (productId: string, volume: number) => {
+export const useCartItemEditor = (productId: string, cad: CustomizationCad) => {
 	const { items } = useCartStore();
 	const itemsLoaded = !!items;
 
@@ -24,7 +25,7 @@ export const useCartItemEditor = (productId: string, volume: number) => {
 	};
 
 	const { customization, edit: editCustomization } = useCustomizationCreator(
-		volume,
+		cad,
 		item,
 		itemsLoaded,
 	);

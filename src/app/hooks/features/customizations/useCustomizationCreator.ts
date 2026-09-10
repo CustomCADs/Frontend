@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { isAxiosError } from 'axios';
 import { useMutation, useQuery } from '@customcads/react-sdk';
 import { CartItem } from '@/app/types/cart-item';
+import { CustomizationCad } from '@/app/types/printing';
 import { useIdempotencyKeys } from '@/app/hooks/features/idempotency-keys/useIdempotencyKeys';
-import { INFILL } from '@/app/constants/threejs';
+import { useCustomizationConstruction } from './useCustomizationConstruction';
 
 export const useCustomizationCreator = (
-	volume: number,
-	item?: CartItem,
+	cad: CustomizationCad,
+	item: CartItem | undefined,
 	enableCreation?: boolean,
 ) => {
 	const { idempotencyKeys } = useIdempotencyKeys(['create'] as const);
@@ -26,18 +27,16 @@ export const useCustomizationCreator = (
 		!!customizationId,
 	);
 
+	const local = useCustomizationConstruction(cad);
+
 	const createIfMissing = async () => {
 		const notFound = isAxiosError(error) && error.status === 404;
 		const shouldCreate = !customizationId && !mutations.create.isSuccess;
 
 		if (shouldCreate || notFound) {
 			await mutations.create.mutateAsync({
+				...local,
 				idempotencyKey: idempotencyKeys.create,
-				materialId: 1,
-				color: '#ffffff',
-				infill: INFILL.min,
-				scale: 100 / 100,
-				volume,
 			});
 		}
 	};
