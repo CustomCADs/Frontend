@@ -23,11 +23,7 @@ const Download = () => {
 
 	return (
 		<div className='basis-1/3 flex justify-center'>
-			<a
-				href={url ?? undefined}
-				target='_blank'
-				className='hover:cursor-pointer'
-			>
+			<a href={url ?? undefined} target='_blank'>
 				<Button variant='outline' size='sm' tag='div'>
 					<SquareUser />
 					<span className='font-black'>{tShell('download')}</span>

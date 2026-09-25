@@ -1,2 +1,2 @@
-export type Children = { children?: React.ReactNode };
+export type Children = React.PropsWithChildren;
 export type ClassName = { className?: string };

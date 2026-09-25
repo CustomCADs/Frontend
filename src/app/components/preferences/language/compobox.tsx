@@ -19,7 +19,7 @@ const LanguageCombobox = ({ current, options, ...props }: Props) => {
 	return (
 		<popover.Root open={open} onOpenChange={setOpen}>
 			<popover.Trigger>{props.trigger}</popover.Trigger>
-			<popover.Content className='w-62.5 p-0 z-100000'>
+			<popover.Content className='md:w-none p-0 z-100000'>
 				<command.Root className='bg-header-accent text-header-accent-foreground'>
 					<command.Input placeholder={props.placeholder} />
 					<command.List>

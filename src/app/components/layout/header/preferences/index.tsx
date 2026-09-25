@@ -17,7 +17,7 @@ const Preferences = ({ text }: { text?: string }) => {
 				className={cn(
 					'w-5/6 md:w-auto py-20 md:p-16 rounded-3xl',
 					'flex flex-col justify-center items-center gap-y-12',
-					'bg-accent text-accent-foreground text-lg',
+					'bg-header-popover text-header-popover-foreground text-lg',
 				)}
 			>
 				<div className='flex gap-x-4'>

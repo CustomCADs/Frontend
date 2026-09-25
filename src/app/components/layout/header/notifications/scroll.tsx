@@ -61,7 +61,7 @@ const Scroll = ({ notifications, nextPage }: Props) => {
 	return (
 		<scroll.Area
 			viewportRef={virtualizer.setContainer}
-			className='bg-header-popover h-80 w-80 sm:w-100 md:w-120 lg:w-140 rounded-sm'
+			className='h-80 w-sm rounded-sm'
 		>
 			<div className='flex flex-col gap-3'>
 				<h4 className='text-md text-center leading-none font-extrabold'>
