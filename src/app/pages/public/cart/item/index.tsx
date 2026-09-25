@@ -1,45 +1,36 @@
 import { CartItem } from '@/app/types/cart-item';
-import ItemNoDelivery from './no-delivery';
-import ItemForDelivery from './for-delivery';
+import { useCartItemProduct } from './hooks/useCartItemProduct';
+import { useItemMoney } from './hooks/useItemMoney';
+import BaseItem from './base';
+import DeliveryItem from './delivery';
+import { Skeleton } from './skeleton';
 
-type Props = {
-	item: CartItem;
-	set: {
-		price: (val: number, acc?: boolean) => void;
-		cost: (val: number, acc?: boolean) => void;
-	};
-};
+export type Set = (val: number, acc?: boolean) => void;
+type Props = { item: CartItem; set: { price: Set; cost: Set } };
 const Item = ({ item, set }: Props) => {
-	const price = {
+	const { product, onRemovePrice } = useCartItemProduct(item.productId, {
 		reset: () => set.price(0),
-		addTo: (price: number) => set.price(price, true),
-	};
-	if (!item.forDelivery)
+		addFrom: (price: number) => set.price(price, true),
+	});
+	const money = useItemMoney({ product: product?.price ?? 0, print: 0 });
+
+	if (!product) return <Skeleton />;
+
+	if (item.forDelivery)
 		return (
-			<ItemNoDelivery
-				key={item.productId}
+			<DeliveryItem
 				item={item}
-				resetPrice={price.reset}
-				addToPrice={price.addTo}
+				product={product}
+				onRemovePrice={onRemovePrice}
+				set={set}
 			/>
 		);
 
-	const cost = {
-		reset: () => set.cost(0),
-		addTo: (cost: number) => set.cost(cost, true),
-	};
 	return (
-		<ItemForDelivery
-			key={item.productId}
-			item={item}
-			reset={{
-				price: price.reset,
-				cost: cost.reset,
-			}}
-			addTo={{
-				price: price.addTo,
-				cost: cost.addTo,
-			}}
+		<BaseItem
+			product={product}
+			money={money}
+			onUpdate={{ remove: onRemovePrice }}
 		/>
 	);
 };

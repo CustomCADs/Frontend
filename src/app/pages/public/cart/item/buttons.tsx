@@ -23,7 +23,7 @@ const Buttons = ({
 			<Button
 				variant='destructive'
 				onClick={onRemoveClick}
-				className='cursor-pointer md:self-stretch md:min-w-22'
+				className='md:self-stretch md:min-w-22'
 			>
 				<Trash />
 			</Button>
@@ -31,33 +31,34 @@ const Buttons = ({
 		delivery: isPrintable ? (
 			<Button
 				tag='span'
-				variant='secondary'
+				size='sm'
+				variant='destructive'
 				onClick={onDeliveryChange}
-				className='cursor-pointer px-2 md:px-4'
+				className='md:self-stretch'
 			>
-				<div className='max-w-32 flex items-center gap-x-2'>
-					<span className='text-xs'>{tCart('delivery')}:</span>
-					<Checkbox checked={forDelivery} onChange={() => {}} />
-				</div>
+				<span className='text-xs'>{tCart('delivery')}:</span>
+				<Checkbox checked={forDelivery} />
 			</Button>
 		) : (
-			<button className='bg-secondary/60 text-secondary-foreground rounded-md py-2 px-2 md:px-4'>
-				<div className='max-w-20 flex items-center gap-x-2'>
-					<span className='text-xs text-wrap opacity-60 font-bold select-none'>
+			<Button
+				tag='span'
+				variant='secondary'
+				className='cursor-auto md:self-stretch grow text-secondary-foreground rounded-md py-2 px-2 md:px-4'
+			>
+				<div className='md:max-w-24 flex items-center gap-x-2'>
+					<span className='text-sm text-center text-wrap opacity-60 font-bold select-none'>
 						{tCart('undeliverable')}
 					</span>
 				</div>
-			</button>
+			</Button>
 		),
 	};
 
 	return (
-		<div className='h-full flex items-center justify-between gap-y-1.5'>
-			<div className='h-full w-full flex md:flex-col justify-between items-center gap-x-2 gap-y-2'>
-				{ui.delivery}
-				{children}
-				{ui.remove}
-			</div>
+		<div className='h-full flex md:flex-col justify-between items-center gap-y-2'>
+			{ui.delivery}
+			{children}
+			{ui.remove}
 		</div>
 	);
 };
