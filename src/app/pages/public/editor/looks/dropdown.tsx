@@ -21,7 +21,7 @@ const MaterialsDropdown = ({
 	return (
 		<dropdownMenu.Root>
 			<dropdownMenu.Trigger>{children}</dropdownMenu.Trigger>
-			<dropdownMenu.Content>
+			<dropdownMenu.Content className='bg-popover'>
 				<ul className='flex flex-col gap-y-2 p-4'>
 					{materials.map((x) => (
 						<li

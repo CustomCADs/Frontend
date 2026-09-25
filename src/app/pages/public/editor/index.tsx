@@ -10,8 +10,8 @@ import * as page from '@/app/utils/page';
 import * as calculate3D from '@/app/utils/calculate-3D';
 import { useRadioGroups } from './hooks';
 import Side from './side';
-import { ResetButton, NextButton } from './buttons';
-import { GeneralSection, GeneralTitle } from './general';
+import NextButton from './buttons/next';
+import { GeneralButton, GeneralSection, GeneralTitle } from './general';
 import { DimensionsInfo, PrintInfo } from './info';
 import { Color, Materials } from './looks';
 import { InfillRange, ScaleRange } from './range';
@@ -46,7 +46,7 @@ const Editor = () => {
 		<div
 			className={cn(
 				page.className,
-				'md:flex-row items-stretch justify-between p-0 md:p-0',
+				'md:flex-row items-stretch p-0 md:p-0',
 			)}
 		>
 			<div className='grow flex flex-col gap-y-4 md:gap-y-2 px-4 py-6 md:p-4'>
@@ -83,7 +83,12 @@ const Editor = () => {
 				</GeneralSection>
 				<GeneralSection>
 					<div className='flex justify-evenly items-center gap-x-2'>
-						<ResetButton reset={actions.record.reset} />
+						<GeneralButton
+							variant='destructive'
+							onClick={actions.record.reset}
+						>
+							{tEditor('reset')}
+						</GeneralButton>
 						<NextButton
 							id={customization?.id}
 							cad={cad}
