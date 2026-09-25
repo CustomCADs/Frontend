@@ -3,26 +3,22 @@ import FormInput from '@/app/components/fields/input';
 import { useForm } from './useForm';
 
 export const useFields = () => {
-	const { form, isSubmitted, ...rest } = useForm();
+	const { form, ...rest } = useForm();
 	const fields = {
 		Username: () => (
 			<form.Field name='username'>
-				{(api) => <FormField api={api} isSubmitted={isSubmitted} />}
+				{(api) => <FormField api={api} />}
 			</form.Field>
 		),
 		Password: () => (
 			<form.Field name='password'>
-				{(api) => <FormField api={api} isSubmitted={isSubmitted} />}
+				{(api) => <FormField api={api} />}
 			</form.Field>
 		),
 		RememberMe: () => (
 			<form.Field name='rememberMe'>
 				{(api) => (
-					<FormField
-						api={api}
-						isSubmitted={isSubmitted}
-						className='order-2'
-					>
+					<FormField api={api} className='order-2'>
 						<FormInput
 							api={api}
 							type='checkbox'

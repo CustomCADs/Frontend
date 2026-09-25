@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useQueryClient } from '@tanstack/react-query';
 import { query, useMutation } from '@customcads/react-sdk';
@@ -8,7 +7,6 @@ import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh
 import * as profile from '@/app/validators/profile';
 
 export const useForm = (defaultValues: profile.Data) => {
-	const [isSubmitted, setIsSubmitted] = useState(false);
 	const queryClient = useQueryClient();
 
 	const { mutateAsync: changeNames, ...mutation } = useMutation(
@@ -35,11 +33,8 @@ export const useForm = (defaultValues: profile.Data) => {
 	return {
 		form: formApi,
 		error: form.extractError(mutation.error),
-		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
-			setIsSubmitted(true);
-			return form.handleSubmit(e, formApi.handleSubmit);
-		},
-		isSubmitted,
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) =>
+			form.handleSubmit(e, formApi.handleSubmit),
 		isSuccess: mutation.isSuccess,
 	};
 };

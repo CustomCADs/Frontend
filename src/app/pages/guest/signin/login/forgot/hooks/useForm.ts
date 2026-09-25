@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation } from '@customcads/react-sdk';
 import { form } from '@/lib/utils';
@@ -7,8 +6,6 @@ import { useForceLocaleRefresh } from '@/app/hooks/locales/useForceLocaleRefresh
 import { schema } from '@/app/validators/forgot-password';
 
 export const useForm = () => {
-	const [isSubmitted, setIsSubmitted] = useState(false);
-
 	const { mutateAsync: sendEmail, ...mutation } = useMutation(
 		({ identity }) => identity.forgotPassword,
 	);
@@ -30,11 +27,8 @@ export const useForm = () => {
 	return {
 		form: formApi,
 		error: form.extractError(mutation.error as unknown),
-		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
-			setIsSubmitted(true);
-			return form.handleSubmit(e, formApi.handleSubmit);
-		},
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) =>
+			form.handleSubmit(e, formApi.handleSubmit),
 		isSuccess: mutation.isSuccess,
-		isSubmitted,
 	};
 };

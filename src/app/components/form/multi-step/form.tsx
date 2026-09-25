@@ -4,8 +4,9 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/app/components/ui';
 import Indicator from './indicator';
 
-type Props<K> = Children & {
-	steps: { all: Array<Step<K>>; current: Step<K> };
+type Props<K, F> = Children & {
+	steps: { all: Array<Step<K, F>>; current: Step<K, F> };
+	canMoveNext?: boolean;
 	move: {
 		next: VoidFunction;
 		prev: VoidFunction;
@@ -18,14 +19,24 @@ type Props<K> = Children & {
 	onSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
 };
 // eslint-disable-next-line func-style
-function MultiStepForm<K>({ children, steps, move, text, onSubmit }: Props<K>) {
+function MultiStepForm<K, F>({
+	children,
+	steps,
+	canMoveNext,
+	move,
+	text,
+	onSubmit,
+}: Props<K, F>) {
 	const is = {
 		first: steps.current.index === 0,
 		last: steps.current.index === steps.all.length - 1,
 	};
 
 	return (
-		<form onSubmit={onSubmit} className='space-y-12'>
+		<form
+			onSubmit={onSubmit}
+			className='h-full flex flex-col justify-between gap-y-12'
+		>
 			<div className='flex gap-4 justify-center'>
 				{steps.all.map((step) => (
 					<Indicator
@@ -56,6 +67,7 @@ function MultiStepForm<K>({ children, steps, move, text, onSubmit }: Props<K>) {
 					variant='outline'
 					onClick={move.next}
 					className='w-7/15 py-6 text-lg'
+					disabled={canMoveNext !== undefined && !canMoveNext}
 					hidden={is.last}
 				>
 					{text?.next}

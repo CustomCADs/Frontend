@@ -7,19 +7,17 @@ import Credentials from './credentials';
 type Props = {
 	step: Key;
 	form: Form;
-	isSubmitted: boolean;
-	error?: string | string[];
 };
-const Step = ({ step, ...props }: Props) => {
+const Step = ({ step, form }: Props) => {
 	switch (step) {
 		case 'role':
-			return <ChooseRole {...props} />;
+			return <ChooseRole form={form} />;
 
 		case 'profile':
-			return <ProfileInfo {...props} />;
+			return <ProfileInfo form={form} />;
 
 		case 'creds':
-			return <Credentials {...props} />;
+			return <Credentials form={form} />;
 
 		default:
 	}

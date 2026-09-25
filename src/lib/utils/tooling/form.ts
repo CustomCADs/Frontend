@@ -37,12 +37,12 @@ export const extractError = (error: any) =>
 
 export const doFieldsHaveErrors = <TValues, TKeys = keyof TValues>(
 	getErrors: (field: TKeys) => { errors: unknown[] },
-	onErrorFound: (field: TKeys) => void,
+	onErrorFound?: (field: TKeys) => void,
 ) => {
 	const hasError = (field: TKeys) => {
 		const info = getErrors(field);
 		if (info?.errors?.length) {
-			onErrorFound(field);
+			onErrorFound?.(field);
 			return true;
 		}
 	};
