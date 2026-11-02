@@ -6,7 +6,7 @@ export default {
 	customize: 'Персонализирайте',
 	printing: 'Опции за Принтиране',
 	delivery: 'Доставка',
-	undeliverable: 'Неподходящо за Принт/Пратка',
+	undeliverable: 'Неподходящо за Доставка',
 	'product-price': '',
 	'product-price_one': 'Цена на продукт',
 	'product-price_other': 'Цени на продукти',

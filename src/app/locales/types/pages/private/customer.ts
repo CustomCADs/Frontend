@@ -1,0 +1,28 @@
+export type Checkout = {
+	'delivery-title': string;
+	'delivery-description': string;
+	'address-title': string;
+	'address-description': string;
+	'payment-title': string;
+	'payment-description': string;
+	'to-office': string;
+	'to-address': string;
+	open: string;
+	'speedy-map': string;
+	'speedy-map-description': string;
+	'address-map': string;
+	'address-map-description': string;
+	'set-address': string;
+	'unset-address': string;
+	'wrong-address': string;
+	'no-address': string;
+	'no-address-tooltip': string;
+	hide: string;
+	pending: string;
+	success: string;
+	failure: string;
+	loading: string;
+	back: string;
+	next: string;
+	submit: string;
+};

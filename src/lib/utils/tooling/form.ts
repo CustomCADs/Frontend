@@ -61,3 +61,14 @@ export const handleSubmit = async (
 	e.stopPropagation();
 	await onSubmit();
 };
+
+export const mapStepMetadata = <K extends string>(
+	steps: readonly K[],
+	t: (key: `${K}-title` | `${K}-description`) => string,
+) =>
+	Object.fromEntries(
+		steps.map((k) => [
+			k,
+			{ title: t(`${k}-title`), description: t(`${k}-description`) },
+		]),
+	) as Record<K, { title: string; description: string }>;

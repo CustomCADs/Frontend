@@ -1,0 +1,31 @@
+import { Checkout } from '@/app/locales/types/pages/private/customer';
+
+export default {
+	'delivery-title': 'Fill in the Delivery details',
+	'delivery-description': 'This step fulfills crucial delivery information.',
+	'address-title': 'Point to your desired Office/Address',
+	'address-description': "This step determines your package' destination.",
+	'payment-title': 'Specify the Payment Method',
+	'payment-description': 'This step completes the financial transaction.',
+	'to-office': 'To Office',
+	'to-address': 'To Address',
+	open: 'Open map',
+	'speedy-map': 'Speedy Map',
+	'speedy-map-description': 'Find any DPD Office or APT',
+	'address-map': 'Address Map',
+	'address-map-description': 'Find any Street or Address',
+	'set-address': 'Set Address',
+	'unset-address': 'Unset Address',
+	'wrong-address': 'Not your Address?',
+	'no-address': "Don't see your address?",
+	'no-address-tooltip':
+		'Select your Block/Street and add its number to the Address field',
+	hide: 'Hide',
+	pending: 'Find',
+	success: 'Found!',
+	failure: 'Failed to find.',
+	loading: 'Finding...',
+	back: 'Back',
+	next: 'Next',
+	submit: 'Complete Purchase',
+} satisfies Checkout;

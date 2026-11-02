@@ -9,4 +9,11 @@ export default {
 	password: 'Password',
 	confirmPassword: 'Confirm Password',
 	rememberMe: 'Remember me',
+	phone: 'Phone',
+	destination: 'Destination',
+	country: 'Country',
+	site: 'City',
+	postcode: 'Postal code',
+	address: 'Address',
+	addressNote: 'Full Address',
 } satisfies Labels;

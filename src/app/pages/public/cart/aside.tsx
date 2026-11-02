@@ -1,11 +1,9 @@
-import { Link } from '@tanstack/react-router';
 import { useCartStore } from '@/app/hooks/stores/useCartStore';
 import { useMoneyFormatter } from '@/app/hooks/locales/useMoneyFormatter';
 import { useGalleryTranslations } from '@/app/hooks/locales/translations/pages/public';
-import StripeProvider from '@/app/components/stripe-provider';
 import { Button } from '@/app/components/ui';
-import DialogCheckout from '@/app/pages/private/customer/checkout/payment/dialog';
 import Money from './money';
+import CheckoutButton from './checkout';
 
 type MoneyRecord = Record<string, number>;
 type Props = { prices: MoneyRecord; costs: MoneyRecord };
@@ -22,9 +20,9 @@ const Aside = ({ prices, costs }: Props) => {
 		total: formatMoney(sum.prices + sum.costs),
 	};
 
+	const tCart = useGalleryTranslations('cart');
 	if (!items?.length) return null;
 
-	// TODO: Update when Payment is implemented
 	return (
 		<aside className='flex justify-center items-center animate-fade-in delay-1000'>
 			<div className='w-full min-w-2xs flex flex-col justify-center items-center gap-y-12 md:p-18 px-6 py-12 border-2 rounded-4xl'>
@@ -34,9 +32,11 @@ const Aside = ({ prices, costs }: Props) => {
 					plural
 					className='text-xl text-nowrap font-extrabold'
 				/>
-				<span className='font-bold text-sm text-center'>
-					{'Payment is currently still not supported.'}
-				</span>
+				<CheckoutButton hasDelivery={items.some((x) => x.forDelivery)}>
+					<Button tag='div' size='lg' className='text-lg'>
+						{tCart('purchase')}
+					</Button>
+				</CheckoutButton>
 			</div>
 		</aside>
 	);

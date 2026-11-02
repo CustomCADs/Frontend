@@ -1,4 +1,5 @@
 import { useSelector } from '@tanstack/react-store';
+import { mapStepMetadata } from '@/lib/utils/tooling/form';
 import { useSignupTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import { card } from '@/app/components/ui';
 import MultiStepForm from '@/app/components/form/multi-step';
@@ -16,21 +17,10 @@ const Register = () => {
 	const values = useSelector(rest.form.store, (state) => state.values);
 
 	const tRegister = useSignupTranslations('register');
-	const stepTitles = {
-		role: {
-			title: tRegister('role-title'),
-			description: tRegister('role-description'),
-		},
-		profile: {
-			title: tRegister('profile-title'),
-			description: tRegister('profile-description'),
-		},
-		creds: {
-			title: tRegister('creds-title'),
-			description: tRegister('creds-description'),
-		},
-	};
-	const { title, description } = stepTitles[current.key ?? 'role'];
+	const { title, description } = mapStepMetadata<Key>(
+		['role', 'profile', 'creds'],
+		tRegister,
+	)[current.key ?? 'role'];
 
 	return (
 		<div className={page.className}>

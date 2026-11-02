@@ -16,6 +16,7 @@ import { Route as SharedResetPasswordRouteImport } from './routes/_shared/reset-
 import { Route as PublicTermsOfServiceRouteImport } from './routes/_public/terms-of-service'
 import { Route as PublicPrivacyPolicyRouteImport } from './routes/_public/privacy-policy'
 import { Route as PublicCartRouteImport } from './routes/_public/cart'
+import { Route as PrivateCheckoutRouteImport } from './routes/_private/checkout'
 import { Route as PrivateAccountRouteImport } from './routes/_private/account'
 import { Route as GuestRegisterRouteImport } from './routes/_guest/register'
 import { Route as GuestLoginRouteImport } from './routes/_guest/login'
@@ -56,6 +57,11 @@ const PublicCartRoute = PublicCartRouteImport.update({
   id: '/_public/cart',
   path: '/cart',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateCheckoutRoute = PrivateCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => PrivateRoute,
 } as any)
 const PrivateAccountRoute = PrivateAccountRouteImport.update({
   id: '/account',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/account': typeof PrivateAccountRoute
+  '/checkout': typeof PrivateCheckoutRoute
   '/cart': typeof PublicCartRoute
   '/privacy-policy': typeof PublicPrivacyPolicyRoute
   '/terms-of-service': typeof PublicTermsOfServiceRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/login': typeof GuestLoginRoute
   '/register': typeof GuestRegisterRoute
   '/account': typeof PrivateAccountRoute
+  '/checkout': typeof PrivateCheckoutRoute
   '/cart': typeof PublicCartRoute
   '/privacy-policy': typeof PublicPrivacyPolicyRoute
   '/terms-of-service': typeof PublicTermsOfServiceRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/_guest/login': typeof GuestLoginRoute
   '/_guest/register': typeof GuestRegisterRoute
   '/_private/account': typeof PrivateAccountRoute
+  '/_private/checkout': typeof PrivateCheckoutRoute
   '/_public/cart': typeof PublicCartRoute
   '/_public/privacy-policy': typeof PublicPrivacyPolicyRoute
   '/_public/terms-of-service': typeof PublicTermsOfServiceRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/account'
+    | '/checkout'
     | '/cart'
     | '/privacy-policy'
     | '/terms-of-service'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/account'
+    | '/checkout'
     | '/cart'
     | '/privacy-policy'
     | '/terms-of-service'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/_guest/login'
     | '/_guest/register'
     | '/_private/account'
+    | '/_private/checkout'
     | '/_public/cart'
     | '/_public/privacy-policy'
     | '/_public/terms-of-service'
@@ -249,6 +261,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicCartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_private/checkout': {
+      id: '/_private/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof PrivateCheckoutRouteImport
+      parentRoute: typeof PrivateRoute
+    }
     '/_private/account': {
       id: '/_private/account'
       path: '/account'
@@ -317,10 +336,12 @@ const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
 
 interface PrivateRouteChildren {
   PrivateAccountRoute: typeof PrivateAccountRoute
+  PrivateCheckoutRoute: typeof PrivateCheckoutRoute
 }
 
 const PrivateRouteChildren: PrivateRouteChildren = {
   PrivateAccountRoute: PrivateAccountRoute,
+  PrivateCheckoutRoute: PrivateCheckoutRoute,
 }
 
 const PrivateRouteWithChildren =
