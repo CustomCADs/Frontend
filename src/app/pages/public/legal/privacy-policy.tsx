@@ -2,6 +2,7 @@
 /* eslint-disable max-lines */
 import { cn } from '@/lib/utils';
 import * as page from '@/app/utils/page';
+import { EMAIL } from '@/app/constants/global';
 
 const PrivacyPolicy = () => (
 	<div className={cn(page.className, 'gap-y-8')}>
@@ -419,7 +420,7 @@ const PrivacyPolicy = () => (
 				<ul>
 					<li className='flex gap-x-2'>
 						<span>Email:</span>
-						<span>customcads2023@gmail.com</span>
+						<span>{EMAIL}</span>
 					</li>
 					<li className='flex gap-x-2'>
 						<span>Address</span>
