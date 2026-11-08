@@ -121,6 +121,7 @@ export const useForm = () => {
 	return {
 		form: formApi,
 		current,
+		status: stripe.status,
 		move: { ...move, canMoveNext },
 		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) =>
 			form.handleSubmit(e, formApi.handleSubmit),

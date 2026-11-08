@@ -21,11 +21,14 @@ export default {
 	'no-address-tooltip':
 		'Select your Block/Street and add its number to the Address field',
 	hide: 'Hide',
-	pending: 'Find',
-	success: 'Found!',
-	failure: 'Failed to find.',
-	loading: 'Finding...',
+	find: 'Find',
+	found: 'Found!',
+	'not-found': 'Failed to find.',
+	searching: 'Finding...',
 	back: 'Back',
 	next: 'Next',
 	submit: 'Complete Purchase',
+	'payment-processing': 'Processing transaction...',
+	'payment-success': 'Payment successful!',
+	'payment-failed': 'Payment failed!',
 } satisfies Checkout;

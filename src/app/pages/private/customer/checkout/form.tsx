@@ -1,4 +1,5 @@
 import { mapStepMetadata } from '@/lib/utils/tooling/form';
+import { PAYMENT_BTN } from '@/app/constants/translations';
 import { useCustomerTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { card } from '@/app/components/ui';
 import MultiStepForm from '@/app/components/form/multi-step';
@@ -8,7 +9,7 @@ import Step from './step';
 import { Key } from '.';
 
 const CheckoutForm = () => {
-	const { steps, current, move, handleSubmit, form } = useForm();
+	const { steps, current, move, form, status, handleSubmit } = useForm();
 	const tCheckout = useCustomerTranslations('checkout');
 
 	const { title, description } = mapStepMetadata<Key>(
@@ -31,7 +32,7 @@ const CheckoutForm = () => {
 						text={{
 							back: tCheckout('back'),
 							next: tCheckout('next'),
-							submit: tCheckout('submit'),
+							submit: tCheckout(PAYMENT_BTN[status]),
 						}}
 						onSubmit={handleSubmit}
 					>

@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { PaymentRequest } from '@customcads/react-sdk';
 
+export type PaymentStatus = 'awaiting' | 'processing' | 'success' | 'error';
+
 export const useCheckout = () => {
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const [status, setStatus] = useState<
-		'awaiting' | 'processing' | 'success' | 'error'
-	>('awaiting');
+	const [status, setStatus] = useState<PaymentStatus>('awaiting');
 	const [errorMessage, setErrorMessage] = useState<string>();
 
 	const handleSubmit = async (): Promise<

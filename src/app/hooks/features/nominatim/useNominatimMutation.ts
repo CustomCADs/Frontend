@@ -4,7 +4,7 @@ import { Address } from '@/app/types/map';
 import { URLs } from '@/app/constants/external';
 const EMPTY_ARRAY: Address[] = [];
 
-type NominatimStatus = 'success' | 'failure' | 'loading';
+export type NominatimStatus = 'success' | 'failure' | 'loading';
 export const useNominatimMutation = () => {
 	const mutation = useMutation({
 		mutationKey: ['nominatim_address_search'],

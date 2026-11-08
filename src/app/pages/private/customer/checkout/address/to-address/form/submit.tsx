@@ -1,3 +1,4 @@
+import { SEARCH_BTN } from '@/app/constants/translations';
 import { useCustomerTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { Button } from '@/app/components/ui';
 
@@ -9,7 +10,7 @@ const Submit = ({ status, ...props }: Props) => {
 
 	return (
 		<Button type='submit' {...props}>
-			{tCheckout(status)}
+			{tCheckout(SEARCH_BTN[status])}
 		</Button>
 	);
 };

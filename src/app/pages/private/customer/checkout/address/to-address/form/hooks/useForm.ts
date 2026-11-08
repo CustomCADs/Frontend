@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from '@tanstack/react-store';
 import { IntentedCategory } from '@/app/types/map';
 import { useCheckoutFormContext } from '@/app/contexts/checkout';
-import { useNominatimMutation } from '../../hooks';
+import { useNominatimMutation } from '@/app/hooks/features/nominatim/useNominatimMutation';
 
 export const useForm = () => {
 	const { form } = useCheckoutFormContext();

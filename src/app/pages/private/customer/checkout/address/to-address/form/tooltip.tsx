@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { useCustomerTranslations } from '@/app/hooks/locales/translations/pages/private';
 import { Button, tooltip } from '@/app/components/ui';
-import { useStreetNumbersMismatch } from '../hooks';
+import { useStreetNumbersMismatch } from '../hooks/useStreetNumbersMismatch';
 
 const Tooltip = () => {
 	const { isMismatch, override } = useStreetNumbersMismatch();

@@ -18,11 +18,14 @@ export type Checkout = {
 	'no-address': string;
 	'no-address-tooltip': string;
 	hide: string;
-	pending: string;
-	success: string;
-	failure: string;
-	loading: string;
+	find: string;
+	found: string;
+	'not-found': string;
+	searching: string;
 	back: string;
 	next: string;
 	submit: string;
+	'payment-processing': string;
+	'payment-success': string;
+	'payment-failed': string;
 };

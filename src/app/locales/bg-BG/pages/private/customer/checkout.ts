@@ -24,11 +24,14 @@ export default {
 	'no-address-tooltip':
 		'Изберете улицата или блока си и впишете номера му полето "Пълен Адрес"',
 	hide: 'Скрий',
-	pending: 'Потърси',
-	success: 'Намерено!',
-	failure: 'Неуспешно търсене.',
-	loading: 'Търсене...',
+	find: 'Потърси',
+	found: 'Намерено!',
+	'not-found': 'Неуспешно търсене.',
+	searching: 'Търсене...',
 	back: 'Назад',
 	next: 'Напред',
 	submit: 'Завърши Поръчката',
+	'payment-processing': 'Обработка на транзакция...',
+	'payment-success': 'Заплащане успешно!',
+	'payment-failed': 'Заплащане неуспешно!',
 } satisfies Checkout;
