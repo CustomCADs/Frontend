@@ -19,12 +19,15 @@ export type Cart = {
 	title: string;
 	view: string;
 	customize: string;
+	printing: string;
 	delivery: string;
 	undeliverable: string;
 	'product-price': string;
+	'product-price_one': string;
+	'product-price_other': string;
 	'print-cost': string;
 	'total-sum': string;
-	buy: string;
+	purchase: string;
 };
 
 export type Editor = {

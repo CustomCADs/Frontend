@@ -25,7 +25,10 @@ const NotificationsTab = () => {
 			<popover.Trigger>
 				<CustomIcon Icon={Bell} />
 			</popover.Trigger>
-			<popover.Content className='px-2 w-auto md:w-auto' asChild>
+			<popover.Content
+				className='bg-header-popover px-2 w-auto md:w-auto'
+				asChild
+			>
 				<div className='relative top-4 flex flex-col items-center'>
 					<Scroll
 						notifications={pages.flatMap(({ items }) => items)}

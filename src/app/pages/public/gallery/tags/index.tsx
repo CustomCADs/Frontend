@@ -19,8 +19,9 @@ const Tags = ({ children, getTags, updateTags }: Props) => {
 		<div className='w-full px-4'>
 			<ul
 				className={cn(
-					'flex justify-items-center overflow-x-auto gap-2 scrollbar-none',
-					'sm:grid sm:grid-cols-4 sm:gap-x-20 sm:gap-y-4 sm:overflow-y-auto sm:min-h-12 sm:px-16',
+					'min-h-12 px-6 overflow-auto scrollbar-none',
+					'grid grid-cols-2 justify-items-center gap-x-20 gap-y-4',
+					'md:grid-cols-4 md:gap-x-20 md:gap-y-4',
 				)}
 			>
 				{children?.map((tag) => (

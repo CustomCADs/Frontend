@@ -22,6 +22,7 @@ const Item = ({ product, className }: Props) => (
 			request={{ id: product.imageId, relationType: 'Product' }}
 			enabled={!!product}
 			className='basis-full max-h-30 md:max-h-52 object-cover rounded-sm select-none'
+			skeleton='w-sm h-30 md:h-60'
 		/>
 		<div className='flex justify-around items-center gap-x-10'>
 			<div className='flex gap-x-2 select-none'>

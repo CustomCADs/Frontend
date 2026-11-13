@@ -25,7 +25,7 @@ const useButtons = (product: Props) => {
 			return isShort ? tProduct('like-short') : tProduct('like');
 		},
 		className: cn(
-			'shadow-shadow shadow-md cursor-pointer',
+			'shadow-shadow shadow-md',
 			isLiked && 'bg-pink-700 hover:bg-pink-800',
 		),
 	};
@@ -41,14 +41,14 @@ const useButtons = (product: Props) => {
 		},
 		className: cn(
 			'shadow-shadow shadow-md',
-			isAlreadyAdded ? 'opacity-80 hover:bg-secondary' : 'cursor-pointer',
+			isAlreadyAdded && 'opacity-80 hover:bg-secondary cursor-auto',
 		),
 	};
 
 	return {
 		like: {
 			mobile: (
-				<div className='flex items-center gap-x-2 cursor-pointer'>
+				<div className='flex items-center gap-x-2'>
 					<Button
 						onClick={toggleIsLiked}
 						variant='secondary'

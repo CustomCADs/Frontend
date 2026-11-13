@@ -57,16 +57,13 @@ const AddToCartButton = ({
 			<popover.Trigger>
 				<ProductButton Icon={Icon} text={text} className={className} />
 			</popover.Trigger>
-			<popover.Content>
+			<popover.Content className='md:w-2xl'>
 				<aside className='flex flex-col gap-y-6 py-4 md:py-8'>
 					<h4 className='text-center font-bold'>
 						{tProduct('add_delivery-question')}
 					</h4>
 					<div className='flex flex-col md:flex-row justify-between gap-y-2 px-2 md:px-8'>
-						<Button
-							variant='destructive'
-							onClick={handleAdd.noDelivery}
-						>
+						<Button onClick={handleAdd.noDelivery}>
 							{tProduct('add_no-delivery')}
 						</Button>
 						<Button

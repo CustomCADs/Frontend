@@ -9,7 +9,7 @@ type Props = ClassName & {
 	onClick?: VoidFunction;
 };
 const ProductButton = ({ Icon, text, className, onClick }: Props) => (
-	<div className='flex items-center gap-x-2 cursor-pointer'>
+	<div className='flex items-center gap-x-2'>
 		<Button
 			tag='span'
 			variant='secondary'

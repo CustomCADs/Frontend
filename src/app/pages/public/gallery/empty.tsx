@@ -1,7 +1,11 @@
-import { GalleryVertical } from 'lucide-react';
-import { useEmptyTranslations } from '@/app/hooks/locales/translations/common';
-import { Button, empty } from '@/app/components/ui';
 import { Link } from '@tanstack/react-router';
+import { GalleryVertical } from 'lucide-react';
+import {
+	useCommonTranslations,
+	useEmptyTranslations,
+} from '@/app/hooks/locales/translations/common';
+import { useAuthStore } from '@/app/hooks/stores/useAuthStore';
+import { Button, empty, tooltip } from '@/app/components/ui';
 
 type Props = {
 	media?: boolean;
@@ -10,6 +14,8 @@ type Props = {
 	link?: boolean;
 };
 const Empty = ({ media, title, description, link }: Props) => {
+	const store = useAuthStore();
+	const tRoles = useCommonTranslations('roles');
 	const tEmpty = useEmptyTranslations('gallery');
 
 	return (
@@ -35,9 +41,19 @@ const Empty = ({ media, title, description, link }: Props) => {
 
 			<empty.Content>
 				{link && (
-					<Button>
-						<Link to='/register'>{tEmpty('link')}</Link>
-					</Button>
+					<tooltip.Root>
+						<tooltip.Trigger>
+							<Button disabled={store.authn}>
+								<Link to='/register'>{tEmpty('link')}</Link>
+							</Button>
+						</tooltip.Trigger>
+						<tooltip.Content>
+							{store.authn &&
+								tEmpty('tooltip', {
+									role: tRoles(store.authz),
+								})}
+						</tooltip.Content>
+					</tooltip.Root>
 				)}
 			</empty.Content>
 		</empty.Root>

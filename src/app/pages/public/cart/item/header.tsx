@@ -8,6 +8,7 @@ const Header = ({ product }: Props) => (
 		<PresignedImage
 			request={{ id: product.imageId, relationType: 'Product' }}
 			className='w-30 h-30 rounded-xl select-none'
+			skeleton='w-30 h-30'
 		/>
 	</section>
 );

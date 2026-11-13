@@ -52,5 +52,5 @@ export const useCartSync = () => {
 			};
 			initCart();
 		}
-	}, [is.customer, activeCart.isFetched]);
+	}, [is.customer, activeCart.isFetched, activeCart.isStale]);
 };

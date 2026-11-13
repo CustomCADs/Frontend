@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation } from '@customcads/react-sdk';
@@ -11,7 +10,6 @@ const Route = getRouteApi('/_shared/reset-password');
 
 export const useForm = () => {
 	const { email, token } = Route.useSearch();
-	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const { mutateAsync: resetPassword, ...mutation } = useMutation(
 		({ identity }) => identity.resetPassword,
@@ -34,11 +32,8 @@ export const useForm = () => {
 	return {
 		form: formApi,
 		error: form.extractError(mutation.error as unknown),
-		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
-			setIsSubmitted(true);
-			return form.handleSubmit(e, formApi.handleSubmit);
-		},
-		isSubmitted,
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) =>
+			form.handleSubmit(e, formApi.handleSubmit),
 		isSuccess: mutation.isSuccess,
 	};
 };

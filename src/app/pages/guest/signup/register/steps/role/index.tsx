@@ -7,10 +7,13 @@ import { type Data } from '@/app/validators/register';
 import { type Form } from '../../hooks/useForm';
 import List from './list';
 
-type Props = { form: Form; isSubmitted: boolean };
-const ChooseRole = ({ form, isSubmitted }: Props) => {
+type Props = { form: Form };
+const ChooseRole = ({ form }: Props) => {
 	const tRole = useSignupTranslations('role');
-	const { role } = useSelector(form.store, (state) => state.values);
+	const { isSubmitted, role } = useSelector(form.store, (state) => ({
+		isSubmitted: state.isSubmitted,
+		...state.values,
+	}));
 
 	return (
 		<div className='min-w-3/4 flex flex-col items-center md:items-stretch gap-y-4'>

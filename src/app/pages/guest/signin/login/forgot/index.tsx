@@ -1,10 +1,11 @@
 import { useSigninTranslations } from '@/app/hooks/locales/translations/pages/guest';
 import { Button, card } from '@/app/components/ui';
 import Alert from '@/app/components/alert';
-import { useFields } from './hooks/useFields';
+import FormField from '@/app/components/fields/field';
+import { useForm } from './hooks/useForm';
 
 const ForgotPassword = () => {
-	const { fields, error, isSuccess, handleSubmit } = useFields();
+	const { form, error, isSuccess, handleSubmit } = useForm();
 	const tForgot = useSigninTranslations('forgot');
 
 	return (
@@ -21,7 +22,9 @@ const ForgotPassword = () => {
 				<card.Content>
 					<div className='flex flex-col'>
 						<div className='grid gap-2 mb-6'>
-							<fields.Email />
+							<form.Field name='email'>
+								{(api) => <FormField api={api} />}
+							</form.Field>
 						</div>
 					</div>
 				</card.Content>

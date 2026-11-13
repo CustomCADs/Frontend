@@ -14,19 +14,19 @@ const NotificationItem = ({ notification }: Props) => {
 	const Wrapper = !!notification.link ? Link : 'div';
 	return (
 		<div
-			className='flex flex-col text-sm border-y my-2 rounded-md'
+			className='flex flex-col text-sm border-y mx-1 my-1 rounded-xl hover:bg-card transition duration-250'
 			onClick={open}
 		>
 			<Wrapper
 				to={notification.link ?? undefined}
-				className='flex text-center px-1 py-3'
+				className='flex text-center px-3 py-4'
 			>
 				{notification.status === 'Unread' && (
 					<span className='self-center w-2 h-1.5 rounded-full bg-unread' />
 				)}
 				<span className='font-medium'>{notification.description}</span>
 			</Wrapper>
-			<span className='text-right italic px-2 py-1 text-sm text-popover-foreground bg-linear-to-r from-transparent to-popover rounded-md'>
+			<span className='text-right italic px-2 py-1 text-xs text-muted-foreground rounded-md'>
 				{dateTime.formatRelative({ date: notification.createdAt })}
 			</span>
 		</div>

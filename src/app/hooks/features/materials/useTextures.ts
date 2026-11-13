@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@customcads/react-sdk';
 import { fetchFile } from '@/lib/utils';
-import type { Material } from '@/app/types/material';
+import type { Material } from '@/app/types/printing';
 
 export const useTextures = (enabled?: boolean) => {
 	const [map, setMap] = useState<Record<string, Material>>({});

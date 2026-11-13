@@ -9,10 +9,14 @@ const typedEntries = <T extends Record<string, unknown>>(obj: T) => {
 export const generateSteps = <Key extends string, Field extends string>(
 	params: Record<Key, { label: string; fields: Array<Field> }>,
 	hasErrors: (fields: Field[]) => boolean,
-): Step<Key>[] =>
-	typedEntries(params).map(([key, value], i) => ({
-		index: i,
-		key: key as Key,
-		label: value.label,
-		validate: () => !hasErrors(value.fields),
-	}));
+): Step<Key, Field>[] =>
+	typedEntries(params).map(
+		([key, value], i) =>
+			({
+				index: i,
+				key: key as Key,
+				label: value.label,
+				fields: value.fields,
+				validate: () => !hasErrors(value.fields),
+			}) satisfies Step<Key, Field>,
+	);

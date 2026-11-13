@@ -7,7 +7,7 @@ export const useThrottle = <T>(value: T, delay: number): T => {
 	});
 
 	useEffect(() => {
-		throttler.maybeExecute(value);
+		if (throttledValue !== value) throttler.maybeExecute(value);
 	}, [value]);
 
 	return throttledValue;

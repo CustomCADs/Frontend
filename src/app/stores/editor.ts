@@ -38,9 +38,10 @@ const resetRecord = (key: string | null) =>
 	store.setState((prev) => {
 		if (!key) return {};
 
+		const { color, materialId, infill, scale } = defaultState;
 		return {
 			...prev,
-			[key]: defaultState,
+			[key]: { ...prev[key], color, materialId, infill, scale },
 		};
 	});
 

@@ -1,10 +1,13 @@
 import { DownloadRequest, useQuery } from '@customcads/react-sdk';
+import { cn } from '@/lib/utils';
+import { Skeleton } from './ui';
 
 type Props = {
 	request: DownloadRequest;
+	skeleton?: string;
 	enabled?: boolean;
 } & React.ComponentProps<'img'>;
-const PresignedImage = ({ request, enabled, ...props }: Props) => {
+const PresignedImage = ({ request, enabled, skeleton, ...props }: Props) => {
 	const { data: image, refetch } = useQuery(({ images }) => {
 		const { queryKey, queryFn } = images.download(request);
 		return {
@@ -16,8 +19,10 @@ const PresignedImage = ({ request, enabled, ...props }: Props) => {
 		};
 	});
 
-	return (
-		<img src={image?.presignedUrl} onError={() => refetch()} {...props} />
+	return image ? (
+		<img src={image.presignedUrl} onError={() => refetch()} {...props} />
+	) : (
+		<Skeleton className={cn('bg-primary', skeleton)} />
 	);
 };
 

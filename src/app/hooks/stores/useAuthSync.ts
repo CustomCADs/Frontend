@@ -30,9 +30,7 @@ export const useAuthSync = () => {
 			}
 
 			const { data: authz } = await refetchAuthz();
-			if (authz) {
-				authStore.login(authz);
-			}
+			if (authz) authStore.login(authz);
 		};
 		sync();
 	}, [authStore.authz]);

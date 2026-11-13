@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useForm as useTanStackForm } from '@tanstack/react-form';
 import { useMutation } from '@customcads/react-sdk';
@@ -28,7 +27,6 @@ export const useForm = () => {
 	const { reset: resetAuth } = useAuthStore();
 
 	const navigate = useNavigate();
-	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const tErrors = useFormTranslations('errors');
 	const tLabels = useFormTranslations('labels');
@@ -52,10 +50,7 @@ export const useForm = () => {
 	return {
 		form: formApi,
 		error: form.extractError(error as unknown),
-		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => {
-			setIsSubmitted(true);
-			return form.handleSubmit(e, formApi.handleSubmit);
-		},
-		isSubmitted,
+		handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) =>
+			form.handleSubmit(e, formApi.handleSubmit),
 	};
 };

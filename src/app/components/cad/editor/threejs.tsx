@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { Coordinates } from '@customcads/react-sdk';
 import { type AllowedType } from '@/lib/cad';
 import { useThreeJS } from '@/hooks/headless/useThreeJS';
-import type { Material } from '@/app/types/material';
+import type { Material } from '@/app/types/printing';
 import { useEditorStore } from '@/app/hooks/stores/useEditorStore';
 import { useEditorThreeJS } from './hooks/useEditorThreeJS';
 import Model from '../model';

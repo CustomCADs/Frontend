@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
+import * as form from '@/lib/utils/tooling/form';
 
-type Props = { message: string | undefined };
+type Props = { message: Error | string | undefined };
 export const Error = ({ message }: Props) => (
 	<span
 		className={cn(
@@ -8,6 +9,6 @@ export const Error = ({ message }: Props) => (
 			!message && 'invisibile',
 		)}
 	>
-		{message}
+		{typeof message === 'string' ? message : form.extractError(message)}
 	</span>
 );

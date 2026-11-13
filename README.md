@@ -1,11 +1,11 @@
 # 🎨 CustomCADs — Frontend
 
 The frontend of CustomCADs, built with **TanStack Start+ React + TypeScript + Vite**, provides a dynamic, responsive interface for exploring, purchasing, and commissioning 3D CAD models.  
-It’s designed to integrate seamlessly with the [**CustomCADs Backend**](https://github.com/NinjataWRLD/CustomCADs-Backend), offering real-time updates, notifications, and a polished user experience.
+It’s designed to integrate seamlessly with the [**CustomCADs Backend**](https://github.com/CustomCADs/Backend), offering real-time updates, notifications, and a polished user experience.
 
 ## 🚀 Setup
 
-Follow these steps to get the **CustomCADs Frontend** running locally:
+Follow these steps to get the [**CustomCADs Frontend**](https://github.com/CustomCADs/Frontend) running locally:
 
 1. **Install dependencies**
 ```bash
@@ -84,7 +84,7 @@ Your frontend should now be accessible at [https://localhost:5173](https://local
 ## 📂 Directory Structure
 
 ```plaintext
-CustomCADs-Frontend/
+Frontend/
 ├── eslint-cofnigs/     # ESLint
 ├── public/             # SEO & Assets
 ├── src/

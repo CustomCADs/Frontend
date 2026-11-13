@@ -1,3 +1,4 @@
+import { Role } from '@customcads/react-sdk';
 import { Language } from '@/types/locale';
 import { Empty } from './common/empty';
 
@@ -11,13 +12,7 @@ export type Common = {
 
 type Locales = Record<Language, string>;
 
-type Roles = {
-	Customer: string;
-	Contributor: string;
-	Creator: string;
-	Designer: string;
-	Administrator: string;
-};
+type Roles = Record<Role | 'Creator', string>;
 
 type Loading = {
 	gallery: string;

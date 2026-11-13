@@ -9,4 +9,11 @@ export default {
 	password: 'Парола',
 	confirmPassword: 'Потвърдете Паролата',
 	rememberMe: 'Запомни ме',
+	phone: 'Телефон',
+	destination: 'Дестинация',
+	country: 'Държава',
+	site: 'Град',
+	postcode: 'Пощенски код',
+	address: 'Адрес',
+	addressNote: 'Пълен Адрес',
 } satisfies Labels;
