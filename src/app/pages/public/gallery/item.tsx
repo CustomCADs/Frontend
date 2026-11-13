@@ -21,7 +21,7 @@ const Item = ({ product, className }: Props) => (
 		<PresignedImage
 			request={{ id: product.imageId, relationType: 'Product' }}
 			enabled={!!product}
-			className='basis-full max-h-30 md:max-h-60 object-cover rounded-sm select-none'
+			className='basis-full max-h-30 md:max-h-52 object-cover rounded-sm select-none'
 			skeleton='w-sm h-30 md:h-60'
 		/>
 		<div className='flex justify-around items-center gap-x-10'>
