@@ -2,19 +2,20 @@ import { Link } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { collapsible, sidebar } from '@/app/components/ui';
-import { Item } from '.';
+import { Item } from './';
 
 type Props = {
+	group: Item['name'];
 	items: Array<{ name: Item['name']; pages: Item[] }>;
 };
-const NavWorkspaces = ({ items }: Props) => {
+const NavWorkspaces = ({ group, items }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 	if (!items.length) return;
 
 	return (
 		<sidebar.Group>
 			<sidebar.GroupLabel className='text-md'>
-				{tHeader('collections')}
+				{tHeader(group)}
 			</sidebar.GroupLabel>
 			<sidebar.GroupContent>
 				<sidebar.Menu>

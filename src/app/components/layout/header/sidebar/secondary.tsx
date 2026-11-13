@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
-import Account from '../account';
+import Account from '../account/mobile';
 import {
 	Group,
 	GroupContent,
@@ -9,12 +9,12 @@ import {
 	MenuButton,
 	MenuBadge,
 } from '@/app/components/ui/sidebar';
-import { Item } from '.';
+import { Item } from './';
 
 type Props = React.ComponentPropsWithoutRef<typeof Group> & {
-	items: Array<Item & { badge?: string }>;
+	items?: Array<Item & { badge?: string }>;
 };
-const NavSecondary = ({ items, ...props }: Props) => {
+const NavSecondary = ({ items = [], ...props }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 
 	return (

@@ -7,16 +7,16 @@ import {
 	MenuItem,
 	MenuButton,
 } from '@/app/components/ui/sidebar';
-import { Item } from '.';
+import { Item } from './';
 
-type Props = { items: Item[] };
-const NavCollections = ({ items }: Props) => {
+type Props = { group: Item['name']; items: Item[] };
+const NavCollections = ({ group, items }: Props) => {
 	const tHeader = useLayoutTranslations('header');
 	if (!items.length) return;
 
 	return (
 		<Group className='group-data-[collapsible=icon]:hidden'>
-			<GroupLabel>{tHeader('useful')}</GroupLabel>
+			<GroupLabel>{tHeader(group)}</GroupLabel>
 			<Menu>
 				{items.map((item) => (
 					<MenuItem key={item.name}>

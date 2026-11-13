@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useLayoutTranslations } from '@/app/hooks/locales/translations/components';
 import { Menu, MenuItem, MenuButton } from '@/app/components/ui/sidebar';
-import { Item } from '.';
+import { Item } from './';
 
 type Props = {
 	items: Array<Item & { isActive?: boolean; badge?: string }>;
